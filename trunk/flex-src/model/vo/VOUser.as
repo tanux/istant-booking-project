@@ -1,5 +1,5 @@
 /**
- * This is a generated sub-class of _VOAuthor.as and is intended for behavior
+ * This is a generated sub-class of _VOUser.as and is intended for behavior
  * customization.  This class is only generated when there is no file already present
  * at its target location.  Thus custom behavior that you add here will survive regeneration
  * of the super-class. 
@@ -15,7 +15,7 @@ package model.vo
 
 import com.adobe.fiber.core.model_internal;
 
-public class VOAuthor extends _Super_VOAuthor
+public class VOUser extends _Super_VOUser
 {
     /** 
      * DO NOT MODIFY THIS STATIC INITIALIZER - IT IS NECESSARY
@@ -30,17 +30,17 @@ public class VOAuthor extends _Super_VOAuthor
      */     
     public static function _initRemoteClassAlias() : void
     {
-        _Super_VOAuthor.model_internal::initRemoteClassAliasSingle(model.vo.VOAuthor);
-        _Super_VOAuthor.model_internal::initRemoteClassAliasAllRelated();
+        _Super_VOUser.model_internal::initRemoteClassAliasSingle(model.vo.VOUser);
+        _Super_VOUser.model_internal::initRemoteClassAliasAllRelated();
     }
      
     model_internal static function initRemoteClassAliasSingleChild() : void
     {
-        _Super_VOAuthor.model_internal::initRemoteClassAliasSingle(model.vo.VOAuthor);
+        _Super_VOUser.model_internal::initRemoteClassAliasSingle(model.vo.VOUser);
     }
     
     {
-        _Super_VOAuthor.model_internal::initRemoteClassAliasSingle(model.vo.VOAuthor);
+        _Super_VOUser.model_internal::initRemoteClassAliasSingle(model.vo.VOUser);
     }
     /** 
      * END OF DO NOT MODIFY SECTION
