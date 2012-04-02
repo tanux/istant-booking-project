@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" 
+		  layout="absolute" autoLayout="true" title="Login" 
+		  height="230" width="370">     
+	<mx:Form width="100%">
+		<mx:FormItem label="username" fontWeight="bold">
+			<mx:TextInput id="tiUsername" width="240" text=""/>
+		</mx:FormItem>
+		<mx:HRule width="100%"/>
+		<mx:FormItem label="password" fontWeight="bold">
+			<mx:TextInput id="tiPassword" width="240" displayAsPassword="true" text="" />
+		</mx:FormItem>
+		<mx:HRule width="100%"/>
+		<mx:Box horizontalAlign="center" width="100%">
+			<mx:Button label="login" id="btnLogin"/>        
+		</mx:Box>               
+		<mx:HRule width="100%"/>
+		<mx:VBox width="100%" horizontalAlign="center">
+			<mx:Label text="Non sei ancora registrato?" />
+			<mx:Button label="Registrati" id="btnRegistrati"/>      
+		</mx:VBox>                              
+	</mx:Form>      
+</mx:Panel>
+

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml"
+		 backgroundColor="#6699cc" cornerRadius="20" borderStyle="solid">
+	<mx:HBox width="100%" textAlign="left" verticalAlign="middle" paddingTop="4" paddingLeft="5" paddingRight="5">
+		<mx:Box horizontalAlign="left" height="100%" width="80%" verticalAlign="middle">
+			<mx:Label color="white" fontSize="15" fontWeight="bold"
+					  text="Elenco Prenotazioni Avellino per il giorno 15/02/2012"/>	
+		</mx:Box>
+		
+		<mx:Box horizontalAlign="right" verticalAlign="middle">
+			<mx:Canvas>
+				<mx:Box>
+					<mx:TextInput text="Cerca..." paddingTop="1" textAlign="right"/>	
+				</mx:Box>
+				<mx:Box width="20%" height="90%" paddingTop="2" paddingLeft="2">
+					<mx:Image source="assets/find.png" height="20" />	
+				</mx:Box>			
+			</mx:Canvas>
+		</mx:Box>
+
+	</mx:HBox>
+	<mx:Canvas width="100%" height="100%">
+		<mx:DataGrid id="dgRisultati" width="100%" height="100%">
+			<mx:dataProvider>
+				<mx:Object Nome="Mario" Cognome="Speranza" Ora="15:00" />
+				<mx:Object Nome="Gaetano" Cognome="Esposito" Ora="15:40" />
+				<mx:Object Nome="Gaetano" Cognome="Marotta" Ora="16:00" />
+				<mx:Object Nome="Marco" Cognome="Polo" Ora="16:20" />
+				<mx:Object Nome="Gaetano" Cognome="D'Amato" Ora="16:40" />
+				<mx:Object Nome="Aldo" Cognome="Baglio" Ora="17:00" />
+				<mx:Object Nome="Mario" Cognome="Esposito" Ora="17:20" />
+				<mx:Object Nome="Gaetano" Cognome="De Ceglie" Ora="17:40" />
+				<mx:Object Nome="Giuseppe" Cognome="Ippolito" Ora="18:00" />
+			</mx:dataProvider>
+			<mx:columns>
+				<mx:DataGridColumn id="clmNome" dataField="Nome" headerText="Nome" />
+				<mx:DataGridColumn id="clmCognome" dataField="Cognome" headerText="Cognome" />
+				<mx:DataGridColumn id="clmCF" dataField="Ora" headerText="Ora" />
+			</mx:columns>
+		</mx:DataGrid>
+	</mx:Canvas>
+</mx:VBox>
+	

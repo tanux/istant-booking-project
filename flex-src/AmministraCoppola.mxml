@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+				xmlns:component="view.component.*"
+				width="100%" height="100%"	layout="absolute"
+				pageTitle="Booking system" xmlns:local="*" > 
+	<mx:Style source="/assets/skins/flex_skins.css"/>	
+	<mx:Image right="-78" top="0" horizontalAlign="right" source="@Embed('/assets/occhio.png')" verticalAlign="top" width="50%" height="50%"/>
+	
+	<mx:VBox id="boxExt" width="100%" height="100%" horizontalAlign="center" paddingBottom="5" paddingLeft="5" paddingRight="5" paddingTop="5">
+		<mx:ApplicationControlBar id="TopBar" width="80%" height="50" fillAlphas="[1.0, 1.0]"
+								  fillColors="[#6699cc, #6699cc]" styleName="DateChooserHeaderStyle">
+			<mx:HBox width="100%" height="80%" verticalAlign="middle">
+				<mx:Box width="33%">
+					<mx:Text color="white" fontSize="30" fontWeight="bold" text="Dott. Coppola" />	
+				</mx:Box>
+				<mx:Box width="33%" horizontalAlign="center" >
+					<mx:Button icon="@Embed(source='assets/gear.png')" downIcon="@Embed(source='assets/gear_little.png')"
+							   width="45" height="40"/>
+				</mx:Box>
+				<mx:Box width="33%" horizontalAlign="right">
+					<mx:Button icon="@Embed(source='assets/log_out.png')" downIcon="@Embed(source='assets/log_out_little.png')"
+							   width="45" height="40"/>	
+				</mx:Box>
+			</mx:HBox>
+		</mx:ApplicationControlBar>
+		
+		<mx:Box height="10"/>
+		<mx:ApplicationControlBar width="80%" height="25" fillAlphas="[1.0, 1.0]" fillColors="[#6699cc, #6699cc]" 
+									horizontalAlign="left" verticalAlign="middle">
+			<mx:Label text="Gestione Sedi" color="white" fontSize="10" fontWeight="bold"/>
+		</mx:ApplicationControlBar>
+		<mx:HBox width="80%" height="40%" horizontalAlign="center" verticalAlign="middle" paddingTop="5">
+			<mx:DataGrid id="dgRisultati" width="60%" height="100%">
+				<mx:dataProvider>
+					<mx:Object Sede="Avellino" Indirizzo="via dei Castagni" Telefono="3405994169"/>
+					<mx:Object Sede="Ariano Irpino" Indirizzo="P.zza Maggiore" Telefono="3405883058"/>
+					<mx:Object Sede="Lioni" Indirizzo="via dei Bruchi" Telefono="555-35-89"/>
+				</mx:dataProvider>
+				<mx:columns>
+					<mx:DataGridColumn id="clmSede" dataField="Sede" headerText="Sede" />
+					<mx:DataGridColumn id="clmIndirizzo" dataField="Indirizzo" headerText="Indirizzo" />
+					<mx:DataGridColumn id="clmTelefono" dataField="Telefono" headerText="Telefono" />
+				</mx:columns>
+			</mx:DataGrid >
+			
+			<mx:Panel width="40%" height="100%" >
+				<mx:Canvas width="100%" >
+					<mx:HBox width="100%" horizontalAlign="center" verticalAlign="middle">
+						<mx:Text color="white" fontSize="10" text="Aggiungi" fontWeight="bold"/>
+						<mx:Image source="@Embed(source='assets/plus.png')"/>
+						<mx:Text text="Modifica" color="white" fontSize="10" fontWeight="bold"/>
+						<mx:Image source="@Embed(source='assets/pencil.png')"/>	
+					</mx:HBox>
+				</mx:Canvas>
+				<mx:VBox width="100%" horizontalAlign="center">
+					<mx:HBox width="100%">
+						<mx:Label text="Nome" color="black" fontSize="15" width="30%" textAlign="right"/>
+						<mx:TextInput width="50%"/>
+					</mx:HBox>
+					<mx:HBox width="100%">
+						<mx:Label text="Indirizzo" color="black" fontSize="15" width="30%" textAlign="right"/>
+						<mx:TextInput width="50%"/>
+					</mx:HBox>
+					<mx:HBox width="100%">
+						<mx:Label text="Telefono" color="black" fontSize="15" width="30%" textAlign="right"/>
+						<mx:TextInput width="50%"/>
+					</mx:HBox>
+				</mx:VBox>
+				
+				<mx:HBox width="100%" verticalCenter="middle" horizontalAlign="center" height="30%"
+						 paddingTop="5">
+					<mx:VBox horizontalAlign="center">
+						<mx:Label text="Lunedì" color="black"/>
+						<mx:CheckBox />
+					</mx:VBox>
+					<mx:VRule height="100%"/>
+					<mx:VBox horizontalAlign="center">
+						<mx:Label text="Martedì" color="black"/>
+						<mx:CheckBox />
+					</mx:VBox>
+					<mx:VRule height="100%"/>
+					<mx:VBox horizontalAlign="center">
+						<mx:Label text="Mercoledì" color="black"/>
+						<mx:CheckBox />
+					</mx:VBox>
+					<mx:VRule height="100%"/>
+					<mx:VBox horizontalAlign="center">
+						<mx:Label text="Giovedì" color="black"/>
+						<mx:CheckBox />
+					</mx:VBox>
+					<mx:VRule height="100%"/>
+					<mx:VBox horizontalAlign="center">
+						<mx:Label text="Venerdì" color="black"/>
+						<mx:CheckBox />
+					</mx:VBox>
+				</mx:HBox>
+				
+				<mx:HBox height="20%" width="100%" horizontalAlign="right" paddingBottom="10" paddingRight="20">
+					<mx:Button icon="@Embed(source='assets/house_plus.png')" downIcon="@Embed(source='assets/house_plus_little.png')"
+							   width="45" height="40"/>
+					<mx:Button icon="@Embed(source='assets/house_delete.png')" downIcon="@Embed(source='assets/house_delete_little.png')"
+							   width="45" height="40"/>
+					<mx:Button icon="@Embed(source='assets/save.png')" downIcon="@Embed(source='assets/save_little.png')"
+							   width="45" height="40"/>
+				</mx:HBox>
+			</mx:Panel>
+		</mx:HBox>
+		
+		<mx:Box height="10"/>
+
+		<mx:ApplicationControlBar width="80%" height="25" fillAlphas="[1.0, 1.0]" fillColors="[#6699cc, #6699cc]" 
+								  horizontalAlign="left" verticalAlign="middle" >
+			<mx:Label text="Gestione Affiliazioni" color="white" fontSize="10" fontWeight="bold"/>
+		</mx:ApplicationControlBar>
+		<mx:VBox width="80%" height="40%" horizontalAlign="center" verticalAlign="middle" paddingTop="5">
+			<mx:DataGrid id="dgOttici" width="100%" height="100%">
+				<mx:dataProvider>
+					<mx:Object Ottico="Del Prete" Indirizzo="via dei Legni" Telefono="3405994169"/>
+					<mx:Object Ottico="Del Pozzo" Indirizzo="P.zza Minore" Telefono="3405883058"/>
+					<mx:Object Ottico="Mancuso" Indirizzo="via dei Cesti" Telefono="555-35-89"/>
+					<mx:Object Ottico="Scarpati" Indirizzo="via Arenula" Telefono="3405994000"/>
+					<mx:Object Ottico="Ottica Bisogno" Indirizzo="P.zza Maggiore" Telefono="3405883058"/>
+					<mx:Object Ottico="Del Bene" Indirizzo="via Roma" Telefono="555-35-89"/>
+					<mx:Object Ottico="Liberty" Indirizzo="via delle Rondini" Telefono="3405994169"/>
+					<mx:Object Ottico="Accuracy" Indirizzo="P.zza A. Diaz" Telefono="3405883058"/>
+					<mx:Object Ottico="Relativity" Indirizzo="via dei Cesti" Telefono="555-35-89"/>
+					<mx:Object Ottico="Del Prete" Indirizzo="via dei Rami" Telefono="3405994169"/>
+					<mx:Object Ottico="Del Pozzo" Indirizzo="P.zza Grande" Telefono="3405883058"/>
+					<mx:Object Ottico="Maiello" Indirizzo="via dei Nastri" Telefono="555-35-89"/>
+				</mx:dataProvider>
+				<mx:columns>
+					<mx:DataGridColumn id="clmOttico" dataField="Ottico" headerText="Sede" />
+					<mx:DataGridColumn id="clmIndirizzoOttico" dataField="Indirizzo" headerText="Indirizzo" />
+					<mx:DataGridColumn id="clmTelefonoOttico" dataField="Telefono" headerText="Telefono" />
+				</mx:columns>
+			</mx:DataGrid>
+			<mx:HBox verticalAlign="middle" horizontalAlign="right" width="100%">
+				<mx:Button icon="@Embed(source='assets/house_plus.png')" downIcon="@Embed(source='assets/house_plus_little.png')"
+						   width="45" height="40"/>
+				<mx:Button icon="@Embed(source='assets/house_delete.png')" downIcon="@Embed(source='assets/house_delete_little.png')"
+						   width="45" height="40"/>
+			</mx:HBox>
+		</mx:VBox>
+	</mx:VBox>
+</mx:Application>

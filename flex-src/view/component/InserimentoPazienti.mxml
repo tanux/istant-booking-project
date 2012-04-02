@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml"
+		 width="100%" height="100%">
+	<mx:HBox width="100%" textAlign="left" horizontalAlign="right" verticalAlign="middle">
+		<mx:Canvas>
+			<mx:Box>
+				<mx:TextInput text="Cerca..." paddingTop="1" textAlign="right"/>	
+			</mx:Box>
+			<mx:Box width="20%" height="90%" paddingTop="2" paddingLeft="2">
+				<mx:Image source="assets/find.png" height="20" />	
+			</mx:Box>			
+		</mx:Canvas>
+	</mx:HBox>
+	
+	<mx:DataGrid id="dgRisultati" width="100%" height="50%">
+		<mx:dataProvider>
+			<mx:Object Nome="Mario" Cognome="Speranza" CF="SPRMRA" Mail="mario.speranza@live.it" Tel="3405994169"/>
+			<mx:Object Nome="Gaetano" Cognome="Esposito" CF="GTNESP" Mail="gaetano.esposito@gmail.com" Tel="3405883058"/>
+			<mx:Object Nome="Enzo" Cognome="Ferrentino" CF="ENZFRR" Mail="enzo.ferr@libero.it" Tel="3405881234"/>
+			<mx:Object Nome="Luigi" Cognome="Bartoli" CF="LGUBRTL" Mail="luigi.bart@alice.it" Tel="3495885678"/>
+			<mx:Object Nome="Gaetano" Cognome="Marotta" CF="GTNMRT" Mail="gaet.mar@libero.it" Tel="3485883058"/>
+			<mx:Object Nome="Prisco" Cognome="D'Amato" CF="PRSDMT" Mail="prsci@gmail.it" Tel="3615881011"/>
+			<mx:Object Nome="Enzo" Cognome="D'Acunzo" CF="ENZACNZ" Mail="enzo.acunzo@libero.it" Tel="3495881213"/>
+			<mx:Object Nome="Gaetano" Cognome="Mancuso" CF="GTNMRT" Mail="gaet.mar@libero.it" Tel="3485883058"/>
+			<mx:Object Nome="Prisco" Cognome="Claudio" CF="PRSDMT" Mail="prsci@gmail.it" Tel="3615881011"/>
+			<mx:Object Nome="Enzo" Cognome="Marco" CF="ENZACNZ" Mail="enzo.acunzo@libero.it" Tel="3495881213"/>
+		</mx:dataProvider>
+		<mx:columns>
+			<mx:DataGridColumn id="clmNome" dataField="Nome" headerText="Nome" />
+			<mx:DataGridColumn id="clmCognome" dataField="Cognome" headerText="Cognome" />
+			<mx:DataGridColumn id="clmCF" dataField="CF" headerText="Codice Fiscale" />
+			<mx:DataGridColumn id="clmEMail" dataField="Mail" headerText="E-Mail" />
+			<mx:DataGridColumn id="clmTel" dataField="Tel" headerText="Telefono" />
+		</mx:columns>
+	</mx:DataGrid>
+	<mx:HBox>
+		<mx:TextInput text="Nome" paddingTop="1" paddingLeft="2"/>
+		<mx:TextInput text="Cognome" paddingTop="1" paddingLeft="2"/>
+		<mx:TextInput text="Codice Fiscale" paddingTop="1" paddingLeft="2"/>
+	</mx:HBox>
+	<mx:HBox width="100%" horizontalAlign="right">
+		<mx:Button icon="@Embed(source='assets/add_user.png')" downIcon="@Embed(source='assets/add_user_little.png')"
+				   width="45" height="40"/>
+		<mx:Button icon="@Embed(source='assets/delete_user.png')" downIcon="@Embed(source='assets/delete_user_little.png')"
+				   width="45" height="40"/>
+		<mx:Button icon="@Embed(source='assets/save.png')" downIcon="@Embed(source='assets/save_little.png')"
+				   width="45" height="40"/>
+		<mx:Button icon="@Embed(source='assets/prenotazione.png')" downIcon="@Embed(source='assets/prenotazione_little.png')"
+				   width="45" height="40"/>
+	</mx:HBox>
+
+</mx:VBox>
