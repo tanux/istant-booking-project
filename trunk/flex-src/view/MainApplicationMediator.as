@@ -20,8 +20,13 @@ package view
 			mainApplication.addEventListener(FlexEvent.CREATION_COMPLETE, init);
 		}
 		private function init(evt:Event) : void {}
+		
 		override public function handleNotification(notification:INotification):void{ 
 			switch (notification.getName()){
+				case ApplicationFacade.STARTUP:
+					Alert.show("Notifica Inviata");
+					sendNotification(ApplicationFacade.TRY_ACCESS);	
+					break;
 				case ApplicationFacade.LOGIN_SUCCESS:
 					mainApplication.currentState = "stateMainApplication";
 					var user:VOUser = notification.getBody() as VOUser;
@@ -33,14 +38,21 @@ package view
 				case ApplicationFacade.BACK_TO_LOGIN:
 					mainApplication.currentState = "login";
 					break;
+				case ApplicationFacade.ACCESS_SUCCESS: //da rivedere, violo il DRY
+					mainApplication.currentState = "stateMainApplication";
+					var user:VOUser = notification.getBody() as VOUser;
+					mainApplication.user = user;
+					break;
 			}
 		}
 		
 		override public function listNotificationInterests():Array{
 			return [
+				ApplicationFacade.STARTUP,
 				ApplicationFacade.LOGIN_SUCCESS,
 				ApplicationFacade.LOGIN_ERROR,				
 				ApplicationFacade.BACK_TO_LOGIN,
+				ApplicationFacade.ACCESS_SUCCESS
 			];	
 		}		
 		public function get mainApplication():Test{ 

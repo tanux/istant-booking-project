@@ -20,7 +20,7 @@ package view.login
 		
 		public function LoginFormMediator(viewComponent:Object){
 			super(NAME, viewComponent);			
-			login.btnLogin.addEventListener(MouseEvent.CLICK, doLogin);
+			login.btnLogin.addEventListener(MouseEvent.CLICK, doLogin);			
 		}
 		
 		public function doLogin(evt:Event):void{			
