@@ -20,10 +20,8 @@ package controller
 			var mainApplication:Test = notification.getBody() as Test; //prendo il component mxml
 			
 			facade.registerMediator(new MainApplicationMediator(mainApplication));
-			facade.registerMediator(new LoginFormMediator(mainApplication.loginForm));			
-			
-			facade.registerCommand(ApplicationFacade.TRY_ACCESS,TryAccessCommand);
-			Alert.show("In mezzo");
+			facade.registerMediator(new LoginFormMediator(mainApplication.loginForm));
+			facade.registerCommand(ApplicationFacade.TRY_ACCESS,TryAccessCommand);					
 			facade.registerCommand(ApplicationFacade.DO_LOGIN, DoLoginCommand);
 						
 		}

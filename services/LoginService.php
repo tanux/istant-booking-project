@@ -16,7 +16,7 @@ class LoginService {
 			$user = $auth->getIdentity();
 			return $user;
 		}
-		else return null;
+		else return 'NONE';
 	}
 	
 	/**
@@ -37,11 +37,13 @@ class LoginService {
 		$auth = Zend_Auth::getInstance();
 		$auth->setStorage(new Zend_Auth_Storage_Session('UserLogin'));
 		$result = $auth->authenticate($authAdapter);
-		if ($result->isValid()){
+		if ($result->isValid()){			
 			$user = new VOUser();
 			$user = $authAdapter->getResultRowObject(null,'password');
 			$storage = $auth->getStorage();
-			$storage->write($user);			
+			$storage->write($user);
+			$session = new Zend_Session_Namespace('Zend_Auth');
+			$session->setExpirationSeconds(10);			
 			return $user;	
 		}		
 		else return null;	
