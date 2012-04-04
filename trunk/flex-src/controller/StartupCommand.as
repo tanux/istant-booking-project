@@ -1,6 +1,7 @@
 package controller
 {
 	import controller.login.DoLoginCommand;
+	import controller.login.TryAccessCommand;
 	
 	import mx.controls.Alert;
 	
@@ -21,6 +22,8 @@ package controller
 			facade.registerMediator(new MainApplicationMediator(mainApplication));
 			facade.registerMediator(new LoginFormMediator(mainApplication.loginForm));			
 			
+			facade.registerCommand(ApplicationFacade.TRY_ACCESS,TryAccessCommand);
+			Alert.show("In mezzo");
 			facade.registerCommand(ApplicationFacade.DO_LOGIN, DoLoginCommand);
 						
 		}
