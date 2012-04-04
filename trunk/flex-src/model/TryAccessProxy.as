@@ -1,7 +1,6 @@
 package model
 {
 	import model.services.loginservice.LoginService;
-	import model.vo.VOUser;
 	
 	import mx.controls.Alert;
 	import mx.messaging.messages.RemotingMessage;
@@ -13,36 +12,36 @@ package model
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
-	public class LoginProxy extends Proxy implements IProxy
-	{
+	public class TryAccessProxy extends Proxy implements IProxy{
 		private var service:LoginService;
 		private var responder:Responder;		
-		public static const NAME:String = "LoginProxy";	
-		
-		public function LoginProxy(proxyName:String){
+		public static const NAME:String = "TryAccessProxy";
+		public function TryAccessProxy(proxyName:String){
 			super(proxyName);
 			service = new LoginService();
-			responder =  new Responder(onResult, onFault);			
+			responder =  new Responder(onResult, onFault);
 		}
-		
-		public function doLogin(username:String, password:String):void{			
-			var at:AsyncToken = service.doLogin(username, password);
-			at.addResponder(responder);			
-		}		
+		public function tryAccess():void{
+			var at:AsyncToken = service.executeAccess();
+			at.addResponder(responder);
+		}
 		private function onResult(evt:ResultEvent):void{
 			switch ((evt.token.message as RemotingMessage).operation) {
-				case "doLogin":
+				case "executeAccess":
 					if (evt.result != null){
-						sendNotification(ApplicationFacade.LOGIN_SUCCESS,evt.result);						
+						Alert.show("executeAccess OK");
+						sendNotification(ApplicationFacade.ACCESS_SUCCESS,evt.result);						
 					}			
 					else{
-						sendNotification(ApplicationFacade.LOGIN_ERROR,evt.result);
+						//TO DO
+						Alert.show("executeAccess NOK");
+						sendNotification(ApplicationFacade.EXECUTE_LOGIN,evt.result);
 					}
-					break;				
-			}	
-		}		
+					break;	
+			}
+		}
 		private function onFault(evt:FaultEvent):void{
-			
+			Alert.show("executeAccess FAULT");
 		}
 	}
 }
