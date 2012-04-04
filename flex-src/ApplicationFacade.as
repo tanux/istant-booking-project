@@ -4,6 +4,7 @@ package
 	 * Sede di tutte le notifiche Singleton
 	 * */
 	import controller.StartupCommand;
+	
 	import org.puremvc.as3.interfaces.IFacade;
 	import org.puremvc.as3.patterns.facade.Facade;
 	
@@ -12,6 +13,9 @@ package
 		public static const LOGIN:String = "Login";
 		public static const LOGOUT:String = "Logout";
 		public static const DO_LOGIN:String = "DoLogin";
+		public static const EXECUTE_LOGIN:String = "";
+		public static const TRY_ACCESS:String = "TryAccess";
+		public static const ACCESS_SUCCESS:String = "AccessSuccess";
 		public static const DO_REGISTER:String = "DoRegister";
 		public static const CONFIRM_REGISTER:String = "ConfirmRegister";
 		public static const REGISTER_SUCCES:String = "RegisterSuccess";
