@@ -39,13 +39,13 @@
 		<mx:TextInput text="Codice Fiscale" paddingTop="1" paddingLeft="2"/>
 	</mx:HBox>
 	<mx:HBox width="100%" horizontalAlign="right">
-		<mx:Button icon="@Embed(source='assets/add_user.png')" downIcon="@Embed(source='assets/add_user_little.png')"
+		<mx:Button icon="@Embed(source='assets/images/add_user.png')" downIcon="@Embed(source='assets/images/add_user_little.png')"
 				   width="45" height="40"/>
-		<mx:Button icon="@Embed(source='assets/delete_user.png')" downIcon="@Embed(source='assets/delete_user_little.png')"
+		<mx:Button icon="@Embed(source='assets/images/delete_user.png')" downIcon="@Embed(source='assets/images/delete_user_little.png')"
 				   width="45" height="40"/>
-		<mx:Button icon="@Embed(source='assets/save.png')" downIcon="@Embed(source='assets/save_little.png')"
+		<mx:Button icon="@Embed(source='assets/images/save.png')" downIcon="@Embed(source='assets/images/save_little.png')"
 				   width="45" height="40"/>
-		<mx:Button icon="@Embed(source='assets/prenotazione.png')" downIcon="@Embed(source='assets/prenotazione_little.png')"
+		<mx:Button icon="@Embed(source='assets/images/prenotazione.png')" downIcon="@Embed(source='assets/images/prenotazione_little.png')"
 				   width="45" height="40"/>
 	</mx:HBox>
 
