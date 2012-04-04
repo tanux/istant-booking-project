@@ -22,11 +22,7 @@ package view
 		private function init(evt:Event) : void {}
 		
 		override public function handleNotification(notification:INotification):void{ 
-			switch (notification.getName()){
-				case ApplicationFacade.STARTUP:
-					Alert.show("Notifica Inviata");
-					sendNotification(ApplicationFacade.TRY_ACCESS);	
-					break;
+			switch (notification.getName()){				
 				case ApplicationFacade.LOGIN_SUCCESS:
 					mainApplication.currentState = "stateMainApplication";
 					var user:VOUser = notification.getBody() as VOUser;
@@ -47,8 +43,7 @@ package view
 		}
 		
 		override public function listNotificationInterests():Array{
-			return [
-				ApplicationFacade.STARTUP,
+			return [				
 				ApplicationFacade.LOGIN_SUCCESS,
 				ApplicationFacade.LOGIN_ERROR,				
 				ApplicationFacade.BACK_TO_LOGIN,

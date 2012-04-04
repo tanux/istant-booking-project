@@ -3,6 +3,20 @@
   <annotation name="ActionScriptGeneration">
     <item name="FullyQualifyReferences">true</item>
   </annotation>
+  <entity name="StdClass">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">StdClass</item>
+      <item name="location">D:/workspace_flex_php/.metadata/.plugins/org.eclipse.php.core/__language__/4b249652/Core.php</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="RemoteClass">StdClass</item>
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">model.vo</item>
+    </annotation>
+  </entity>
   <service name="LoginService">
     <annotation name="ActionScriptGeneration">
       <item name="Source">LoginService</item>
@@ -81,19 +95,5 @@
     <property name="surname" type="opaque" required="true"/>
     <property name="username" type="opaque" required="true"/>
     <property name="password" type="opaque" required="true"/>
-  </entity>
-  <entity name="StdClass">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">StdClass</item>
-      <item name="location">D:/workspace_flex_php/.metadata/.plugins/org.eclipse.php.core/__language__/4b249652/Core.php</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="RemoteClass">StdClass</item>
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="service Group"/>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">model.vo</item>
-    </annotation>
   </entity>
 </model>
