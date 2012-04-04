@@ -7,7 +7,7 @@
 				<mx:TextInput text="Cerca..." paddingTop="1" textAlign="right"/>	
 			</mx:Box>
 			<mx:Box width="20%" height="90%" paddingTop="2" paddingLeft="2">
-				<mx:Image source="assets/find.png" height="20" />	
+				<mx:Image source="assets/images/find.png" height="20" />	
 			</mx:Box>			
 		</mx:Canvas>
 	</mx:HBox>
