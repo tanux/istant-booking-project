@@ -6,14 +6,17 @@ define('VERIFIED_IDENTITY', true);
 class LoginService {	
 	
 	/**
-	 * Execute Access without login and by session
+	 * Execute Access by session without login  
 	 * @return VOUser $user
 	 */
 	public function executeAccess(){
 		$auth = Zend_Auth::getInstance();
-		$user = new VOUser();
-		$user = $auth->getIdentity();
-		return $user;		
+		if ($auth->hasIdentity()){
+			$user = new VOUser();
+			$user = $auth->getIdentity();
+			return $user;
+		}
+		else return null;
 	}
 	
 	/**
@@ -33,20 +36,15 @@ class LoginService {
 					->setCredential($password);	
 		$auth = Zend_Auth::getInstance();
 		$auth->setStorage(new Zend_Auth_Storage_Session('UserLogin'));
-		if ($auth->hasIdentity()){
-			return VERIFIED_IDENTITY;
-		}
-		else{
-			$result = $auth->authenticate($authAdapter);
-			if ($result->isValid()){
-				$user = new VOUser();
-				$user = $authAdapter->getResultRowObject(null,'password');
-				$storage = $auth->getStorage();
-				$storage->write($user);			
-				return $user;	
-			}		
-			else return null;	
-		} 	 				
+		$result = $auth->authenticate($authAdapter);
+		if ($result->isValid()){
+			$user = new VOUser();
+			$user = $authAdapter->getResultRowObject(null,'password');
+			$storage = $auth->getStorage();
+			$storage->write($user);			
+			return $user;	
+		}		
+		else return null;	
 	}
 	
 	/** 
