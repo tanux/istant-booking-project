@@ -21,7 +21,8 @@ package controller
 			
 			facade.registerMediator(new MainApplicationMediator(mainApplication));
 			facade.registerMediator(new LoginFormMediator(mainApplication.loginForm));
-			facade.registerCommand(ApplicationFacade.TRY_ACCESS,TryAccessCommand);					
+			facade.registerCommand(ApplicationFacade.TRY_ACCESS,TryAccessCommand);
+			facade.sendNotification(ApplicationFacade.TRY_ACCESS);
 			facade.registerCommand(ApplicationFacade.DO_LOGIN, DoLoginCommand);
 						
 		}
