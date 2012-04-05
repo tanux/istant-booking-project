@@ -29,7 +29,8 @@ package model
 			switch ((evt.token.message as RemotingMessage).operation) {
 				case "executeAccess":
 					if (evt.result != null){
-						Alert.show("executeAccess OK");
+						Alert.show("executeAccess OK:"+evt.result);
+						
 						sendNotification(ApplicationFacade.ACCESS_SUCCESS,evt.result);						
 					}			
 					else{
