@@ -1,3 +1,4 @@
+@namespace "library://ns.adobe.com/flex/mx";
 Application{	
 	backgroundGradientAlphas: "[1.0, 1.0]";
 	backgroundGradientColors: "[#A6D4FB, #E1F1FF]";
