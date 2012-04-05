@@ -3,8 +3,7 @@
 			   xmlns:s="library://ns.adobe.com/flex/spark"
 			   xmlns:mx="library://ns.adobe.com/flex/mx"			   
 			   minWidth="955" minHeight="600" xmlns:component="view.component.*"
-			   creationComplete="facade.sendNotification(ApplicationFacade.STARTUP, this); 
-			   					 facade.sendNotification(ApplicationFacade.TRY_ACCESS,this);">	
+			   creationComplete="facade.sendNotification(ApplicationFacade.STARTUP, this);">	
 	
 	<fx:Script>
 		<![CDATA[			
