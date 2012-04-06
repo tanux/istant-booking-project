@@ -15,8 +15,8 @@ package controller.login
 				var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
 				loginProxy.doLogin(user.username as String, user.password as String);
 			} else {
-				var loginProxy:LoginProxy = new LoginProxy(LoginProxy.NAME);
-				loginProxy.doLogin(user.username as String, user.password as String);
+				var newLoginProxy:LoginProxy = new LoginProxy(LoginProxy.NAME);
+				newLoginProxy.doLogin(user.username as String, user.password as String);
 				facade.registerProxy(loginProxy);
 			}			
 		}		

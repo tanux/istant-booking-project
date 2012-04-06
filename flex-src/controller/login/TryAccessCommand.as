@@ -14,8 +14,8 @@ package controller.login
 				var tryAccessProxy:TryAccessProxy = facade.retrieveProxy(TryAccessProxy.NAME) as TryAccessProxy;
 				tryAccessProxy.tryAccess();
 			} else {
-				var tryAccessProxy:TryAccessProxy = new TryAccessProxy(TryAccessProxy.NAME);
-				tryAccessProxy.tryAccess()
+				var newTryAccessProxy:TryAccessProxy = new TryAccessProxy(TryAccessProxy.NAME);
+				newTryAccessProxy.tryAccess()
 				facade.registerProxy(tryAccessProxy);
 			}			
 		}
