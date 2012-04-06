@@ -30,10 +30,10 @@
     </annotation>
     <annotation name="ServiceConfig">
       <item name="PHP_RELATIVE_LOCATION">IstantBookingProject/services/LoginService.php</item>
-      <item name="PHP_SERVER_ROOT">C:/easyphp/www</item>
+      <item name="PHP_SERVER_ROOT">C:\easyphp\www</item>
       <item name="PHP_WORKSPACE_LOCATION">/IstantBookingProject/services/LoginService.php</item>
       <item name="DEFAULT_ENTITY_PACKAGE">model.vo</item>
-      <item name="PHP_SERVICES_FOLDER">C:/easyphp/www/IstantBookingProject/public/bin-release/services</item>
+      <item name="PHP_SERVICES_FOLDER">C:\easyphp\www\IstantBookingProject\public\bin-release\services</item>
       <item name="PHP_LOCATION">C:/easyphp/www/IstantBookingProject/services/LoginService.php</item>
       <item name="LINKED_FILE">LoginService_LoginService.php</item>
       <item name="PHP_SERVER_ROOT_URL">http://localhost</item>
