@@ -36,7 +36,7 @@ package view
 					break;
 				case ApplicationFacade.ACCESS_SUCCESS: //da rivedere, violo il DRY
 					mainApplication.currentState = "stateMainApplication";
-					var user:VOUser = notification.getBody() as VOUser;
+					var userLoggedIn:VOUser = notification.getBody() as VOUser;
 					mainApplication.user = user;
 					break;
 			}
