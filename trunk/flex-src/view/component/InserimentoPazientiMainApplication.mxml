@@ -1,0 +1,7 @@
+<mx:Box xmlns:mx="http://www.adobe.com/2006/mxml" 
+		xmlns:component="view.component.*" 
+		width="80%" 
+		height="100%">
+	
+	<component:InserimentoPazienti id="Pazienti"/>	
+</mx:Box>
