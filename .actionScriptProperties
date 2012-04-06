@@ -20,14 +20,13 @@
   </compiler>
   <theme themeIsDefault="false" themeIsSDK="true" themeLocation="${SDK_THEMES_DIR}/frameworks/themes/Halo"/>
   <applications>
-    <application path="AmministraCoppola.mxml"/>
+    <application path="Test.mxml"/>
     <application path="InterfacciaCoppola.mxml"/>
+    <application path="Templeate.mxml"/>
     <application path="Login.mxml"/>
     <application path="MainApplication.mxml"/>
+    <application path="AmministraCoppola.mxml"/>
     <application path="Registrazione.mxml"/>
-    <application path="Test.mxml"/>
-    <application path="MainApplicationRefactoring.mxml"/>
-    <application path="Templeate.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>
