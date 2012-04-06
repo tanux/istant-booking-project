@@ -26,6 +26,7 @@
     <application path="MainApplication.mxml"/>
     <application path="Registrazione.mxml"/>
     <application path="Test.mxml"/>
+    <application path="MainApplicationRefactoring.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>

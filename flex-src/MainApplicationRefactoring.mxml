@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:component="view.component.*"
+			   pageTitle="Booking system" >
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Style source="/assets/skins/flex_skins.css"/>
+	<s:Image right="-78" top="0" horizontalAlign="right" source="@Embed('assets/images/occhio.png')" verticalAlign="top" width="50%" height="50%"/>
+</s:Application>
