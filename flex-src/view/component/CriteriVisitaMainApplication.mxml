@@ -1,0 +1,12 @@
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" 
+		 xmlns:component="view.component.*"
+		 width="80%" 
+		 height="225" 
+		 horizontalAlign="center" 
+		 paddingBottom="5" paddingTop="5" 
+		 verticalAlign="middle">
+	
+	<component:Sedi id="sedi" width="33.3%" height="100%"/>
+	<component:Giorno2 id="giorno" width="33.3%" height="100%"/>
+	<component:Ora id="ora" width="33.3%" height="100%"/>
+</mx:HBox>
