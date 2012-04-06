@@ -17,6 +17,8 @@
 					<mx:TextInput color="#000000" text="Ottica Avellino"/>					
 				</mx:FormItem>
 				
+				
+				
 				<mx:FormItem horizontalAlign="center" width="100%">
 					<mx:Text color="#000000" fontStyle="italic" text="E-mail" />	
 					<mx:TextInput color="#000000" text="user@dominio.it"/>
