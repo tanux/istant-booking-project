@@ -1,6 +1,10 @@
 package view
 {
+	import controller.login.DoLoginCommand;
+	import controller.login.DoLogoutCommand;
+	
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	
 	import model.vo.VOUser;
 	
@@ -11,32 +15,39 @@ package view
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	
-	public class MainApplicationMediator extends Mediator implements IMediator
-	{
+	import view.login.LoginFormMediator;
+	
+	public class MainApplicationMediator extends Mediator implements IMediator{
 		public static const NAME:String = "MainApplicationMediator";
 		
 		public function MainApplicationMediator(viewComponent:Object){
 			super(NAME, viewComponent);
-			mainApplication.addEventListener(FlexEvent.CREATION_COMPLETE, init);
+			mainApplication.addEventListener(FlexEvent.CREATION_COMPLETE, init);			
 		}
 		private function init(evt:Event) : void {}
 		
+		public function doLogout():void{
+			sendNotification(ApplicationFacade.DO_LOGOUT);
+		}
 		override public function handleNotification(notification:INotification):void{ 
 			switch (notification.getName()){				
-				case ApplicationFacade.LOGIN_SUCCESS:
-					mainApplication.currentState = "stateMainApplication";
+				case ApplicationFacade.LOGGED_IN:					
+					var userLoggedIn:VOUser = notification.getBody() as VOUser;
+					mainApplication.user = userLoggedIn;
+					mainApplication.currentState = "stateMainApplication";					
+					break;
+				case ApplicationFacade.LOGIN_SUCCESS:					
 					var user:VOUser = notification.getBody() as VOUser;
-					mainApplication.user = user;					
+					mainApplication.user = user;	
+					mainApplication.currentState = "stateMainApplication";
+					facade.registerCommand(ApplicationFacade.DO_LOGOUT, DoLogoutCommand);
 					break;
 				case ApplicationFacade.LOGIN_ERROR:
 					Alert.show("Autenticazione non riuscita");
-					break;
-				case ApplicationFacade.LOGGED_IN: //da rivedere, violo il DRY					
-					mainApplication.currentState = "stateMainApplication";
-					var userLoggedIn:VOUser = notification.getBody() as VOUser;
-					mainApplication.user = userLoggedIn;
-					break;
+					break;				
 				case ApplicationFacade.EXECUTE_LOGIN:
+					facade.registerMediator(new LoginFormMediator(mainApplication.loginForm));
+					facade.registerCommand(ApplicationFacade.DO_LOGIN, DoLoginCommand);
 					mainApplication.currentState = "login";
 					break;
 			}
@@ -44,12 +55,13 @@ package view
 		
 		override public function listNotificationInterests():Array{
 			return [				
-				ApplicationFacade.LOGIN_SUCCESS,
-				ApplicationFacade.LOGIN_ERROR,
 				ApplicationFacade.LOGGED_IN,
+				ApplicationFacade.LOGIN_SUCCESS,
+				ApplicationFacade.LOGIN_ERROR,				
 				ApplicationFacade.EXECUTE_LOGIN
 			];	
 		}		
+		
 		public function get mainApplication():Test{ 
 			return viewComponent as Test;
 		}
