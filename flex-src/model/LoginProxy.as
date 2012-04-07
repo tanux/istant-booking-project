@@ -32,17 +32,17 @@ package model
 		private function onResult(evt:ResultEvent):void{
 			switch ((evt.token.message as RemotingMessage).operation) {
 				case "doLogin":
-					if (evt.result != null){
+					if (evt.result != null){						
 						sendNotification(ApplicationFacade.LOGIN_SUCCESS,evt.result);						
 					}			
-					else{
+					else{						
 						sendNotification(ApplicationFacade.LOGIN_ERROR,evt.result);
 					}
 					break;				
 			}	
 		}		
 		private function onFault(evt:FaultEvent):void{
-			
+			Alert.show("Login Fault");	
 		}
 	}
 }
