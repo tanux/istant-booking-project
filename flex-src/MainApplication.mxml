@@ -3,17 +3,18 @@
 				xmlns:mx="library://ns.adobe.com/flex/mx"
 				xmlns:s="library://ns.adobe.com/flex/spark"
 				xmlns:component="view.component.*"
-				backgroundGradientAlphas= "[1.0, 1.0]"
-				backgroundGradientColors= "[#A6D4FB, #E1F1FF]"
-				width= "100%" height= "100%" layout="absolute">
+				width="100%" height="100%" layout="absolute"			
+				>
 	
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->		
-	</fx:Declarations>
+	</fx:Declarations>	
 	<fx:Style source="/assets/skins/flex_skins.css"/>
-	<mx:Image id="imgEye" right="-78" top="0" horizontalAlign="right" source="@Embed('/assets/images/occhio.png')" verticalAlign="top" width="50%" height="50%"/>
 	
-	<mx:VBox id="vbExt" width="100%" height="100%" horizontalAlign="center" paddingBottom="5" paddingLeft="5" paddingRight="5" paddingTop="5">
+	
+	<mx:Image id="imgEye" styleName="imgEye" source="@Embed('/assets/images/occhio.png')" width="50%" height="50%"/>
+	
+	<mx:VBox id="vbExt" width="100%" height="100%" horizontalAlign="center">
 		<component:BarraSuperiore id="cmpBarraSuperiore"/>
 		
 		<component:CriteriVisitaMainApplication id="cmpCriteriVisita" />

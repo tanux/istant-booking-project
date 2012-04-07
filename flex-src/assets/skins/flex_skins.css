@@ -1,6 +1,22 @@
-@namespace "library://ns.adobe.com/flex/mx";
+@namespace mx "library://ns.adobe.com/flex/mx";
 
-DateChooser
+mx|Application
+{
+	backgroundGradientAlphas: 1.0, 1.0;
+	backgroundGradientColors: #A6D4FB, #E1F1FF;
+	horizontalAlign:center;
+	verticalAlign:middle;
+	
+}
+
+.imgEye{
+	right: -78;
+	top: 0;
+	horizontalAlign:right;
+	verticalAlign:top;
+}
+
+mx|DateChooser
 {
 	nextMonthSkin: Embed(skinClass="DateChooser_nextMonthSkin");
 	nextYearSkin: Embed(skinClass="DateChooser_nextYearSkin");
@@ -25,7 +41,7 @@ AccordionHeader
 	skin: Embed(skinClass="AccordionHeader_skin");
 }
 
-Panel
+mx|Panel
 {
 	borderSkin: Embed(skinClass="Panel_borderSkin");
 	titleStyleName: "PanelTitleStyle";
