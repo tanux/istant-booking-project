@@ -36,9 +36,9 @@ internal class _Super_LoginService extends com.adobe.fiber.services.wrapper.Remo
         operations["doLogin"] = operation;
         operation = new mx.rpc.remoting.Operation(null, "doLogout");
         operations["doLogout"] = operation;
-        operation = new mx.rpc.remoting.Operation(null, "executeAccess");
+        operation = new mx.rpc.remoting.Operation(null, "verifiedLoggedIn");
          operation.resultType = model.vo.VOUser;
-        operations["executeAccess"] = operation;
+        operations["verifiedLoggedIn"] = operation;
 
         _serviceControl.operations = operations;
         _serviceControl.convertResultHandler = com.adobe.serializers.utility.TypeUtility.convertResultHandler;
@@ -95,7 +95,7 @@ internal class _Super_LoginService extends com.adobe.fiber.services.wrapper.Remo
     }
      
     /**
-      * This method is a generated wrapper used to call the 'executeAccess' operation. It returns an mx.rpc.AsyncToken whose 
+      * This method is a generated wrapper used to call the 'verifiedLoggedIn' operation. It returns an mx.rpc.AsyncToken whose 
       * result property will be populated with the result of the operation when the server response is received. 
       * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
       * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
@@ -105,9 +105,9 @@ internal class _Super_LoginService extends com.adobe.fiber.services.wrapper.Remo
       *
       * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function executeAccess() : mx.rpc.AsyncToken
+    public function verifiedLoggedIn() : mx.rpc.AsyncToken
     {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("executeAccess");
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("verifiedLoggedIn");
 		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send() ;
         return _internal_token;
     }

@@ -12,14 +12,10 @@ package
 		public static const STARTUP:String = "Startup";
 		public static const LOGIN:String = "Login";
 		public static const LOGOUT:String = "Logout";
-		public static const DO_LOGIN:String = "DoLogin";
-		public static const EXECUTE_LOGIN:String = "";
+		public static const DO_LOGIN:String = "DoLogin";		
 		public static const TRY_ACCESS:String = "TryAccess";
-		public static const ACCESS_SUCCESS:String = "AccessSuccess";
-		public static const DO_REGISTER:String = "DoRegister";
-		public static const CONFIRM_REGISTER:String = "ConfirmRegister";
-		public static const REGISTER_SUCCES:String = "RegisterSuccess";
-		public static const REGISTER_ERROR:String = "RegisterError";
+		public static const EXECUTE_LOGIN:String= "ExecuteLogin";
+		public static const LOGGED_IN:String = "LoggedIn";
 		public static const BACK_TO_LOGIN:String = "TornaLogin";
 		public static const LOGIN_SUCCESS:String = "LoginSuccess";
 		public static const LOGIN_ERROR:String = "LoginError";

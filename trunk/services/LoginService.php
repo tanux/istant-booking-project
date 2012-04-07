@@ -6,15 +6,13 @@ define('VERIFIED_IDENTITY', true);
 class LoginService {	
 	
 	/**
-	 * Execute Access by session without login  
+	 * Execute Access if user is logged in  
 	 * @return VOUser $user
 	 */
-	public function executeAccess(){
+	public function verifiedLoggedIn(){
 		$auth = Zend_Auth::getInstance();
-		if ($auth->hasIdentity()){
-			$user = new VOUser();
-			$user = $auth->getIdentity();
-			return $user;
+		if ($auth->hasIdentity()){			
+			return $auth->getIdentity();
 		}
 		else return null;
 	}
@@ -34,8 +32,7 @@ class LoginService {
 					->setCredentialColumn('password')
 					->setIdentity($username)
 					->setCredential($password);	
-		$auth = Zend_Auth::getInstance();
-		$auth->setStorage(new Zend_Auth_Storage_Session('UserLogin'));
+		$auth = Zend_Auth::getInstance();		
 		$result = $auth->authenticate($authAdapter);
 		if ($result->isValid()){			
 			$user = new VOUser();

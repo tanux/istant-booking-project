@@ -14,8 +14,8 @@ package view
 	public class MainApplicationMediator extends Mediator implements IMediator
 	{
 		public static const NAME:String = "MainApplicationMediator";
-		public function MainApplicationMediator(viewComponent:Object)
-		{
+		
+		public function MainApplicationMediator(viewComponent:Object){
 			super(NAME, viewComponent);
 			mainApplication.addEventListener(FlexEvent.CREATION_COMPLETE, init);
 		}
@@ -30,14 +30,14 @@ package view
 					break;
 				case ApplicationFacade.LOGIN_ERROR:
 					Alert.show("Autenticazione non riuscita");
-					break;								
-				case ApplicationFacade.BACK_TO_LOGIN:
-					mainApplication.currentState = "login";
 					break;
-				case ApplicationFacade.ACCESS_SUCCESS: //da rivedere, violo il DRY
+				case ApplicationFacade.LOGGED_IN: //da rivedere, violo il DRY					
 					mainApplication.currentState = "stateMainApplication";
 					var userLoggedIn:VOUser = notification.getBody() as VOUser;
-					mainApplication.user = user;
+					mainApplication.user = userLoggedIn;
+					break;
+				case ApplicationFacade.EXECUTE_LOGIN:
+					mainApplication.currentState = "login";
 					break;
 			}
 		}
@@ -45,9 +45,9 @@ package view
 		override public function listNotificationInterests():Array{
 			return [				
 				ApplicationFacade.LOGIN_SUCCESS,
-				ApplicationFacade.LOGIN_ERROR,				
-				ApplicationFacade.BACK_TO_LOGIN,
-				ApplicationFacade.ACCESS_SUCCESS
+				ApplicationFacade.LOGIN_ERROR,
+				ApplicationFacade.LOGGED_IN,
+				ApplicationFacade.EXECUTE_LOGIN
 			];	
 		}		
 		public function get mainApplication():Test{ 
