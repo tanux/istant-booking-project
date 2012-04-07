@@ -25,7 +25,7 @@ package
 		public static const LOGIN_ERROR:String = "LoginError";
 		public static const LOGIN_FAULT:String = "LoginFault";		
 		
-		public static function getInstance() : ApplicationFacade {
+		public static function getInstance() : ApplicationFacade{
 			if (instance == null)
 				instance = new ApplicationFacade();
 			return instance as ApplicationFacade;
