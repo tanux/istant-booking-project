@@ -9,7 +9,10 @@
 		<![CDATA[			
 			import model.vo.VOUser;
 			private var facade:ApplicationFacade = ApplicationFacade.getInstance() as ApplicationFacade;
-			[Bindable] public var user:VOUser;			
+			[Bindable] public var user:VOUser;		
+			
+			
+			
 		]]>
 	</fx:Script>
 	<fx:Declarations>		
