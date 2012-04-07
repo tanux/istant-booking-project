@@ -24,7 +24,7 @@ package view.login
 		}
 		
 		public function doLogin(evt:Event):void{			
-			var user:VOUser = new VOUser();
+			var user:VOUser = new VOUser();			
 			user.username = login.tiUsername.text as String;
 			user.password = login.tiPassword.text as String;
 			facade.sendNotification(ApplicationFacade.DO_LOGIN,user);
