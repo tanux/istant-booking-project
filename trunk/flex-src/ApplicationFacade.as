@@ -10,8 +10,10 @@ package
 	
 	public class ApplicationFacade extends Facade implements IFacade{
 		public static const STARTUP:String = "Startup";
-		public static const LOGIN:String = "Login";
-		public static const LOGOUT:String = "Logout";
+		//public static const LOGIN:String = "Login";
+		public static const DO_LOGOUT:String = "Logout";
+		public static const LOGOUT_SUCCESS:String = "LogoutSuccess";
+		public static const LOGOUT_ERROR:String = "LogoutError";
 		public static const DO_LOGIN:String = "DoLogin";		
 		public static const TRY_ACCESS:String = "TryAccess";
 		public static const EXECUTE_LOGIN:String= "ExecuteLogin";

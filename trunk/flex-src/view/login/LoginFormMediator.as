@@ -12,6 +12,7 @@ package view.login
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	
+	import view.MainApplicationMediator;
 	import view.component.LoginForm;
 	
 	public class LoginFormMediator extends Mediator implements IMediator{
@@ -20,7 +21,7 @@ package view.login
 		
 		public function LoginFormMediator(viewComponent:Object){
 			super(NAME, viewComponent);			
-			login.btnLogin.addEventListener(MouseEvent.CLICK, doLogin);			
+			login.btnLogin.addEventListener(MouseEvent.CLICK, doLogin);
 		}
 		
 		public function doLogin(evt:Event):void{			
