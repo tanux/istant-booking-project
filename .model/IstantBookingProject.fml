@@ -63,7 +63,7 @@
         <item name="returnType">opaque</item>
       </annotation>
     </function>
-    <function name="executeAccess" return-type="VOUser">
+    <function name="verifiedLoggedIn" return-type="VOUser">
       <annotation name="analyze group">
         <item name="analyzed">true</item>
       </annotation>

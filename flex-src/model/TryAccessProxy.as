@@ -22,21 +22,17 @@ package model
 			responder =  new Responder(onResult, onFault);
 		}
 		public function tryAccess():void{
-			var at:AsyncToken = service.executeAccess();
+			var at:AsyncToken = service.verifiedLoggedIn();
 			at.addResponder(responder);
 		}
 		private function onResult(evt:ResultEvent):void{
 			switch ((evt.token.message as RemotingMessage).operation) {
-				case "executeAccess":
+				case "verifiedLoggedIn":
 					if (evt.result != null){
-						Alert.show("executeAccess OK:"+evt.result);
-						
-						sendNotification(ApplicationFacade.ACCESS_SUCCESS,evt.result);						
-					}			
-					else{
-						//TO DO
-						Alert.show("executeAccess NOK");
-						sendNotification(ApplicationFacade.EXECUTE_LOGIN,evt.result);
+						sendNotification(ApplicationFacade.LOGGED_IN,evt.result);						
+					}
+					else{						
+						sendNotification(ApplicationFacade.EXECUTE_LOGIN);
 					}
 					break;	
 			}

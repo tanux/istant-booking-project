@@ -31,7 +31,7 @@ package view.login
 		}
 		
 		public function doRegister(evt:Event):void{
-			facade.sendNotification(ApplicationFacade.DO_REGISTER);
+			
 		}		
 		
 		override public function handleNotification(notification:INotification):void{ 
