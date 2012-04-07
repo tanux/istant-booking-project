@@ -1,6 +1,6 @@
 package controller.login
 {
-	import model.LoginProxy;
+	import model.login.LoginProxy;
 	import model.vo.VOUser;
 	
 	import mx.controls.Alert;

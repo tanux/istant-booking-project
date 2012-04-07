@@ -1,6 +1,6 @@
 package controller.login
 {
-	import model.TryAccessProxy;
+	import model.login.TryAccessProxy;
 	
 	import mx.controls.Alert;
 	
@@ -10,12 +10,10 @@ package controller.login
 	
 	public class TryAccessCommand extends SimpleCommand implements ICommand{
 		override public function execute(notification:INotification):void{			
-			if (facade.hasProxy(TryAccessProxy.NAME)){
-				Alert.show("TryCommand");
+			if (facade.hasProxy(TryAccessProxy.NAME)){				
 				var tryAccessProxy:TryAccessProxy = facade.retrieveProxy(TryAccessProxy.NAME) as TryAccessProxy;
 				tryAccessProxy.tryAccess();
-			} else {
-				Alert.show("TryCommandNew");
+			} else {				
 				var newTryAccessProxy:TryAccessProxy = new TryAccessProxy(TryAccessProxy.NAME);
 				newTryAccessProxy.tryAccess();
 				facade.registerProxy(newTryAccessProxy);								
