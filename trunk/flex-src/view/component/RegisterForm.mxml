@@ -20,7 +20,7 @@
 			
 			<mx:FormItem id="fiTelephoneNumber" horizontalAlign="center" width="100%">
 				<mx:Text id="txtTelephoneNumber" color="#000000" fontStyle="italic" text="Numero di Telefono" textAlign="center"/>
-				<mx:TextInput id="txtTelephoneNumber" color="#000000" text="3405994169"/>
+				<mx:TextInput id="tiTelephoneNumber" color="#000000" text="3405994169"/>
 			</mx:FormItem>
 				
 			<mx:FormItem id="fiUser" horizontalAlign="center" width="100%">
