@@ -4,9 +4,15 @@ mx|Application
 {
 	backgroundGradientAlphas: 1.0, 1.0;
 	backgroundGradientColors: #A6D4FB, #E1F1FF;
-	horizontalAlign:center;
-	verticalAlign:middle;
+	horizontalAlign: center;
+	verticalAlign: middle;
 	
+}
+
+.controlBar{
+	fillAlphas: 1.0, 1.0; 
+	fillColors: #6699cc, #6699cc;
+	verticalAlign: middle;
 }
 
 .imgEye{
@@ -14,6 +20,11 @@ mx|Application
 	top: 0;
 	horizontalAlign:right;
 	verticalAlign:top;
+}
+
+.vbExt{
+	horizontalAlign: center;	
+	verticalAlign: middle;
 }
 
 mx|DateChooser
