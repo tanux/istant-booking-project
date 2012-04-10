@@ -1,44 +1,37 @@
-<?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
-				xmlns:component="view.component.*"
-				width="100%" height="100%" backgroundGradientAlphas="[1.0, 1.0]"
-				backgroundGradientColors="[#A6D4FB, #E1F1FF]" layout="absolute"
-				pageTitle="Booking system" > 
-	<mx:Style source="/assets/skins/flex_skins.css"/>
-	<mx:Image right="-78" top="0" horizontalAlign="right" source="@Embed('assets/images/occhio.png')" verticalAlign="top" width="50%" height="50%"/>
+<mx:Box xmlns:mx="http://www.adobe.com/2006/mxml" 
+		id="boxExtRegister" width="100%" height="100%" 
+		verticalAlign="middle" horizontalAlign="center">
 	
-	<mx:Box width="100%" height="100%" verticalAlign="middle" horizontalAlign="center">
-		<mx:Panel width="30%" height="40%"  
-				  paddingTop="20" horizontalAlign="center"
-				  title="Registrazione">
-			<mx:Form width="100%" height="100%">
-				<mx:FormItem width="100%" horizontalAlign="center">
-					<mx:Text color="#000000" fontStyle="italic" text="Nome Attività"/>
-					<mx:TextInput color="#000000" text="Ottica Avellino"/>					
-				</mx:FormItem>
+	<mx:Panel id="pnlRegister" width="30%" height="40%"  
+			  paddingTop="20" horizontalAlign="center"
+			  title="Register">
+		<mx:Form id="frmRegister" width="100%" height="100%">
+			<mx:FormItem id="fiAffiliateName" width="100%" horizontalAlign="center">
+				<mx:Text id="txtAffiliateName" color="#000000" fontStyle="italic" text="Nome Attività"/>
+				<mx:TextInput id="tiAffiliateName" color="#000000" text="Ottica Avellino"/>					
+			</mx:FormItem>
+			
 				
+		
+			<mx:FormItem id="frmAffiliateEMail" horizontalAlign="center" width="100%">
+				<mx:Text id="txtAffiliateEmail" color="#000000" fontStyle="italic" text="E-mail" />	
+				<mx:TextInput id="tiAffiliateEmail" color="#000000" text="user@dominio.it"/>
+			</mx:FormItem>
+			
+			<mx:FormItem id="fiTelephoneNumber" horizontalAlign="center" width="100%">
+				<mx:Text id="txtTelephoneNumber" color="#000000" fontStyle="italic" text="Numero di Telefono" textAlign="center"/>
+				<mx:TextInput id="txtTelephoneNumber" color="#000000" text="3405994169"/>
+			</mx:FormItem>
 				
+			<mx:FormItem id="fiUser" horizontalAlign="center" width="100%">
+				<mx:Text id="txtUser" color="#000000" text="Username" />
+				<mx:TextInput id="tiUser" color="#000000" text="User"/>
+			</mx:FormItem>
 				
-				<mx:FormItem horizontalAlign="center" width="100%">
-					<mx:Text color="#000000" fontStyle="italic" text="E-mail" />	
-					<mx:TextInput color="#000000" text="user@dominio.it"/>
-				</mx:FormItem>
-				
-				<mx:FormItem horizontalAlign="center" width="100%">
-					<mx:Text color="#000000" fontStyle="italic" text="Numero di Telefono" textAlign="center"/>
-					<mx:TextInput color="#000000" text="3405994169"/>
-				</mx:FormItem>
-				
-				<mx:FormItem horizontalAlign="center" width="100%">
-					<mx:Text color="#000000" text="Username" />
-					<mx:TextInput color="#000000" text="User"/>
-				</mx:FormItem>
-				
-				<mx:FormItem horizontalAlign="center" width="100%">
-					<mx:Text color="#000000" fontStyle="italic" text="Password" />
-					<mx:TextInput color="#000000" text="Password" displayAsPassword="true"/>
-				</mx:FormItem>
-			</mx:Form>	
-		</mx:Panel>
-	</mx:Box>
-</mx:Application>
+			<mx:FormItem id="fiPwd" horizontalAlign="center" width="100%">
+				<mx:Text id="txtPwd" color="#000000" fontStyle="italic" text="Password" />
+				<mx:TextInput id="tiPwd" color="#000000" text="Password" displayAsPassword="true"/>
+			</mx:FormItem>
+		</mx:Form>	
+	</mx:Panel>
+</mx:Box>
