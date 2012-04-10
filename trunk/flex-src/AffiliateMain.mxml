@@ -15,10 +15,10 @@
 	<mx:Image id="imgEye" styleName="imgEye" source="@Embed('/assets/images/occhio.png')" width="50%" height="50%"/>
 	
 	<mx:VBox id="vbExt" width="100%" height="100%" horizontalAlign="center">
-		<component:BarraSuperiore id="cmpBarraSuperiore"/>
+		<component:TopBar id="cmpBarraSuperiore"/>
 		
-		<component:CriteriVisitaMainApplication id="cmpCriteriVisita" />
+		<component:VisitPropertiesAffiliateMain id="cmpVisitProperties" />
 		
-		<component:InserimentoPazientiMainApplication id="cmpInserimento" />
+		<component:InsertPatientAffiliateMain id="cmpInsertPatient" />
 	</mx:VBox>
 </mx:Application>
