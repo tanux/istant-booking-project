@@ -1,0 +1,73 @@
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml"
+		 width="80%" height="40%" horizontalAlign="center" verticalAlign="middle" paddingTop="5">
+	
+	<mx:DataGrid id="dgLocation" width="60%" height="100%">
+		<mx:columns>
+			<mx:DataGridColumn id="clmLocation" dataField="Sede" headerText="Sede" />
+			<mx:DataGridColumn id="clmStreet" dataField="Indirizzo" headerText="Indirizzo" />
+			<mx:DataGridColumn id="clmTelephone" dataField="Telefono" headerText="Telefono" />
+		</mx:columns>
+	</mx:DataGrid >
+	
+	<mx:Panel id="pnlManagerLocation" width="40%" height="100%" >
+		<mx:Canvas id="cnvAddRemoveLocation" width="100%" >
+			<mx:HBox id="hbAddRemoveLocation" width="100%" horizontalAlign="center" verticalAlign="middle">
+				<mx:Text id="txtAdd" color="white" fontSize="10" text="Aggiungi" fontWeight="bold"/>
+				<mx:Image id="imgPlus" source="@Embed(source='assets/images/plus.png')"/>
+				<mx:Text id="txtModify" text="Modifica" color="white" fontSize="10" fontWeight="bold"/>
+				<mx:Image id="imgPencil" source="@Embed(source='assets/images/pencil.png')"/>	
+			</mx:HBox>
+		</mx:Canvas>
+		<mx:VBox id="vbLocation" width="100%" horizontalAlign="center">
+			<mx:HBox id="hbLocationName" width="100%">
+				<mx:Label id="lblLocationName" text="Nome" color="black" fontSize="15" width="30%" textAlign="right"/>
+				<mx:TextInput id="tiLocationName" width="50%"/>
+			</mx:HBox>
+			<mx:HBox id="hbStreet" width="100%">
+				<mx:Label id="lblStreet" text="Indirizzo" color="black" fontSize="15" width="30%" textAlign="right"/>
+				<mx:TextInput id="tiStreet" width="50%"/>
+			</mx:HBox>
+			<mx:HBox id="hbTelephone" width="100%">
+				<mx:Label id="txtTelephone" text="Telefono" color="black" fontSize="15" width="30%" textAlign="right"/>
+				<mx:TextInput id="tiTelephone" width="50%"/>
+			</mx:HBox>
+		</mx:VBox>
+		
+		<mx:HBox id="hbDays" width="100%" verticalCenter="middle" horizontalAlign="center" height="30%"
+				 paddingTop="5">
+			<mx:VBox horizontalAlign="center">
+				<mx:Label text="Lunedì" color="black"/>
+				<mx:CheckBox />
+			</mx:VBox>
+			<mx:VRule height="100%"/>
+			<mx:VBox horizontalAlign="center">
+				<mx:Label text="Martedì" color="black"/>
+				<mx:CheckBox />
+			</mx:VBox>
+			<mx:VRule height="100%"/>
+			<mx:VBox horizontalAlign="center">
+				<mx:Label text="Mercoledì" color="black"/>
+				<mx:CheckBox />
+			</mx:VBox>
+			<mx:VRule height="100%"/>
+			<mx:VBox horizontalAlign="center">
+				<mx:Label text="Giovedì" color="black"/>
+				<mx:CheckBox />
+			</mx:VBox>
+			<mx:VRule height="100%"/>
+			<mx:VBox horizontalAlign="center">
+				<mx:Label text="Venerdì" color="black"/>
+				<mx:CheckBox />
+			</mx:VBox>
+		</mx:HBox>
+		
+		<mx:HBox id="hbAddCanelLocation" height="20%" width="100%" horizontalAlign="right" paddingBottom="10" paddingRight="20">
+			<mx:Button id="btnLocationAdd" icon="@Embed(source='assets/images/house_plus.png')" downIcon="@Embed(source='assets/images/house_plus_little.png')"
+					   width="45" height="40"/>
+			<mx:Button id="btnLocationRemove" icon="@Embed(source='assets/images/house_delete.png')" downIcon="@Embed(source='assets/images/house_delete_little.png')"
+					   width="45" height="40"/>
+			<mx:Button id="btnLocationSave" icon="@Embed(source='assets/images/save.png')" downIcon="@Embed(source='assets/images/save_little.png')"
+					   width="45" height="40"/>
+		</mx:HBox>
+	</mx:Panel>
+</mx:HBox>
