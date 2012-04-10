@@ -16,6 +16,7 @@ class LoginService {
 		else return null;
 	}
 	
+	
 	/**
 	 * Execute login 
 	 * @param String $username
