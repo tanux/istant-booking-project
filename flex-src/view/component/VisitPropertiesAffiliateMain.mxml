@@ -6,7 +6,7 @@
 		 paddingBottom="5" paddingTop="5" 
 		 verticalAlign="middle">
 	
-	<component:Sedi id="sedi" width="33.3%" height="100%"/>
-	<component:Giorno2 id="giorno" width="33.3%" height="100%"/>
-	<component:Ora id="ora" width="33.3%" height="100%"/>
+	<component:VisitLocations id="sedi" width="33.3%" height="100%"/>
+	<component:VisitDay id="giorno" width="33.3%" height="100%"/>
+	<component:VisitHour id="ora" width="33.3%" height="100%"/>
 </mx:HBox>

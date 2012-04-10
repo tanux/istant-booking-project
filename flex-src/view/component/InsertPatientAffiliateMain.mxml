@@ -3,5 +3,5 @@
 		width="80%" 
 		height="100%">
 	
-	<component:InserimentoPazienti id="Pazienti"/>	
+	<component:InsertPatient id="Pazienti"/>	
 </mx:Box>
