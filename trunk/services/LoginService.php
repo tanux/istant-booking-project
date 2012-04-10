@@ -51,8 +51,18 @@ class LoginService {
 		$auth = Zend_Auth::getInstance();
 		if ($auth->hasIdentity()){			
 			$auth->clearIdentity();
+			return true;
 		}
-	}	
+		else return null;
+	}
+
+	/**
+	 * Register Affiliate
+	 * @param Affiliate $affiliate
+	 */
+	public function doRegister($affiliate){
+				
+	}
 	
 	/**
 	 * Return database parameters 
