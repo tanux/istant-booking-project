@@ -24,7 +24,7 @@ package model.login
 		
 		public function doLogout():void{			
 			var at:AsyncToken = service.doLogout();
-			at.addResponder(responder);			
+			at.addResponder(responder);
 		}
 		
 		private function onResult(evt:ResultEvent):void{
@@ -34,7 +34,7 @@ package model.login
 						sendNotification(ApplicationFacade.LOGOUT_SUCCESS,evt.result);						
 					}			
 					else{						
-						sendNotification(ApplicationFacade.LOGOUT_ERROR,evt.result);
+						sendNotification(ApplicationFacade.LOGOUT_ERROR,evt.result);						
 					}
 					break;				
 			}	
