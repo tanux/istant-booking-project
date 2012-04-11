@@ -32,4 +32,16 @@
 		<nature>com.adobe.flexbuilder.project.actionscriptnature</nature>
 		<nature>com.zend.php.flashbuilder.core.FlexPHPNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>services/LoginService_LoginService.php</name>
+			<type>1</type>
+			<location>C:/easyphp/www/IstantBookingProject/services/LoginService.php</location>
+		</link>
+		<link>
+			<name>services/ManageUserDataService_ManageUserDataService.php</name>
+			<type>1</type>
+			<location>C:/easyphp/www/IstantBookingProject/services/ManageUserDataService.php</location>
+		</link>
+	</linkedResources>
 </projectDescription>
