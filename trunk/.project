@@ -39,9 +39,9 @@
 			<location>C:/easyphp/www/IstantBookingProject/services/LoginService.php</location>
 		</link>
 		<link>
-			<name>services/ManageUserDataService_ManageUserDataService.php</name>
+			<name>services/ManageAffiliateDataService_ManageAffiliateDataService.php</name>
 			<type>1</type>
-			<location>C:/easyphp/www/IstantBookingProject/services/ManageUserDataService.php</location>
+			<location>C:/easyphp/www/IstantBookingProject/services/ManageAffiliateDataService.php</location>
 		</link>
 	</linkedResources>
 </projectDescription>

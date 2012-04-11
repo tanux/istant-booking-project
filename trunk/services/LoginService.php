@@ -18,6 +18,7 @@ class LoginService {
 	 * Execute login 
 	 * @param String $username
 	 * @param String $password
+	 * @param String $user_type
 	 * @return stdClass $user
 	 */
 	public function doLogin($username,$password, $user_type){				
