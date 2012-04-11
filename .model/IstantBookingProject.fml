@@ -16,30 +16,39 @@
       <item name="service">LoginService</item>
     </annotation>
   </entity>
-  <service name="ManageUserDataService">
+  <service name="ManageAffiliateDataService">
     <annotation name="ActionScriptGeneration">
-      <item name="Source">ManageUserDataService</item>
+      <item name="Source">ManageAffiliateDataService</item>
       <item name="ServiceType">RemoteObject</item>
       <item name="Package">model.services</item>
       <item name="Endpoint">http://localhost/IstantBookingProject/public/gateway.php</item>
-      <item name="Destination">ManageUserDataService</item>
+      <item name="Destination">ManageAffiliateDataService</item>
     </annotation>
     <annotation name="ServiceTypeGroup">
       <item name="ServiceBackendType">com.zend.php.flashbuilder.php</item>
     </annotation>
     <annotation name="ServiceConfig">
-      <item name="PHP_RELATIVE_LOCATION">IstantBookingProject/services/ManageUserDataService.php</item>
+      <item name="PHP_RELATIVE_LOCATION">IstantBookingProject/services/ManageAffiliateDataService.php</item>
       <item name="PHP_SERVER_ROOT">C:/easyphp/www</item>
-      <item name="PHP_WORKSPACE_LOCATION">/IstantBookingProject/services/ManageUserDataService.php</item>
+      <item name="PHP_WORKSPACE_LOCATION">/IstantBookingProject/services/ManageAffiliateDataService.php</item>
       <item name="DEFAULT_ENTITY_PACKAGE">model.vo</item>
       <item name="PHP_SERVICES_FOLDER">C:/easyphp/www/IstantBookingProject/public/bin-release/services</item>
-      <item name="PHP_LOCATION">C:/easyphp/www/IstantBookingProject/services/ManageUserDataService.php</item>
-      <item name="LINKED_FILE">ManageUserDataService_ManageUserDataService.php</item>
+      <item name="PHP_LOCATION">C:/easyphp/www/IstantBookingProject/services/ManageAffiliateDataService.php</item>
+      <item name="LINKED_FILE">ManageAffiliateDataService_ManageAffiliateDataService.php</item>
       <item name="PHP_SERVER_ROOT_URL">http://localhost</item>
       <item name="ABSOLUTE_ENDPOINT">http://localhost/IstantBookingProject/public/gateway.php</item>
-      <item name="PHP_CLASS_NAME">ManageUserDataService</item>
+      <item name="PHP_CLASS_NAME">ManageAffiliateDataService</item>
     </annotation>
-    <function name="registerAffiliate" return-type="integer">
+    <function name="saveAffiliateData" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">string</item>
+      </annotation>
+      <parameter name="affiliate" type="Affiliate"/>
+    </function>
+    <function name="updateAffiliateData" return-type="integer">
       <annotation name="analyze group">
         <item name="analyzed">true</item>
       </annotation>
@@ -59,7 +68,7 @@
       <item name="IncludeRemoteClass">nonempty</item>
     </annotation>
     <annotation name="service Group">
-      <item name="service">ManageUserDataService,ManageUserDataServiceDummy</item>
+      <item name="service">ManageAffiliateDataService,ManageAffiliateDataServiceDummy</item>
     </annotation>
     <annotation name="ActionScriptGeneration">
       <item name="Package">model.vo</item>
