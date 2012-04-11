@@ -2,7 +2,7 @@
 
 class Location {
 	public $id;
-	public $cityName;
+	public $city;
 	public $address;
 	public $telephoneNumber;
 	public $receptionDays;	
