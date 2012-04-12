@@ -1,0 +1,8 @@
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" 
+		 verticalAlign="middle" horizontalAlign="right" width="80%">
+	
+	<mx:Button icon="@Embed(source='assets/images/house_plus.png')" downIcon="@Embed(source='assets/images/house_plus_little.png')"
+			   width="45" height="40"/>
+	<mx:Button icon="@Embed(source='assets/images/house_delete.png')" downIcon="@Embed(source='assets/images/house_delete_little.png')"
+			   width="45" height="40"/>
+</mx:HBox>

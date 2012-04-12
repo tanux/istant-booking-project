@@ -13,18 +13,7 @@
 	</mx:HBox>
 	
 	<mx:DataGrid id="dgRisultati" width="100%" height="50%">
-		<mx:dataProvider>
-			<mx:Object Nome="Mario" Cognome="Speranza" CF="SPRMRA" Mail="mario.speranza@live.it" Tel="3405994169"/>
-			<mx:Object Nome="Gaetano" Cognome="Esposito" CF="GTNESP" Mail="gaetano.esposito@gmail.com" Tel="3405883058"/>
-			<mx:Object Nome="Enzo" Cognome="Ferrentino" CF="ENZFRR" Mail="enzo.ferr@libero.it" Tel="3405881234"/>
-			<mx:Object Nome="Luigi" Cognome="Bartoli" CF="LGUBRTL" Mail="luigi.bart@alice.it" Tel="3495885678"/>
-			<mx:Object Nome="Gaetano" Cognome="Marotta" CF="GTNMRT" Mail="gaet.mar@libero.it" Tel="3485883058"/>
-			<mx:Object Nome="Prisco" Cognome="D'Amato" CF="PRSDMT" Mail="prsci@gmail.it" Tel="3615881011"/>
-			<mx:Object Nome="Enzo" Cognome="D'Acunzo" CF="ENZACNZ" Mail="enzo.acunzo@libero.it" Tel="3495881213"/>
-			<mx:Object Nome="Gaetano" Cognome="Mancuso" CF="GTNMRT" Mail="gaet.mar@libero.it" Tel="3485883058"/>
-			<mx:Object Nome="Prisco" Cognome="Claudio" CF="PRSDMT" Mail="prsci@gmail.it" Tel="3615881011"/>
-			<mx:Object Nome="Enzo" Cognome="Marco" CF="ENZACNZ" Mail="enzo.acunzo@libero.it" Tel="3495881213"/>
-		</mx:dataProvider>
+
 		<mx:columns>
 			<mx:DataGridColumn id="clmNome" dataField="Nome" headerText="Nome" />
 			<mx:DataGridColumn id="clmCognome" dataField="Cognome" headerText="Cognome" />

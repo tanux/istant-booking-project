@@ -1,0 +1,59 @@
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" 
+		  width="40%" height="100%" xmlns:component="view.component.*" >
+	
+	<mx:Canvas id="cnvAddRemoveLocation" width="100%" >
+		<mx:HBox id="hbAddRemoveLocation" width="100%" horizontalAlign="center" verticalAlign="middle">
+			<mx:Text id="txtAdd" color="white" fontSize="10" text="Aggiungi" fontWeight="bold"/>
+			<mx:Image id="imgPlus" source="@Embed(source='assets/images/plus.png')"/>
+			<mx:Text id="txtModify" text="Modifica" color="white" fontSize="10" fontWeight="bold"/>
+			<mx:Image id="imgPencil" source="@Embed(source='assets/images/pencil.png')"/>	
+		</mx:HBox>
+	</mx:Canvas>
+	
+	<mx:VBox id="vbLocation" width="100%" horizontalAlign="center">
+		<mx:HBox id="hbLocationName" width="100%">
+			<mx:Label id="lblLocationName" text="Nome" color="black" fontSize="15" width="30%" textAlign="right"/>
+			<mx:TextInput id="tiLocationName" width="50%"/>
+		</mx:HBox>
+		<mx:HBox id="hbStreet" width="100%">
+			<mx:Label id="lblStreet" text="Indirizzo" color="black" fontSize="15" width="30%" textAlign="right"/>
+			<mx:TextInput id="tiStreet" width="50%"/>
+		</mx:HBox>
+		<mx:HBox id="hbTelephone" width="100%">
+			<mx:Label id="txtTelephone" text="Telefono" color="black" fontSize="15" width="30%" textAlign="right"/>
+			<mx:TextInput id="tiTelephone" width="50%"/>
+		</mx:HBox>
+	</mx:VBox>
+	
+	<mx:HBox id="hbDays" width="100%" verticalCenter="middle" horizontalAlign="center" height="30%"
+			 paddingTop="5">
+		<mx:VBox horizontalAlign="center">
+			<mx:Label text="Lunedì" color="black"/>
+			<mx:CheckBox />
+		</mx:VBox>
+		<mx:VRule height="100%"/>
+		<mx:VBox horizontalAlign="center">
+			<mx:Label text="Martedì" color="black"/>
+			<mx:CheckBox />
+		</mx:VBox>
+		<mx:VRule height="100%"/>
+		<mx:VBox horizontalAlign="center">
+			<mx:Label text="Mercoledì" color="black"/>
+			<mx:CheckBox />
+		</mx:VBox>
+		<mx:VRule height="100%"/>
+		<mx:VBox horizontalAlign="center">
+			<mx:Label text="Giovedì" color="black"/>
+			<mx:CheckBox />
+		</mx:VBox>
+		<mx:VRule height="100%"/>
+		<mx:VBox horizontalAlign="center">
+			<mx:Label text="Venerdì" color="black"/>
+			<mx:CheckBox />
+		</mx:VBox>
+	</mx:HBox>
+	
+	<component:HouseButton id="cmpHouseButton" />	
+	
+</mx:Panel>
+
