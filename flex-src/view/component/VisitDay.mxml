@@ -3,7 +3,7 @@
 		  title="Giorno" horizontalAlign="center" verticalAlign="middle">
 	
 	<mx:Box id="boxDay" width="95%" height="80%" paddingTop="5" paddingBottom="5" 
-			paddingLeft="5" paddingRight="5" color="0x707070">
+			paddingLeft="5" paddingRight="5">
 		<mx:DateChooser width="100%" height="100%" disabledDays="[0, 2, 6]"/>	
 	</mx:Box>
 	

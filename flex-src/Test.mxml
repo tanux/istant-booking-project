@@ -20,7 +20,7 @@
 		<s:State name="stateMainApplication" />
 	</s:states>
 	
-	<component:LoginForm id="loginForm"  includeIn="login"/>
+	<component:LoginFormAffiliate id="loginForm"  includeIn="login"/>
 	
 	<mx:ApplicationControlBar id="TopBar" width="100%" height="50" includeIn="stateMainApplication">
 		<mx:HBox width.stateMainApplication="100%" height.stateMainApplication="100%" verticalAlign.stateMainApplication="middle">			

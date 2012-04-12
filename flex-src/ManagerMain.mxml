@@ -25,7 +25,7 @@
 			<mx:Label text="Gestione Sedi" color="white" fontSize="10" fontWeight="bold"/>
 		</mx:ApplicationControlBar>
 				
-		<component:ManagementLocation />
+		<component:ManagementLocation id="cmpManagementLocation" />
 		
 		<mx:Box height="10"/>
 
@@ -33,6 +33,6 @@
 			<mx:Label text="Gestione Affiliazioni" color="white" fontSize="10" fontWeight="bold"/>
 		</mx:ApplicationControlBar>
 		
-		<component:ManagementAffiliation />
+		<component:ManagementAffiliation id="cmpManagementAffiliation"/>
 	</mx:VBox>
 </mx:Application>
