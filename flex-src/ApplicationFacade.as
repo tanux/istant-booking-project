@@ -3,13 +3,17 @@ package
 	/**
 	 * Sede di tutte le notifiche Singleton
 	 * */
+	import controller.AffiliateStartupCommand;
 	import controller.StartupCommand;
+	
+	import mx.controls.Alert;
 	
 	import org.puremvc.as3.interfaces.IFacade;
 	import org.puremvc.as3.patterns.facade.Facade;
 	
 	public class ApplicationFacade extends Facade implements IFacade{
 		public static const STARTUP:String = "Startup";
+		public static const STARTUP_AFFILIATE_APP:String = "StartupAffiliateApp";
 		//public static const LOGIN:String = "Login";
 		public static const DO_LOGOUT:String = "Logout";
 		public static const LOGOUT_SUCCESS:String = "LogoutSuccess";
@@ -30,7 +34,8 @@ package
 		}		
 		override protected function initializeController():void {
 			super.initializeController();
-			registerCommand(ApplicationFacade.STARTUP, StartupCommand);			
+			registerCommand(ApplicationFacade.STARTUP_AFFILIATE_APP, AffiliateStartupCommand);
+			//registerCommand(ApplicationFacade.STARTUP, StartupCommand);			
 		}		
 	}
 }
