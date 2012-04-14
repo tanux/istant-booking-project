@@ -24,7 +24,14 @@
 			<mx:LinkButton label="Registrati" textDecoration="underline" styleName="clearLinkButtonStyle"/>			
 		</mx:Box>		
 		
-		<component:RegisterForm id="cmpRegisterFormAffiliate" includeIn="stateRegister"/>
+		<mx:Box >
+			<component:RegisterForm id="cmpRegisterFormAffiliate" includeIn="stateRegister"/>
+			<mx:HBox>
+				<mx:LinkButton label="Registrati" textDecoration="underline" styleName="clearLinkButtonStyle"/>
+				<mx:LinkButton label="Torna al Login" textDecoration="underline" styleName="clearLinkButtonStyle"/>	
+			</mx:HBox>	
+		</mx:Box>
+		
 		
 		<mx:Box styleName="vbExt" width="100%" height="100%" includeIn="stateMainApplication"> 
 			<component:ControlTopBar id="cmpControlBar" />		

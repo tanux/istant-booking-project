@@ -10,31 +10,32 @@
 				<mx:Text id="txtAffiliateName" color="#000000" fontStyle="italic" text="Nome Attività"/>
 				<mx:TextInput id="tiAffiliateName" color="#000000" text="Ottica Avellino"/>					
 			</mx:FormItem>				
-		
+
+			<mx:FormItem id="fiAddress" horizontalAlign="center" width="100%" paddingRight="15">
+				<mx:Text id="txtAddress" color="#000000" text="Address" />
+				<mx:TextInput id="tiAddress" color="#000000" text="Address"/>
+			</mx:FormItem>
+			
+			<mx:FormItem id="fiCity" horizontalAlign="center" width="100%" paddingRight="15">
+				<mx:Text id="txtCity" color="#000000" text="City" />
+				<mx:TextInput id="tiCity" color="#000000" text="City"/>
+			</mx:FormItem>
+					
+			<mx:FormItem id="fiTelephoneNumber" horizontalAlign="center" width="100%" paddingRight="15">
+				<mx:Text id="txtTelephoneNumber" color="#000000" fontStyle="italic" text="Numero di Telefono" textAlign="center"/>
+				<mx:TextInput id="tiTelephoneNumber" color="#000000" text="3405994169"/>
+			</mx:FormItem>
+
 			<mx:FormItem id="frmAffiliateEMail" horizontalAlign="center" width="100%" paddingRight="15">
 				<mx:Text id="txtAffiliateEmail" color="#000000" fontStyle="italic" text="E-mail" />	
 				<mx:TextInput id="tiAffiliateEmail" color="#000000" text="user@dominio.it"/>
 			</mx:FormItem>
 			
-			<mx:FormItem id="fiTelephoneNumber" horizontalAlign="center" width="100%" paddingRight="15">
-				<mx:Text id="txtTelephoneNumber" color="#000000" fontStyle="italic" text="Numero di Telefono" textAlign="center"/>
-				<mx:TextInput id="tiTelephoneNumber" color="#000000" text="3405994169"/>
-			</mx:FormItem>
-				
-			<mx:FormItem id="fiUser" horizontalAlign="center" width="100%" paddingRight="15">
-				<mx:Text id="txtUser" color="#000000" text="Username" />
-				<mx:TextInput id="tiUser" color="#000000" text="User"/>
-			</mx:FormItem>
-				
 			<mx:FormItem id="fiPwd" horizontalAlign="center" width="100%" paddingRight="15">
 				<mx:Text id="txtPwd" color="#000000" fontStyle="italic" text="Password" />
 				<mx:TextInput id="tiPwd" color="#000000" text="Password" displayAsPassword="true"/>
 			</mx:FormItem>
 		</mx:Form>
-		
-		<mx:HBox>
-			<mx:LinkButton label="Registrati" textDecoration="underline" styleName="clearLinkButtonStyle"/>
-			<mx:LinkButton label="Torna al Login" textDecoration="underline" styleName="clearLinkButtonStyle"/>	
-		</mx:HBox>		
+	
 	</mx:Panel>
 </mx:Box>
