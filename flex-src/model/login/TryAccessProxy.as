@@ -1,6 +1,6 @@
 package model.login
 {
-	import model.services.loginservice.LoginService;
+	import model.services.LoginService;
 	
 	import mx.controls.Alert;
 	import mx.messaging.messages.RemotingMessage;

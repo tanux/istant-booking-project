@@ -3,6 +3,8 @@ package view
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
+	import model.vo.Affiliate;
+	
 	import mx.controls.Alert;
 	import mx.events.FlexEvent;
 	
@@ -19,10 +21,17 @@ package view
 			super(NAME, viewComponent);
 			affiliateMain.addEventListener(FlexEvent.CREATION_COMPLETE, init);
 			affiliateMain.lbRegisterAffiliate.addEventListener(MouseEvent.CLICK, enableStateRegister);
+			affiliateMain.cmpLoginFormAffiliate.btnLogin.addEventListener(MouseEvent.CLICK, doLogin);
 		}
 		
 		private function init(evt:Event) : void {}
 		
+		private function doLogin(evt:Event):void{
+			var affiliate:Affiliate = new Affiliate();
+			affiliate.email = affiliateMain.cmpLoginFormAffiliate.tiUsername;
+			affiliate.password = affiliateMain.cmpLoginFormAffiliate.tiPassword;
+			facade.sendNotification(ApplicationFacade.DO_LOGIN, affiliate);			
+		}
 		private function enableStateRegister(evt:Event):void{
 			affiliateMain.currentState = "stateRegister";			
 			facade.registerMediator(new RegisterAffiliateMediator(affiliateMain.cmpRegisterFormAffiliate));
@@ -48,7 +57,7 @@ package view
 			return [
 				ApplicationFacade.REGISTER_AFFILIATE_SUCCES,
 				ApplicationFacade.REGISTER_AFFILIATE_ERROR,
-				ApplicationFacade.REGISTER_AFFILIATE_FAULT			
+				ApplicationFacade.REGISTER_AFFILIATE_FAULT,				
 			];
 		}
 		
