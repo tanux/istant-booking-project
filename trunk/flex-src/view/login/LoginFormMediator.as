@@ -11,7 +11,7 @@ package view.login
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	
 	import view.MainApplicationMediator;
-	import view.component.LoginFormAffiliate;
+	import view.component.LoginForm;
 	
 	public class LoginFormMediator extends Mediator implements IMediator{
 		
@@ -41,8 +41,8 @@ package view.login
 			return [];	
 		}		
 		
-		public function get login():LoginFormAffiliate{			
-			return viewComponent as LoginFormAffiliate;
+		public function get login():LoginForm{			
+			return viewComponent as LoginForm;
 		}		
 	}
 }
