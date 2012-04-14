@@ -1,6 +1,7 @@
 <mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml"  
 		  paddingLeft="10" paddingRight="10" paddingTop="20"
-		  title="Sedi" horizontalAlign="center" verticalAlign="middle">
+		  title="Sedi" horizontalAlign="center" verticalAlign="middle"
+		  styleName="panelSkinsICandy">
 	
 	<mx:VBox width="95%" id="boxSede" borderStyle="solid" paddingTop="5" paddingBottom="5" 
 			 paddingLeft="5" paddingRight="5" >

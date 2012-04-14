@@ -4,7 +4,8 @@
 	
 	<mx:Panel id="pnlRegister" width="30%" height="40%"  
 			  paddingTop="20" horizontalAlign="center"
-			  title="Register">
+			  title="Register"
+			  styleName="panelSkinsICandy">
 		<mx:Form id="frmRegister" width="100%" height="100%">
 			<mx:FormItem id="fiAffiliateName" width="100%" horizontalAlign="center" paddingRight="15">
 				<mx:Text id="txtAffiliateName" color="#000000" fontStyle="italic" text="Nome Attività"/>
@@ -36,6 +37,9 @@
 				<mx:TextInput id="tiPwd" color="#000000" text="Password" displayAsPassword="true"/>
 			</mx:FormItem>
 		</mx:Form>
-	
+		<mx:LinkButton id="lbConfirmRegistration" label="Conferma Registrazione" textDecoration="underline" styleName="clearLinkButtonStyle" paddingBottom="10"/>
 	</mx:Panel>
+	<mx:Box>		
+		<mx:LinkButton id="lbBackToLogin" label="Torna al Login" textDecoration="underline" styleName="clearLinkButtonStyle"/>	
+	</mx:Box>
 </mx:Box>
