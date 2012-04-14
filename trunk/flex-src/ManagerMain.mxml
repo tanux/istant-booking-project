@@ -12,27 +12,26 @@
 	
 	<fx:Style source="/assets/skins/flex_skins.css"/>	
 	
-	<mx:Image id="imgEye" styleName="imgEye" source="@Embed('/assets/images/occhio.png')" width="50%" height="50%"/>
+	<mx:Image id="imgEye" styleName="imgEye" source="@Embed('/assets/images/occhio.png')" width="50%" height="50%"/>	
 	
-	<mx:VBox id="vbExt" styleName="vbExt" width="100%" height="100%"
-			 paddingBottom="5" paddingLeft="5" paddingRight="5" paddingTop="5">
-	
+	<mx:VBox id="vbExt" styleName="vbExt" width="100%" height="100%">	
+			
 		<component:ControlTopBar id="cmpControlBar"/>
 		
-		<mx:Box height="10"/>
-		
-		<mx:ApplicationControlBar id="appCntrlBLocation" styleName="controlBar" width="80%" height="25" >
-			<mx:Label text="Gestione Sedi" color="white" fontSize="10" fontWeight="bold"/>
-		</mx:ApplicationControlBar>
-				
-		<component:ManagementLocation id="cmpManagementLocation" />
-		
-		<mx:Box height="10"/>
-
-		<mx:ApplicationControlBar id="appCntrlBAffiliate" styleName="controlBar" width="80%" height="25" >
-			<mx:Label text="Gestione Affiliazioni" color="white" fontSize="10" fontWeight="bold"/>
-		</mx:ApplicationControlBar>
-		
-		<component:ManagementAffiliation id="cmpManagementAffiliation"/>
+		<mx:HBox width="80%" height="80%" horizontalAlign="center" verticalAlign="middle" paddingTop="5">
+			<mx:VBox width="30%" height="100%">
+				<component:VisitLocations width="100%" height="50%" />
+				<component:VisitDay width="100%" height="50%"/>
+			</mx:VBox>
+			<mx:Box width="70%" height="100%" horizontalAlign="center" verticalAlign="middle">
+				<component:ListReservationManagerSettings width="100%" height="100%"/>
+			</mx:Box>	
+		</mx:HBox>
+		<mx:HBox verticalAlign="middle" horizontalAlign="right" width="80%">
+			<mx:Button icon="@Embed(source='assets/images/delete_user.png')" downIcon="@Embed(source='assets/images/delete_user_little.png')"
+					   width="45" height="40"/>
+			<mx:Button icon="@Embed(source='assets/images/delete_multi_user.png')" downIcon="@Embed(source='assets/images/delete_multi_user_little.png')"
+					   width="45" height="40"/>
+		</mx:HBox>
 	</mx:VBox>
 </mx:Application>

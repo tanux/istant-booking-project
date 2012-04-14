@@ -23,10 +23,10 @@
     <application path="Test.mxml"/>
     <application path="Templeate.mxml"/>
     <application path="AffiliateMain.mxml"/>
-    <application path="AffiliateSettngs.mxml"/>
     <application path="ManagerSettings.mxml"/>
-    <application path="ManagerMain.mxml"/>
+    <application path="AffiliateSettngs.mxml"/>
     <application path="ManagerLogin.mxml"/>
+    <application path="ManagerMain.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>
