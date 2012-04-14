@@ -26,7 +26,7 @@
 	</mx:VBox>
 	
 	<mx:HBox id="hbDays" width="100%" verticalCenter="middle" horizontalAlign="center" height="30%"
-			 paddingTop="5">
+			 paddingTop="5" paddingRight="5" paddingLeft="5">
 		<mx:VBox horizontalAlign="center">
 			<mx:Label text="Lunedì" color="black"/>
 			<mx:CheckBox />
@@ -53,7 +53,10 @@
 		</mx:VBox>
 	</mx:HBox>
 	
-	<component:HouseButton id="cmpHouseButton" />	
+	
+	<component:HouseButton id="cmpHouseButton" width="100%" paddingBottom="10" horizontalAlign="center"/>	
+	
+		
 	
 </mx:Panel>
 
