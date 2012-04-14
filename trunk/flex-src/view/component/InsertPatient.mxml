@@ -34,7 +34,7 @@
 				   width="45" height="40"/>
 		<mx:Button icon="@Embed(source='assets/images/save.png')" downIcon="@Embed(source='assets/images/save_little.png')"
 				   width="45" height="40"/>
-		<mx:Button icon="@Embed(source='assets/images/prenotazione.png')" downIcon="@Embed(source='assets/images/prenotazione_little.png')"
+		<mx:Button icon="@Embed(source='assets/images/prenota.png')" downIcon="@Embed(source='assets/images/prenota_little.png')"
 				   width="45" height="40"/>
 	</mx:HBox>
 
