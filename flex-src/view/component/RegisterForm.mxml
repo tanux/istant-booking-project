@@ -1,34 +1,33 @@
 <mx:Box xmlns:mx="http://www.adobe.com/2006/mxml" 
-		id="boxExtRegister" width="100%" height="100%" 
+		width="100%" height="50%" 
 		verticalAlign="middle" horizontalAlign="center">
 	
 	<mx:Panel id="pnlRegister" width="30%" height="40%"  
 			  paddingTop="20" horizontalAlign="center"
 			  title="Register">
 		<mx:Form id="frmRegister" width="100%" height="100%">
-			<mx:FormItem id="fiAffiliateName" width="100%" horizontalAlign="center">
+			<mx:FormItem id="fiAffiliateName" width="100%" horizontalAlign="center" paddingRight="15">
 				<mx:Text id="txtAffiliateName" color="#000000" fontStyle="italic" text="Nome Attività"/>
 				<mx:TextInput id="tiAffiliateName" color="#000000" text="Ottica Avellino"/>					
 			</mx:FormItem>
-			
-				
+					
 		
-			<mx:FormItem id="frmAffiliateEMail" horizontalAlign="center" width="100%">
+			<mx:FormItem id="frmAffiliateEMail" horizontalAlign="center" width="100%" paddingRight="15">
 				<mx:Text id="txtAffiliateEmail" color="#000000" fontStyle="italic" text="E-mail" />	
 				<mx:TextInput id="tiAffiliateEmail" color="#000000" text="user@dominio.it"/>
 			</mx:FormItem>
 			
-			<mx:FormItem id="fiTelephoneNumber" horizontalAlign="center" width="100%">
+			<mx:FormItem id="fiTelephoneNumber" horizontalAlign="center" width="100%" paddingRight="15">
 				<mx:Text id="txtTelephoneNumber" color="#000000" fontStyle="italic" text="Numero di Telefono" textAlign="center"/>
 				<mx:TextInput id="tiTelephoneNumber" color="#000000" text="3405994169"/>
 			</mx:FormItem>
 				
-			<mx:FormItem id="fiUser" horizontalAlign="center" width="100%">
+			<mx:FormItem id="fiUser" horizontalAlign="center" width="100%" paddingRight="15">
 				<mx:Text id="txtUser" color="#000000" text="Username" />
 				<mx:TextInput id="tiUser" color="#000000" text="User"/>
 			</mx:FormItem>
 				
-			<mx:FormItem id="fiPwd" horizontalAlign="center" width="100%">
+			<mx:FormItem id="fiPwd" horizontalAlign="center" width="100%" paddingRight="15">
 				<mx:Text id="txtPwd" color="#000000" fontStyle="italic" text="Password" />
 				<mx:TextInput id="tiPwd" color="#000000" text="Password" displayAsPassword="true"/>
 			</mx:FormItem>
