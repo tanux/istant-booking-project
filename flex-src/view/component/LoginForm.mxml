@@ -3,12 +3,12 @@
 		  width="20%" height="30%">
 	
 	<mx:Form id="frmLogin" width="100%" >
-		<mx:FormItem id="fiUsername" width="100%" horizontalAlign="center">
+		<mx:FormItem paddingRight="15" id="fiUsername" width="100%" horizontalAlign="center">
 			<mx:Text id="txtUsername" color="#000000" fontStyle="italic" text="Username"/>
 			<mx:TextInput id="tiUsername" color="#000000" text="Username"/>					
 		</mx:FormItem>
 			
-		<mx:FormItem id="fiPassword" width="100%" horizontalAlign="center">
+		<mx:FormItem paddingRight="15" id="fiPassword" width="100%" horizontalAlign="center">
 			<mx:Text id="txtPassword" color="#000000" fontStyle="italic" text="Password" />	
 			<mx:TextInput id="tiPassword" color="#000000" text="pwd"/>
 		</mx:FormItem>
