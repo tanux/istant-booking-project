@@ -23,11 +23,9 @@
     <application path="Test.mxml"/>
     <application path="Templeate.mxml"/>
     <application path="AffiliateMain.mxml"/>
-    <application path="ManagerMain.mxml"/>
     <application path="ManagerSettings.mxml"/>
-    <application path="AffiliateLogin.mxml"/>
+    <application path="ManagerMain.mxml"/>
     <application path="ManagerLogin.mxml"/>
-    <application path="AffiliateRegister.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>

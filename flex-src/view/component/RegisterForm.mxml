@@ -9,8 +9,7 @@
 			<mx:FormItem id="fiAffiliateName" width="100%" horizontalAlign="center" paddingRight="15">
 				<mx:Text id="txtAffiliateName" color="#000000" fontStyle="italic" text="Nome Attività"/>
 				<mx:TextInput id="tiAffiliateName" color="#000000" text="Ottica Avellino"/>					
-			</mx:FormItem>
-					
+			</mx:FormItem>				
 		
 			<mx:FormItem id="frmAffiliateEMail" horizontalAlign="center" width="100%" paddingRight="15">
 				<mx:Text id="txtAffiliateEmail" color="#000000" fontStyle="italic" text="E-mail" />	
@@ -31,6 +30,11 @@
 				<mx:Text id="txtPwd" color="#000000" fontStyle="italic" text="Password" />
 				<mx:TextInput id="tiPwd" color="#000000" text="Password" displayAsPassword="true"/>
 			</mx:FormItem>
-		</mx:Form>	
+		</mx:Form>
+		
+		<mx:HBox>
+			<mx:LinkButton label="Registrati" textDecoration="underline" styleName="clearLinkButtonStyle"/>
+			<mx:LinkButton label="Torna al Login" textDecoration="underline" styleName="clearLinkButtonStyle"/>	
+		</mx:HBox>		
 	</mx:Panel>
 </mx:Box>
