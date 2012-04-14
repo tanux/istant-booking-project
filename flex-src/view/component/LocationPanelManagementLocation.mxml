@@ -1,5 +1,6 @@
 <mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" 
-		  width="40%" height="100%" xmlns:component="view.component.*" >
+		  width="40%" height="100%" xmlns:component="view.component.*" 
+		  styleName="panelSkinsICandy">
 	
 	<mx:Canvas id="cnvAddRemoveLocation" width="100%" >
 		<mx:HBox id="hbAddRemoveLocation" width="100%" horizontalAlign="center" verticalAlign="middle">

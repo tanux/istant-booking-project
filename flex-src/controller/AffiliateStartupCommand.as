@@ -1,5 +1,7 @@
 package controller
 {
+	import controller.registeraffiliate.ConfirmRegisterCommand;
+	
 	import mx.controls.Alert;
 	
 	import org.puremvc.as3.interfaces.ICommand;
@@ -9,11 +11,10 @@ package controller
 	import view.AffiliateMainMediator;
 	
 	public class AffiliateStartupCommand extends SimpleCommand implements ICommand{
-		override public function execute(notification:INotification):void{
-			Alert.show("Mediator OK");
+		override public function execute(notification:INotification):void{			
 			var affiliateMain:AffiliateMain = notification.getBody() as AffiliateMain;
 			facade.registerMediator(new AffiliateMainMediator(affiliateMain));
-			
+			facade.registerCommand(ApplicationFacade.CONFIRM_REGISTER, ConfirmRegisterCommand);
 		}
 	}
 }

@@ -14,7 +14,9 @@ package
 	public class ApplicationFacade extends Facade implements IFacade{
 		public static const STARTUP:String = "Startup";
 		public static const STARTUP_AFFILIATE_APP:String = "StartupAffiliateApp";
-		//public static const LOGIN:String = "Login";
+		
+		/*Authentication Notify*/
+		public static const LOGIN:String = "Login";
 		public static const DO_LOGOUT:String = "Logout";
 		public static const LOGOUT_SUCCESS:String = "LogoutSuccess";
 		public static const LOGOUT_ERROR:String = "LogoutError";
@@ -25,7 +27,13 @@ package
 		public static const BACK_TO_LOGIN:String = "TornaLogin";
 		public static const LOGIN_SUCCESS:String = "LoginSuccess";
 		public static const LOGIN_ERROR:String = "LoginError";
-		public static const LOGIN_FAULT:String = "LoginFault";		
+		public static const LOGIN_FAULT:String = "LoginFault";
+		
+		/*Registration Notify*/
+		public static const CONFIRM_REGISTER:String = "ConfirmRegistration";
+		public static const REGISTER_AFFILIATE_SUCCES:String = "RegisterAffiliateSucces";
+		public static const REGISTER_AFFILIATE_ERROR:String = "RegisterAffiliateError";
+		public static const REGISTER_AFFILIATE_FAULT:String = "RegisterAffiliateFault";
 		
 		public static function getInstance() : ApplicationFacade{
 			if (instance == null)

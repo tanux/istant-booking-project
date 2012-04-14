@@ -55,7 +55,7 @@ AccordionHeader{
 	color: black;
 }
 
-mx|Panel{
+.panelSkinsICandy{
 	borderSkin: Embed(skinClass="Panel_borderSkin");
 	titleStyleName: "PanelTitleStyle";
 	textAlign: "center";
