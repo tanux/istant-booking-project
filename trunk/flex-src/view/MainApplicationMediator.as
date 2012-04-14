@@ -8,8 +8,6 @@ package view
 	
 	import flashx.textLayout.elements.BreakElement;
 	
-	import model.vo.VOUser;
-	
 	import mx.controls.Alert;
 	import mx.events.FlexEvent;
 	
@@ -39,7 +37,7 @@ package view
 					mainApplication.currentState = "login";
 					break;
 				case ApplicationFacade.LOGIN_SUCCESS:					
-					var user:VOUser = notification.getBody() as VOUser;
+					//var user:VOUser = notification.getBody() as VOUser;
 					mainApplication.user = user;	
 					mainApplication.currentState = "stateMainApplication";
 					mainApplication.btnLogout.addEventListener(MouseEvent.CLICK, doLogout);					

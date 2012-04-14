@@ -8,8 +8,7 @@
 			<mx:Text id="txtModify" text="Modifica" color="white" fontSize="10" fontWeight="bold"/>
 			<mx:Image id="imgPencil" source="@Embed(source='assets/images/pencil.png')"/>	
 		</mx:HBox>
-	</mx:Canvas>
-	
+	</mx:Canvas>	
 	<mx:VBox id="vbLocation" width="100%" horizontalAlign="center">
 		<mx:HBox id="hbLocationName" width="100%">
 			<mx:Label id="lblLocationName" text="Nome" color="black" fontSize="15" width="30%" textAlign="right"/>
