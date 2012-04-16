@@ -1,7 +1,16 @@
 <mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" 
 		 xmlns:component="view.component.*"
 		 styleName="vbExt" width="100%" height="40%" paddingTop="5" >
-	
+	<mx:HBox width="80%" textAlign="left" horizontalAlign="right" verticalAlign="middle">
+		<mx:Canvas>
+			<mx:Box>
+				<mx:TextInput text="Cerca..." paddingTop="1" textAlign="right"/>	
+			</mx:Box>
+			<mx:Box width="20%" height="90%" paddingTop="2" paddingLeft="2">
+				<mx:Image source="assets/images/find.png" height="20" />	
+			</mx:Box>			
+		</mx:Canvas>
+	</mx:HBox>
 	<mx:DataGrid id="dgAffilation" width="80%" height="100%">
 		<mx:columns>
 			<mx:DataGridColumn id="clmLocation" dataField="Ottico" headerText="Sede" />
@@ -9,7 +18,15 @@
 			<mx:DataGridColumn id="clmTelephone" dataField="Telefono" headerText="Telefono" />
 		</mx:columns>
 	</mx:DataGrid>
-	
-	<component:HouseButton id="cmpHouseButton" />
+	<mx:HBox width="80%">
+		<mx:TextInput text="Sede" paddingTop="1" paddingLeft="2"/>
+		<mx:TextInput text="Indirizzo" paddingTop="1" paddingLeft="2"/>
+		<mx:TextInput text="Telefono" paddingTop="1" paddingLeft="2"/>
+	</mx:HBox>
+	<mx:HBox horizontalAlign="center">
+		<mx:Button icon="@Embed(source='assets/images/print.png')" downIcon="@Embed(source='assets/images/print_little.png')"
+				   width="45" height="40"/>		
+		<component:HouseButton id="cmpHouseButton" />
+	</mx:HBox>
 </mx:VBox>
 

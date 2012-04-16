@@ -25,8 +25,9 @@
     <application path="AffiliateMain.mxml"/>
     <application path="ManagerSettings.mxml"/>
     <application path="AffiliateSettngs.mxml"/>
-    <application path="ManagerLogin.mxml"/>
+    <application path="ManagerShowVisit.mxml"/>
     <application path="ManagerMain.mxml"/>
+    <application path="ManagerLogin.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>
