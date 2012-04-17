@@ -12,10 +12,12 @@
 	
 	<mx:Image id="imgEye" styleName="imgEye" source="@Embed('/assets/images/occhio.png')" width="50%" height="50%"/>
 	
-	<mx:VBox id="vbExt" styleName="vbExt" width="100%" height="100%">
-		<component:RegisterForm id="cmpRegisterFormAffiliateSettings" />	
-		<mx:HBox>
-			<mx:LinkButton label="Torna a Menù visite" textDecoration="underline" styleName="clearLinkButtonStyle"/>	
-		</mx:HBox>	
+	<mx:VBox id="vbExt" styleName="vbExt" width="100%" height="100%" verticalAlign="top">
+		<component:ControlTopBar id="cmpControlBar" />	
+		<mx:HBox width="80%" height="50%">
+			<component:PropertyAffiliates id="cmpPropertyAffiliates" />
+			<component:PropertyModify id="cmpPropertyModify" />	
+		</mx:HBox>
+		
 	</mx:VBox>	
 </mx:Application>
