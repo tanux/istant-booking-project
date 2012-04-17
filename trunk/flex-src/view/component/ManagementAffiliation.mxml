@@ -22,7 +22,7 @@
 			</mx:DataGrid>
 		</mx:VBox>
 
-		<mx:TextArea width="50%" height="100%"/>
+		<mx:TextArea width="50%" height="100%" editable="false"/>
 	</mx:HBox>
 	
 
