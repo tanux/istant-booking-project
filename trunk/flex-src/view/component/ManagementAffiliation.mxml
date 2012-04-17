@@ -26,10 +26,15 @@
 	</mx:HBox>
 	
 
-	<mx:HBox horizontalAlign="center">
-		<mx:Button icon="@Embed(source='assets/images/print.png')" downIcon="@Embed(source='assets/images/print_little.png')"
-				   width="45" height="40"/>		
-		<component:HouseButton id="cmpHouseButton" />
+	<mx:HBox horizontalAlign="center" width="80%">
+		
+		<mx:Box width="50%" horizontalAlign="right">
+			<component:HouseButton id="cmpHouseButton" />
+		</mx:Box>
+		<mx:Box width="50%" horizontalAlign="right">
+			<mx:Button icon="@Embed(source='assets/images/print.png')" downIcon="@Embed(source='assets/images/print_little.png')"
+					   width="45" height="40"/>		
+		</mx:Box>
 	</mx:HBox>
 </mx:VBox>
 
