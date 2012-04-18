@@ -28,6 +28,8 @@
     <application path="ManagerShowVisit.mxml"/>
     <application path="ManagerMain.mxml"/>
     <application path="ManagerLogin.mxml"/>
+    <application path="ManagerSettingsSecondSolution.mxml"/>
+    <application path="ManagerSettingsThirdSolution.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>
