@@ -21,8 +21,19 @@
 				</mx:columns>
 			</mx:DataGrid>
 		</mx:VBox>
-
-		<mx:TextArea width="50%" height="100%" editable="false"/>
+		
+		<mx:VBox width="50%">
+			<mx:HBox width="100%" height="15%">
+				<mx:Label text="Numero pazienti NomeAffiliates: " />	
+			</mx:HBox>
+			<mx:DataGrid id="dgAffilation2" width="100%" height="80%">
+				<mx:columns>
+					<mx:DataGridColumn id="clmLocatio2n" dataField="Ottico" headerText="Sede" />
+					<mx:DataGridColumn id="clmStre2et" dataField="Indirizzo" headerText="Indirizzo" />
+					<mx:DataGridColumn id="clmTelep2hone" dataField="Telefono" headerText="Telefono" />
+				</mx:columns>
+			</mx:DataGrid>
+		</mx:VBox>
 	</mx:HBox>
 	
 
