@@ -15,24 +15,20 @@
 	<mx:Image id="imgEye" styleName="imgEye" source="@Embed('/assets/images/occhio.png')" width="50%" height="50%"/>
 	
 	<mx:VBox id="vbExt" styleName="vbExt" width="100%" height="100%"
-			 paddingBottom="5" paddingLeft="5" paddingRight="5" paddingTop="5">
-	
+			 paddingBottom="5" paddingLeft="5" paddingRight="5" paddingTop="5" verticalAlign="top">
+		
 		<component:ControlTopBar id="cmpControlBar"/>
 		
 		<mx:Box height="10"/>
 		
-		<mx:ApplicationControlBar id="appCntrlBLocation" styleName="controlBar" width="80%" height="25" >
-			<mx:Label text="Gestione Sedi" color="white" fontSize="10" fontWeight="bold"/>
-		</mx:ApplicationControlBar>
-				
-		<component:ManagementLocation id="cmpManagementLocation" />
-		
-		<mx:Box height="10"/>
-
-		<mx:ApplicationControlBar id="appCntrlBAffiliate" styleName="controlBar" width="80%" height="25" >
-			<mx:Label text="Gestione Affiliazioni" color="white" fontSize="10" fontWeight="bold"/>
-		</mx:ApplicationControlBar>
-		
-		<component:ManagementAffiliation id="cmpManagementAffiliation"/>
+		<mx:Accordion width="80%" height="100%" alpha="1.0" backgroundAlpha="0.0" borderStyle="none"
+					  cornerRadius="20">
+			<mx:Canvas width="100%" height="100%" label="Management Location">
+				<component:ManagementLocation id="cmpManagementLocation" width="100%" color="black"/>
+			</mx:Canvas>
+			<mx:Canvas width="100%" height="100%" label="Management Affiliation" >
+				<component:ManagementAffiliation id="cmpManagementAffiliation" width="100%" color="black"/>
+			</mx:Canvas>
+		</mx:Accordion>
 	</mx:VBox>
 </mx:Application>
