@@ -12,6 +12,7 @@ mx|AccordionHeader{
 	color: white;
 	skin: Embed(skinClass="AccordionHeader_skin");
 }
+
 .controlBar{
 	fillAlphas: 1.0, 1.0; 
 	fillColors: #6699cc, #6699cc;
