@@ -21,7 +21,7 @@
 		
 		<mx:Box height="10"/>
 		
-		<mx:Accordion width="80%" height="100%" alpha="1.0" backgroundAlpha="0.0" borderStyle="none">
+		<mx:Accordion  width="80%" height="100%" alpha="1.0" backgroundAlpha="0.0" borderStyle="none">
 			<mx:Canvas width="100%" height="100%" label="Management Location">
 				<component:ManagementLocation id="cmpManagementLocation" width="100%" color="black"/>
 			</mx:Canvas>
