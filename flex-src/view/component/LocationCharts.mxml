@@ -1,0 +1,9 @@
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" title="Grafico" width="100%" height="50%" styleName="panelSkinsICandy"
+		  paddingTop="30" paddingLeft="10" paddingRight="20" paddingBottom="10">
+	
+	<mx:ColumnChart id="myChart" width="100%" height="100%" color="#000000" fontWeight="bold"
+					showDataTips="true" styleName="panelSkinsICandy">
+
+
+	</mx:ColumnChart>
+</mx:Panel>
