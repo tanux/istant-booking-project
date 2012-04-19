@@ -5,12 +5,18 @@
 		import mx.collections.ArrayCollection;
 		[Bindable]
 		private var expenses:Array = [
-			{Month:"January",Profit:2000,Expenses:1500,Amount:450},
-			{Month:"February",Profit:1000,Expenses:200,Amount:600},
-			{Month:"March",Profit:1500,Expenses:500,Amount:300},
-			{Month:"April",Profit:500,Expenses:300,Amount:500},
-			{Month:"May",Profit:1000,Expenses:450,Amount:250},
-			{Month:"June",Profit:2000,Expenses:500,Amount:700}
+			{Month:"Gennaio",NumberOfVisit:20},
+			{Month:"Febbraio",NumberOfVisit:10},
+			{Month:"Marzo",NumberOfVisit:15},
+			{Month:"Aprile",NumberOfVisit:50},
+			{Month:"Maggio",NumberOfVisit:10},
+			{Month:"Giugno",NumberOfVisit:20},
+			{Month:"Luglio",NumberOfVisit:20},
+			{Month:"Agosto",NumberOfVisit:10},
+			{Month:"Settembre",NumberOfVisit:15},
+			{Month:"Ottobre",NumberOfVisit:50},
+			{Month:"Novembre",NumberOfVisit:10},
+			{Month:"Dicembre",NumberOfVisit:20}
 		];
 		
 	]]></mx:Script>
@@ -27,13 +33,8 @@
 		<mx:series>
 			<mx:ColumnSeries 
 				xField="Month" 
-				yField="Profit"
-				displayName="Profit"
-				/>
-			<mx:ColumnSeries 
-				xField="Month" 
-				yField="Expenses"
-				displayName="Expenses"
+				yField="NumberOfVisit"
+				displayName="Numero di Visite"
 				/>
 		</mx:series>
 	</mx:ColumnChart>
