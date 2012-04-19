@@ -8,7 +8,7 @@ mx|Application{
 	
 }
 
-mx|AccordionHeader{
+.accordionHeaderICandy{
 	color: white;
 	skin: Embed(skinClass="AccordionHeader_skin");
 }
@@ -53,11 +53,6 @@ mx|AccordionHeader{
 .DateChooserHeaderStyle{
 	color: black;
 	fontWeight: "bold";	
-}
-
-AccordionHeader{
-	skin: Embed(skinClass="AccordionHeader_skin");
-	color: black;
 }
 
 .panelSkinsICandy{
