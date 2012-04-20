@@ -45,7 +45,7 @@
 			</mx:Form>
 			
 			<mx:HBox width="100%" horizontalAlign="center">
-				<mx:Button icon="@Embed(source='assets/images/ok.png')" downIcon="@Embed(source='assets/images/ok_little.png')"
+				<mx:Button icon="@Embed(source='assets/images/save.png')" downIcon="@Embed(source='assets/images/save_little.png')"
 						   width="45" height="40"/>
 				<mx:Button icon="@Embed(source='assets/images/x.png')" downIcon="@Embed(source='assets/images/x_little.png')"
 						   width="45" height="40"/>
