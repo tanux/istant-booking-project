@@ -26,7 +26,7 @@ package view
 		
 		private function init(evt:Event) : void {}
 		
-		private function doLogin(evt:Event):void{
+		private function doLogin(evt:Event):void{			
 			var affiliate:Affiliate = new Affiliate();
 			affiliate.email = affiliateMain.cmpLoginFormAffiliate.tiUsername;
 			affiliate.password = affiliateMain.cmpLoginFormAffiliate.tiPassword;
@@ -50,6 +50,12 @@ package view
 				case ApplicationFacade.REGISTER_AFFILIATE_FAULT:
 					Alert.show("FAULT:Errore di comunicazione con il server");
 					break;
+				case ApplicationFacade.LOGGED_IN:
+					affiliateMain.currentState = "stateMainApplication";
+					var affiliate:Affiliate = notification.getBody() as Affiliate;
+					
+					break;
+					
 			}
 		}
 		
