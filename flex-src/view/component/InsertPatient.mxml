@@ -17,7 +17,6 @@
 		<mx:columns>
 			<mx:DataGridColumn id="clmNome" dataField="Nome" headerText="Nome" />
 			<mx:DataGridColumn id="clmCognome" dataField="Cognome" headerText="Cognome" />
-			<mx:DataGridColumn id="clmCF" dataField="CF" headerText="Codice Fiscale" />
 			<mx:DataGridColumn id="clmEMail" dataField="Mail" headerText="E-Mail" />
 			<mx:DataGridColumn id="clmTel" dataField="Tel" headerText="Telefono" />
 		</mx:columns>
@@ -25,7 +24,8 @@
 	<mx:HBox>
 		<mx:TextInput text="Nome" paddingTop="1" paddingLeft="2"/>
 		<mx:TextInput text="Cognome" paddingTop="1" paddingLeft="2"/>
-		<mx:TextInput text="Codice Fiscale" paddingTop="1" paddingLeft="2"/>
+		<mx:TextInput text="E-mail" paddingTop="1" paddingLeft="2"/>
+		<mx:TextInput text="Telefono" paddingTop="1" paddingLeft="2"/>
 	</mx:HBox>
 	<mx:HBox width="100%" horizontalAlign="right">
 		<mx:Button icon="@Embed(source='assets/images/add_user.png')" downIcon="@Embed(source='assets/images/add_user_little.png')"
