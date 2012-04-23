@@ -2,12 +2,11 @@
 						  width="80%" 
 						  height="50" 
 						  styleName="controlBar"
-						  >	
-	
+						  >		
 	<mx:HBox id="hbControlBar" width="100%" height="80%" verticalAlign="middle">
 		
 		<mx:Box id="boxNomeOtticoOculista" width="33%">
-			<mx:Text id="txUserLoggedIn" color="white" fontSize="30" fontWeight="bold" />	
+			<mx:Text id="txUserLoggedIn" color="white" fontSize="30" fontWeight="bold" text=""/>	
 		</mx:Box>
 		
 		<mx:Box id="boxButtonSettings" width="33%" horizontalAlign="center" >
