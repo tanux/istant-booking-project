@@ -59,7 +59,7 @@ package view
 				case ApplicationFacade.LOGGED_IN:					
 					affiliateMain.currentState = "stateMainApplication";
 					var affiliateLoggedIn:Affiliate = notification.getBody() as Affiliate;
-					affiliateMain.affiliate = affiliateLoggedIn as Affiliate;					
+					affiliateMain.cmpControlBar.txUserLoggedIn.text = affiliateLoggedIn.name as String;					
 					break;					
 				case ApplicationFacade.EXECUTE_LOGIN:
 					facade.registerCommand(ApplicationFacade.DO_LOGIN, DoLoginCommand);
@@ -68,8 +68,7 @@ package view
 				case ApplicationFacade.LOGIN_SUCCESS:
 					affiliateMain.currentState = "stateMainApplication";
 					var affiliate:Affiliate = notification.getBody() as Affiliate;
-					affiliateMain.affiliate = affiliate as Affiliate;
-					Alert.show("Loggato come: "+affiliate.email);
+					affiliateMain.cmpControlBar.txUserLoggedIn.text = affiliate.name as String;
 					break;
 				case ApplicationFacade.LOGIN_ERROR:
 					Alert.show("Autenticazione Fallita: inserire i dati corretti");
