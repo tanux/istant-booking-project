@@ -26,6 +26,9 @@
 			<mx:Canvas width="100%" height="100%" label="Management Affiliation" >
 				<component:ManagementAffiliation id="cmpManagementAffiliation" width="100%" color="black"/>
 			</mx:Canvas>
+			<mx:Canvas width="100%" height="100%" label="Booking History" >
+				<component:ManagementChronicles  width="100%" color="black"/>
+			</mx:Canvas>
 		</mx:Accordion>
 	</mx:VBox>
 </mx:Application>

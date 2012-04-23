@@ -15,13 +15,7 @@
 	<mx:Image id="imgEye" styleName="imgEye" source="@Embed('/assets/images/occhio.png')" width="50%" height="50%"/>
 	<mx:VBox id="vbExt" styleName="vbExt" width="100%" height="100%">
 		
-		
-		
-		<mx:Box styleName="vbExt" width="100%" height="100%" > 
-			<component:ControlTopBar id="cmpControlBar" />		
-			<component:VisitPropertiesAffiliateMain id="cmpVisitProperties" />		
-			<component:InsertPatientAffiliateMain id="cmpInsertPatient" />
-		</mx:Box>
+					
 		
 	</mx:VBox>	
 </mx:Application>
