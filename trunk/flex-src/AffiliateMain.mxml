@@ -27,8 +27,18 @@
 		
 		<mx:Box styleName="vbExt" width="100%" height="100%" includeIn="stateLogin">
 			<component:LoginForm id="cmpLoginFormAffiliate" />
-			<mx:Text text="Non sei ancora registrato?" />
-			<mx:LinkButton id="lbRegisterAffiliate" label="Registrati" textDecoration="underline" styleName="clearLinkButtonStyle" />			
+			<mx:HBox>
+				<mx:VBox horizontalAlign="center">
+					<mx:Text text="Non sei ancora registrato?" />
+					<mx:LinkButton id="lbRegisterAffiliate" label="Registrati" textDecoration="underline" styleName="clearLinkButtonStyle" />
+				</mx:VBox>
+				<mx:VRule height="40%"/>
+				<mx:VBox horizontalAlign="center">
+					<mx:Text text="Password dimenticata?" />
+					<mx:LinkButton id="lbRecoveryPassword" label="Recupera Password" textDecoration="underline" styleName="clearLinkButtonStyle" />
+				</mx:VBox>
+			</mx:HBox>
+							
 		</mx:Box>
 		
 		<component:RegisterForm id="cmpRegisterFormAffiliate" includeIn="stateRegister"/>
