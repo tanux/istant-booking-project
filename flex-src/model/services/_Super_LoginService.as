@@ -7,6 +7,7 @@ package model.services
 import com.adobe.fiber.core.model_internal;
 import com.adobe.fiber.services.wrapper.RemoteObjectServiceWrapper;
 import com.adobe.serializers.utility.TypeUtility;
+import model.vo.Affiliate;
 import model.vo.StdClass1;
 import mx.rpc.AbstractOperation;
 import mx.rpc.AsyncToken;
@@ -35,7 +36,7 @@ internal class _Super_LoginService extends com.adobe.fiber.services.wrapper.Remo
          operation.resultType = model.vo.StdClass1;
         operations["verifiedLoggedIn"] = operation;
         operation = new mx.rpc.remoting.Operation(null, "doLogin");
-         operation.resultType = model.vo.StdClass1;
+         operation.resultType = model.vo.Affiliate;
         operations["doLogin"] = operation;
         operation = new mx.rpc.remoting.Operation(null, "doLogout");
          operation.resultType = Object;
@@ -88,7 +89,7 @@ internal class _Super_LoginService extends com.adobe.fiber.services.wrapper.Remo
       *
       * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function doLogin(username:Object, password:Object, user_type:Object) : mx.rpc.AsyncToken
+    public function doLogin(username:String, password:String, user_type:String) : mx.rpc.AsyncToken
     {
         var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("doLogin");
 		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(username,password,user_type) ;

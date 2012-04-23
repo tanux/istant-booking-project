@@ -1,6 +1,8 @@
 package model.login
 {
 	import model.services.LoginService;
+	import model.vo.GenericUser;
+	
 	import mx.controls.Alert;
 	import mx.messaging.messages.RemotingMessage;
 	import mx.rpc.AsyncToken;
@@ -23,14 +25,17 @@ package model.login
 			responder =  new Responder(onResult, onFault);			
 		}
 		
-		public function doLogin(username:String, password:String):void{			
-			var at:AsyncToken = service.doLogin(username, password);
+		public function doLogin(genericUser:GenericUser):void{
+			var username:String = genericUser.getUserAsAffiliate.email as String;
+			var password:String = genericUser.getUserAsAffiliate.password as String;
+			var type:String = genericUser.getType as String;
+			var at:AsyncToken = service.doLogin(username, password, type);
 			at.addResponder(responder);			
 		}		
 		private function onResult(evt:ResultEvent):void{
 			switch ((evt.token.message as RemotingMessage).operation) {
 				case "doLogin":
-					if (evt.result != null){						
+					if (evt.result != null){
 						sendNotification(ApplicationFacade.LOGIN_SUCCESS,evt.result);						
 					}			
 					else{						

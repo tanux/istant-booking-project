@@ -1,9 +1,12 @@
 package view
 {
+	import controller.login.DoLoginCommand;
+	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
 	import model.vo.Affiliate;
+	import model.vo.GenericUser;
 	
 	import mx.controls.Alert;
 	import mx.events.FlexEvent;
@@ -16,6 +19,7 @@ package view
 	
 	public class AffiliateMainMediator extends Mediator implements IMediator{
 		public static const NAME:String = "AffiliateMainMediator";
+		public static const USER_TYPE:String = "affiliates";
 		
 		public function AffiliateMainMediator(viewComponent:Object){
 			super(NAME, viewComponent);
@@ -28,9 +32,11 @@ package view
 		
 		private function doLogin(evt:Event):void{			
 			var affiliate:Affiliate = new Affiliate();
-			affiliate.email = affiliateMain.cmpLoginFormAffiliate.tiUsername;
-			affiliate.password = affiliateMain.cmpLoginFormAffiliate.tiPassword;
-			facade.sendNotification(ApplicationFacade.DO_LOGIN, affiliate);			
+			affiliate.email = affiliateMain.cmpLoginFormAffiliate.tiUsername.text;
+			affiliate.password = affiliateMain.cmpLoginFormAffiliate.tiPassword.text;
+			var genericUser:GenericUser = new GenericUser(USER_TYPE);
+			genericUser.setUserAsAffiliate = affiliate;
+			facade.sendNotification(ApplicationFacade.DO_LOGIN, genericUser);			
 		}
 		private function enableStateRegister(evt:Event):void{
 			affiliateMain.currentState = "stateRegister";			
@@ -50,12 +56,23 @@ package view
 				case ApplicationFacade.REGISTER_AFFILIATE_FAULT:
 					Alert.show("FAULT:Errore di comunicazione con il server");
 					break;
-				case ApplicationFacade.LOGGED_IN:
+				case ApplicationFacade.LOGGED_IN:					
+					affiliateMain.currentState = "stateMainApplication";
+					var affiliateLoggedIn:Affiliate = notification.getBody() as Affiliate;
+					affiliateMain.affiliate = affiliateLoggedIn as Affiliate;					
+					break;					
+				case ApplicationFacade.EXECUTE_LOGIN:
+					facade.registerCommand(ApplicationFacade.DO_LOGIN, DoLoginCommand);
+					affiliateMain.currentState = "stateLogin";					
+					break;
+				case ApplicationFacade.LOGIN_SUCCESS:
 					affiliateMain.currentState = "stateMainApplication";
 					var affiliate:Affiliate = notification.getBody() as Affiliate;
-					
+					affiliateMain.affiliate = affiliate as Affiliate;
+					Alert.show("Loggato come: "+affiliate.email);
 					break;
-					
+				case ApplicationFacade.LOGIN_ERROR:
+					Alert.show("Autenticazione Fallita: inserire i dati corretti");
 			}
 		}
 		
@@ -63,7 +80,11 @@ package view
 			return [
 				ApplicationFacade.REGISTER_AFFILIATE_SUCCES,
 				ApplicationFacade.REGISTER_AFFILIATE_ERROR,
-				ApplicationFacade.REGISTER_AFFILIATE_FAULT,				
+				ApplicationFacade.REGISTER_AFFILIATE_FAULT,	
+				ApplicationFacade.LOGGED_IN,
+				ApplicationFacade.EXECUTE_LOGIN,
+				ApplicationFacade.LOGIN_SUCCESS,
+				ApplicationFacade.LOGIN_ERROR,
 			];
 		}
 		
