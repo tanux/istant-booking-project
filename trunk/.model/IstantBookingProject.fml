@@ -86,7 +86,7 @@
         <item name="returnType">opaque</item>
       </annotation>
     </function>
-    <function name="doLogin" return-type="Affiliate">
+    <function name="doLogin" return-type="opaque">
       <annotation name="analyze group">
         <item name="analyzed">true</item>
       </annotation>
@@ -111,32 +111,6 @@
       </annotation>
     </function>
   </service>
-  <entity name="Affiliate">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">Affiliate</item>
-      <item name="location">C:/easyphp/www/IstantBookingProject/library/Affiliate.php</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="RemoteClass">Affiliate</item>
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">ManageAffiliateDataService,ManageAffiliateDataServiceDummy,LoginService</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">model.vo</item>
-    </annotation>
-    <annotation name="doLogin">
-      <item name="propertySpecifier">id,name,address,city,telephoneNumber,email,password</item>
-    </annotation>
-    <property name="id" type="opaque" required="true"/>
-    <property name="name" type="opaque" required="true"/>
-    <property name="address" type="opaque" required="true"/>
-    <property name="city" type="opaque" required="true"/>
-    <property name="telephoneNumber" type="opaque" required="true"/>
-    <property name="email" type="opaque" required="true"/>
-    <property name="password" type="opaque" required="true"/>
-  </entity>
   <entity name="StdClass1">
     <annotation name="EntityProperties">
       <item name="EntityOriginalName">StdClass1</item>
@@ -152,5 +126,152 @@
     <annotation name="ActionScriptGeneration">
       <item name="Package">model.vo</item>
     </annotation>
+  </entity>
+  <service name="AffiliateLoginService">
+    <annotation name="ActionScriptGeneration">
+      <item name="Source">AffiliateLoginService</item>
+      <item name="ServiceType">RemoteObject</item>
+      <item name="Package">model.services</item>
+      <item name="Endpoint">http://localhost/IstantBookingProject/public/gateway.php</item>
+      <item name="Destination">AffiliateLoginService</item>
+    </annotation>
+    <annotation name="ServiceTypeGroup">
+      <item name="ServiceBackendType">com.zend.php.flashbuilder.php</item>
+    </annotation>
+    <annotation name="ServiceConfig">
+      <item name="PHP_RELATIVE_LOCATION">IstantBookingProject/services/AffiliateLoginService.php</item>
+      <item name="PHP_SERVER_ROOT">C:/easyphp/www</item>
+      <item name="PHP_WORKSPACE_LOCATION">/IstantBookingProject/services/AffiliateLoginService.php</item>
+      <item name="DEFAULT_ENTITY_PACKAGE">vo</item>
+      <item name="PHP_SERVICES_FOLDER">C:/easyphp/www/IstantBookingProject/public/bin-release/services</item>
+      <item name="PHP_LOCATION">C:/easyphp/www/IstantBookingProject/services/AffiliateLoginService.php</item>
+      <item name="LINKED_FILE">AffiliateLoginService_AffiliateLoginService.php</item>
+      <item name="PHP_SERVER_ROOT_URL">http://localhost</item>
+      <item name="ABSOLUTE_ENDPOINT">http://localhost/IstantBookingProject/public/gateway.php</item>
+      <item name="PHP_CLASS_NAME">AffiliateLoginService</item>
+    </annotation>
+    <function name="doLogin" return-type="Affiliate">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="ValidProperties">
+        <item name="propertySpecifier">id,name,address,city,telephoneNumber,email,password</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="username" type="opaque"/>
+      <parameter name="password" type="opaque"/>
+      <parameter name="user_type" type="opaque"/>
+    </function>
+    <function name="verifiedLoggedIn" return-type="Affiliate">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="ValidProperties">
+        <item name="propertySpecifier">id,name,address,city,telephoneNumber,email,password</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">Affiliate</item>
+      </annotation>
+    </function>
+  </service>
+  <entity name="Affiliate">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Affiliate</item>
+      <item name="location">C:/easyphp/www/IstantBookingProject/library/Affiliate.php</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="RemoteClass">Affiliate</item>
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">ManageAffiliateDataService,ManageAffiliateDataServiceDummy,LoginService,AffiliateLoginService,AffiliateLoginServiceDummy</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">model.vo</item>
+    </annotation>
+    <annotation name="doLogin">
+      <item name="propertySpecifier">id,name,address,city,telephoneNumber,email,password</item>
+    </annotation>
+    <annotation name="verifiedLoggedIn">
+      <item name="propertySpecifier">id,name,address,city,telephoneNumber,email,password</item>
+    </annotation>
+    <property name="id" type="opaque" required="true"/>
+    <property name="name" type="opaque" required="true"/>
+    <property name="address" type="opaque" required="true"/>
+    <property name="city" type="opaque" required="true"/>
+    <property name="telephoneNumber" type="opaque" required="true"/>
+    <property name="email" type="opaque" required="true"/>
+    <property name="password" type="opaque" required="true"/>
+  </entity>
+  <service name="ManagerLoginService">
+    <annotation name="ActionScriptGeneration">
+      <item name="Source">ManagerLoginService</item>
+      <item name="ServiceType">RemoteObject</item>
+      <item name="Package">model.services</item>
+      <item name="Endpoint">http://localhost/IstantBookingProject/public/gateway.php</item>
+      <item name="Destination">ManagerLoginService</item>
+    </annotation>
+    <annotation name="ServiceTypeGroup">
+      <item name="ServiceBackendType">com.zend.php.flashbuilder.php</item>
+    </annotation>
+    <annotation name="ServiceConfig">
+      <item name="PHP_RELATIVE_LOCATION">IstantBookingProject/services/ManagerLoginService.php</item>
+      <item name="PHP_SERVER_ROOT">C:/easyphp/www</item>
+      <item name="PHP_WORKSPACE_LOCATION">/IstantBookingProject/services/ManagerLoginService.php</item>
+      <item name="DEFAULT_ENTITY_PACKAGE">model.vo</item>
+      <item name="PHP_SERVICES_FOLDER">C:/easyphp/www/IstantBookingProject/public/bin-release/services</item>
+      <item name="PHP_LOCATION">C:/easyphp/www/IstantBookingProject/services/ManagerLoginService.php</item>
+      <item name="PHP_SERVER_ROOT_URL">http://localhost</item>
+      <item name="ABSOLUTE_ENDPOINT">http://localhost/IstantBookingProject/public/gateway.php</item>
+      <item name="PHP_CLASS_NAME">ManagerLoginService</item>
+    </annotation>
+    <function name="doLogin" return-type="Manager">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="username" type="opaque"/>
+      <parameter name="password" type="opaque"/>
+      <parameter name="user_type" type="opaque"/>
+    </function>
+    <function name="verifiedLoggedIn" return-type="Manager">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+  </service>
+  <entity name="Manager">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Manager</item>
+      <item name="location">C:/easyphp/www/IstantBookingProject/library/Manager.php</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="RemoteClass">Manager</item>
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="doLogin">
+      <item name="propertySpecifier">id,firstname,lastname,username,password</item>
+    </annotation>
+    <annotation name="verifiedLoggedIn">
+      <item name="propertySpecifier">id,firstname,lastname,username,password</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">ManagerLoginService</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">model.vo</item>
+    </annotation>
+    <property name="id" type="opaque" required="true"/>
+    <property name="firstname" type="opaque" required="true"/>
+    <property name="lastname" type="opaque" required="true"/>
+    <property name="username" type="opaque" required="true"/>
+    <property name="password" type="opaque" required="true"/>
   </entity>
 </model>

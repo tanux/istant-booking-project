@@ -6,7 +6,7 @@ class LoginService {
 	 * Execute Access if user is logged in  
 	 * @return stdClass $user
 	 */
-	public function verifiedLoggedIn(){
+	public static function verifiedLoggedIn(){
 		$auth = Zend_Auth::getInstance();
 		if ($auth->hasIdentity()){			
 			return $auth->getIdentity();
@@ -21,7 +21,7 @@ class LoginService {
 	 * @param String $user_type
 	 * @return stdClass $user
 	 */
-	public function doLogin($username,$password, $user_type){				
+	public static function doLogin($username,$password, $user_type){				
 		$dbAdapter = getDbAdapter();		
 		$authAdapter = new Zend_Auth_Adapter_DbTable($dbAdapter);
 		if ($user_type == "managers")
@@ -47,7 +47,7 @@ class LoginService {
 	 * Execute logout
 	 * @return void
 	 */
-	public function doLogout(){
+	public static function doLogout(){
 		$auth = Zend_Auth::getInstance();
 		if ($auth->hasIdentity()){			
 			$auth->clearIdentity();

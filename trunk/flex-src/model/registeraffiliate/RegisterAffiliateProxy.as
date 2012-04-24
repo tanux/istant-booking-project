@@ -24,7 +24,7 @@ package model.registeraffiliate
 		}
 		
 		public function saveAffiliateData(affiliate:Affiliate):void{
-			var at:AsyncToken = service.saveAffiliateData(affiliate);
+			var at:AsyncToken = service.saveAffiliateData(affiliate as Affiliate);
 			at.addResponder(responder);			
 		}
 		public function onResult(evt:ResultEvent):void{

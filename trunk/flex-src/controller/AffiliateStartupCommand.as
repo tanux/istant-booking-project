@@ -12,12 +12,13 @@ package controller
 	import view.AffiliateMainMediator;
 	
 	public class AffiliateStartupCommand extends SimpleCommand implements ICommand{
+		public static const USER_TYPE:String = "affiliates";
 		override public function execute(notification:INotification):void{			
 			var affiliateMain:AffiliateMain = notification.getBody() as AffiliateMain;
 			facade.registerMediator(new AffiliateMainMediator(affiliateMain));
 			facade.registerCommand(ApplicationFacade.CONFIRM_REGISTER, ConfirmRegisterCommand);
 			facade.registerCommand(ApplicationFacade.TRY_ACCESS,TryAccessCommand);			
-			facade.sendNotification(ApplicationFacade.TRY_ACCESS,this);
+			facade.sendNotification(ApplicationFacade.TRY_ACCESS,USER_TYPE);
 		}
 	}
 }

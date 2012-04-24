@@ -1,6 +1,7 @@
 package model.login
 {
-	import model.services.LoginService;
+	import model.services.AffiliateLoginService;
+	import model.services.ManagerLoginService;
 	
 	import mx.controls.Alert;
 	import mx.messaging.messages.RemotingMessage;
@@ -13,15 +14,18 @@ package model.login
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
 	public class TryAccessProxy extends Proxy implements IProxy{
-		private var service:LoginService;
+		private var service;
 		private var responder:Responder;		
 		public static const NAME:String = "TryAccessProxy";
 		public function TryAccessProxy(proxyName:String){
-			super(proxyName);
-			service = new LoginService();
+			super(proxyName);			
 			responder =  new Responder(onResult, onFault);
 		}
-		public function tryAccess():void{
+		public function tryAccess(userType:String):void{
+			if (userType == "affiliates")
+				service = new AffiliateLoginService();
+			else
+				service = new ManagerLoginService();
 			var at:AsyncToken = service.verifiedLoggedIn();
 			at.addResponder(responder);
 		}

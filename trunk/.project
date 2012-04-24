@@ -34,6 +34,11 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>services/AffiliateLoginService_AffiliateLoginService.php</name>
+			<type>1</type>
+			<location>C:/easyphp/www/IstantBookingProject/services/AffiliateLoginService.php</location>
+		</link>
+		<link>
 			<name>services/LoginService_LoginService.php</name>
 			<type>1</type>
 			<location>C:/easyphp/www/IstantBookingProject/services/LoginService.php</location>
@@ -42,6 +47,11 @@
 			<name>services/ManageAffiliateDataService_ManageAffiliateDataService.php</name>
 			<type>1</type>
 			<location>C:/easyphp/www/IstantBookingProject/services/ManageAffiliateDataService.php</location>
+		</link>
+		<link>
+			<name>services/ManagerLoginService_ManagerLoginService.php</name>
+			<type>1</type>
+			<location>C:/easyphp/www/IstantBookingProject/services/ManagerLoginService.php</location>
 		</link>
 	</linkedResources>
 </projectDescription>

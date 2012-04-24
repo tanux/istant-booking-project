@@ -1,6 +1,9 @@
 package model.login
 {
+	import model.services.AffiliateLoginService;
 	import model.services.LoginService;
+	import model.services.ManagerLoginService;
+	import model.vo.Affiliate;
 	import model.vo.GenericUser;
 	
 	import mx.controls.Alert;
@@ -15,20 +18,23 @@ package model.login
 	
 	public class LoginProxy extends Proxy implements IProxy
 	{
-		private var service:LoginService;
+		private var service;
 		private var responder:Responder;		
 		public static const NAME:String = "LoginProxy";	
 		
 		public function LoginProxy(proxyName:String){
-			super(proxyName);
-			service = new LoginService();
+			super(proxyName);			
 			responder =  new Responder(onResult, onFault);			
 		}
 		
-		public function doLogin(genericUser:GenericUser):void{
+		public function doLogin(genericUser:GenericUser):void{			
 			var username:String = genericUser.getUserAsAffiliate.email as String;
 			var password:String = genericUser.getUserAsAffiliate.password as String;
 			var type:String = genericUser.getType as String;
+			if (type == "affiliates")
+				service = new AffiliateLoginService();
+			else
+				service = new ManagerLoginService();
 			var at:AsyncToken = service.doLogin(username, password, type);
 			at.addResponder(responder);			
 		}		
@@ -39,7 +45,7 @@ package model.login
 						sendNotification(ApplicationFacade.LOGIN_SUCCESS,evt.result);						
 					}			
 					else{						
-						sendNotification(ApplicationFacade.LOGIN_ERROR,evt.result);
+						sendNotification(ApplicationFacade.LOGIN_ERROR);
 					}
 					break;				
 			}	
