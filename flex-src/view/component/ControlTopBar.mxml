@@ -10,7 +10,7 @@
 		</mx:Box>
 		
 		<mx:Box id="boxButtonSettings" width="33%" horizontalAlign="center" >
-			<mx:Button id="bntSettings" icon="@Embed(source='assets/images/gear.png')" downIcon="@Embed(source='assets/images/gear_little.png')"
+			<mx:Button id="btnSettings" icon="@Embed(source='assets/images/gear.png')" downIcon="@Embed(source='assets/images/gear_little.png')"
 					   width="45" height="40"/>
 		</mx:Box>
 		

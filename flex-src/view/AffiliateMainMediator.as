@@ -4,6 +4,8 @@ package view
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.net.URLRequest;
+	import flash.net.navigateToURL;
 	
 	import model.vo.Affiliate;
 	import model.vo.GenericUser;
@@ -25,10 +27,14 @@ package view
 			super(NAME, viewComponent);
 			affiliateMain.addEventListener(FlexEvent.CREATION_COMPLETE, init);
 			affiliateMain.lbRegisterAffiliate.addEventListener(MouseEvent.CLICK, enableStateRegister);
-			affiliateMain.cmpLoginFormAffiliate.btnLogin.addEventListener(MouseEvent.CLICK, doLogin);
+			affiliateMain.cmpLoginFormAffiliate.btnLogin.addEventListener(MouseEvent.CLICK, doLogin);			
 		}
 		
 		private function init(evt:Event) : void {}
+		
+		private function goToSetting(evt:Event):void{
+			affiliateMain.currentState = "stateSettings";
+		}
 		
 		private function doLogin(evt:Event):void{			
 			var affiliate:Affiliate = new Affiliate();
@@ -59,7 +65,8 @@ package view
 				case ApplicationFacade.LOGGED_IN:					
 					affiliateMain.currentState = "stateMainApplication";
 					var affiliateLoggedIn:Affiliate = notification.getBody() as Affiliate;
-					affiliateMain.cmpControlBar.txUserLoggedIn.text = affiliateLoggedIn.name as String;					
+					affiliateMain.cmpControlBar.txUserLoggedIn.text = affiliateLoggedIn.name as String;
+					affiliateMain.cmpControlBar.btnSettings.addEventListener(MouseEvent.CLICK, goToSetting);
 					break;					
 				case ApplicationFacade.EXECUTE_LOGIN:
 					facade.registerCommand(ApplicationFacade.DO_LOGIN, DoLoginCommand);
@@ -69,6 +76,7 @@ package view
 					affiliateMain.currentState = "stateMainApplication";
 					var affiliate:Affiliate = notification.getBody() as Affiliate;
 					affiliateMain.cmpControlBar.txUserLoggedIn.text = affiliate.name as String;
+					affiliateMain.cmpControlBar.btnSettings.addEventListener(MouseEvent.CLICK, goToSetting);
 					break;
 				case ApplicationFacade.LOGIN_ERROR:
 					Alert.show("Autenticazione Fallita: inserire i dati corretti");
