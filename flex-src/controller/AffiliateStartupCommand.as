@@ -1,6 +1,6 @@
 package controller
 {
-	import controller.login.TryAccessCommand;
+	import controller.loginaffiliate.TryAccessCommand;
 	import controller.registeraffiliate.ConfirmRegisterCommand;
 	
 	import mx.controls.Alert;
@@ -17,8 +17,8 @@ package controller
 			var affiliateMain:AffiliateMain = notification.getBody() as AffiliateMain;
 			facade.registerMediator(new AffiliateMainMediator(affiliateMain));
 			facade.registerCommand(ApplicationFacade.CONFIRM_REGISTER, ConfirmRegisterCommand);
-			facade.registerCommand(ApplicationFacade.TRY_ACCESS,TryAccessCommand);			
-			facade.sendNotification(ApplicationFacade.TRY_ACCESS,USER_TYPE);
+			facade.registerCommand(ApplicationFacade.AFFILIATE_TRY_ACCESS,TryAccessCommand);			
+			facade.sendNotification(ApplicationFacade.AFFILIATE_TRY_ACCESS,USER_TYPE);
 		}
 	}
 }

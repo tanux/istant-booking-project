@@ -1,6 +1,6 @@
 package view
 {
-	import controller.login.DoLoginCommand;
+	import controller.loginaffiliate.DoLoginCommand;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -42,7 +42,7 @@ package view
 			affiliate.password = affiliateMain.cmpLoginFormAffiliate.tiPassword.text;
 			var genericUser:GenericUser = new GenericUser(USER_TYPE);
 			genericUser.setUserAsAffiliate = affiliate;
-			facade.sendNotification(ApplicationFacade.DO_LOGIN, genericUser);			
+			facade.sendNotification(ApplicationFacade.AFFILIATE_DO_LOGIN, genericUser);			
 		}
 		private function enableStateRegister(evt:Event):void{
 			affiliateMain.currentState = "stateRegister";			
@@ -62,24 +62,25 @@ package view
 				case ApplicationFacade.REGISTER_AFFILIATE_FAULT:
 					Alert.show("FAULT:Errore di comunicazione con il server");
 					break;
-				case ApplicationFacade.LOGGED_IN:					
+				case ApplicationFacade.AFFILIATE_LOGGED_IN:					
 					affiliateMain.currentState = "stateMainApplication";
 					var affiliateLoggedIn:Affiliate = notification.getBody() as Affiliate;
 					affiliateMain.cmpControlBar.txUserLoggedIn.text = affiliateLoggedIn.name as String;
 					affiliateMain.cmpControlBar.btnSettings.addEventListener(MouseEvent.CLICK, goToSetting);
 					break;					
-				case ApplicationFacade.EXECUTE_LOGIN:
-					facade.registerCommand(ApplicationFacade.DO_LOGIN, DoLoginCommand);
+				case ApplicationFacade.AFFILIATE_EXECUTE_LOGIN:
+					facade.registerCommand(ApplicationFacade.AFFILIATE_DO_LOGIN, DoLoginCommand);
 					affiliateMain.currentState = "stateLogin";					
 					break;
-				case ApplicationFacade.LOGIN_SUCCESS:
+				case ApplicationFacade.AFFILIATE_LOGIN_SUCCESS:
 					affiliateMain.currentState = "stateMainApplication";
 					var affiliate:Affiliate = notification.getBody() as Affiliate;
 					affiliateMain.cmpControlBar.txUserLoggedIn.text = affiliate.name as String;
 					affiliateMain.cmpControlBar.btnSettings.addEventListener(MouseEvent.CLICK, goToSetting);
 					break;
-				case ApplicationFacade.LOGIN_ERROR:
+				case ApplicationFacade.AFFILIATE_LOGIN_ERROR:
 					Alert.show("Autenticazione Fallita: inserire i dati corretti");
+					break;
 			}
 		}
 		
@@ -88,10 +89,10 @@ package view
 				ApplicationFacade.REGISTER_AFFILIATE_SUCCES,
 				ApplicationFacade.REGISTER_AFFILIATE_ERROR,
 				ApplicationFacade.REGISTER_AFFILIATE_FAULT,	
-				ApplicationFacade.LOGGED_IN,
-				ApplicationFacade.EXECUTE_LOGIN,
-				ApplicationFacade.LOGIN_SUCCESS,
-				ApplicationFacade.LOGIN_ERROR,
+				ApplicationFacade.AFFILIATE_LOGGED_IN,
+				ApplicationFacade.AFFILIATE_EXECUTE_LOGIN,
+				ApplicationFacade.AFFILIATE_LOGIN_SUCCESS,
+				ApplicationFacade.AFFILIATE_LOGIN_ERROR
 			];
 		}
 		

@@ -3,7 +3,7 @@
 class ManagerLoginService {
 	
 /**
-	 * Execute login by Affiliate 
+	 * Execute login by Manager 
 	 * @param String $username
 	 * @param String $password
 	 * @param String $user_type

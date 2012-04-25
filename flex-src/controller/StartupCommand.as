@@ -1,7 +1,7 @@
 package controller
 {
-	import controller.login.DoLoginCommand;
-	import controller.login.TryAccessCommand;
+	import controller.loginaffiliate.DoLoginCommand;
+	import controller.loginaffiliate.TryAccessCommand;
 	
 	import mx.controls.Alert;
 	
