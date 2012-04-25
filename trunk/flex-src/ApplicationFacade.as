@@ -4,6 +4,7 @@ package
 	 * Sede di tutte le notifiche Singleton
 	 * */
 	import controller.AffiliateStartupCommand;
+	import controller.ManagerStartupCommand;
 	import controller.StartupCommand;
 	
 	import mx.controls.Alert;
@@ -14,25 +15,42 @@ package
 	public class ApplicationFacade extends Facade implements IFacade{
 		public static const STARTUP:String = "Startup";
 		public static const STARTUP_AFFILIATE_APP:String = "StartupAffiliateApp";
+		public static const STARTUP_MANAGER_APP:String = "StartupManagerApp";
 		
 		/*Authentication Notify*/
-		//public static const LOGIN:String = "Login";
-		public static const DO_LOGIN:String = "DoLogin";
-		public static const LOGIN_SUCCESS:String = "LoginSuccess";
-		public static const LOGIN_ERROR:String = "LoginError";
-		public static const LOGIN_FAULT:String = "LoginFault";
+		/*Affiliate*/
+		public static const AFFILIATE_DO_LOGIN:String = "AffiliateDoLogin";
+		public static const AFFILIATE_LOGIN_SUCCESS:String = "AffiliateLoginSuccess";
+		public static const AFFILIATE_LOGIN_ERROR:String = "AffiliateLoginError";
+		public static const AFFILIATE_LOGIN_FAULT:String = "AffiliateLoginFault";
 		
-		public static const DO_LOGOUT:String = "DoLogout";
-		public static const LOGOUT_SUCCESS:String = "LogoutSuccess";
-		public static const LOGOUT_ERROR:String = "LogoutError";
-		public static const LOGOUT_FAULT:String = "LogoutFault";
+		public static const AFFILIATE_DO_LOGOUT:String = "AffiliateDoLogout";
+		public static const AFFILIATE_LOGOUT_SUCCESS:String = "AffiliateLogoutSuccess";
+		public static const AFFILIATE_LOGOUT_ERROR:String = "AffiliateLogoutError";
+		public static const AFFILIATE_LOGOUT_FAULT:String = "AffiliateLogoutFault";
 		
-		public static const TRY_ACCESS:String = "TryAccess";
-		public static const EXECUTE_LOGIN:String= "ExecuteLogin";
-		public static const LOGGED_IN:String = "LoggedIn";
-		public static const BACK_TO_LOGIN:String = "TornaLogin";
+		public static const AFFILIATE_TRY_ACCESS:String = "AffiliateTryAccess";
+		public static const AFFILIATE_EXECUTE_LOGIN:String= "AffiliateExecuteLogin";
+		public static const AFFILIATE_LOGGED_IN:String = "AffiliateLoggedIn";
+		public static const AFFILIATE_BACK_TO_LOGIN:String = "AffiliateTornaLogin";
 		
-		/*Registration Notify*/
+		/*Manager*/
+		public static const MANAGER_DO_LOGIN:String = "ManagerDoLogin";
+		public static const MANAGER_LOGIN_SUCCESS:String = "ManagerLoginSuccess";
+		public static const MANAGER_LOGIN_ERROR:String = "ManagerLoginError";
+		public static const MANAGER_LOGIN_FAULT:String = "ManagerLoginFault";
+		
+		public static const MANAGER_DO_LOGOUT:String = "ManagerDoLogout";
+		public static const MANAGER_LOGOUT_SUCCESS:String = "ManagerLogoutSuccess";
+		public static const MANAGER_LOGOUT_ERROR:String = "ManagerLogoutError";
+		public static const MANAGER_LOGOUT_FAULT:String = "ManagerLogoutFault";
+		
+		public static const MANAGER_TRY_ACCESS:String = "ManagerTryAccess";
+		public static const MANAGER_EXECUTE_LOGIN:String= "ManagerExecuteLogin";
+		public static const MANAGER_LOGGED_IN:String = "ManagerLoggedIn";
+		public static const MANAGER_BACK_TO_LOGIN:String = "ManagerTornaLogin";
+		
+		/*Affiliate Registration Notify*/
 		public static const CONFIRM_REGISTER:String = "ConfirmRegistration";
 		public static const REGISTER_AFFILIATE_SUCCES:String = "RegisterAffiliateSucces";
 		public static const REGISTER_AFFILIATE_ERROR:String = "RegisterAffiliateError";
@@ -46,7 +64,7 @@ package
 		override protected function initializeController():void {
 			super.initializeController();
 			registerCommand(ApplicationFacade.STARTUP_AFFILIATE_APP, AffiliateStartupCommand);
-			//registerCommand(ApplicationFacade.STARTUP, StartupCommand);			
+			registerCommand(ApplicationFacade.STARTUP_MANAGER_APP, ManagerStartupCommand);						
 		}		
 	}
 }

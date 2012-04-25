@@ -1,7 +1,7 @@
 package view
 {
-	import controller.login.DoLoginCommand;
-	import controller.login.DoLogoutCommand;
+	import controller.loginaffiliate.DoLoginCommand;
+	import controller.loginaffiliate.DoLogoutCommand;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
