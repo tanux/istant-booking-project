@@ -29,13 +29,8 @@ package model.loginaffiliate
 		
 		private function onResult(evt:ResultEvent):void{
 			switch ((evt.token.message as RemotingMessage).operation) {
-				case "doLogout":
-					if (evt.result != null){						
-						sendNotification(ApplicationFacade.AFFILIATE_LOGOUT_SUCCESS,evt.result);						
-					}			
-					else{						
-						sendNotification(ApplicationFacade.AFFILIATE_LOGOUT_ERROR,evt.result);						
-					}
+				case "doLogout":											
+					sendNotification(ApplicationFacade.AFFILIATE_LOGOUT_SUCCESS);
 					break;				
 			}	
 		}		

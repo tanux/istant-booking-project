@@ -49,11 +49,8 @@ class LoginService {
 	 */
 	public static function doLogout(){
 		$auth = Zend_Auth::getInstance();
-		if ($auth->hasIdentity()){			
+		if ($auth->hasIdentity())		
 			$auth->clearIdentity();
-			return true;
-		}
-		else return null;
 	}			
 }
 ?>
