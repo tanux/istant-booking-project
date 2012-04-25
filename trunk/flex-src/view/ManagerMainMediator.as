@@ -27,10 +27,10 @@ package view
 		
 		private function init(evt:Event) : void {}
 		
-		private function doLogin(evt:Event):void{
-			var manager:Manager = new Manager();
-			manager.username = managerMain.cmpLoginFormManager.txtUsername.text;
-			manager.password = managerMain.cmpLoginFormManager.txtPassword.text;			
+		private function doLogin(evt:Event):void{			
+			var manager:Manager = new Manager();			
+			manager.username = managerMain.cmpLoginFormManager.tiUsername.text
+			manager.password = managerMain.cmpLoginFormManager.tiPassword.text;			
 			var genericUser:GenericUser = new GenericUser(USER_TYPE);
 			genericUser.setUserAsManager = manager;
 			facade.sendNotification(ApplicationFacade.MANAGER_DO_LOGIN, genericUser);
