@@ -31,13 +31,8 @@ package model.loginmanager
 		
 		private function onResult(evt:ResultEvent):void{
 			switch ((evt.token.message as RemotingMessage).operation) {
-				case "doLogout":
-					if (evt.result != null){						
-						sendNotification(ApplicationFacade.MANAGER_LOGOUT_SUCCESS,evt.result);						
-					}			
-					else{						
-						sendNotification(ApplicationFacade.MANAGER_LOGOUT_ERROR,evt.result);						
-					}
+				case "doLogout":											
+					sendNotification(ApplicationFacade.MANAGER_LOGOUT_SUCCESS,evt.result);
 					break;				
 			}	
 		}		

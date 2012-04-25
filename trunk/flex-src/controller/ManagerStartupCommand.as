@@ -1,5 +1,6 @@
 package controller
 {
+	import controller.loginmanager.DoLogoutCommand;
 	import controller.loginmanager.TryAccessCommand;
 	
 	import org.puremvc.as3.interfaces.ICommand;
@@ -15,6 +16,7 @@ package controller
 			facade.registerMediator(new ManagerMainMediator(managerMain));			
 			facade.registerCommand(ApplicationFacade.MANAGER_TRY_ACCESS,TryAccessCommand);			
 			facade.sendNotification(ApplicationFacade.MANAGER_TRY_ACCESS,USER_TYPE);
+			facade.registerCommand(ApplicationFacade.MANAGER_DO_LOGOUT, DoLogoutCommand);
 		}
 	}
 }

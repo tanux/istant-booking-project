@@ -15,7 +15,7 @@
 		</mx:Box>
 		
 		<mx:Box id="boxLogout" width="33%" horizontalAlign="right">
-			<mx:Button id="btnLogOut" icon="@Embed(source='assets/images/log_out.png')" downIcon="@Embed(source='assets/images/log_out_little.png')"
+			<mx:Button id="btnLogout" icon="@Embed(source='assets/images/log_out.png')" downIcon="@Embed(source='assets/images/log_out_little.png')"
 					   width="45" height="40"/>	
 		</mx:Box>
 	

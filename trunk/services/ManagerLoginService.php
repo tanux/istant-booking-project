@@ -24,7 +24,6 @@ class ManagerLoginService {
 		$manager = LoginService::verifiedLoggedIn();
 		return $manager;
 	}
-
 }
 
 ?>

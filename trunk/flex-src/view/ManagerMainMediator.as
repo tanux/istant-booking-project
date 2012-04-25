@@ -40,6 +40,11 @@ package view
 			managerMain.currentState = "stateSettings";
 		}
 		
+		private function doLogout(evt:Event):void{
+			facade.sendNotification(ApplicationFacade.MANAGER_DO_LOGOUT);
+			Alert.show("LogOut");
+		}
+		
 		override public function handleNotification(notification:INotification):void{
 			switch (notification.getName()){
 				case ApplicationFacade.MANAGER_LOGGED_IN:
@@ -57,9 +62,13 @@ package view
 					var manager:Manager = notification.getBody() as Manager;
 					managerMain.cmpControlBar.txUserLoggedIn.text = "Dott."+manager.lastname+" "+manager.firstname;
 					managerMain.cmpControlBar.btnSettings.addEventListener(MouseEvent.CLICK, goToSetting);
+					managerMain.cmpControlBar.btnLogout.addEventListener(MouseEvent.CLICK, doLogout);
 					break;
 				case ApplicationFacade.MANAGER_LOGIN_ERROR:
 					Alert.show("Autenticazione Fallita: inserire i dati corretti");
+					break;
+				case ApplicationFacade.MANAGER_LOGOUT_SUCCESS:
+					managerMain.currentState = "stateLogin";
 					break;
 			}
 		}
@@ -69,7 +78,8 @@ package view
 				ApplicationFacade.MANAGER_LOGGED_IN,
 				ApplicationFacade.MANAGER_EXECUTE_LOGIN,
 				ApplicationFacade.MANAGER_LOGIN_SUCCESS,
-				ApplicationFacade.MANAGER_LOGIN_ERROR
+				ApplicationFacade.MANAGER_LOGIN_ERROR,
+				ApplicationFacade.MANAGER_LOGOUT_SUCCESS
 			];
 		}
 				
