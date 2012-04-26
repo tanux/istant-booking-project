@@ -10,6 +10,7 @@ package view
 	
 	import mx.controls.Alert;
 	import mx.events.FlexEvent;
+	import mx.managers.CursorManager;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -27,7 +28,8 @@ package view
 		
 		private function init(evt:Event) : void {}
 		
-		private function doLogin(evt:Event):void{			
+		private function doLogin(evt:Event):void{	
+			CursorManager.setBusyCursor();
 			var manager:Manager = new Manager();			
 			manager.username = managerMain.cmpLoginFormManager.tiUsername.text
 			manager.password = managerMain.cmpLoginFormManager.tiPassword.text;			
@@ -37,10 +39,13 @@ package view
 		}
 		
 		private function goToSetting(evt:Event):void{
+			CursorManager.setBusyCursor();
 			managerMain.currentState = "stateSettings";
+			CursorManager.removeBusyCursor();
 		}
 		
 		private function doLogout(evt:Event):void{
+			CursorManager.setBusyCursor();
 			facade.sendNotification(ApplicationFacade.MANAGER_DO_LOGOUT);
 		}
 		
@@ -57,6 +62,7 @@ package view
 					managerMain.currentState = "stateLogin";
 					break;
 				case ApplicationFacade.MANAGER_LOGIN_SUCCESS:
+					CursorManager.removeBusyCursor();
 					managerMain.currentState = "stateMainApplication";
 					var manager:Manager = notification.getBody() as Manager;
 					managerMain.cmpControlBar.txUserLoggedIn.text = "Dott."+manager.lastname+" "+manager.firstname;
@@ -64,9 +70,11 @@ package view
 					managerMain.cmpControlBar.btnLogout.addEventListener(MouseEvent.CLICK, doLogout);
 					break;
 				case ApplicationFacade.MANAGER_LOGIN_ERROR:
+					CursorManager.removeBusyCursor();
 					Alert.show("Autenticazione Fallita: inserire i dati corretti");
 					break;
 				case ApplicationFacade.MANAGER_LOGOUT_SUCCESS:
+					CursorManager.removeBusyCursor();
 					managerMain.currentState = "stateLogin";
 					break;
 			}
