@@ -12,6 +12,7 @@ package view
 	
 	import mx.controls.Alert;
 	import mx.events.FlexEvent;
+	import mx.managers.CursorManager;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -33,10 +34,13 @@ package view
 		private function init(evt:Event) : void {}
 		
 		private function goToSetting(evt:Event):void{
+			CursorManager.setBusyCursor();
 			affiliateMain.currentState = "stateSettings";
+			CursorManager.removeBusyCursor();
 		}
 		
-		private function doLogin(evt:Event):void{			
+		private function doLogin(evt:Event):void{
+			CursorManager.setBusyCursor();
 			var affiliate:Affiliate = new Affiliate();
 			affiliate.email = affiliateMain.cmpLoginFormAffiliate.tiUsername.text;
 			affiliate.password = affiliateMain.cmpLoginFormAffiliate.tiPassword.text;
@@ -50,7 +54,8 @@ package view
 		}	
 		
 		private function doLogout(evt:Event):void{
-			facade.sendNotification(ApplicationFacade.AFFILIATE_DO_LOGOUT);
+			CursorManager.setBusyCursor();
+			facade.sendNotification(ApplicationFacade.AFFILIATE_DO_LOGOUT);			
 		}		
 		
 		override public function handleNotification(notification:INotification):void{
@@ -78,15 +83,18 @@ package view
 					break;
 				case ApplicationFacade.AFFILIATE_LOGIN_SUCCESS:
 					affiliateMain.currentState = "stateMainApplication";
+					CursorManager.removeBusyCursor();
 					var affiliate:Affiliate = notification.getBody() as Affiliate;
 					affiliateMain.cmpControlBar.txUserLoggedIn.text = affiliate.name as String;
 					affiliateMain.cmpControlBar.btnSettings.addEventListener(MouseEvent.CLICK, goToSetting);
 					affiliateMain.cmpControlBar.btnLogout.addEventListener(MouseEvent.CLICK, doLogout);
 					break;
 				case ApplicationFacade.AFFILIATE_LOGIN_ERROR:
+					CursorManager.removeBusyCursor();
 					Alert.show("Autenticazione Fallita: inserire i dati corretti");
 					break;
 				case ApplicationFacade.AFFILIATE_LOGOUT_SUCCESS:
+					CursorManager.removeBusyCursor();
 					affiliateMain.currentState = "stateLogin";
 					break;
 			}

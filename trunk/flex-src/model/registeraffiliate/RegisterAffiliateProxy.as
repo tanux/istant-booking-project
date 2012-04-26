@@ -3,6 +3,7 @@ package model.registeraffiliate
 	import model.services.ManageAffiliateDataService;
 	import model.vo.Affiliate;
 	
+	import mx.controls.Alert;
 	import mx.messaging.messages.RemotingMessage;
 	import mx.rpc.AsyncToken;
 	import mx.rpc.Responder;
@@ -37,7 +38,7 @@ package model.registeraffiliate
 					break;
 			}
 		}
-		public function onFault(evt:FaultEvent):void{
+		public function onFault(evt:FaultEvent):void{			
 			sendNotification(ApplicationFacade.REGISTER_AFFILIATE_FAULT);
 		}
 	}
