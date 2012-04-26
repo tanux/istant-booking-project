@@ -42,7 +42,6 @@ package view
 		
 		private function doLogout(evt:Event):void{
 			facade.sendNotification(ApplicationFacade.MANAGER_DO_LOGOUT);
-			Alert.show("LogOut");
 		}
 		
 		override public function handleNotification(notification:INotification):void{

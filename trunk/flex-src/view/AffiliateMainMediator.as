@@ -49,6 +49,9 @@ package view
 			facade.registerMediator(new RegisterAffiliateMediator(affiliateMain.cmpRegisterFormAffiliate));
 		}	
 		
+		private function doLogout(evt:Event):void{
+			facade.sendNotification(ApplicationFacade.AFFILIATE_DO_LOGOUT);
+		}		
 		
 		override public function handleNotification(notification:INotification):void{
 			switch (notification.getName()){
@@ -67,6 +70,7 @@ package view
 					var affiliateLoggedIn:Affiliate = notification.getBody() as Affiliate;
 					affiliateMain.cmpControlBar.txUserLoggedIn.text = affiliateLoggedIn.name as String;
 					affiliateMain.cmpControlBar.btnSettings.addEventListener(MouseEvent.CLICK, goToSetting);
+					affiliateMain.cmpControlBar.btnLogout.addEventListener(MouseEvent.CLICK, doLogout);					
 					break;					
 				case ApplicationFacade.AFFILIATE_EXECUTE_LOGIN:
 					facade.registerCommand(ApplicationFacade.AFFILIATE_DO_LOGIN, DoLoginCommand);
@@ -77,9 +81,13 @@ package view
 					var affiliate:Affiliate = notification.getBody() as Affiliate;
 					affiliateMain.cmpControlBar.txUserLoggedIn.text = affiliate.name as String;
 					affiliateMain.cmpControlBar.btnSettings.addEventListener(MouseEvent.CLICK, goToSetting);
+					affiliateMain.cmpControlBar.btnLogout.addEventListener(MouseEvent.CLICK, doLogout);
 					break;
 				case ApplicationFacade.AFFILIATE_LOGIN_ERROR:
 					Alert.show("Autenticazione Fallita: inserire i dati corretti");
+					break;
+				case ApplicationFacade.AFFILIATE_LOGOUT_SUCCESS:
+					affiliateMain.currentState = "stateLogin";
 					break;
 			}
 		}
@@ -92,7 +100,8 @@ package view
 				ApplicationFacade.AFFILIATE_LOGGED_IN,
 				ApplicationFacade.AFFILIATE_EXECUTE_LOGIN,
 				ApplicationFacade.AFFILIATE_LOGIN_SUCCESS,
-				ApplicationFacade.AFFILIATE_LOGIN_ERROR
+				ApplicationFacade.AFFILIATE_LOGIN_ERROR,
+				ApplicationFacade.AFFILIATE_LOGOUT_SUCCESS
 			];
 		}
 		
