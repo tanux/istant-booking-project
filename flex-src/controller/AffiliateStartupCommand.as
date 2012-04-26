@@ -1,5 +1,6 @@
 package controller
 {
+	import controller.loginaffiliate.DoLogoutCommand;
 	import controller.loginaffiliate.TryAccessCommand;
 	import controller.registeraffiliate.ConfirmRegisterCommand;
 	
@@ -19,6 +20,7 @@ package controller
 			facade.registerCommand(ApplicationFacade.CONFIRM_REGISTER, ConfirmRegisterCommand);
 			facade.registerCommand(ApplicationFacade.AFFILIATE_TRY_ACCESS,TryAccessCommand);			
 			facade.sendNotification(ApplicationFacade.AFFILIATE_TRY_ACCESS,USER_TYPE);
+			facade.registerCommand(ApplicationFacade.AFFILIATE_DO_LOGOUT, DoLogoutCommand); 
 		}
 	}
 }
