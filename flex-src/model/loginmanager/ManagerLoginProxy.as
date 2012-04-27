@@ -28,8 +28,7 @@ package model.loginmanager
 		public function doLogin(genericUser:GenericUser):void{
 			var username:String = genericUser.getUserAsManager.username as String; 
 			var password:String = genericUser.getUserAsManager.password as String;			
-			var type:String = genericUser.getType as String;
-			Alert.show("Proxy "+username+" "+password);
+			var type:String = genericUser.getType as String;			
 			var at:AsyncToken =  service.doLogin(username, password, type);
 			at.addResponder(responder);			
 		}
