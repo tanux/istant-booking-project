@@ -17,6 +17,7 @@
 		]]>
 	</fx:Script>
 	<mx:states>
+		<s:State name="blankState" />
 		<s:State name="stateLogin" />	
 		<s:State name="stateRegister" />
 		<s:State name="stateMainApplication" />
