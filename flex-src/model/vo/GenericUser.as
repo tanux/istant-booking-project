@@ -1,5 +1,6 @@
 package model.vo
 {
+
 	public class GenericUser{
 		
 		private var affiliate:Affiliate;	
