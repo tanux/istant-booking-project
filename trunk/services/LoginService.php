@@ -1,17 +1,15 @@
 <?php
-require_once '../library/database.inc.php';
 class LoginService {	
 	
 	/**
 	 * Execute Access if user is logged in  
-	 * @return stdClass $user
+	 * @return mixed|null
 	 */
-	public static function verifiedLoggedIn(){
+	public static function verifiedLoggedIn(){		
 		$auth = Zend_Auth::getInstance();
-		if ($auth->hasIdentity()){			
+		if ($auth->hasIdentity())			
 			return $auth->getIdentity();
-		}
-		else return null;
+		else return null;		
 	}
 		
 	/**
@@ -19,10 +17,10 @@ class LoginService {
 	 * @param String $username
 	 * @param String $password
 	 * @param String $user_type
-	 * @return stdClass $user
+	 * @return stdClass|boolean
 	 */
 	public static function doLogin($username,$password, $user_type){				
-		$dbAdapter = getDbAdapter();		
+		$dbAdapter = ManageDatabase::getDbAdapter();		
 		$authAdapter = new Zend_Auth_Adapter_DbTable($dbAdapter);
 		if ($user_type == "managers")
 			$itendityColumn = 'username';
@@ -51,6 +49,6 @@ class LoginService {
 		$auth = Zend_Auth::getInstance();
 		if ($auth->hasIdentity())		
 			$auth->clearIdentity();
-	}			
+	}	
 }
 ?>
