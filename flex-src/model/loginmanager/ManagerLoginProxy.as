@@ -1,6 +1,13 @@
 package model.loginmanager
 {
 	
+	import flash.net.URLLoader;
+	import flash.net.URLLoaderDataFormat;
+	import flash.net.URLRequest;
+	import flash.net.URLRequestMethod;
+	import flash.net.URLVariables;
+	import flash.utils.Timer;
+	
 	import model.services.ManagerLoginService;
 	import model.vo.GenericUser;
 	
@@ -13,6 +20,8 @@ package model.loginmanager
 	
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
+	
+	import spark.components.TextArea;
 	
 	public class ManagerLoginProxy extends Proxy implements IProxy{
 		
@@ -36,18 +45,20 @@ package model.loginmanager
 		private function onResult(evt:ResultEvent):void{
 			switch ((evt.token.message as RemotingMessage).operation) {
 				case "doLogin":
-					if (evt.result != null){
+					if (evt.result != null){						
 						sendNotification(ApplicationFacade.MANAGER_LOGIN_SUCCESS,evt.result);						
 					}			
-					else{						
+					else{
 						sendNotification(ApplicationFacade.MANAGER_LOGIN_ERROR);
 					}
 					break;				
 			}	
 		}
 		
-		private function onFault(evt:FaultEvent):void{
-			Alert.show("Login Fault");	
+		private function onFault(evt:FaultEvent):void{			
+			var message:String = "ID: "+evt.messageId+" Message: "+evt.message.toString();
+			sendNotification(ApplicationFacade.MANAGER_LOGIN_FAULT, message);
+			Alert.show("Login Fault");
 		}
 	}
 }
