@@ -23,7 +23,6 @@ package view
 		public function ManagerMainMediator(viewComponent:Object){
 			super(NAME, viewComponent);
 			managerMain.addEventListener(FlexEvent.CREATION_COMPLETE, init);
-			managerMain.cmpLoginFormManager.btnLogin.addEventListener(MouseEvent.CLICK, doLogin);
 		}
 		
 		private function init(evt:Event) : void {}
@@ -60,6 +59,7 @@ package view
 				case ApplicationFacade.MANAGER_EXECUTE_LOGIN:
 					facade.registerCommand(ApplicationFacade.MANAGER_DO_LOGIN, DoLoginCommand);
 					managerMain.currentState = "stateLogin";
+					managerMain.cmpLoginFormManager.btnLogin.addEventListener(MouseEvent.CLICK, doLogin);
 					break;
 				case ApplicationFacade.MANAGER_LOGIN_SUCCESS:
 					CursorManager.removeBusyCursor();
@@ -77,6 +77,9 @@ package view
 					CursorManager.removeBusyCursor();
 					managerMain.currentState = "stateLogin";
 					break;
+				case ApplicationFacade.MANAGER_LOGIN_FAULT:					
+					Alert.show("Fault: Errore di comunicazione con il server");
+					break;
 			}
 		}
 		
@@ -86,7 +89,8 @@ package view
 				ApplicationFacade.MANAGER_EXECUTE_LOGIN,
 				ApplicationFacade.MANAGER_LOGIN_SUCCESS,
 				ApplicationFacade.MANAGER_LOGIN_ERROR,
-				ApplicationFacade.MANAGER_LOGOUT_SUCCESS
+				ApplicationFacade.MANAGER_LOGOUT_SUCCESS,
+				ApplicationFacade.MANAGER_LOGIN_FAULT
 			];
 		}
 				
