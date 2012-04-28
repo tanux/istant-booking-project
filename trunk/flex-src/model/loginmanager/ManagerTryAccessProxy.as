@@ -1,6 +1,7 @@
 package model.loginmanager
 {
-	import model.services.ManagerLoginService;	
+	import model.services.ManagerLoginService;
+	
 	import mx.controls.Alert;
 	import mx.messaging.messages.RemotingMessage;
 	import mx.rpc.AsyncToken;
@@ -42,7 +43,8 @@ package model.loginmanager
 		}
 		
 		private function onFault(evt:FaultEvent):void{
-			Alert.show("executeAccess FAULT");
+			var message:String = "ID: "+evt.messageId+" Message: "+evt.message.toString();
+			sendNotification(ApplicationFacade.MANAGER_LOGIN_FAULT, message);			
 		}
 	}
 }
