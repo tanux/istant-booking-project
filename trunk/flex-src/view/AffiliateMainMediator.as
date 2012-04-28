@@ -27,8 +27,6 @@ package view
 		public function AffiliateMainMediator(viewComponent:Object){
 			super(NAME, viewComponent);
 			affiliateMain.addEventListener(FlexEvent.CREATION_COMPLETE, init);
-			affiliateMain.lbRegisterAffiliate.addEventListener(MouseEvent.CLICK, enableStateRegister);
-			affiliateMain.cmpLoginFormAffiliate.btnLogin.addEventListener(MouseEvent.CLICK, doLogin);			
 		}
 		
 		private function init(evt:Event) : void {}
@@ -79,7 +77,9 @@ package view
 					break;					
 				case ApplicationFacade.AFFILIATE_EXECUTE_LOGIN:
 					facade.registerCommand(ApplicationFacade.AFFILIATE_DO_LOGIN, DoLoginCommand);
-					affiliateMain.currentState = "stateLogin";					
+					affiliateMain.currentState = "stateLogin";
+					affiliateMain.lbRegisterAffiliate.addEventListener(MouseEvent.CLICK, enableStateRegister);
+					affiliateMain.cmpLoginFormAffiliate.btnLogin.addEventListener(MouseEvent.CLICK, doLogin);
 					break;
 				case ApplicationFacade.AFFILIATE_LOGIN_SUCCESS:
 					affiliateMain.currentState = "stateMainApplication";
