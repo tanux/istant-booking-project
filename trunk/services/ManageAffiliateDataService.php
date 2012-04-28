@@ -1,5 +1,4 @@
 <?php
-require_once '../library/database.inc.php';
 class ManageAffiliateDataService {
 	
 	/**
@@ -8,7 +7,7 @@ class ManageAffiliateDataService {
 	 * @return  id
 	 */
 	public function saveAffiliateData($affiliate){		
-		$dbAdapter = getDbAdapter();	
+		$dbAdapter = ManageDatabase::getDbAdapter();	
 		Zend_Db_Table::setDefaultAdapter($dbAdapter);
 		$affiliateTable = new Zend_Db_Table('affiliates');
 		$affiliateData = ManageAffiliateDataService::setAffiliateData($affiliate);
@@ -22,7 +21,7 @@ class ManageAffiliateDataService {
 	 * @return int number of row updated
 	 */
 	public function updateAffiliateData($affiliate){
-		$dbAdapter = getDbAdapter();	
+		$dbAdapter = ManageDatabase::getDbAdapter();	
 		Zend_Db_Table::setDefaultAdapter($dbAdapter);
 		$affiliateTable = new Zend_Db_Table('affiliates');
 		$affiliateData = ManageAffiliateDataService::setAffiliateData($affiliate);

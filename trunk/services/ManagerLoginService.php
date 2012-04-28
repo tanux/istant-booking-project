@@ -15,7 +15,7 @@ class ManagerLoginService {
 		return $manager;
 	}
 	
-	/**
+	/** 
 	 * Execute Access if user is logged in
 	 * @return Manager $manager
 	 */
