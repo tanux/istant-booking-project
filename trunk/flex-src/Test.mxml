@@ -9,13 +9,21 @@
 		<!-- Place non-visual elements (e.g., services, value objects) here -->		
 	</fx:Declarations>	
 	<fx:Style source="/assets/skins/flex_skins.css"/>
-	
-	
-	
-	<mx:Image id="imgEye" styleName="imgEye" source="@Embed('/assets/images/occhio.png')" width="50%" height="50%"/>
-	<mx:VBox id="vbExt" styleName="vbExt" width="100%" height="100%">
+	<fx:Script>
+		<![CDATA[
+			import model.vo.Affiliate;			
+			import mx.collections.ArrayCollection;			
+			[Bindable] public var affiliate:ArrayCollection;
+			private var facade:ApplicationFacade = ApplicationFacade.getInstance() as ApplicationFacade;					
+		]]>
+	</fx:Script>
+	<mx:DataGrid id="dgRisultati" width="50%" height="50%" dataProvider="{affiliate}">		
+		<mx:columns>
+			<mx:DataGridColumn id="clmId" dataField="Nome" headerText="Nome" />
+			<mx:DataGridColumn id="clmNome" dataField="Cognome" headerText="Cognome" />
+			<mx:DataGridColumn id="clmCF" dataField="Ora" headerText="Ora" />
+		</mx:columns>
+	</mx:DataGrid>
+	<s:Button id="btnClicca" label="Clicca qui" />
 		
-					
-		
-	</mx:VBox>	
 </mx:Application>
