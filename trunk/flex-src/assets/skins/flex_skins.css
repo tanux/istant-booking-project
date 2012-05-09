@@ -35,20 +35,6 @@ mx|Application{
 	verticalAlign: middle;
 }
 
-.DateChooser{
-	nextMonthSkin: Embed(skinClass="DateChooser_nextMonthSkin");
-	nextYearSkin: Embed(skinClass="DateChooser_nextYearSkin");
-	prevMonthSkin: Embed(skinClass="DateChooser_prevMonthSkin");
-	prevYearSkin: Embed(skinClass="DateChooser_prevYearSkin");
-	headerColors: #6C9DCE, #224466;
-	rollOverColor: #EEEEEE;
-	selectionColor: #6699cc;
-	todayColor: #2d5986;
-	borderColor: #2d5986;
-	backgroundColor: #FFFFFF;
-	dropShadowEnabled: true;
-	headerStyleName: "DateChooserHeaderStyle";
-}
 
 .DateChooserHeaderStyle{
 	color: black;
