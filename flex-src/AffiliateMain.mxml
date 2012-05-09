@@ -11,9 +11,10 @@
 	<fx:Style source="/assets/skins/flex_skins.css"/>
 	<fx:Script>
 		<![CDATA[
-			import model.vo.Affiliate;
+			import model.vo.Affiliate;			
+			import mx.rpc.remoting.RemoteObject;
 			[Bindable] public var affiliates:Affiliate;
-			private var facade:ApplicationFacade = ApplicationFacade.getInstance() as ApplicationFacade;					
+			private var facade:ApplicationFacade = ApplicationFacade.getInstance() as ApplicationFacade;			
 		]]>
 	</fx:Script>
 	<mx:states>
