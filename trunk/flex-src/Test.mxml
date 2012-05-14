@@ -1,27 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
-				xmlns:mx="library://ns.adobe.com/flex/mx"
-				xmlns:s="library://ns.adobe.com/flex/spark"
-				xmlns:component="view.component.*"
-				width="100%" height="100%" layout="absolute"			
-				>	
-	<fx:Declarations>
-		<!-- Place non-visual elements (e.g., services, value objects) here -->		
-	</fx:Declarations>	
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:ui="http://www.kapit.fr/flex3/ui"
+			   minWidth="955" minHeight="450"
+			   >
 	<fx:Style source="/assets/skins/flex_skins.css"/>
-		
-	<mx:Image id="imgEye" styleName="imgEye" source="@Embed('/assets/images/occhio.png')" width="50%" height="50%"/>
-	
-	<mx:VBox id="vbExt" styleName="vbExt" width="100%" height="100%">
+	<fx:Script>
+		<![CDATA[
+			import mx.logging.ILogger;
+			import mx.logging.Log;
+			
+			import spark.events.TextOperationEvent;
+			
+			[Bindable]
+			[Embed(source="assets/images/find.png")]
+			private static var _magnifier:Class;
+			
+			[Bindable]
+			[Embed(source="assets/images/cross.png")]
+			private static var _textInput_clearIcon:Class;
+			
+			[Bindable]
+			private var _description:String = "Gaetano provati questa pagina, è Mino che te lo ordina!"
+			
+			protected var logger:ILogger = Log.getLogger("flex3ui.AdvancedTextInput");
+			
+			public function dispose():void
+			{
+			}
+			
+			protected function clearButton_cb_changeHandler(event:Event):void
 				
-		<mx:Box styleName="vbExt" width="100%" height="100%"> 
+			{
+				
+				textInput.showCancelButton = clearButton_cb.selected;
+				
+				logger.info('textInput.showCancelButton = ' + clearButton_cb.selected.toString());
+			}
 			
-			<component:ControlTopBar id="cmpControlBar" />
 			
-			<component:VisitDay />
+			protected function icon_cb_changeHandler(event:Event):void
+				
+			{
+				if (icon_cb.selected)
+				{
+					textInput.setStyle("icon", _magnifier);
+					logger.info('textInput.setStyle("icon", _magnifier)');
+				}
+				else
+				{
+					textInput.setStyle("icon", null);
+					logger.info('textInput.setStyle("icon", null)');
+				}
+				
+			}
 			
-
+			protected function prompt_cb_changeHandler(event:Event):void
+				
+			{
+				updatePrompt(prompt_cb.selected ? prompt_ti.text : null);
+				
+			}
 			
-		</mx:Box>
-	</mx:VBox>	
+			protected function prompt_ti_changeHandler(event:TextOperationEvent):void
+			{
+				updatePrompt(prompt_cb.selected ? prompt_ti.text : null);
+			}
+			
+			private function updatePrompt(value:String):void
+			{
+				textInput.promptText = value;
+				logger.info('textInput.promptText = ' + value);
+			}		
+		]]>
+	</fx:Script>
+	
+	<s:Group width="560" height="270"
+			 horizontalCenter="0" verticalCenter="0">
+		
+		<s:Label text="AdvancedTextInput" fontSize="24" x="-5" />
+		
+		<s:HGroup gap="15" top="38">
+			<ui:AdvancedTextInput id="textInput"
+								  width="200"
+								  icon="{_magnifier}"
+								  promptText="Search"
+								  promptColor="#808080"
+								  iconWidth="15"
+								  iconHeight="15"
+								  iconPadding="3"
+								  keepPromptOnFocus="false"
+								  showCancelButton="true"
+								  cancelWidth="12" cancelHeight="12"
+								  cancelDownSkin="{_textInput_clearIcon}"
+								  cancelUpSkin="{_textInput_clearIcon}"
+								  cancelOverSkin="{_textInput_clearIcon}"
+								  />
+			<s:VGroup gap="5" width="220">
+				<s:TextArea text="{_description}"
+							width="220" height="82"
+							paddingTop="0" paddingLeft="0" editable="false"
+							/>
+				<s:Label text="Properties:" fontWeight="bold" fontSize="14"/>
+				<s:VGroup gap="4">
+					<s:HGroup gap="4">
+						<s:CheckBox id="prompt_cb"
+									label="Prompt:" selected="true"
+									change="prompt_cb_changeHandler(event)" />
+						<s:TextInput id="prompt_ti"
+									 width="146" text="Search"
+									 change="prompt_ti_changeHandler(event)"/>
+					</s:HGroup>
+					<s:CheckBox id="icon_cb"
+								label="Icon" selected="true"
+								change="icon_cb_changeHandler(event)" />
+					<mx:Spacer height="1" />
+					<s:CheckBox id="clearButton_cb"
+								label="Clear Button" selected="true"
+								change="clearButton_cb_changeHandler(event)" />
+				</s:VGroup>
+			</s:VGroup>
+		</s:HGroup>
+	</s:Group>
 </mx:Application>
