@@ -56,6 +56,11 @@ package
 		public static const REGISTER_AFFILIATE_ERROR:String = "RegisterAffiliateError";
 		public static const REGISTER_AFFILIATE_FAULT:String = "RegisterAffiliateFault";
 		
+		public static const GET_CUSTOMER_LIST:String = "GetCustomerList";
+		public static const GET_CUSTOMER_LIST_SUCCESS:String = "GetCustomerListSuccess";
+		public static const GET_CUSTOMER_LIST_ERROR:String = "GetCustomerListError";
+		public static const GET_CUSTOMER_LIST_FAULT:String = "GetCustomerListFault";
+		
 		public static function getInstance() : ApplicationFacade{
 			if (instance == null)
 				instance = new ApplicationFacade();

@@ -15,8 +15,8 @@ package controller.registeraffiliate
 				registerAffiliateProxy.saveAffiliateData(affiliate);
 			}
 			else{
-				var registerAffiliateProxy:RegisterAffiliateProxy = new RegisterAffiliateProxy(RegisterAffiliateProxy.NAME);
-				registerAffiliateProxy.saveAffiliateData(affiliate);
+				var newRegisterAffiliateProxy:RegisterAffiliateProxy = new RegisterAffiliateProxy(RegisterAffiliateProxy.NAME);
+				newRegisterAffiliateProxy.saveAffiliateData(affiliate);
 				facade.registerProxy(registerAffiliateProxy);
 			}
 		}

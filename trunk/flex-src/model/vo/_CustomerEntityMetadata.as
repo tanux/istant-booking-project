@@ -18,22 +18,22 @@ import mx.events.PropertyChangeEvent;
 use namespace model_internal;
 
 [ExcludeClass]
-internal class _AffiliateEntityMetadata extends com.adobe.fiber.valueobjects.AbstractEntityMetadata
+internal class _CustomerEntityMetadata extends com.adobe.fiber.valueobjects.AbstractEntityMetadata
 {
     private static var emptyArray:Array = new Array();
 
-    model_internal static var allProperties:Array = new Array("id", "name", "address", "city", "telephoneNumber", "email", "password");
+    model_internal static var allProperties:Array = new Array("id", "firstName", "lastName", "email", "telephoneNumber");
     model_internal static var allAssociationProperties:Array = new Array();
-    model_internal static var allRequiredProperties:Array = new Array("id", "name", "address", "city", "telephoneNumber", "email", "password");
-    model_internal static var allAlwaysAvailableProperties:Array = new Array("id", "name", "address", "city", "telephoneNumber", "email", "password");
+    model_internal static var allRequiredProperties:Array = new Array("id", "firstName", "lastName", "email", "telephoneNumber");
+    model_internal static var allAlwaysAvailableProperties:Array = new Array("id", "firstName", "lastName", "email", "telephoneNumber");
     model_internal static var guardedProperties:Array = new Array();
-    model_internal static var dataProperties:Array = new Array("id", "name", "address", "city", "telephoneNumber", "email", "password");
+    model_internal static var dataProperties:Array = new Array("id", "firstName", "lastName", "email", "telephoneNumber");
     model_internal static var sourceProperties:Array = emptyArray
-    model_internal static var nonDerivedProperties:Array = new Array("id", "name", "address", "city", "telephoneNumber", "email", "password");
+    model_internal static var nonDerivedProperties:Array = new Array("id", "firstName", "lastName", "email", "telephoneNumber");
     model_internal static var derivedProperties:Array = new Array();
     model_internal static var collectionProperties:Array = new Array();
     model_internal static var collectionBaseMap:Object;
-    model_internal static var entityName:String = "Affiliate";
+    model_internal static var entityName:String = "Customer";
     model_internal static var dependentsOnMap:Object;
     model_internal static var dependedOnServices:Array = new Array();
     model_internal static var propertyTypeMap:Object;
@@ -44,40 +44,30 @@ internal class _AffiliateEntityMetadata extends com.adobe.fiber.valueobjects.Abs
     model_internal var _idIsValidCacheInitialized:Boolean = false;
     model_internal var _idValidationFailureMessages:Array;
     
-    model_internal var _nameIsValid:Boolean;
-    model_internal var _nameValidator:com.adobe.fiber.styles.StyleValidator;
-    model_internal var _nameIsValidCacheInitialized:Boolean = false;
-    model_internal var _nameValidationFailureMessages:Array;
+    model_internal var _firstNameIsValid:Boolean;
+    model_internal var _firstNameValidator:com.adobe.fiber.styles.StyleValidator;
+    model_internal var _firstNameIsValidCacheInitialized:Boolean = false;
+    model_internal var _firstNameValidationFailureMessages:Array;
     
-    model_internal var _addressIsValid:Boolean;
-    model_internal var _addressValidator:com.adobe.fiber.styles.StyleValidator;
-    model_internal var _addressIsValidCacheInitialized:Boolean = false;
-    model_internal var _addressValidationFailureMessages:Array;
-    
-    model_internal var _cityIsValid:Boolean;
-    model_internal var _cityValidator:com.adobe.fiber.styles.StyleValidator;
-    model_internal var _cityIsValidCacheInitialized:Boolean = false;
-    model_internal var _cityValidationFailureMessages:Array;
-    
-    model_internal var _telephoneNumberIsValid:Boolean;
-    model_internal var _telephoneNumberValidator:com.adobe.fiber.styles.StyleValidator;
-    model_internal var _telephoneNumberIsValidCacheInitialized:Boolean = false;
-    model_internal var _telephoneNumberValidationFailureMessages:Array;
+    model_internal var _lastNameIsValid:Boolean;
+    model_internal var _lastNameValidator:com.adobe.fiber.styles.StyleValidator;
+    model_internal var _lastNameIsValidCacheInitialized:Boolean = false;
+    model_internal var _lastNameValidationFailureMessages:Array;
     
     model_internal var _emailIsValid:Boolean;
     model_internal var _emailValidator:com.adobe.fiber.styles.StyleValidator;
     model_internal var _emailIsValidCacheInitialized:Boolean = false;
     model_internal var _emailValidationFailureMessages:Array;
     
-    model_internal var _passwordIsValid:Boolean;
-    model_internal var _passwordValidator:com.adobe.fiber.styles.StyleValidator;
-    model_internal var _passwordIsValidCacheInitialized:Boolean = false;
-    model_internal var _passwordValidationFailureMessages:Array;
+    model_internal var _telephoneNumberIsValid:Boolean;
+    model_internal var _telephoneNumberValidator:com.adobe.fiber.styles.StyleValidator;
+    model_internal var _telephoneNumberIsValidCacheInitialized:Boolean = false;
+    model_internal var _telephoneNumberValidationFailureMessages:Array;
 
-    model_internal var _instance:_Super_Affiliate;
+    model_internal var _instance:_Super_Customer;
     model_internal static var _nullStyle:com.adobe.fiber.styles.Style = new com.adobe.fiber.styles.Style();
 
-    public function _AffiliateEntityMetadata(value : _Super_Affiliate)
+    public function _CustomerEntityMetadata(value : _Super_Customer)
     {
         // initialize property maps
         if (model_internal::dependentsOnMap == null)
@@ -85,12 +75,10 @@ internal class _AffiliateEntityMetadata extends com.adobe.fiber.valueobjects.Abs
             // dependents map
             model_internal::dependentsOnMap = new Object();
             model_internal::dependentsOnMap["id"] = new Array();
-            model_internal::dependentsOnMap["name"] = new Array();
-            model_internal::dependentsOnMap["address"] = new Array();
-            model_internal::dependentsOnMap["city"] = new Array();
-            model_internal::dependentsOnMap["telephoneNumber"] = new Array();
+            model_internal::dependentsOnMap["firstName"] = new Array();
+            model_internal::dependentsOnMap["lastName"] = new Array();
             model_internal::dependentsOnMap["email"] = new Array();
-            model_internal::dependentsOnMap["password"] = new Array();
+            model_internal::dependentsOnMap["telephoneNumber"] = new Array();
 
             // collection base map
             model_internal::collectionBaseMap = new Object();
@@ -99,12 +87,10 @@ internal class _AffiliateEntityMetadata extends com.adobe.fiber.valueobjects.Abs
         // Property type Map
         model_internal::propertyTypeMap = new Object();
         model_internal::propertyTypeMap["id"] = "Object";
-        model_internal::propertyTypeMap["name"] = "Object";
-        model_internal::propertyTypeMap["address"] = "Object";
-        model_internal::propertyTypeMap["city"] = "Object";
-        model_internal::propertyTypeMap["telephoneNumber"] = "Object";
+        model_internal::propertyTypeMap["firstName"] = "Object";
+        model_internal::propertyTypeMap["lastName"] = "Object";
         model_internal::propertyTypeMap["email"] = "Object";
-        model_internal::propertyTypeMap["password"] = "Object";
+        model_internal::propertyTypeMap["telephoneNumber"] = "Object";
 
         model_internal::_instance = value;
         model_internal::_idValidator = new StyleValidator(model_internal::_instance.model_internal::_doValidationForId);
@@ -112,36 +98,26 @@ internal class _AffiliateEntityMetadata extends com.adobe.fiber.valueobjects.Abs
         model_internal::_idValidator.requiredFieldError = "id is required";
         //model_internal::_idValidator.source = model_internal::_instance;
         //model_internal::_idValidator.property = "id";
-        model_internal::_nameValidator = new StyleValidator(model_internal::_instance.model_internal::_doValidationForName);
-        model_internal::_nameValidator.required = true;
-        model_internal::_nameValidator.requiredFieldError = "name is required";
-        //model_internal::_nameValidator.source = model_internal::_instance;
-        //model_internal::_nameValidator.property = "name";
-        model_internal::_addressValidator = new StyleValidator(model_internal::_instance.model_internal::_doValidationForAddress);
-        model_internal::_addressValidator.required = true;
-        model_internal::_addressValidator.requiredFieldError = "address is required";
-        //model_internal::_addressValidator.source = model_internal::_instance;
-        //model_internal::_addressValidator.property = "address";
-        model_internal::_cityValidator = new StyleValidator(model_internal::_instance.model_internal::_doValidationForCity);
-        model_internal::_cityValidator.required = true;
-        model_internal::_cityValidator.requiredFieldError = "city is required";
-        //model_internal::_cityValidator.source = model_internal::_instance;
-        //model_internal::_cityValidator.property = "city";
-        model_internal::_telephoneNumberValidator = new StyleValidator(model_internal::_instance.model_internal::_doValidationForTelephoneNumber);
-        model_internal::_telephoneNumberValidator.required = true;
-        model_internal::_telephoneNumberValidator.requiredFieldError = "telephoneNumber is required";
-        //model_internal::_telephoneNumberValidator.source = model_internal::_instance;
-        //model_internal::_telephoneNumberValidator.property = "telephoneNumber";
+        model_internal::_firstNameValidator = new StyleValidator(model_internal::_instance.model_internal::_doValidationForFirstName);
+        model_internal::_firstNameValidator.required = true;
+        model_internal::_firstNameValidator.requiredFieldError = "firstName is required";
+        //model_internal::_firstNameValidator.source = model_internal::_instance;
+        //model_internal::_firstNameValidator.property = "firstName";
+        model_internal::_lastNameValidator = new StyleValidator(model_internal::_instance.model_internal::_doValidationForLastName);
+        model_internal::_lastNameValidator.required = true;
+        model_internal::_lastNameValidator.requiredFieldError = "lastName is required";
+        //model_internal::_lastNameValidator.source = model_internal::_instance;
+        //model_internal::_lastNameValidator.property = "lastName";
         model_internal::_emailValidator = new StyleValidator(model_internal::_instance.model_internal::_doValidationForEmail);
         model_internal::_emailValidator.required = true;
         model_internal::_emailValidator.requiredFieldError = "email is required";
         //model_internal::_emailValidator.source = model_internal::_instance;
         //model_internal::_emailValidator.property = "email";
-        model_internal::_passwordValidator = new StyleValidator(model_internal::_instance.model_internal::_doValidationForPassword);
-        model_internal::_passwordValidator.required = true;
-        model_internal::_passwordValidator.requiredFieldError = "password is required";
-        //model_internal::_passwordValidator.source = model_internal::_instance;
-        //model_internal::_passwordValidator.property = "password";
+        model_internal::_telephoneNumberValidator = new StyleValidator(model_internal::_instance.model_internal::_doValidationForTelephoneNumber);
+        model_internal::_telephoneNumberValidator.required = true;
+        model_internal::_telephoneNumberValidator.requiredFieldError = "telephoneNumber is required";
+        //model_internal::_telephoneNumberValidator.source = model_internal::_instance;
+        //model_internal::_telephoneNumberValidator.property = "telephoneNumber";
     }
 
     override public function getEntityName():String
@@ -192,7 +168,7 @@ internal class _AffiliateEntityMetadata extends com.adobe.fiber.valueobjects.Abs
     override public function getDependants(propertyName:String):Array
     {
        if (model_internal::nonDerivedProperties.indexOf(propertyName) == -1)
-            throw new Error(propertyName + " is not a data property of entity Affiliate");
+            throw new Error(propertyName + " is not a data property of entity Customer");
             
        return model_internal::dependentsOnMap[propertyName] as Array;  
     }
@@ -210,7 +186,7 @@ internal class _AffiliateEntityMetadata extends com.adobe.fiber.valueobjects.Abs
     override public function getCollectionBase(propertyName:String):String
     {
         if (model_internal::collectionProperties.indexOf(propertyName) == -1)
-            throw new Error(propertyName + " is not a collection property of entity Affiliate");
+            throw new Error(propertyName + " is not a collection property of entity Customer");
 
         return model_internal::collectionBaseMap[propertyName];
     }
@@ -218,7 +194,7 @@ internal class _AffiliateEntityMetadata extends com.adobe.fiber.valueobjects.Abs
     override public function getPropertyType(propertyName:String):String
     {
         if (model_internal::allProperties.indexOf(propertyName) == -1)
-            throw new Error(propertyName + " is not a property of Affiliate");
+            throw new Error(propertyName + " is not a property of Customer");
 
         return model_internal::propertyTypeMap[propertyName];
     }
@@ -232,7 +208,7 @@ internal class _AffiliateEntityMetadata extends com.adobe.fiber.valueobjects.Abs
     {
         if (model_internal::allProperties.indexOf(propertyName) == -1)
         {
-            throw new Error(propertyName + " does not exist for entity Affiliate");
+            throw new Error(propertyName + " does not exist for entity Customer");
         }
 
         return model_internal::_instance[propertyName];
@@ -242,7 +218,7 @@ internal class _AffiliateEntityMetadata extends com.adobe.fiber.valueobjects.Abs
     {
         if (model_internal::nonDerivedProperties.indexOf(propertyName) == -1)
         {
-            throw new Error(propertyName + " is not a modifiable property of entity Affiliate");
+            throw new Error(propertyName + " is not a modifiable property of entity Customer");
         }
 
         model_internal::_instance[propertyName] = value;
@@ -274,7 +250,7 @@ internal class _AffiliateEntityMetadata extends com.adobe.fiber.valueobjects.Abs
     {
         if (model_internal::allProperties.indexOf(propertyName) == -1)
         {
-            throw new Error(propertyName + " does not exist for entity Affiliate");
+            throw new Error(propertyName + " does not exist for entity Customer");
         }
 
         if (model_internal::allAlwaysAvailableProperties.indexOf(propertyName) != -1)
@@ -375,25 +351,13 @@ internal class _AffiliateEntityMetadata extends com.adobe.fiber.valueobjects.Abs
     }
 
     [Bindable(event="propertyChange")]
-    public function get isNameAvailable():Boolean
+    public function get isFirstNameAvailable():Boolean
     {
         return true;
     }
 
     [Bindable(event="propertyChange")]
-    public function get isAddressAvailable():Boolean
-    {
-        return true;
-    }
-
-    [Bindable(event="propertyChange")]
-    public function get isCityAvailable():Boolean
-    {
-        return true;
-    }
-
-    [Bindable(event="propertyChange")]
-    public function get isTelephoneNumberAvailable():Boolean
+    public function get isLastNameAvailable():Boolean
     {
         return true;
     }
@@ -405,7 +369,7 @@ internal class _AffiliateEntityMetadata extends com.adobe.fiber.valueobjects.Abs
     }
 
     [Bindable(event="propertyChange")]
-    public function get isPasswordAvailable():Boolean
+    public function get isTelephoneNumberAvailable():Boolean
     {
         return true;
     }
@@ -422,36 +386,20 @@ internal class _AffiliateEntityMetadata extends com.adobe.fiber.valueobjects.Abs
             model_internal::calculateIdIsValid();
         }
     }
-    public function invalidateDependentOnName():void
+    public function invalidateDependentOnFirstName():void
     {
-        if (model_internal::_nameIsValidCacheInitialized )
+        if (model_internal::_firstNameIsValidCacheInitialized )
         {
-            model_internal::_instance.model_internal::_doValidationCacheOfName = null;
-            model_internal::calculateNameIsValid();
+            model_internal::_instance.model_internal::_doValidationCacheOfFirstName = null;
+            model_internal::calculateFirstNameIsValid();
         }
     }
-    public function invalidateDependentOnAddress():void
+    public function invalidateDependentOnLastName():void
     {
-        if (model_internal::_addressIsValidCacheInitialized )
+        if (model_internal::_lastNameIsValidCacheInitialized )
         {
-            model_internal::_instance.model_internal::_doValidationCacheOfAddress = null;
-            model_internal::calculateAddressIsValid();
-        }
-    }
-    public function invalidateDependentOnCity():void
-    {
-        if (model_internal::_cityIsValidCacheInitialized )
-        {
-            model_internal::_instance.model_internal::_doValidationCacheOfCity = null;
-            model_internal::calculateCityIsValid();
-        }
-    }
-    public function invalidateDependentOnTelephoneNumber():void
-    {
-        if (model_internal::_telephoneNumberIsValidCacheInitialized )
-        {
-            model_internal::_instance.model_internal::_doValidationCacheOfTelephoneNumber = null;
-            model_internal::calculateTelephoneNumberIsValid();
+            model_internal::_instance.model_internal::_doValidationCacheOfLastName = null;
+            model_internal::calculateLastNameIsValid();
         }
     }
     public function invalidateDependentOnEmail():void
@@ -462,12 +410,12 @@ internal class _AffiliateEntityMetadata extends com.adobe.fiber.valueobjects.Abs
             model_internal::calculateEmailIsValid();
         }
     }
-    public function invalidateDependentOnPassword():void
+    public function invalidateDependentOnTelephoneNumber():void
     {
-        if (model_internal::_passwordIsValidCacheInitialized )
+        if (model_internal::_telephoneNumberIsValidCacheInitialized )
         {
-            model_internal::_instance.model_internal::_doValidationCacheOfPassword = null;
-            model_internal::calculatePasswordIsValid();
+            model_internal::_instance.model_internal::_doValidationCacheOfTelephoneNumber = null;
+            model_internal::calculateTelephoneNumberIsValid();
         }
     }
 
@@ -577,44 +525,44 @@ internal class _AffiliateEntityMetadata extends com.adobe.fiber.valueobjects.Abs
     }
 
     [Bindable(event="propertyChange")]   
-    public function get nameStyle():com.adobe.fiber.styles.Style
+    public function get firstNameStyle():com.adobe.fiber.styles.Style
     {
         return model_internal::_nullStyle;
     }
 
-    public function get nameValidator() : StyleValidator
+    public function get firstNameValidator() : StyleValidator
     {
-        return model_internal::_nameValidator;
+        return model_internal::_firstNameValidator;
     }
 
-    model_internal function set _nameIsValid_der(value:Boolean):void 
+    model_internal function set _firstNameIsValid_der(value:Boolean):void 
     {
-        var oldValue:Boolean = model_internal::_nameIsValid;         
+        var oldValue:Boolean = model_internal::_firstNameIsValid;         
         if (oldValue !== value)
         {
-            model_internal::_nameIsValid = value;
-            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "nameIsValid", oldValue, value));
+            model_internal::_firstNameIsValid = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "firstNameIsValid", oldValue, value));
         }                             
     }
 
     [Bindable(event="propertyChange")]
-    public function get nameIsValid():Boolean
+    public function get firstNameIsValid():Boolean
     {
-        if (!model_internal::_nameIsValidCacheInitialized)
+        if (!model_internal::_firstNameIsValidCacheInitialized)
         {
-            model_internal::calculateNameIsValid();
+            model_internal::calculateFirstNameIsValid();
         }
 
-        return model_internal::_nameIsValid;
+        return model_internal::_firstNameIsValid;
     }
 
-    model_internal function calculateNameIsValid():void
+    model_internal function calculateFirstNameIsValid():void
     {
-        var valRes:ValidationResultEvent = model_internal::_nameValidator.validate(model_internal::_instance.name)
-        model_internal::_nameIsValid_der = (valRes.results == null);
-        model_internal::_nameIsValidCacheInitialized = true;
+        var valRes:ValidationResultEvent = model_internal::_firstNameValidator.validate(model_internal::_instance.firstName)
+        model_internal::_firstNameIsValid_der = (valRes.results == null);
+        model_internal::_firstNameIsValidCacheInitialized = true;
         if (valRes.results == null)
-             model_internal::nameValidationFailureMessages_der = emptyArray;
+             model_internal::firstNameValidationFailureMessages_der = emptyArray;
         else
         {
             var _valFailures:Array = new Array();
@@ -622,22 +570,22 @@ internal class _AffiliateEntityMetadata extends com.adobe.fiber.valueobjects.Abs
             {
                 _valFailures.push(valRes.results[a].errorMessage);
             }
-            model_internal::nameValidationFailureMessages_der = _valFailures;
+            model_internal::firstNameValidationFailureMessages_der = _valFailures;
         }
     }
 
     [Bindable(event="propertyChange")]
-    public function get nameValidationFailureMessages():Array
+    public function get firstNameValidationFailureMessages():Array
     {
-        if (model_internal::_nameValidationFailureMessages == null)
-            model_internal::calculateNameIsValid();
+        if (model_internal::_firstNameValidationFailureMessages == null)
+            model_internal::calculateFirstNameIsValid();
 
-        return _nameValidationFailureMessages;
+        return _firstNameValidationFailureMessages;
     }
 
-    model_internal function set nameValidationFailureMessages_der(value:Array) : void
+    model_internal function set firstNameValidationFailureMessages_der(value:Array) : void
     {
-        var oldValue:Array = model_internal::_nameValidationFailureMessages;
+        var oldValue:Array = model_internal::_firstNameValidationFailureMessages;
 
         var needUpdate : Boolean = false;
         if (oldValue == null)
@@ -665,8 +613,8 @@ internal class _AffiliateEntityMetadata extends com.adobe.fiber.valueobjects.Abs
 
         if (needUpdate)
         {
-            model_internal::_nameValidationFailureMessages = value;   
-            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "nameValidationFailureMessages", oldValue, value));
+            model_internal::_firstNameValidationFailureMessages = value;   
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "firstNameValidationFailureMessages", oldValue, value));
             // Only execute calculateIsValid if it has been called before, to update the validationFailureMessages for
             // the entire entity.
             if (model_internal::_instance.model_internal::_cacheInitialized_isValid)
@@ -677,44 +625,44 @@ internal class _AffiliateEntityMetadata extends com.adobe.fiber.valueobjects.Abs
     }
 
     [Bindable(event="propertyChange")]   
-    public function get addressStyle():com.adobe.fiber.styles.Style
+    public function get lastNameStyle():com.adobe.fiber.styles.Style
     {
         return model_internal::_nullStyle;
     }
 
-    public function get addressValidator() : StyleValidator
+    public function get lastNameValidator() : StyleValidator
     {
-        return model_internal::_addressValidator;
+        return model_internal::_lastNameValidator;
     }
 
-    model_internal function set _addressIsValid_der(value:Boolean):void 
+    model_internal function set _lastNameIsValid_der(value:Boolean):void 
     {
-        var oldValue:Boolean = model_internal::_addressIsValid;         
+        var oldValue:Boolean = model_internal::_lastNameIsValid;         
         if (oldValue !== value)
         {
-            model_internal::_addressIsValid = value;
-            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "addressIsValid", oldValue, value));
+            model_internal::_lastNameIsValid = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "lastNameIsValid", oldValue, value));
         }                             
     }
 
     [Bindable(event="propertyChange")]
-    public function get addressIsValid():Boolean
+    public function get lastNameIsValid():Boolean
     {
-        if (!model_internal::_addressIsValidCacheInitialized)
+        if (!model_internal::_lastNameIsValidCacheInitialized)
         {
-            model_internal::calculateAddressIsValid();
+            model_internal::calculateLastNameIsValid();
         }
 
-        return model_internal::_addressIsValid;
+        return model_internal::_lastNameIsValid;
     }
 
-    model_internal function calculateAddressIsValid():void
+    model_internal function calculateLastNameIsValid():void
     {
-        var valRes:ValidationResultEvent = model_internal::_addressValidator.validate(model_internal::_instance.address)
-        model_internal::_addressIsValid_der = (valRes.results == null);
-        model_internal::_addressIsValidCacheInitialized = true;
+        var valRes:ValidationResultEvent = model_internal::_lastNameValidator.validate(model_internal::_instance.lastName)
+        model_internal::_lastNameIsValid_der = (valRes.results == null);
+        model_internal::_lastNameIsValidCacheInitialized = true;
         if (valRes.results == null)
-             model_internal::addressValidationFailureMessages_der = emptyArray;
+             model_internal::lastNameValidationFailureMessages_der = emptyArray;
         else
         {
             var _valFailures:Array = new Array();
@@ -722,22 +670,22 @@ internal class _AffiliateEntityMetadata extends com.adobe.fiber.valueobjects.Abs
             {
                 _valFailures.push(valRes.results[a].errorMessage);
             }
-            model_internal::addressValidationFailureMessages_der = _valFailures;
+            model_internal::lastNameValidationFailureMessages_der = _valFailures;
         }
     }
 
     [Bindable(event="propertyChange")]
-    public function get addressValidationFailureMessages():Array
+    public function get lastNameValidationFailureMessages():Array
     {
-        if (model_internal::_addressValidationFailureMessages == null)
-            model_internal::calculateAddressIsValid();
+        if (model_internal::_lastNameValidationFailureMessages == null)
+            model_internal::calculateLastNameIsValid();
 
-        return _addressValidationFailureMessages;
+        return _lastNameValidationFailureMessages;
     }
 
-    model_internal function set addressValidationFailureMessages_der(value:Array) : void
+    model_internal function set lastNameValidationFailureMessages_der(value:Array) : void
     {
-        var oldValue:Array = model_internal::_addressValidationFailureMessages;
+        var oldValue:Array = model_internal::_lastNameValidationFailureMessages;
 
         var needUpdate : Boolean = false;
         if (oldValue == null)
@@ -765,208 +713,8 @@ internal class _AffiliateEntityMetadata extends com.adobe.fiber.valueobjects.Abs
 
         if (needUpdate)
         {
-            model_internal::_addressValidationFailureMessages = value;   
-            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "addressValidationFailureMessages", oldValue, value));
-            // Only execute calculateIsValid if it has been called before, to update the validationFailureMessages for
-            // the entire entity.
-            if (model_internal::_instance.model_internal::_cacheInitialized_isValid)
-            {
-                model_internal::_instance.model_internal::isValid_der = model_internal::_instance.model_internal::calculateIsValid();
-            }
-        }
-    }
-
-    [Bindable(event="propertyChange")]   
-    public function get cityStyle():com.adobe.fiber.styles.Style
-    {
-        return model_internal::_nullStyle;
-    }
-
-    public function get cityValidator() : StyleValidator
-    {
-        return model_internal::_cityValidator;
-    }
-
-    model_internal function set _cityIsValid_der(value:Boolean):void 
-    {
-        var oldValue:Boolean = model_internal::_cityIsValid;         
-        if (oldValue !== value)
-        {
-            model_internal::_cityIsValid = value;
-            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "cityIsValid", oldValue, value));
-        }                             
-    }
-
-    [Bindable(event="propertyChange")]
-    public function get cityIsValid():Boolean
-    {
-        if (!model_internal::_cityIsValidCacheInitialized)
-        {
-            model_internal::calculateCityIsValid();
-        }
-
-        return model_internal::_cityIsValid;
-    }
-
-    model_internal function calculateCityIsValid():void
-    {
-        var valRes:ValidationResultEvent = model_internal::_cityValidator.validate(model_internal::_instance.city)
-        model_internal::_cityIsValid_der = (valRes.results == null);
-        model_internal::_cityIsValidCacheInitialized = true;
-        if (valRes.results == null)
-             model_internal::cityValidationFailureMessages_der = emptyArray;
-        else
-        {
-            var _valFailures:Array = new Array();
-            for (var a:int = 0 ; a<valRes.results.length ; a++)
-            {
-                _valFailures.push(valRes.results[a].errorMessage);
-            }
-            model_internal::cityValidationFailureMessages_der = _valFailures;
-        }
-    }
-
-    [Bindable(event="propertyChange")]
-    public function get cityValidationFailureMessages():Array
-    {
-        if (model_internal::_cityValidationFailureMessages == null)
-            model_internal::calculateCityIsValid();
-
-        return _cityValidationFailureMessages;
-    }
-
-    model_internal function set cityValidationFailureMessages_der(value:Array) : void
-    {
-        var oldValue:Array = model_internal::_cityValidationFailureMessages;
-
-        var needUpdate : Boolean = false;
-        if (oldValue == null)
-            needUpdate = true;
-    
-        // avoid firing the event when old and new value are different empty arrays
-        if (!needUpdate && (oldValue !== value && (oldValue.length > 0 || value.length > 0)))
-        {
-            if (oldValue.length == value.length)
-            {
-                for (var a:int=0; a < oldValue.length; a++)
-                {
-                    if (oldValue[a] !== value[a])
-                    {
-                        needUpdate = true;
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                needUpdate = true;
-            }
-        }
-
-        if (needUpdate)
-        {
-            model_internal::_cityValidationFailureMessages = value;   
-            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "cityValidationFailureMessages", oldValue, value));
-            // Only execute calculateIsValid if it has been called before, to update the validationFailureMessages for
-            // the entire entity.
-            if (model_internal::_instance.model_internal::_cacheInitialized_isValid)
-            {
-                model_internal::_instance.model_internal::isValid_der = model_internal::_instance.model_internal::calculateIsValid();
-            }
-        }
-    }
-
-    [Bindable(event="propertyChange")]   
-    public function get telephoneNumberStyle():com.adobe.fiber.styles.Style
-    {
-        return model_internal::_nullStyle;
-    }
-
-    public function get telephoneNumberValidator() : StyleValidator
-    {
-        return model_internal::_telephoneNumberValidator;
-    }
-
-    model_internal function set _telephoneNumberIsValid_der(value:Boolean):void 
-    {
-        var oldValue:Boolean = model_internal::_telephoneNumberIsValid;         
-        if (oldValue !== value)
-        {
-            model_internal::_telephoneNumberIsValid = value;
-            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "telephoneNumberIsValid", oldValue, value));
-        }                             
-    }
-
-    [Bindable(event="propertyChange")]
-    public function get telephoneNumberIsValid():Boolean
-    {
-        if (!model_internal::_telephoneNumberIsValidCacheInitialized)
-        {
-            model_internal::calculateTelephoneNumberIsValid();
-        }
-
-        return model_internal::_telephoneNumberIsValid;
-    }
-
-    model_internal function calculateTelephoneNumberIsValid():void
-    {
-        var valRes:ValidationResultEvent = model_internal::_telephoneNumberValidator.validate(model_internal::_instance.telephoneNumber)
-        model_internal::_telephoneNumberIsValid_der = (valRes.results == null);
-        model_internal::_telephoneNumberIsValidCacheInitialized = true;
-        if (valRes.results == null)
-             model_internal::telephoneNumberValidationFailureMessages_der = emptyArray;
-        else
-        {
-            var _valFailures:Array = new Array();
-            for (var a:int = 0 ; a<valRes.results.length ; a++)
-            {
-                _valFailures.push(valRes.results[a].errorMessage);
-            }
-            model_internal::telephoneNumberValidationFailureMessages_der = _valFailures;
-        }
-    }
-
-    [Bindable(event="propertyChange")]
-    public function get telephoneNumberValidationFailureMessages():Array
-    {
-        if (model_internal::_telephoneNumberValidationFailureMessages == null)
-            model_internal::calculateTelephoneNumberIsValid();
-
-        return _telephoneNumberValidationFailureMessages;
-    }
-
-    model_internal function set telephoneNumberValidationFailureMessages_der(value:Array) : void
-    {
-        var oldValue:Array = model_internal::_telephoneNumberValidationFailureMessages;
-
-        var needUpdate : Boolean = false;
-        if (oldValue == null)
-            needUpdate = true;
-    
-        // avoid firing the event when old and new value are different empty arrays
-        if (!needUpdate && (oldValue !== value && (oldValue.length > 0 || value.length > 0)))
-        {
-            if (oldValue.length == value.length)
-            {
-                for (var a:int=0; a < oldValue.length; a++)
-                {
-                    if (oldValue[a] !== value[a])
-                    {
-                        needUpdate = true;
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                needUpdate = true;
-            }
-        }
-
-        if (needUpdate)
-        {
-            model_internal::_telephoneNumberValidationFailureMessages = value;   
-            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "telephoneNumberValidationFailureMessages", oldValue, value));
+            model_internal::_lastNameValidationFailureMessages = value;   
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "lastNameValidationFailureMessages", oldValue, value));
             // Only execute calculateIsValid if it has been called before, to update the validationFailureMessages for
             // the entire entity.
             if (model_internal::_instance.model_internal::_cacheInitialized_isValid)
@@ -1077,44 +825,44 @@ internal class _AffiliateEntityMetadata extends com.adobe.fiber.valueobjects.Abs
     }
 
     [Bindable(event="propertyChange")]   
-    public function get passwordStyle():com.adobe.fiber.styles.Style
+    public function get telephoneNumberStyle():com.adobe.fiber.styles.Style
     {
         return model_internal::_nullStyle;
     }
 
-    public function get passwordValidator() : StyleValidator
+    public function get telephoneNumberValidator() : StyleValidator
     {
-        return model_internal::_passwordValidator;
+        return model_internal::_telephoneNumberValidator;
     }
 
-    model_internal function set _passwordIsValid_der(value:Boolean):void 
+    model_internal function set _telephoneNumberIsValid_der(value:Boolean):void 
     {
-        var oldValue:Boolean = model_internal::_passwordIsValid;         
+        var oldValue:Boolean = model_internal::_telephoneNumberIsValid;         
         if (oldValue !== value)
         {
-            model_internal::_passwordIsValid = value;
-            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "passwordIsValid", oldValue, value));
+            model_internal::_telephoneNumberIsValid = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "telephoneNumberIsValid", oldValue, value));
         }                             
     }
 
     [Bindable(event="propertyChange")]
-    public function get passwordIsValid():Boolean
+    public function get telephoneNumberIsValid():Boolean
     {
-        if (!model_internal::_passwordIsValidCacheInitialized)
+        if (!model_internal::_telephoneNumberIsValidCacheInitialized)
         {
-            model_internal::calculatePasswordIsValid();
+            model_internal::calculateTelephoneNumberIsValid();
         }
 
-        return model_internal::_passwordIsValid;
+        return model_internal::_telephoneNumberIsValid;
     }
 
-    model_internal function calculatePasswordIsValid():void
+    model_internal function calculateTelephoneNumberIsValid():void
     {
-        var valRes:ValidationResultEvent = model_internal::_passwordValidator.validate(model_internal::_instance.password)
-        model_internal::_passwordIsValid_der = (valRes.results == null);
-        model_internal::_passwordIsValidCacheInitialized = true;
+        var valRes:ValidationResultEvent = model_internal::_telephoneNumberValidator.validate(model_internal::_instance.telephoneNumber)
+        model_internal::_telephoneNumberIsValid_der = (valRes.results == null);
+        model_internal::_telephoneNumberIsValidCacheInitialized = true;
         if (valRes.results == null)
-             model_internal::passwordValidationFailureMessages_der = emptyArray;
+             model_internal::telephoneNumberValidationFailureMessages_der = emptyArray;
         else
         {
             var _valFailures:Array = new Array();
@@ -1122,22 +870,22 @@ internal class _AffiliateEntityMetadata extends com.adobe.fiber.valueobjects.Abs
             {
                 _valFailures.push(valRes.results[a].errorMessage);
             }
-            model_internal::passwordValidationFailureMessages_der = _valFailures;
+            model_internal::telephoneNumberValidationFailureMessages_der = _valFailures;
         }
     }
 
     [Bindable(event="propertyChange")]
-    public function get passwordValidationFailureMessages():Array
+    public function get telephoneNumberValidationFailureMessages():Array
     {
-        if (model_internal::_passwordValidationFailureMessages == null)
-            model_internal::calculatePasswordIsValid();
+        if (model_internal::_telephoneNumberValidationFailureMessages == null)
+            model_internal::calculateTelephoneNumberIsValid();
 
-        return _passwordValidationFailureMessages;
+        return _telephoneNumberValidationFailureMessages;
     }
 
-    model_internal function set passwordValidationFailureMessages_der(value:Array) : void
+    model_internal function set telephoneNumberValidationFailureMessages_der(value:Array) : void
     {
-        var oldValue:Array = model_internal::_passwordValidationFailureMessages;
+        var oldValue:Array = model_internal::_telephoneNumberValidationFailureMessages;
 
         var needUpdate : Boolean = false;
         if (oldValue == null)
@@ -1165,8 +913,8 @@ internal class _AffiliateEntityMetadata extends com.adobe.fiber.valueobjects.Abs
 
         if (needUpdate)
         {
-            model_internal::_passwordValidationFailureMessages = value;   
-            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "passwordValidationFailureMessages", oldValue, value));
+            model_internal::_telephoneNumberValidationFailureMessages = value;   
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "telephoneNumberValidationFailureMessages", oldValue, value));
             // Only execute calculateIsValid if it has been called before, to update the validationFailureMessages for
             // the entire entity.
             if (model_internal::_instance.model_internal::_cacheInitialized_isValid)
@@ -1205,29 +953,21 @@ internal class _AffiliateEntityMetadata extends com.adobe.fiber.valueobjects.Abs
             {
                 return idValidationFailureMessages;
             }
-            case("name"):
+            case("firstName"):
             {
-                return nameValidationFailureMessages;
+                return firstNameValidationFailureMessages;
             }
-            case("address"):
+            case("lastName"):
             {
-                return addressValidationFailureMessages;
-            }
-            case("city"):
-            {
-                return cityValidationFailureMessages;
-            }
-            case("telephoneNumber"):
-            {
-                return telephoneNumberValidationFailureMessages;
+                return lastNameValidationFailureMessages;
             }
             case("email"):
             {
                 return emailValidationFailureMessages;
             }
-            case("password"):
+            case("telephoneNumber"):
             {
-                return passwordValidationFailureMessages;
+                return telephoneNumberValidationFailureMessages;
             }
             default:
             {
