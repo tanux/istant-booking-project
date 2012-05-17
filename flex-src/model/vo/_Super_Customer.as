@@ -1,6 +1,6 @@
 /**
  * This is a generated class and is not intended for modification.  To customize behavior
- * of this value object you may modify the generated sub-class of this class - Affiliate.as.
+ * of this value object you may modify the generated sub-class of this class - Customer.as.
  */
 
 package model.vo
@@ -24,20 +24,20 @@ import com.adobe.fiber.valueobjects.AvailablePropertyIterator;
 use namespace model_internal;
 
 [ExcludeClass]
-public class _Super_Affiliate extends flash.events.EventDispatcher implements com.adobe.fiber.valueobjects.IValueObject
+public class _Super_Customer extends flash.events.EventDispatcher implements com.adobe.fiber.valueobjects.IValueObject
 {
     model_internal static function initRemoteClassAliasSingle(cz:Class) : void
     {
         try
         {
-            if (flash.net.getClassByAlias("Affiliate") == null)
+            if (flash.net.getClassByAlias("Customer") == null)
             {
-                flash.net.registerClassAlias("Affiliate", cz);
+                flash.net.registerClassAlias("Customer", cz);
             }
         }
         catch (e:Error)
         {
-            flash.net.registerClassAlias("Affiliate", cz);
+            flash.net.registerClassAlias("Customer", cz);
         }
     }
 
@@ -45,7 +45,7 @@ public class _Super_Affiliate extends flash.events.EventDispatcher implements co
     {
     }
 
-    model_internal var _dminternal_model : _AffiliateEntityMetadata;
+    model_internal var _dminternal_model : _CustomerEntityMetadata;
     model_internal var _changedObjects:mx.collections.ArrayCollection = new ArrayCollection();
 
     public function getChangedObjects() : Array
@@ -63,12 +63,10 @@ public class _Super_Affiliate extends flash.events.EventDispatcher implements co
      * properties
      */
     private var _internal_id : Object;
-    private var _internal_name : Object;
-    private var _internal_address : Object;
-    private var _internal_city : Object;
-    private var _internal_telephoneNumber : Object;
+    private var _internal_firstName : Object;
+    private var _internal_lastName : Object;
     private var _internal_email : Object;
-    private var _internal_password : Object;
+    private var _internal_telephoneNumber : Object;
 
     private static var emptyArray:Array = new Array();
 
@@ -80,18 +78,16 @@ public class _Super_Affiliate extends flash.events.EventDispatcher implements co
 
     model_internal var _changeWatcherArray:Array = new Array();
 
-    public function _Super_Affiliate()
+    public function _Super_Customer()
     {
-        _model = new _AffiliateEntityMetadata(this);
+        _model = new _CustomerEntityMetadata(this);
 
         // Bind to own data or source properties for cache invalidation triggering
         model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "id", model_internal::setterListenerId));
-        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "name", model_internal::setterListenerName));
-        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "address", model_internal::setterListenerAddress));
-        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "city", model_internal::setterListenerCity));
-        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "telephoneNumber", model_internal::setterListenerTelephoneNumber));
+        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "firstName", model_internal::setterListenerFirstName));
+        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "lastName", model_internal::setterListenerLastName));
         model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "email", model_internal::setterListenerEmail));
-        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "password", model_internal::setterListenerPassword));
+        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "telephoneNumber", model_internal::setterListenerTelephoneNumber));
 
     }
 
@@ -106,27 +102,15 @@ public class _Super_Affiliate extends flash.events.EventDispatcher implements co
     }
 
     [Bindable(event="propertyChange")]
-    public function get name() : Object
+    public function get firstName() : Object
     {
-        return _internal_name;
+        return _internal_firstName;
     }
 
     [Bindable(event="propertyChange")]
-    public function get address() : Object
+    public function get lastName() : Object
     {
-        return _internal_address;
-    }
-
-    [Bindable(event="propertyChange")]
-    public function get city() : Object
-    {
-        return _internal_city;
-    }
-
-    [Bindable(event="propertyChange")]
-    public function get telephoneNumber() : Object
-    {
-        return _internal_telephoneNumber;
+        return _internal_lastName;
     }
 
     [Bindable(event="propertyChange")]
@@ -136,9 +120,9 @@ public class _Super_Affiliate extends flash.events.EventDispatcher implements co
     }
 
     [Bindable(event="propertyChange")]
-    public function get password() : Object
+    public function get telephoneNumber() : Object
     {
-        return _internal_password;
+        return _internal_telephoneNumber;
     }
 
     public function clearAssociations() : void
@@ -159,43 +143,23 @@ public class _Super_Affiliate extends flash.events.EventDispatcher implements co
         }
     }
 
-    public function set name(value:Object) : void
+    public function set firstName(value:Object) : void
     {
-        var oldValue:Object = _internal_name;
+        var oldValue:Object = _internal_firstName;
         if (oldValue !== value)
         {
-            _internal_name = value;
-            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "name", oldValue, _internal_name));
+            _internal_firstName = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "firstName", oldValue, _internal_firstName));
         }
     }
 
-    public function set address(value:Object) : void
+    public function set lastName(value:Object) : void
     {
-        var oldValue:Object = _internal_address;
+        var oldValue:Object = _internal_lastName;
         if (oldValue !== value)
         {
-            _internal_address = value;
-            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "address", oldValue, _internal_address));
-        }
-    }
-
-    public function set city(value:Object) : void
-    {
-        var oldValue:Object = _internal_city;
-        if (oldValue !== value)
-        {
-            _internal_city = value;
-            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "city", oldValue, _internal_city));
-        }
-    }
-
-    public function set telephoneNumber(value:Object) : void
-    {
-        var oldValue:Object = _internal_telephoneNumber;
-        if (oldValue !== value)
-        {
-            _internal_telephoneNumber = value;
-            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "telephoneNumber", oldValue, _internal_telephoneNumber));
+            _internal_lastName = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "lastName", oldValue, _internal_lastName));
         }
     }
 
@@ -209,13 +173,13 @@ public class _Super_Affiliate extends flash.events.EventDispatcher implements co
         }
     }
 
-    public function set password(value:Object) : void
+    public function set telephoneNumber(value:Object) : void
     {
-        var oldValue:Object = _internal_password;
+        var oldValue:Object = _internal_telephoneNumber;
         if (oldValue !== value)
         {
-            _internal_password = value;
-            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "password", oldValue, _internal_password));
+            _internal_telephoneNumber = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "telephoneNumber", oldValue, _internal_telephoneNumber));
         }
     }
 
@@ -236,24 +200,14 @@ public class _Super_Affiliate extends flash.events.EventDispatcher implements co
         _model.invalidateDependentOnId();
     }
 
-    model_internal function setterListenerName(value:flash.events.Event):void
+    model_internal function setterListenerFirstName(value:flash.events.Event):void
     {
-        _model.invalidateDependentOnName();
+        _model.invalidateDependentOnFirstName();
     }
 
-    model_internal function setterListenerAddress(value:flash.events.Event):void
+    model_internal function setterListenerLastName(value:flash.events.Event):void
     {
-        _model.invalidateDependentOnAddress();
-    }
-
-    model_internal function setterListenerCity(value:flash.events.Event):void
-    {
-        _model.invalidateDependentOnCity();
-    }
-
-    model_internal function setterListenerTelephoneNumber(value:flash.events.Event):void
-    {
-        _model.invalidateDependentOnTelephoneNumber();
+        _model.invalidateDependentOnLastName();
     }
 
     model_internal function setterListenerEmail(value:flash.events.Event):void
@@ -261,9 +215,9 @@ public class _Super_Affiliate extends flash.events.EventDispatcher implements co
         _model.invalidateDependentOnEmail();
     }
 
-    model_internal function setterListenerPassword(value:flash.events.Event):void
+    model_internal function setterListenerTelephoneNumber(value:flash.events.Event):void
     {
-        _model.invalidateDependentOnPassword();
+        _model.invalidateDependentOnTelephoneNumber();
     }
 
 
@@ -292,35 +246,25 @@ public class _Super_Affiliate extends flash.events.EventDispatcher implements co
             propertyValidity = false;
             com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_idValidationFailureMessages);
         }
-        if (!_model.nameIsValid)
+        if (!_model.firstNameIsValid)
         {
             propertyValidity = false;
-            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_nameValidationFailureMessages);
+            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_firstNameValidationFailureMessages);
         }
-        if (!_model.addressIsValid)
+        if (!_model.lastNameIsValid)
         {
             propertyValidity = false;
-            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_addressValidationFailureMessages);
-        }
-        if (!_model.cityIsValid)
-        {
-            propertyValidity = false;
-            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_cityValidationFailureMessages);
-        }
-        if (!_model.telephoneNumberIsValid)
-        {
-            propertyValidity = false;
-            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_telephoneNumberValidationFailureMessages);
+            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_lastNameValidationFailureMessages);
         }
         if (!_model.emailIsValid)
         {
             propertyValidity = false;
             com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_emailValidationFailureMessages);
         }
-        if (!_model.passwordIsValid)
+        if (!_model.telephoneNumberIsValid)
         {
             propertyValidity = false;
-            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_passwordValidationFailureMessages);
+            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_telephoneNumberValidationFailureMessages);
         }
 
         model_internal::_cacheInitialized_isValid = true;
@@ -349,14 +293,14 @@ public class _Super_Affiliate extends flash.events.EventDispatcher implements co
 
     [Transient]
     [Bindable(event="propertyChange")]
-    public function get _model() : _AffiliateEntityMetadata
+    public function get _model() : _CustomerEntityMetadata
     {
         return model_internal::_dminternal_model;
     }
 
-    public function set _model(value : _AffiliateEntityMetadata) : void
+    public function set _model(value : _CustomerEntityMetadata) : void
     {
-        var oldValue : _AffiliateEntityMetadata = model_internal::_dminternal_model;
+        var oldValue : _CustomerEntityMetadata = model_internal::_dminternal_model;
         if (oldValue !== value)
         {
             model_internal::_dminternal_model = value;
@@ -428,110 +372,56 @@ public class _Super_Affiliate extends flash.events.EventDispatcher implements co
         return validationFailures;
     }
     
-    model_internal var _doValidationCacheOfName : Array = null;
-    model_internal var _doValidationLastValOfName : Object;
+    model_internal var _doValidationCacheOfFirstName : Array = null;
+    model_internal var _doValidationLastValOfFirstName : Object;
 
-    model_internal function _doValidationForName(valueIn:Object):Array
+    model_internal function _doValidationForFirstName(valueIn:Object):Array
     {
         var value : Object = valueIn as Object;
 
-        if (model_internal::_doValidationCacheOfName != null && model_internal::_doValidationLastValOfName == value)
-           return model_internal::_doValidationCacheOfName ;
+        if (model_internal::_doValidationCacheOfFirstName != null && model_internal::_doValidationLastValOfFirstName == value)
+           return model_internal::_doValidationCacheOfFirstName ;
 
-        _model.model_internal::_nameIsValidCacheInitialized = true;
+        _model.model_internal::_firstNameIsValidCacheInitialized = true;
         var validationFailures:Array = new Array();
         var errorMessage:String;
         var failure:Boolean;
 
         var valRes:ValidationResult;
-        if (_model.isNameAvailable && _internal_name == null)
+        if (_model.isFirstNameAvailable && _internal_firstName == null)
         {
-            validationFailures.push(new ValidationResult(true, "", "", "name is required"));
+            validationFailures.push(new ValidationResult(true, "", "", "firstName is required"));
         }
 
-        model_internal::_doValidationCacheOfName = validationFailures;
-        model_internal::_doValidationLastValOfName = value;
+        model_internal::_doValidationCacheOfFirstName = validationFailures;
+        model_internal::_doValidationLastValOfFirstName = value;
 
         return validationFailures;
     }
     
-    model_internal var _doValidationCacheOfAddress : Array = null;
-    model_internal var _doValidationLastValOfAddress : Object;
+    model_internal var _doValidationCacheOfLastName : Array = null;
+    model_internal var _doValidationLastValOfLastName : Object;
 
-    model_internal function _doValidationForAddress(valueIn:Object):Array
+    model_internal function _doValidationForLastName(valueIn:Object):Array
     {
         var value : Object = valueIn as Object;
 
-        if (model_internal::_doValidationCacheOfAddress != null && model_internal::_doValidationLastValOfAddress == value)
-           return model_internal::_doValidationCacheOfAddress ;
+        if (model_internal::_doValidationCacheOfLastName != null && model_internal::_doValidationLastValOfLastName == value)
+           return model_internal::_doValidationCacheOfLastName ;
 
-        _model.model_internal::_addressIsValidCacheInitialized = true;
+        _model.model_internal::_lastNameIsValidCacheInitialized = true;
         var validationFailures:Array = new Array();
         var errorMessage:String;
         var failure:Boolean;
 
         var valRes:ValidationResult;
-        if (_model.isAddressAvailable && _internal_address == null)
+        if (_model.isLastNameAvailable && _internal_lastName == null)
         {
-            validationFailures.push(new ValidationResult(true, "", "", "address is required"));
+            validationFailures.push(new ValidationResult(true, "", "", "lastName is required"));
         }
 
-        model_internal::_doValidationCacheOfAddress = validationFailures;
-        model_internal::_doValidationLastValOfAddress = value;
-
-        return validationFailures;
-    }
-    
-    model_internal var _doValidationCacheOfCity : Array = null;
-    model_internal var _doValidationLastValOfCity : Object;
-
-    model_internal function _doValidationForCity(valueIn:Object):Array
-    {
-        var value : Object = valueIn as Object;
-
-        if (model_internal::_doValidationCacheOfCity != null && model_internal::_doValidationLastValOfCity == value)
-           return model_internal::_doValidationCacheOfCity ;
-
-        _model.model_internal::_cityIsValidCacheInitialized = true;
-        var validationFailures:Array = new Array();
-        var errorMessage:String;
-        var failure:Boolean;
-
-        var valRes:ValidationResult;
-        if (_model.isCityAvailable && _internal_city == null)
-        {
-            validationFailures.push(new ValidationResult(true, "", "", "city is required"));
-        }
-
-        model_internal::_doValidationCacheOfCity = validationFailures;
-        model_internal::_doValidationLastValOfCity = value;
-
-        return validationFailures;
-    }
-    
-    model_internal var _doValidationCacheOfTelephoneNumber : Array = null;
-    model_internal var _doValidationLastValOfTelephoneNumber : Object;
-
-    model_internal function _doValidationForTelephoneNumber(valueIn:Object):Array
-    {
-        var value : Object = valueIn as Object;
-
-        if (model_internal::_doValidationCacheOfTelephoneNumber != null && model_internal::_doValidationLastValOfTelephoneNumber == value)
-           return model_internal::_doValidationCacheOfTelephoneNumber ;
-
-        _model.model_internal::_telephoneNumberIsValidCacheInitialized = true;
-        var validationFailures:Array = new Array();
-        var errorMessage:String;
-        var failure:Boolean;
-
-        var valRes:ValidationResult;
-        if (_model.isTelephoneNumberAvailable && _internal_telephoneNumber == null)
-        {
-            validationFailures.push(new ValidationResult(true, "", "", "telephoneNumber is required"));
-        }
-
-        model_internal::_doValidationCacheOfTelephoneNumber = validationFailures;
-        model_internal::_doValidationLastValOfTelephoneNumber = value;
+        model_internal::_doValidationCacheOfLastName = validationFailures;
+        model_internal::_doValidationLastValOfLastName = value;
 
         return validationFailures;
     }
@@ -563,29 +453,29 @@ public class _Super_Affiliate extends flash.events.EventDispatcher implements co
         return validationFailures;
     }
     
-    model_internal var _doValidationCacheOfPassword : Array = null;
-    model_internal var _doValidationLastValOfPassword : Object;
+    model_internal var _doValidationCacheOfTelephoneNumber : Array = null;
+    model_internal var _doValidationLastValOfTelephoneNumber : Object;
 
-    model_internal function _doValidationForPassword(valueIn:Object):Array
+    model_internal function _doValidationForTelephoneNumber(valueIn:Object):Array
     {
         var value : Object = valueIn as Object;
 
-        if (model_internal::_doValidationCacheOfPassword != null && model_internal::_doValidationLastValOfPassword == value)
-           return model_internal::_doValidationCacheOfPassword ;
+        if (model_internal::_doValidationCacheOfTelephoneNumber != null && model_internal::_doValidationLastValOfTelephoneNumber == value)
+           return model_internal::_doValidationCacheOfTelephoneNumber ;
 
-        _model.model_internal::_passwordIsValidCacheInitialized = true;
+        _model.model_internal::_telephoneNumberIsValidCacheInitialized = true;
         var validationFailures:Array = new Array();
         var errorMessage:String;
         var failure:Boolean;
 
         var valRes:ValidationResult;
-        if (_model.isPasswordAvailable && _internal_password == null)
+        if (_model.isTelephoneNumberAvailable && _internal_telephoneNumber == null)
         {
-            validationFailures.push(new ValidationResult(true, "", "", "password is required"));
+            validationFailures.push(new ValidationResult(true, "", "", "telephoneNumber is required"));
         }
 
-        model_internal::_doValidationCacheOfPassword = validationFailures;
-        model_internal::_doValidationLastValOfPassword = value;
+        model_internal::_doValidationCacheOfTelephoneNumber = validationFailures;
+        model_internal::_doValidationLastValOfTelephoneNumber = value;
 
         return validationFailures;
     }

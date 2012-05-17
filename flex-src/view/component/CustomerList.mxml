@@ -13,14 +13,15 @@
 			<vo:Person name="Gianluca" surname="De Ceglie" mail="g.deceglie@live.it" tel="0123456789"/>
 			<vo:Person name="Ruggero" surname="De Ceglie" mail="r.deceglie@alice.it" tel="0123456789"/>
 		</s:ArrayCollection>
-		
-
 	</fx:Declarations>
+	
 	<fx:Script>
-		<![CDATA[
+		<![CDATA[			
+			import model.vo.Customer;
+			[Bindable]public var customerList:ArrayCollection;
 			private function makeNameSurnameLabel(item:Object) : String {
-				var p:Person = item as Person;
-				return p.name + " " + p.surname + " " + p.mail + " " + p.tel ;
+				var c:Customer = item as Customer;
+				return c.firstName + " " + c.lastName + " " + c.email + " " + c.telephoneNumber ;
 			}
 		]]>
 	</fx:Script>
@@ -30,7 +31,7 @@
 		<mx:Canvas>
 			<mx:Box>
 				<components:AutoComplete text="Cerca..." paddingTop="1" textAlign="right"
-										 id="advancedAutoComplete" dataProvider="{listPerson}"
+										 id="advancedAutoComplete" dataProvider="{customerList}"
 										 labelFunction="makeNameSurnameLabel"
 										 matchType="word"
 										 showRemoveIcon="true"
@@ -42,7 +43,7 @@
 		</mx:Canvas>
 	</mx:HBox>
 	
-	<mx:DataGrid id="dgRisultati" width="100%" height="50%" dataProvider="{listPerson}">
+	<mx:DataGrid id="dgCustomerList" width="100%" height="50%" dataProvider="{customerList}">
 		<mx:columns>
 			<mx:DataGridColumn id="clmNome" dataField="name" headerText="Nome" />
 			<mx:DataGridColumn id="clmCognome" dataField="surname" headerText="Cognome" />
