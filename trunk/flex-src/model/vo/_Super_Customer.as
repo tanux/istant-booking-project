@@ -6,14 +6,10 @@
 package model.vo
 {
 import com.adobe.fiber.services.IFiberManagingService;
-import com.adobe.fiber.util.FiberUtils;
 import com.adobe.fiber.valueobjects.IValueObject;
-import flash.events.Event;
 import flash.events.EventDispatcher;
-import mx.binding.utils.ChangeWatcher;
 import mx.collections.ArrayCollection;
 import mx.events.PropertyChangeEvent;
-import mx.validators.ValidationResult;
 
 import flash.net.registerClassAlias;
 import flash.net.getClassByAlias;
@@ -83,11 +79,6 @@ public class _Super_Customer extends flash.events.EventDispatcher implements com
         _model = new _CustomerEntityMetadata(this);
 
         // Bind to own data or source properties for cache invalidation triggering
-        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "id", model_internal::setterListenerId));
-        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "firstName", model_internal::setterListenerFirstName));
-        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "lastName", model_internal::setterListenerLastName));
-        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "email", model_internal::setterListenerEmail));
-        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "telephoneNumber", model_internal::setterListenerTelephoneNumber));
 
     }
 
@@ -195,31 +186,6 @@ public class _Super_Customer extends flash.events.EventDispatcher implements com
      *  - the validity of the property (and the containing entity) if the given data property is required.
      */
 
-    model_internal function setterListenerId(value:flash.events.Event):void
-    {
-        _model.invalidateDependentOnId();
-    }
-
-    model_internal function setterListenerFirstName(value:flash.events.Event):void
-    {
-        _model.invalidateDependentOnFirstName();
-    }
-
-    model_internal function setterListenerLastName(value:flash.events.Event):void
-    {
-        _model.invalidateDependentOnLastName();
-    }
-
-    model_internal function setterListenerEmail(value:flash.events.Event):void
-    {
-        _model.invalidateDependentOnEmail();
-    }
-
-    model_internal function setterListenerTelephoneNumber(value:flash.events.Event):void
-    {
-        _model.invalidateDependentOnTelephoneNumber();
-    }
-
 
     /**
      * valid related derived properties
@@ -241,31 +207,6 @@ public class _Super_Customer extends flash.events.EventDispatcher implements com
         var validationFailureMessages:Array = new Array();
 
         var propertyValidity:Boolean = true;
-        if (!_model.idIsValid)
-        {
-            propertyValidity = false;
-            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_idValidationFailureMessages);
-        }
-        if (!_model.firstNameIsValid)
-        {
-            propertyValidity = false;
-            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_firstNameValidationFailureMessages);
-        }
-        if (!_model.lastNameIsValid)
-        {
-            propertyValidity = false;
-            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_lastNameValidationFailureMessages);
-        }
-        if (!_model.emailIsValid)
-        {
-            propertyValidity = false;
-            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_emailValidationFailureMessages);
-        }
-        if (!_model.telephoneNumberIsValid)
-        {
-            propertyValidity = false;
-            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_telephoneNumberValidationFailureMessages);
-        }
 
         model_internal::_cacheInitialized_isValid = true;
         model_internal::invalidConstraints_der = violatedConsts;
@@ -345,141 +286,6 @@ public class _Super_Customer extends flash.events.EventDispatcher implements com
         }
     }
 
-    model_internal var _doValidationCacheOfId : Array = null;
-    model_internal var _doValidationLastValOfId : Object;
-
-    model_internal function _doValidationForId(valueIn:Object):Array
-    {
-        var value : Object = valueIn as Object;
-
-        if (model_internal::_doValidationCacheOfId != null && model_internal::_doValidationLastValOfId == value)
-           return model_internal::_doValidationCacheOfId ;
-
-        _model.model_internal::_idIsValidCacheInitialized = true;
-        var validationFailures:Array = new Array();
-        var errorMessage:String;
-        var failure:Boolean;
-
-        var valRes:ValidationResult;
-        if (_model.isIdAvailable && _internal_id == null)
-        {
-            validationFailures.push(new ValidationResult(true, "", "", "id is required"));
-        }
-
-        model_internal::_doValidationCacheOfId = validationFailures;
-        model_internal::_doValidationLastValOfId = value;
-
-        return validationFailures;
-    }
-    
-    model_internal var _doValidationCacheOfFirstName : Array = null;
-    model_internal var _doValidationLastValOfFirstName : Object;
-
-    model_internal function _doValidationForFirstName(valueIn:Object):Array
-    {
-        var value : Object = valueIn as Object;
-
-        if (model_internal::_doValidationCacheOfFirstName != null && model_internal::_doValidationLastValOfFirstName == value)
-           return model_internal::_doValidationCacheOfFirstName ;
-
-        _model.model_internal::_firstNameIsValidCacheInitialized = true;
-        var validationFailures:Array = new Array();
-        var errorMessage:String;
-        var failure:Boolean;
-
-        var valRes:ValidationResult;
-        if (_model.isFirstNameAvailable && _internal_firstName == null)
-        {
-            validationFailures.push(new ValidationResult(true, "", "", "firstName is required"));
-        }
-
-        model_internal::_doValidationCacheOfFirstName = validationFailures;
-        model_internal::_doValidationLastValOfFirstName = value;
-
-        return validationFailures;
-    }
-    
-    model_internal var _doValidationCacheOfLastName : Array = null;
-    model_internal var _doValidationLastValOfLastName : Object;
-
-    model_internal function _doValidationForLastName(valueIn:Object):Array
-    {
-        var value : Object = valueIn as Object;
-
-        if (model_internal::_doValidationCacheOfLastName != null && model_internal::_doValidationLastValOfLastName == value)
-           return model_internal::_doValidationCacheOfLastName ;
-
-        _model.model_internal::_lastNameIsValidCacheInitialized = true;
-        var validationFailures:Array = new Array();
-        var errorMessage:String;
-        var failure:Boolean;
-
-        var valRes:ValidationResult;
-        if (_model.isLastNameAvailable && _internal_lastName == null)
-        {
-            validationFailures.push(new ValidationResult(true, "", "", "lastName is required"));
-        }
-
-        model_internal::_doValidationCacheOfLastName = validationFailures;
-        model_internal::_doValidationLastValOfLastName = value;
-
-        return validationFailures;
-    }
-    
-    model_internal var _doValidationCacheOfEmail : Array = null;
-    model_internal var _doValidationLastValOfEmail : Object;
-
-    model_internal function _doValidationForEmail(valueIn:Object):Array
-    {
-        var value : Object = valueIn as Object;
-
-        if (model_internal::_doValidationCacheOfEmail != null && model_internal::_doValidationLastValOfEmail == value)
-           return model_internal::_doValidationCacheOfEmail ;
-
-        _model.model_internal::_emailIsValidCacheInitialized = true;
-        var validationFailures:Array = new Array();
-        var errorMessage:String;
-        var failure:Boolean;
-
-        var valRes:ValidationResult;
-        if (_model.isEmailAvailable && _internal_email == null)
-        {
-            validationFailures.push(new ValidationResult(true, "", "", "email is required"));
-        }
-
-        model_internal::_doValidationCacheOfEmail = validationFailures;
-        model_internal::_doValidationLastValOfEmail = value;
-
-        return validationFailures;
-    }
-    
-    model_internal var _doValidationCacheOfTelephoneNumber : Array = null;
-    model_internal var _doValidationLastValOfTelephoneNumber : Object;
-
-    model_internal function _doValidationForTelephoneNumber(valueIn:Object):Array
-    {
-        var value : Object = valueIn as Object;
-
-        if (model_internal::_doValidationCacheOfTelephoneNumber != null && model_internal::_doValidationLastValOfTelephoneNumber == value)
-           return model_internal::_doValidationCacheOfTelephoneNumber ;
-
-        _model.model_internal::_telephoneNumberIsValidCacheInitialized = true;
-        var validationFailures:Array = new Array();
-        var errorMessage:String;
-        var failure:Boolean;
-
-        var valRes:ValidationResult;
-        if (_model.isTelephoneNumberAvailable && _internal_telephoneNumber == null)
-        {
-            validationFailures.push(new ValidationResult(true, "", "", "telephoneNumber is required"));
-        }
-
-        model_internal::_doValidationCacheOfTelephoneNumber = validationFailures;
-        model_internal::_doValidationLastValOfTelephoneNumber = value;
-
-        return validationFailures;
-    }
-    
 
 }
 

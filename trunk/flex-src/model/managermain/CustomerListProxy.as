@@ -2,6 +2,7 @@ package model.managermain
 {
 	import model.services.CustomersService;
 	
+	import mx.controls.Alert;
 	import mx.messaging.messages.RemotingMessage;
 	import mx.rpc.AsyncToken;
 	import mx.rpc.Responder;
@@ -31,13 +32,12 @@ package model.managermain
 		private function onResult(evt:ResultEvent):void{
 			switch( (evt.token.message as RemotingMessage).operation){
 				case "getCustomerList":
-					if (evt.result != null){
+					if (evt.result != null){						
 						sendNotification(ApplicationFacade.GET_CUSTOMER_LIST_SUCCESS, evt.result);
 					}
 					else{
 						sendNotification(ApplicationFacade.GET_CUSTOMER_LIST_ERROR);
-					}
-						
+					}						
 					break;
 			}	
 		}
