@@ -2,6 +2,8 @@ package view.managermain
 {
 	import flash.events.Event;
 	
+	import model.vo.Customer;	
+	
 	import mx.collections.ArrayCollection;
 	import mx.controls.Alert;
 	
@@ -16,16 +18,16 @@ package view.managermain
 		public static const NAME:String = "CustomerListMediator";
 		
 		public function CustomerListMediator(viewComponent:Object){
-			super(NAME, viewComponent);
+			super(NAME, viewComponent);			
 		}
 		
 		private function init(evt:Event) : void {}
 		
 		override public function handleNotification(notification:INotification):void{
 			switch (notification.getName()){
-				case ApplicationFacade.GET_CUSTOMER_LIST_SUCCESS:
+				case ApplicationFacade.GET_CUSTOMER_LIST_SUCCESS:					
 					var customerListResult:ArrayCollection = notification.getBody() as ArrayCollection;
-					customerList.customerList = customerListResult;
+					customerListCmp.customerList = customerListResult;					
 					break;
 				case ApplicationFacade.GET_CUSTOMER_LIST_ERROR:
 					Alert.show("Lista Clienti: Errore nel prelevamento dati");
@@ -34,6 +36,7 @@ package view.managermain
 					Alert.show("CustomerList: Fault");
 					break;
 			}
+
 		}
 		
 		override public function listNotificationInterests():Array{
@@ -44,8 +47,10 @@ package view.managermain
 			];
 		}
 		
-		public function get customerList():CustomerList{
+		public function get customerListCmp():CustomerList{
 			return viewComponent as CustomerList;
 		}
+		
+		
 	}
 }

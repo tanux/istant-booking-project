@@ -10,7 +10,6 @@ package controller.managermain
 	
 	public class GetCustomerListCommand extends SimpleCommand implements ICommand{
 		override public function execute(notification:INotification):void{
-			Alert.show("Eccomi");
 			if (facade.hasProxy(CustomerListProxy.NAME)){
 				var customerListProxy:CustomerListProxy = facade.retrieveProxy(CustomerListProxy.NAME) as CustomerListProxy;
 				customerListProxy.getCustomerList();
@@ -18,7 +17,7 @@ package controller.managermain
 			else{
 				var newCustomerListProxy:CustomerListProxy = new CustomerListProxy(CustomerListProxy.NAME);
 				newCustomerListProxy.getCustomerList();
-				facade.registerProxy(customerListProxy);
+				facade.registerProxy(newCustomerListProxy);
 			}
 		}
 	}

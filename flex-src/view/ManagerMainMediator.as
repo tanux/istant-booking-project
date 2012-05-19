@@ -72,9 +72,8 @@ package view
 					managerMain.cmpControlBar.btnSettings.addEventListener(MouseEvent.CLICK, goToSetting);
 					managerMain.cmpControlBar.btnLogout.addEventListener(MouseEvent.CLICK, doLogout);
 					facade.registerMediator(new CustomerListMediator(managerMain.cmpCustomerList));					
-					facade.sendNotification(ApplicationFacade.GET_CUSTOMER_LIST);
 					facade.registerCommand(ApplicationFacade.GET_CUSTOMER_LIST,GetCustomerListCommand);
-					
+					facade.sendNotification(ApplicationFacade.GET_CUSTOMER_LIST);										
 					break;
 				case ApplicationFacade.MANAGER_LOGIN_ERROR:
 					CursorManager.removeBusyCursor();
@@ -103,7 +102,7 @@ package view
 				
 		
 		public function get managerMain():ManagerMain{
-			return viewComponent as ManagerMain;
+			return viewComponent as ManagerMain;			
 		}
 	}
 }

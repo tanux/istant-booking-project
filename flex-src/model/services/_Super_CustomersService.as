@@ -7,7 +7,6 @@ package model.services
 import com.adobe.fiber.core.model_internal;
 import com.adobe.fiber.services.wrapper.RemoteObjectServiceWrapper;
 import com.adobe.serializers.utility.TypeUtility;
-import model.vo.Customer;
 import mx.rpc.AbstractOperation;
 import mx.rpc.AsyncToken;
 import mx.rpc.remoting.Operation;
@@ -32,7 +31,7 @@ internal class _Super_CustomersService extends com.adobe.fiber.services.wrapper.
         var operation:mx.rpc.remoting.Operation;
 
         operation = new mx.rpc.remoting.Operation(null, "getCustomerList");
-         operation.resultType = model.vo.Customer;
+         operation.resultElementType = Object;
         operations["getCustomerList"] = operation;
 
         _serviceControl.operations = operations;
