@@ -4,7 +4,7 @@ class CustomersService {
 	
 	/**
 	 * Get Customer's List
-	 * @return Customer[]
+	 * @return array
 	 */
 	public function getCustomerList(){
 		//$customerList[] = new Customer();
