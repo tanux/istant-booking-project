@@ -6,10 +6,14 @@
 package model.vo
 {
 import com.adobe.fiber.services.IFiberManagingService;
+import com.adobe.fiber.util.FiberUtils;
 import com.adobe.fiber.valueobjects.IValueObject;
+import flash.events.Event;
 import flash.events.EventDispatcher;
+import mx.binding.utils.ChangeWatcher;
 import mx.collections.ArrayCollection;
 import mx.events.PropertyChangeEvent;
+import mx.validators.ValidationResult;
 
 import flash.net.registerClassAlias;
 import flash.net.getClassByAlias;
@@ -81,6 +85,13 @@ public class _Super_Affiliate extends flash.events.EventDispatcher implements co
         _model = new _AffiliateEntityMetadata(this);
 
         // Bind to own data or source properties for cache invalidation triggering
+        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "id", model_internal::setterListenerId));
+        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "name", model_internal::setterListenerName));
+        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "address", model_internal::setterListenerAddress));
+        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "city", model_internal::setterListenerCity));
+        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "telephoneNumber", model_internal::setterListenerTelephoneNumber));
+        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "email", model_internal::setterListenerEmail));
+        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "password", model_internal::setterListenerPassword));
 
     }
 
@@ -220,6 +231,41 @@ public class _Super_Affiliate extends flash.events.EventDispatcher implements co
      *  - the validity of the property (and the containing entity) if the given data property is required.
      */
 
+    model_internal function setterListenerId(value:flash.events.Event):void
+    {
+        _model.invalidateDependentOnId();
+    }
+
+    model_internal function setterListenerName(value:flash.events.Event):void
+    {
+        _model.invalidateDependentOnName();
+    }
+
+    model_internal function setterListenerAddress(value:flash.events.Event):void
+    {
+        _model.invalidateDependentOnAddress();
+    }
+
+    model_internal function setterListenerCity(value:flash.events.Event):void
+    {
+        _model.invalidateDependentOnCity();
+    }
+
+    model_internal function setterListenerTelephoneNumber(value:flash.events.Event):void
+    {
+        _model.invalidateDependentOnTelephoneNumber();
+    }
+
+    model_internal function setterListenerEmail(value:flash.events.Event):void
+    {
+        _model.invalidateDependentOnEmail();
+    }
+
+    model_internal function setterListenerPassword(value:flash.events.Event):void
+    {
+        _model.invalidateDependentOnPassword();
+    }
+
 
     /**
      * valid related derived properties
@@ -241,6 +287,41 @@ public class _Super_Affiliate extends flash.events.EventDispatcher implements co
         var validationFailureMessages:Array = new Array();
 
         var propertyValidity:Boolean = true;
+        if (!_model.idIsValid)
+        {
+            propertyValidity = false;
+            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_idValidationFailureMessages);
+        }
+        if (!_model.nameIsValid)
+        {
+            propertyValidity = false;
+            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_nameValidationFailureMessages);
+        }
+        if (!_model.addressIsValid)
+        {
+            propertyValidity = false;
+            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_addressValidationFailureMessages);
+        }
+        if (!_model.cityIsValid)
+        {
+            propertyValidity = false;
+            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_cityValidationFailureMessages);
+        }
+        if (!_model.telephoneNumberIsValid)
+        {
+            propertyValidity = false;
+            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_telephoneNumberValidationFailureMessages);
+        }
+        if (!_model.emailIsValid)
+        {
+            propertyValidity = false;
+            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_emailValidationFailureMessages);
+        }
+        if (!_model.passwordIsValid)
+        {
+            propertyValidity = false;
+            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_passwordValidationFailureMessages);
+        }
 
         model_internal::_cacheInitialized_isValid = true;
         model_internal::invalidConstraints_der = violatedConsts;
@@ -320,6 +401,195 @@ public class _Super_Affiliate extends flash.events.EventDispatcher implements co
         }
     }
 
+    model_internal var _doValidationCacheOfId : Array = null;
+    model_internal var _doValidationLastValOfId : Object;
+
+    model_internal function _doValidationForId(valueIn:Object):Array
+    {
+        var value : Object = valueIn as Object;
+
+        if (model_internal::_doValidationCacheOfId != null && model_internal::_doValidationLastValOfId == value)
+           return model_internal::_doValidationCacheOfId ;
+
+        _model.model_internal::_idIsValidCacheInitialized = true;
+        var validationFailures:Array = new Array();
+        var errorMessage:String;
+        var failure:Boolean;
+
+        var valRes:ValidationResult;
+        if (_model.isIdAvailable && _internal_id == null)
+        {
+            validationFailures.push(new ValidationResult(true, "", "", "id is required"));
+        }
+
+        model_internal::_doValidationCacheOfId = validationFailures;
+        model_internal::_doValidationLastValOfId = value;
+
+        return validationFailures;
+    }
+    
+    model_internal var _doValidationCacheOfName : Array = null;
+    model_internal var _doValidationLastValOfName : Object;
+
+    model_internal function _doValidationForName(valueIn:Object):Array
+    {
+        var value : Object = valueIn as Object;
+
+        if (model_internal::_doValidationCacheOfName != null && model_internal::_doValidationLastValOfName == value)
+           return model_internal::_doValidationCacheOfName ;
+
+        _model.model_internal::_nameIsValidCacheInitialized = true;
+        var validationFailures:Array = new Array();
+        var errorMessage:String;
+        var failure:Boolean;
+
+        var valRes:ValidationResult;
+        if (_model.isNameAvailable && _internal_name == null)
+        {
+            validationFailures.push(new ValidationResult(true, "", "", "name is required"));
+        }
+
+        model_internal::_doValidationCacheOfName = validationFailures;
+        model_internal::_doValidationLastValOfName = value;
+
+        return validationFailures;
+    }
+    
+    model_internal var _doValidationCacheOfAddress : Array = null;
+    model_internal var _doValidationLastValOfAddress : Object;
+
+    model_internal function _doValidationForAddress(valueIn:Object):Array
+    {
+        var value : Object = valueIn as Object;
+
+        if (model_internal::_doValidationCacheOfAddress != null && model_internal::_doValidationLastValOfAddress == value)
+           return model_internal::_doValidationCacheOfAddress ;
+
+        _model.model_internal::_addressIsValidCacheInitialized = true;
+        var validationFailures:Array = new Array();
+        var errorMessage:String;
+        var failure:Boolean;
+
+        var valRes:ValidationResult;
+        if (_model.isAddressAvailable && _internal_address == null)
+        {
+            validationFailures.push(new ValidationResult(true, "", "", "address is required"));
+        }
+
+        model_internal::_doValidationCacheOfAddress = validationFailures;
+        model_internal::_doValidationLastValOfAddress = value;
+
+        return validationFailures;
+    }
+    
+    model_internal var _doValidationCacheOfCity : Array = null;
+    model_internal var _doValidationLastValOfCity : Object;
+
+    model_internal function _doValidationForCity(valueIn:Object):Array
+    {
+        var value : Object = valueIn as Object;
+
+        if (model_internal::_doValidationCacheOfCity != null && model_internal::_doValidationLastValOfCity == value)
+           return model_internal::_doValidationCacheOfCity ;
+
+        _model.model_internal::_cityIsValidCacheInitialized = true;
+        var validationFailures:Array = new Array();
+        var errorMessage:String;
+        var failure:Boolean;
+
+        var valRes:ValidationResult;
+        if (_model.isCityAvailable && _internal_city == null)
+        {
+            validationFailures.push(new ValidationResult(true, "", "", "city is required"));
+        }
+
+        model_internal::_doValidationCacheOfCity = validationFailures;
+        model_internal::_doValidationLastValOfCity = value;
+
+        return validationFailures;
+    }
+    
+    model_internal var _doValidationCacheOfTelephoneNumber : Array = null;
+    model_internal var _doValidationLastValOfTelephoneNumber : Object;
+
+    model_internal function _doValidationForTelephoneNumber(valueIn:Object):Array
+    {
+        var value : Object = valueIn as Object;
+
+        if (model_internal::_doValidationCacheOfTelephoneNumber != null && model_internal::_doValidationLastValOfTelephoneNumber == value)
+           return model_internal::_doValidationCacheOfTelephoneNumber ;
+
+        _model.model_internal::_telephoneNumberIsValidCacheInitialized = true;
+        var validationFailures:Array = new Array();
+        var errorMessage:String;
+        var failure:Boolean;
+
+        var valRes:ValidationResult;
+        if (_model.isTelephoneNumberAvailable && _internal_telephoneNumber == null)
+        {
+            validationFailures.push(new ValidationResult(true, "", "", "telephoneNumber is required"));
+        }
+
+        model_internal::_doValidationCacheOfTelephoneNumber = validationFailures;
+        model_internal::_doValidationLastValOfTelephoneNumber = value;
+
+        return validationFailures;
+    }
+    
+    model_internal var _doValidationCacheOfEmail : Array = null;
+    model_internal var _doValidationLastValOfEmail : Object;
+
+    model_internal function _doValidationForEmail(valueIn:Object):Array
+    {
+        var value : Object = valueIn as Object;
+
+        if (model_internal::_doValidationCacheOfEmail != null && model_internal::_doValidationLastValOfEmail == value)
+           return model_internal::_doValidationCacheOfEmail ;
+
+        _model.model_internal::_emailIsValidCacheInitialized = true;
+        var validationFailures:Array = new Array();
+        var errorMessage:String;
+        var failure:Boolean;
+
+        var valRes:ValidationResult;
+        if (_model.isEmailAvailable && _internal_email == null)
+        {
+            validationFailures.push(new ValidationResult(true, "", "", "email is required"));
+        }
+
+        model_internal::_doValidationCacheOfEmail = validationFailures;
+        model_internal::_doValidationLastValOfEmail = value;
+
+        return validationFailures;
+    }
+    
+    model_internal var _doValidationCacheOfPassword : Array = null;
+    model_internal var _doValidationLastValOfPassword : Object;
+
+    model_internal function _doValidationForPassword(valueIn:Object):Array
+    {
+        var value : Object = valueIn as Object;
+
+        if (model_internal::_doValidationCacheOfPassword != null && model_internal::_doValidationLastValOfPassword == value)
+           return model_internal::_doValidationCacheOfPassword ;
+
+        _model.model_internal::_passwordIsValidCacheInitialized = true;
+        var validationFailures:Array = new Array();
+        var errorMessage:String;
+        var failure:Boolean;
+
+        var valRes:ValidationResult;
+        if (_model.isPasswordAvailable && _internal_password == null)
+        {
+            validationFailures.push(new ValidationResult(true, "", "", "password is required"));
+        }
+
+        model_internal::_doValidationCacheOfPassword = validationFailures;
+        model_internal::_doValidationLastValOfPassword = value;
+
+        return validationFailures;
+    }
+    
 
 }
 

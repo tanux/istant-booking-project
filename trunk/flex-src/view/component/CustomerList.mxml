@@ -10,8 +10,14 @@
 	
 	<fx:Script>
 		<![CDATA[			
-			import model.vo.Customer;			
-			import mx.collections.ArrayCollection;			
+			import flash.net.sendToURL;
+			
+			import model.vo.Customer;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.events.ListEvent;			
+			private var facade:ApplicationFacade = ApplicationFacade.getInstance() as ApplicationFacade;
 			[Bindable]public var customerList:ArrayCollection;
 			private function makeDataLabel(item:Object) : String {
 				var c:Customer = new Customer();
@@ -22,6 +28,18 @@
 				c.telephoneNumber = item.telephone_number;
 				return c.firstName + " " + c.lastName + " " + c.email;
 			}
+			
+			protected function dgCustomerList_itemClickHandler(event:ListEvent):void{				
+				var selectedRow:Object = event.currentTarget.selectedItem;
+				var c:Customer = new Customer();
+				c.id = selectedRow.id;
+				c.firstName = selectedRow.firstname;
+				c.lastName = selectedRow.lastname;
+				c.email = selectedRow.email;
+				c.telephoneNumber = selectedRow.telephone_number;
+				facade.sendNotification(ApplicationFacade.CUSTOMER_SELECTED, c);
+			}
+			
 		]]>
 	</fx:Script>
 	
@@ -42,7 +60,7 @@
 		</mx:Canvas>
 	</mx:HBox>
 	
-	<mx:DataGrid id="dgCustomerList" width="100%" height="50%" dataProvider="{customerList}">
+	<mx:DataGrid id="dgCustomerList" width="100%" height="50%" dataProvider="{customerList}" doubleClickEnabled="true" itemClick="dgCustomerList_itemClickHandler(event)">
 		<mx:columns>
 			<mx:DataGridColumn id="clmId" dataField="id" headerText="Id" visible="false"/>
 			<mx:DataGridColumn id="clmNome" dataField="firstname" headerText="Nome" />
@@ -52,10 +70,10 @@
 		</mx:columns>
 	</mx:DataGrid>
 	<mx:HBox>
-		<mx:TextInput text="Nome" paddingTop="1" paddingLeft="2"/>
-		<mx:TextInput text="Cognome" paddingTop="1" paddingLeft="2"/>
-		<mx:TextInput text="E-mail" paddingTop="1" paddingLeft="2"/>
-		<mx:TextInput text="Telefono" paddingTop="1" paddingLeft="2"/>
+		<mx:TextInput id="tiFirstname" text="Nome" paddingTop="1" paddingLeft="2"/>
+		<mx:TextInput id="tiLastname" text="Cognome" paddingTop="1" paddingLeft="2"/>
+		<mx:TextInput id="tiEmail" text="E-mail" paddingTop="1" paddingLeft="2"/>
+		<mx:TextInput id="tiTelephoneNumber" text="Telefono" paddingTop="1" paddingLeft="2"/>
 	</mx:HBox>
 	<mx:HBox width="100%" horizontalAlign="right">
 		<mx:Button icon="@Embed(source='assets/images/add_user.png')" downIcon="@Embed(source='assets/images/add_user_little.png')"
@@ -63,7 +81,7 @@
 		<mx:Button icon="@Embed(source='assets/images/delete_user.png')" downIcon="@Embed(source='assets/images/delete_user_little.png')"
 				   width="45" height="40"/>
 		<mx:Button icon="@Embed(source='assets/images/save.png')" downIcon="@Embed(source='assets/images/save_little.png')"
-				   width="45" height="40"/>
+				   width="45" height="40" enabled="false"/>
 		<mx:Button icon="@Embed(source='assets/images/prenota.png')" downIcon="@Embed(source='assets/images/prenota_little.png')"
 				   width="45" height="40"/>
 	</mx:HBox>
