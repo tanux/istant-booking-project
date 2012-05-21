@@ -7,7 +7,6 @@ class CustomersService {
 	 * @return array
 	 */
 	public function getCustomerList(){
-		//$customerList[] = new Customer();
 		$dbAdapter = ManageDatabase::getDbAdapter();
 		$select = $dbAdapter->select()->from('customers');
 		$stmt = $dbAdapter->query($select);

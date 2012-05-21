@@ -39,6 +39,11 @@
 			<location>C:/easyphp/www/IstantBookingProject/services/AffiliateLoginService.php</location>
 		</link>
 		<link>
+			<name>services/CustomersService_CustomersService.php</name>
+			<type>1</type>
+			<location>C:/easyphp/www/IstantBookingProject/services/CustomersService.php</location>
+		</link>
+		<link>
 			<name>services/LoginService_LoginService.php</name>
 			<type>1</type>
 			<location>C:/easyphp/www/IstantBookingProject/services/LoginService.php</location>
