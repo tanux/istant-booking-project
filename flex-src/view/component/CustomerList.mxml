@@ -70,7 +70,7 @@
 		</mx:columns>
 	</mx:DataGrid>
 	<mx:HBox>
-		<mx:TextInput id="tiFirstname" text="Nome" paddingTop="1" paddingLeft="2"/>
+		<mx:TextInput styleName="stino" id="tiFirstname" text="Nome" paddingTop="1" paddingLeft="2"/>
 		<mx:TextInput id="tiLastname" text="Cognome" paddingTop="1" paddingLeft="2"/>
 		<mx:TextInput id="tiEmail" text="E-mail" paddingTop="1" paddingLeft="2"/>
 		<mx:TextInput id="tiTelephoneNumber" text="Telefono" paddingTop="1" paddingLeft="2"/>
