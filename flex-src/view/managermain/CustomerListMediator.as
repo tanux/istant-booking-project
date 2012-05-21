@@ -2,7 +2,7 @@ package view.managermain
 {
 	import flash.events.Event;
 	
-	import model.vo.Customer;	
+	import model.vo.Customer;
 	
 	import mx.collections.ArrayCollection;
 	import mx.controls.Alert;
@@ -18,7 +18,8 @@ package view.managermain
 		public static const NAME:String = "CustomerListMediator";
 		
 		public function CustomerListMediator(viewComponent:Object){
-			super(NAME, viewComponent);			
+			super(NAME, viewComponent);
+			
 		}
 		
 		private function init(evt:Event) : void {}
@@ -26,7 +27,7 @@ package view.managermain
 		override public function handleNotification(notification:INotification):void{
 			switch (notification.getName()){
 				case ApplicationFacade.GET_CUSTOMER_LIST_SUCCESS:					
-					var customerListResult:ArrayCollection = notification.getBody() as ArrayCollection;
+					var customerListResult:ArrayCollection = notification.getBody() as ArrayCollection;					
 					customerListCmp.customerList = customerListResult;					
 					break;
 				case ApplicationFacade.GET_CUSTOMER_LIST_ERROR:
@@ -34,6 +35,13 @@ package view.managermain
 					break;
 				case ApplicationFacade.GET_CUSTOMER_LIST_FAULT:
 					Alert.show("CustomerList: Fault");
+					break;
+				case ApplicationFacade.CUSTOMER_SELECTED:
+					var customer:Customer = notification.getBody() as Customer;
+					customerListCmp.tiFirstname.text = customer.firstName as String;
+					customerListCmp.tiLastname.text = customer.lastName as String;
+					customerListCmp.tiEmail.text = customer.email as String;
+					customerListCmp.tiTelephoneNumber.text = customer.telephoneNumber as String;
 					break;
 			}
 
@@ -43,7 +51,8 @@ package view.managermain
 			return [
 				ApplicationFacade.GET_CUSTOMER_LIST_SUCCESS,
 				ApplicationFacade.GET_CUSTOMER_LIST_ERROR,
-				ApplicationFacade.GET_CUSTOMER_LIST_FAULT
+				ApplicationFacade.GET_CUSTOMER_LIST_FAULT,
+				ApplicationFacade.CUSTOMER_SELECTED
 			];
 		}
 		

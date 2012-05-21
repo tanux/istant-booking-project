@@ -60,6 +60,7 @@ package
 		public static const GET_CUSTOMER_LIST_SUCCESS:String = "GetCustomerListSuccess";
 		public static const GET_CUSTOMER_LIST_ERROR:String = "GetCustomerListError";
 		public static const GET_CUSTOMER_LIST_FAULT:String = "GetCustomerListFault";
+		public static const CUSTOMER_SELECTED:String = "CustomerSelected";
 		
 		public static function getInstance() : ApplicationFacade{
 			if (instance == null)
