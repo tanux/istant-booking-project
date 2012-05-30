@@ -24,6 +24,7 @@
     <application path="AffiliateMain.mxml"/>
     <application path="ManagerShowVisit.mxml"/>
     <application path="ManagerMain.mxml"/>
+    <application path="Print_test.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>
