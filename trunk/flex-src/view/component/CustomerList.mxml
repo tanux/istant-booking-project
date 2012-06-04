@@ -13,6 +13,7 @@
 			import flash.net.sendToURL;
 			
 			import model.vo.Customer;
+			import model.vo.CustomerInList;
 			
 			import mx.collections.ArrayCollection;
 			import mx.controls.Alert;
@@ -37,7 +38,9 @@
 				c.lastName = selectedRow.lastname;
 				c.email = selectedRow.email;
 				c.telephoneNumber = selectedRow.telephone_number;
-				facade.sendNotification(ApplicationFacade.CUSTOMER_SELECTED, c);
+				var position:int = event.currentTarget.selectedIndex;
+				var customerInList:CustomerInList = new CustomerInList(c,position);				
+				facade.sendNotification(ApplicationFacade.CUSTOMER_SELECTED, customerInList);				
 			}
 			
 		]]>
@@ -70,19 +73,19 @@
 		</mx:columns>
 	</mx:DataGrid>
 	<mx:HBox>
-		<mx:TextInput styleName="stino" id="tiFirstname" text="Nome" paddingTop="1" paddingLeft="2"/>
+		<mx:TextInput id="tiFirstname" text="Nome" paddingTop="1" paddingLeft="2" />
 		<mx:TextInput id="tiLastname" text="Cognome" paddingTop="1" paddingLeft="2"/>
 		<mx:TextInput id="tiEmail" text="E-mail" paddingTop="1" paddingLeft="2"/>
 		<mx:TextInput id="tiTelephoneNumber" text="Telefono" paddingTop="1" paddingLeft="2"/>
 	</mx:HBox>
 	<mx:HBox width="100%" horizontalAlign="right">
-		<mx:Button icon="@Embed(source='assets/images/add_user.png')" downIcon="@Embed(source='assets/images/add_user_little.png')"
+		<mx:Button id="btnAddUser" icon="@Embed(source='assets/images/add_user.png')" downIcon="@Embed(source='assets/images/add_user_little.png')"
 				   width="45" height="40"/>
-		<mx:Button icon="@Embed(source='assets/images/delete_user.png')" downIcon="@Embed(source='assets/images/delete_user_little.png')"
+		<mx:Button id="btnDelUser" icon="@Embed(source='assets/images/delete_user.png')" downIcon="@Embed(source='assets/images/delete_user_little.png')"
 				   width="45" height="40"/>
-		<mx:Button icon="@Embed(source='assets/images/save.png')" downIcon="@Embed(source='assets/images/save_little.png')"
+		<mx:Button id="btnSave" icon="@Embed(source='assets/images/save.png')" downIcon="@Embed(source='assets/images/save_little.png')"
 				   width="45" height="40" enabled="false"/>
-		<mx:Button icon="@Embed(source='assets/images/prenota.png')" downIcon="@Embed(source='assets/images/prenota_little.png')"
+		<mx:Button id="btnBooking" icon="@Embed(source='assets/images/prenota.png')" downIcon="@Embed(source='assets/images/prenota_little.png')"
 				   width="45" height="40"/>
 	</mx:HBox>
 

@@ -319,6 +319,15 @@
       </annotation>
       <parameter name="customer" type="Customer"/>
     </function>
+    <function name="saveChangesCustomer" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="customer" type="Customer"/>
+    </function>
   </service>
   <entity name="Customer">
     <annotation name="EntityProperties">

@@ -56,11 +56,16 @@ package
 		public static const REGISTER_AFFILIATE_ERROR:String = "RegisterAffiliateError";
 		public static const REGISTER_AFFILIATE_FAULT:String = "RegisterAffiliateFault";
 		
+		/*Customer Notify*/
 		public static const GET_CUSTOMER_LIST:String = "GetCustomerList";
 		public static const GET_CUSTOMER_LIST_SUCCESS:String = "GetCustomerListSuccess";
 		public static const GET_CUSTOMER_LIST_ERROR:String = "GetCustomerListError";
 		public static const GET_CUSTOMER_LIST_FAULT:String = "GetCustomerListFault";
 		public static const CUSTOMER_SELECTED:String = "CustomerSelected";
+		public static const CUSTOMER_SAVE_CHANGES:String = "CustomerSaveChanges";
+		public static const CUSTOMER_SAVE_CHANGES_SUCCESS:String = "CustomerSaveChangesSuccess";
+		public static const CUSTOMER_SAVE_CHANGES_ERROR:String = "CustomerSaveChangesError";
+		public static const CUSTOMER_SAVE_CHANGES_FAULT:String = "CustomerSaveChangesFault";
 		
 		public static function getInstance() : ApplicationFacade{
 			if (instance == null)

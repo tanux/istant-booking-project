@@ -1,6 +1,7 @@
 package model.managermain
 {
 	import model.services.CustomersService;
+	import model.vo.Customer;
 	
 	import mx.controls.Alert;
 	import mx.messaging.messages.RemotingMessage;
@@ -29,6 +30,11 @@ package model.managermain
 			at.addResponder(responder);			
 		}
 		
+		public function saveChangesCustomer(customer:Customer):void{
+			var at:AsyncToken = service.saveChangesCustomer(customer);
+			at.addResponder(responder);
+		}
+		
 		private function onResult(evt:ResultEvent):void{
 			switch( (evt.token.message as RemotingMessage).operation){
 				case "getCustomerList":
@@ -39,11 +45,19 @@ package model.managermain
 						sendNotification(ApplicationFacade.GET_CUSTOMER_LIST_ERROR);
 					}						
 					break;
+				case "saveChangesCustomer":
+					if (evt.result != null){
+						sendNotification(ApplicationFacade.CUSTOMER_SAVE_CHANGES_SUCCESS, evt.result);
+					}
+					else{
+						sendNotification(ApplicationFacade.CUSTOMER_SAVE_CHANGES_ERROR);
+					}
 			}	
 		}
 		
-		private function onFault(evt:FaultEvent):void{
-			sendNotification(ApplicationFacade.GET_CUSTOMER_LIST_FAULT);				
+		private function onFault(evt:FaultEvent):void{			
+			sendNotification(ApplicationFacade.GET_CUSTOMER_LIST_FAULT);
+			//modificare per comprendere anche il caso di fault save changes customer
 		}
 	}
 }

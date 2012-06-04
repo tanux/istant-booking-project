@@ -37,6 +37,9 @@ internal class _Super_CustomersService extends com.adobe.fiber.services.wrapper.
         operation = new mx.rpc.remoting.Operation(null, "addCustomer");
          operation.resultType = int;
         operations["addCustomer"] = operation;
+        operation = new mx.rpc.remoting.Operation(null, "saveChangesCustomer");
+         operation.resultType = String;
+        operations["saveChangesCustomer"] = operation;
 
         _serviceControl.operations = operations;
         _serviceControl.convertResultHandler = com.adobe.serializers.utility.TypeUtility.convertResultHandler;
@@ -88,6 +91,24 @@ internal class _Super_CustomersService extends com.adobe.fiber.services.wrapper.
     public function addCustomer(customer:model.vo.Customer) : mx.rpc.AsyncToken
     {
         var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("addCustomer");
+		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(customer) ;
+        return _internal_token;
+    }
+     
+    /**
+      * This method is a generated wrapper used to call the 'saveChangesCustomer' operation. It returns an mx.rpc.AsyncToken whose 
+      * result property will be populated with the result of the operation when the server response is received. 
+      * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
+      * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
+      *
+      * @see mx.rpc.AsyncToken
+      * @see mx.rpc.CallResponder 
+      *
+      * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
+      */
+    public function saveChangesCustomer(customer:model.vo.Customer) : mx.rpc.AsyncToken
+    {
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("saveChangesCustomer");
 		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(customer) ;
         return _internal_token;
     }
