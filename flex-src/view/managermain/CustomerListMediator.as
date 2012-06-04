@@ -1,11 +1,14 @@
 package view.managermain
 {
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	
 	import model.vo.Customer;
+	import model.vo.CustomerInList;
 	
 	import mx.collections.ArrayCollection;
 	import mx.controls.Alert;
+	import mx.events.ListEvent;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -16,13 +19,24 @@ package view.managermain
 	
 	public class CustomerListMediator extends Mediator implements IMediator{
 		public static const NAME:String = "CustomerListMediator";
-		
+		[Bindable]private var customerInList:CustomerInList;
 		public function CustomerListMediator(viewComponent:Object){
 			super(NAME, viewComponent);
-			
+			customerListCmp.btnSave.addEventListener(MouseEvent.CLICK,saveChanges);			
 		}
 		
 		private function init(evt:Event) : void {}
+		
+		private function saveChanges(evt:Event): void {			
+			var customerChanged:Customer = new Customer();			
+			customerChanged.id = customerInList.getCustomer.id;
+			customerChanged.firstName = customerListCmp.tiFirstname.text;
+			customerChanged.lastName = customerListCmp.tiLastname.text;
+			customerChanged.email = customerListCmp.tiEmail.text;
+			customerChanged.telephoneNumber = customerListCmp.tiTelephoneNumber.text;
+			var cInList:CustomerInList = new CustomerInList(customerChanged, customerInList.getPosition);
+			facade.sendNotification(ApplicationFacade.CUSTOMER_SAVE_CHANGES, cInList);			
+		}
 		
 		override public function handleNotification(notification:INotification):void{
 			switch (notification.getName()){
@@ -37,11 +51,18 @@ package view.managermain
 					Alert.show("CustomerList: Fault");
 					break;
 				case ApplicationFacade.CUSTOMER_SELECTED:
-					var customer:Customer = notification.getBody() as Customer;
-					customerListCmp.tiFirstname.text = customer.firstName as String;
-					customerListCmp.tiLastname.text = customer.lastName as String;
-					customerListCmp.tiEmail.text = customer.email as String;
-					customerListCmp.tiTelephoneNumber.text = customer.telephoneNumber as String;
+					customerInList = notification.getBody() as CustomerInList;
+					customerListCmp.tiFirstname.text = customerInList.getCustomer.firstName as String;
+					customerListCmp.tiLastname.text = customerInList.getCustomer.lastName as String;
+					customerListCmp.tiEmail.text = customerInList.getCustomer.email as String;
+					customerListCmp.tiTelephoneNumber.text = customerInList.getCustomer.telephoneNumber as String;
+					customerListCmp.btnSave.enabled = true;
+					break;
+				case ApplicationFacade.CUSTOMER_SAVE_CHANGES_SUCCESS:
+					Alert.show("Dati Salvati");
+					break;
+				case ApplicationFacade.CUSTOMER_SAVE_CHANGES_ERROR:
+					Alert.show("Errore nel salvataggio");
 					break;
 			}
 
@@ -52,7 +73,10 @@ package view.managermain
 				ApplicationFacade.GET_CUSTOMER_LIST_SUCCESS,
 				ApplicationFacade.GET_CUSTOMER_LIST_ERROR,
 				ApplicationFacade.GET_CUSTOMER_LIST_FAULT,
-				ApplicationFacade.CUSTOMER_SELECTED
+				ApplicationFacade.CUSTOMER_SELECTED,
+				ApplicationFacade.CUSTOMER_SAVE_CHANGES_SUCCESS,
+				ApplicationFacade.CUSTOMER_SAVE_CHANGES_ERROR
+				
 			];
 		}
 		
