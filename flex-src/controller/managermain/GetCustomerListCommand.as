@@ -20,6 +20,7 @@ package controller.managermain
 				facade.registerProxy(newCustomerListProxy);				
 			}
 			facade.registerCommand(ApplicationFacade.CUSTOMER_SAVE_CHANGES, SaveChangesCustomerController);
+			facade.registerCommand(ApplicationFacade.CUSTOMER_ADD, CustomerAddCommand);
 		}
 	}
 }

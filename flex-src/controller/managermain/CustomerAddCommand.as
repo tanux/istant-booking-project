@@ -14,14 +14,13 @@ package controller.managermain
 	public class CustomerAddCommand extends SimpleCommand implements ICommand{
 		override public function execute(notification:INotification) : void {
 			var customer:Customer=notification.getBody() as Customer;
-			Alert.show(customer.firstName as String);
 			if (facade.hasProxy(CustomerListProxy.NAME)){
 				var customerProxy:CustomerProxy = facade.retrieveProxy(CustomerProxy.NAME) as CustomerProxy;
 				customerProxy.addCustomer(customer);
 			}
 			else{
 				var newCustomerProxy:CustomerProxy = new CustomerProxy(CustomerProxy.NAME);
-				newCustomerProxy.addCustomer();
+				newCustomerProxy.addCustomer(customer);
 				facade.registerProxy(newCustomerProxy);					
 			}
 		}
