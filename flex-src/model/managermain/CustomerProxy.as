@@ -26,6 +26,7 @@ package model.managermain
 		public function removeCustomer():void{
 			
 		}
+		
 		public function updateCustomer(item:CustomerInList):void{
 			customers.setItemAt({id:item.getCustomer.id,
 				                 firstname:item.getCustomer.firstName,
