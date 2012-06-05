@@ -30,7 +30,7 @@ package view.managermain
 		public function addCustomer(evt:Event): void{
 			var newCustomer:Customer = new Customer();
 			newCustomer.firstName = customerListCmp.tiFirstname.text;
-			Alert.show(newCustomer.firstName);
+			Alert.show(newCustomer.firstName as String);
 			newCustomer.lastName = customerListCmp.tiLastname.text;
 			newCustomer.email = customerListCmp.tiEmail.text;
 			newCustomer.telephoneNumber = customerListCmp.tiTelephoneNumber.text;			
