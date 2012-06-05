@@ -14,7 +14,7 @@ package controller.managermain
 	public class CustomerAddCommand extends SimpleCommand implements ICommand{
 		override public function execute(notification:INotification) : void {
 			var customer:Customer=notification.getBody() as Customer;			
-			if (facade.hasProxy(CustomerListProxy.NAME)){
+			if (facade.hasProxy(CustomerProxy.NAME)){
 				var customerProxy:CustomerProxy = facade.retrieveProxy(CustomerProxy.NAME) as CustomerProxy;
 				customerProxy.addCustomer(customer);
 			}
