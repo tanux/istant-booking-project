@@ -21,8 +21,10 @@ package model.managermain
 		}
 		
 		public function addCustomer(item:Customer):void{
-			Alert.show(item.firstName as String);
-			customers.addItem(item);
+			customers.addItem({firstname:item.firstName,
+							   lastname:item.lastName,
+							   email:item.email,
+							   telephone_number:item.telephoneNumber});
 		}
 		
 		public function removeCustomer():void{
