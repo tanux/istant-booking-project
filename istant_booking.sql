@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generato il: Mag 14, 2012 alle 17:26
+-- Generato il: Giu 05, 2012 alle 14:52
 -- Versione del server: 5.5.16
 -- Versione PHP: 5.3.8
 
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `affiliates` (
   `password` varchar(255) NOT NULL,
   PRIMARY KEY (`id`,`email`),
   UNIQUE KEY `telephone_number` (`telephone_number`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf32 AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf32 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -78,7 +78,17 @@ CREATE TABLE IF NOT EXISTS `customers` (
   `telephone_number` varchar(30) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf32 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf32 AUTO_INCREMENT=5 ;
+
+--
+-- Dump dei dati per la tabella `customers`
+--
+
+INSERT INTO `customers` (`id`, `firstname`, `lastname`, `email`, `telephone_number`) VALUES
+(1, 'gaetano', 'esposito', 'gaetano@mail.it', '081946487'),
+(2, 'concetta', 'natale', 'cettina@mail.it', '0101010101'),
+(3, 'antonio', 'antonino', 'antonio@mail.it', '081949595'),
+(4, 'concetta', 'esposito', 'concetta@mail.it', '0811111111');
 
 -- --------------------------------------------------------
 
@@ -109,6 +119,13 @@ CREATE TABLE IF NOT EXISTS `managers` (
   `password` varchar(255) NOT NULL,
   PRIMARY KEY (`id`,`username`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf32 AUTO_INCREMENT=2 ;
+
+--
+-- Dump dei dati per la tabella `managers`
+--
+
+INSERT INTO `managers` (`id`, `firstname`, `lastname`, `username`, `password`) VALUES
+(1, 'Salvatore', 'Coppola', 'test', 'test');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
