@@ -5,6 +5,7 @@ package controller.managermain
 	import model.vo.Customer;
 	
 	import mx.controls.Alert;
+	import mx.states.AddItems;
 	
 	import org.puremvc.as3.interfaces.ICommand;
 	import org.puremvc.as3.interfaces.INotification;
@@ -12,8 +13,17 @@ package controller.managermain
 	
 	public class CustomerAddCommand extends SimpleCommand implements ICommand{
 		override public function execute(notification:INotification) : void {
-			var customerProxy:CustomerProxy = facade.retrieveProxy(CustomerProxy.NAME) as CustomerProxy;
-			customerProxy.addCustomer(notification.getBody() as Customer);
+			var customer:Customer=notification.getBody() as Customer;
+			if (facade.hasProxy(CustomerListProxy.NAME)){
+				var customerProxy:CustomerProxy = facade.retrieveProxy(CustomerProxy.NAME) as CustomerProxy;
+				customerProxy.addCustomer(customer);
+			}
+			else{
+				var newCustomerProxy:CustomerProxy = new CustomerProxy(CustomerProxy.NAME);
+				newCustomerProxy.addCustomer();
+				facade.registerProxy(newCustomerProxy);					
+			}
+			facade.registerCommand(ApplicationFacade.CUSTOMER_ADD, CustomerAddCommand);
 		}
 	}
 }
