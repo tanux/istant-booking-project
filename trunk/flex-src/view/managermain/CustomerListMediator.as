@@ -27,14 +27,13 @@ package view.managermain
 		}
 		private function init(evt:Event) : void {}
 		
-		public function addCustomer (evt:Event): void{
+		public function addCustomer(evt:Event): void{
 			var newCustomer:Customer = new Customer();
 			newCustomer.firstName = customerListCmp.tiFirstname.text;
 			newCustomer.lastName = customerListCmp.tiLastname.text;
 			newCustomer.email = customerListCmp.tiEmail.text;
-			newCustomer.telephoneNumber = customerListCmp.tiTelephoneNumber.text;
-			
-			facade.sendNotification(ApplicationFacade.CUSTOMER_ADD, Customer );
+			newCustomer.telephoneNumber = customerListCmp.tiTelephoneNumber.text;			
+			facade.sendNotification(ApplicationFacade.CUSTOMER_ADD, newCustomer );
 		}
 		
 		

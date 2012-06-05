@@ -17,7 +17,7 @@ package
 		public static const STARTUP_AFFILIATE_APP:String = "StartupAffiliateApp";
 		public static const STARTUP_MANAGER_APP:String = "StartupManagerApp";
 		
-		public static const CUSTOMER_ADD:String = "CustomerAdd";
+		
 		/*Authentication Notify*/
 		/*Affiliate*/
 		public static const AFFILIATE_DO_LOGIN:String = "AffiliateDoLogin";
@@ -67,6 +67,7 @@ package
 		public static const CUSTOMER_SAVE_CHANGES_SUCCESS:String = "CustomerSaveChangesSuccess";
 		public static const CUSTOMER_SAVE_CHANGES_ERROR:String = "CustomerSaveChangesError";
 		public static const CUSTOMER_SAVE_CHANGES_FAULT:String = "CustomerSaveChangesFault";
+		public static const CUSTOMER_ADD:String = "CustomerAdd";
 		
 		public static function getInstance() : ApplicationFacade{
 			if (instance == null)
