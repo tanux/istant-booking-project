@@ -5,6 +5,7 @@ package model.managermain
 	import model.vo.CustomerInList;
 	
 	import mx.collections.ArrayCollection;
+	import mx.controls.Alert;
 	
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
@@ -20,6 +21,7 @@ package model.managermain
 		}
 		
 		public function addCustomer(item:Customer):void{
+			Alert.show(item.firstName as String);
 			customers.addItem(item);
 		}
 		
