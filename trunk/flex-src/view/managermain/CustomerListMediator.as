@@ -22,10 +22,21 @@ package view.managermain
 		[Bindable]private var customerInList:CustomerInList;
 		public function CustomerListMediator(viewComponent:Object){
 			super(NAME, viewComponent);
-			customerListCmp.btnSave.addEventListener(MouseEvent.CLICK,saveChanges);			
+			customerListCmp.btnSave.addEventListener(MouseEvent.CLICK,saveChanges);
+			customerListCmp.btnAddUser.addEventListener(MouseEvent.CLICK, addCustomer)
+		}
+		private function init(evt:Event) : void {}
+		
+		public function addCustomer (evt:Event): void{
+			var newCustomer:Customer = new Customer();
+			newCustomer.firstName = customerListCmp.tiFirstname.text;
+			newCustomer.lastName = customerListCmp.tiLastname.text;
+			newCustomer.email = customerListCmp.tiEmail.text;
+			newCustomer.telephoneNumber = customerListCmp.tiTelephoneNumber.text;
+			
+			facade.sendNotification(ApplicationFacade.CUSTOMER_ADD, Customer );
 		}
 		
-		private function init(evt:Event) : void {}
 		
 		private function saveChanges(evt:Event): void {			
 			var customerChanged:Customer = new Customer();			
