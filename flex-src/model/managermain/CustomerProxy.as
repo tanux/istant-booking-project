@@ -1,5 +1,6 @@
 package model.managermain
 {
+	import model.services.CustomersService;
 	import model.vo.Customer;
 	import model.vo.CustomerInList;
 	
@@ -17,15 +18,17 @@ package model.managermain
 		public function CustomerProxy(proxyName){
 			super(proxyName, new ArrayCollection());
 		}
+		
 		public function addCustomer(item:Customer):void{
-			
+			customers.addItem(item);
 		}
+		
 		public function removeCustomer():void{
 			
 		}
 		public function updateCustomer(item:CustomerInList):void{
 			customers.setItemAt({id:item.getCustomer.id,
-								 firstname:item.getCustomer.firstName,
+				                 firstname:item.getCustomer.firstName,
 								 lastname:item.getCustomer.lastName,
 								 email:item.getCustomer.email,
 								 telephone_number:item.getCustomer.telephoneNumber}, item.getPosition);
