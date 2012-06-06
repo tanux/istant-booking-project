@@ -27,8 +27,8 @@ package model.managermain
 							   telephone_number:item.telephoneNumber});
 		}
 		
-		public function removeCustomer():void{
-			
+		public function removeCustomer(item:CustomerInList):void{
+			customers.removeItemAt(item.getPosition);
 		}
 		
 		public function updateCustomer(item:CustomerInList):void{
