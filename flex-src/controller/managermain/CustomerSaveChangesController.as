@@ -11,7 +11,7 @@ package controller.managermain
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
-	public class SaveChangesCustomerController extends SimpleCommand implements ICommand{
+	public class CustomerSaveChangesController extends SimpleCommand implements ICommand{
 		override public function execute(notification:INotification): void{
 			var customerInList:CustomerInList = notification.getBody() as CustomerInList;
 			var customer:Customer = customerInList.getCustomer;
