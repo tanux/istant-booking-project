@@ -23,7 +23,8 @@ package view.managermain
 		public function CustomerListMediator(viewComponent:Object){
 			super(NAME, viewComponent);
 			customerListCmp.btnSave.addEventListener(MouseEvent.CLICK,saveChanges);
-			customerListCmp.btnAddUser.addEventListener(MouseEvent.CLICK, addCustomer)
+			customerListCmp.btnAddUser.addEventListener(MouseEvent.CLICK, addCustomer);
+			customerListCmp.btnDelUser.addEventListener(MouseEvent.CLICK, deleteCustomer);
 		}
 		private function init(evt:Event) : void {}
 		
@@ -36,6 +37,16 @@ package view.managermain
 			facade.sendNotification(ApplicationFacade.CUSTOMER_ADD, newCustomer );
 		}
 		
+		public function deleteCustomer(evt:Event): void{
+			var delCustomer:Customer = new Customer();
+			delCustomer.id = customerInList.getCustomer.id;
+			delCustomer.firstName = customerListCmp.tiFirstname.text;
+			delCustomer.lastName = customerListCmp.tiLastname.text;
+			delCustomer.email = customerListCmp.tiEmail.text;
+			delCustomer.telephoneNumber = customerListCmp.tiTelephoneNumber.text;
+			var cInList:CustomerInList = new CustomerInList(delCustomer, customerInList.getPosition);
+			facade.sendNotification(ApplicationFacade.CUSTOMER_DELETE, cInList);
+		}
 		
 		private function saveChanges(evt:Event): void {			
 			var customerChanged:Customer = new Customer();			

@@ -21,6 +21,7 @@ package controller.managermain
 			}
 			facade.registerCommand(ApplicationFacade.CUSTOMER_SAVE_CHANGES, SaveChangesCustomerController);
 			facade.registerCommand(ApplicationFacade.CUSTOMER_ADD, CustomerAddCommand);
+			facade.registerCommand(ApplicationFacade.CUSTOMER_DELETE, CustomerDeleteCommand);
 		}
 	}
 }
