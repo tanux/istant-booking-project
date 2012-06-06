@@ -3,17 +3,26 @@
 				xmlns:mx="library://ns.adobe.com/flex/mx"
 				xmlns:s="library://ns.adobe.com/flex/spark"
 				xmlns:component="view.component.*"
-				width="100%" height="100%" layout="absolute"			
-				creationComplete="facade.sendNotification(ApplicationFacade.STARTUP_MANAGER_APP, this);">	
+				width="100%" height="100%" layout="absolute"
+				xmlns:components="org.tylerchesley.bark.components.*"
+				creationComplete="init();">	
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->		
 	</fx:Declarations>	
-	<fx:Style source="/assets/skins/flex_skins.css"/>
+	<fx:Style source="/assets/skins/bark.css"/>
+	<fx:Style source="/assets/skins/flex_skins.css"/>	
 	<fx:Script>
 		<![CDATA[
+			import org.tylerchesley.bark.managers.NotificationManager;
+			
 			import model.vo.Manager;
 			[Bindable] public var manager:Manager;
-			private var facade:ApplicationFacade = ApplicationFacade.getInstance() as ApplicationFacade;					
+			private var facade:ApplicationFacade = ApplicationFacade.getInstance() as ApplicationFacade;
+			
+			private function init():void{	
+				facade.sendNotification(ApplicationFacade.STARTUP_MANAGER_APP, this); 
+				NotificationManager.initialize();
+			}
 		]]>
 	</fx:Script>
 	<mx:states>
