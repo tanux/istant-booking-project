@@ -1,7 +1,7 @@
 package view
 {
 	import controller.loginmanager.DoLoginCommand;
-	import controller.managermain.GetCustomerListCommand;
+	import controller.managermain.CustomerGetListCommand;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -72,7 +72,7 @@ package view
 					managerMain.cmpControlBar.btnSettings.addEventListener(MouseEvent.CLICK, goToSetting);
 					managerMain.cmpControlBar.btnLogout.addEventListener(MouseEvent.CLICK, doLogout);
 					facade.registerMediator(new CustomerListMediator(managerMain.cmpCustomerList));					
-					facade.registerCommand(ApplicationFacade.GET_CUSTOMER_LIST,GetCustomerListCommand);
+					facade.registerCommand(ApplicationFacade.GET_CUSTOMER_LIST,CustomerGetListCommand);
 					facade.sendNotification(ApplicationFacade.GET_CUSTOMER_LIST);										
 					break;
 				case ApplicationFacade.MANAGER_LOGIN_ERROR:
