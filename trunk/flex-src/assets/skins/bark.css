@@ -6,4 +6,8 @@
 	skinClass: ClassReference("org.tylerchesley.bark.skins.NotificationRendererSkin");
 }
 
-
+/*
+.error {
+	skinClass: ClassReference("ErrorNotificationSkin");	
+}
+*/
