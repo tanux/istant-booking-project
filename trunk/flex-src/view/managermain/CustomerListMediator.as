@@ -13,6 +13,8 @@ package view.managermain
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
+	import org.tylerchesley.bark.core.Notification;
+	import org.tylerchesley.bark.events.NotificationEvent;
 	
 	import view.ManagerMainMediator;
 	import view.component.CustomerList;
@@ -80,7 +82,7 @@ package view.managermain
 					customerListCmp.btnSave.enabled = true;
 					break;
 				case ApplicationFacade.CUSTOMER_SAVE_CHANGES_SUCCESS:
-					Alert.show("Dati Salvati");
+					notify('default', 'Successo', 'L\'operazione è andata a buon fine', customerListCmp.successIcon, 5000);
 					break;
 				case ApplicationFacade.CUSTOMER_SAVE_CHANGES_ERROR:
 					Alert.show("Errore nel salvataggio");
@@ -88,6 +90,19 @@ package view.managermain
 			}
 
 		}
+		
+		private function notify(type:String = 'default',
+								title:String = '', 
+								description:String = '', 
+								icon:Object = null,
+								duration:Number = 3000) : void {
+			
+			var notification:Notification = new Notification(type, duration, title, description, icon);
+			notification.addEventListener(NotificationEvent.NOTIFICATION_ITEM_CLICK, clickHandler);
+			customerListCmp.dispatchEvent(new NotificationEvent(NotificationEvent.NOTIFY, notification));
+		}
+		
+		private function clickHandler(event:NotificationEvent) : void {}
 		
 		override public function listNotificationInterests():Array{
 			return [

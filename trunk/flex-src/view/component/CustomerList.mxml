@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:VBox xmlns:fx="http://ns.adobe.com/mxml/2009"
 		 xmlns:s="library://ns.adobe.com/flex/spark"
-		 xmlns:mx="library://ns.adobe.com/flex/mx"
-		 xmlns:components="com.hillelcoren.components.*"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"		 
+		 xmlns:autocomplete="com.hillelcoren.components.*"
 		 xmlns:vo="vo.*"
-		 width="100%" height="100%">
-	<fx:Declarations>	
-	</fx:Declarations>
-	
+		 width="100%" height="100%">		 	
+	<fx:Declarations>
+		<fx:Object id="successIcon" icon="@Embed('assets/images/ok.png')" />
+		<fx:Object id="errorIcon" icon="@Embed('assets/images/error.png')" />
+	</fx:Declarations>	
 	<fx:Script>
-		<![CDATA[			
-			import flash.net.sendToURL;
+		<![CDATA[		
+			
 			
 			import model.vo.Customer;
 			import model.vo.CustomerInList;
@@ -18,6 +19,7 @@
 			import mx.collections.ArrayCollection;
 			import mx.controls.Alert;
 			import mx.events.ListEvent;			
+						
 			private var facade:ApplicationFacade = ApplicationFacade.getInstance() as ApplicationFacade;
 			[Bindable]public var customerList:ArrayCollection;
 			private function makeDataLabel(item:Object) : String {
@@ -42,7 +44,6 @@
 				var customerInList:CustomerInList = new CustomerInList(c,position);				
 				facade.sendNotification(ApplicationFacade.CUSTOMER_SELECTED, customerInList);				
 			}
-			
 		]]>
 	</fx:Script>
 	
@@ -50,7 +51,7 @@
 	<mx:HBox width="100%" textAlign="left" horizontalAlign="right" verticalAlign="middle">
 		<mx:Canvas>
 			<mx:Box>
-				<components:AutoComplete id="advancedAutoComplete" 
+				<autocomplete:AutoComplete id="advancedAutoComplete" 
 										 width="250"
 										 paddingTop="1"
 										 dataProvider="{customerList}" 

@@ -10,7 +10,7 @@ package
 	import mx.controls.Alert;
 	
 	import org.puremvc.as3.interfaces.IFacade;
-	import org.puremvc.as3.patterns.facade.Facade;
+	import org.puremvc.as3.patterns.facade.Facade;	
 	
 	public class ApplicationFacade extends Facade implements IFacade{
 		public static const STARTUP:String = "Startup";
@@ -78,7 +78,7 @@ package
 		override protected function initializeController():void {
 			super.initializeController();
 			registerCommand(ApplicationFacade.STARTUP_AFFILIATE_APP, AffiliateStartupCommand);
-			registerCommand(ApplicationFacade.STARTUP_MANAGER_APP, ManagerStartupCommand);						
+			registerCommand(ApplicationFacade.STARTUP_MANAGER_APP, ManagerStartupCommand);			
 		}		
 	}
 }
