@@ -7,23 +7,43 @@
 	<fx:Script>
 		<![CDATA[
 			import mx.logging.ILogger;
-			import mx.logging.Log;			
-			import spark.events.TextOperationEvent;					
-			[Bindable] public var text:String;
+			import mx.logging.Log;
 			
-						
+			import spark.events.TextOperationEvent;
+			
+			[Bindable]
+			[Embed(source="assets/images/cross.png")]
+			private static var _textInput_clearIcon:Class;
+			
+			[Bindable] public var text:String = "";
+			
 			protected var logger:ILogger = Log.getLogger("flex3ui.AdvancedTextInput");
 			
 			public function dispose():void
 			{
-			}			
-				
+			}
+			
+			protected function clearButton_cb_changeHandler(event:Event):void
+			{			
+				logger.info('textInput.showCancelButton = ');
+			}	
 		]]>
 	</fx:Script>
 	
 	<ui:AdvancedTextInput id="textInput"
 						  width="100%"
-						  promptText="{text}"						  
-						  promptColor="#808080"						  
-						  keepPromptOnFocus="false"/>	
+						  promptText="{text}"
+						  promptColor="#808080"
+						  color="#000000"
+						  iconWidth="15"
+						  iconHeight="15"
+						  iconPadding="3"
+						  keepPromptOnFocus="false"
+						  showCancelButton="true"
+						  cancelWidth="12" cancelHeight="12"
+						  cancelDownSkin="{_textInput_clearIcon}"
+						  cancelUpSkin="{_textInput_clearIcon}"
+						  cancelOverSkin="{_textInput_clearIcon}"
+						  change="clearButton_cb_changeHandler(event)"
+						  />	
 </mx:Box>
