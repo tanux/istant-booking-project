@@ -75,18 +75,24 @@ package view.managermain
 					break;
 				case ApplicationFacade.CUSTOMER_SELECTED:
 					customerInList = notification.getBody() as CustomerInList;
-					customerListCmp.tiFirstname.text = customerInList.getCustomer.firstName as String;
-					customerListCmp.tiLastname.text = customerInList.getCustomer.lastName as String;
-					customerListCmp.tiEmail.text = customerInList.getCustomer.email as String;
-					customerListCmp.tiTelephoneNumber.text = customerInList.getCustomer.telephoneNumber as String;
+					customerListCmp.tiFirstname.textInput.text = customerInList.getCustomer.firstName as String;
+					customerListCmp.tiLastname.textInput.text = customerInList.getCustomer.lastName as String;
+					customerListCmp.tiEmail.textInput.text = customerInList.getCustomer.email as String;
+					customerListCmp.tiTelephoneNumber.textInput.text = customerInList.getCustomer.telephoneNumber as String;
 					customerListCmp.btnSave.enabled = true;
 					break;
 				case ApplicationFacade.CUSTOMER_SAVE_CHANGES_SUCCESS:
 					notify('default', 'Successo', 'L\'operazione è andata a buon fine', customerListCmp.successIcon, 5000);
+					customerInList = notification.getBody() as CustomerInList;
+					customerListCmp.tiFirstname.textInput.text = "Nome" as String;
+					customerListCmp.tiLastname.textInput.text = "Cognome" as String;
+					customerListCmp.tiEmail.textInput.text = "E-mail" as String;
+					customerListCmp.tiTelephoneNumber.textInput.text = "Telefono" as String;
+					customerListCmp.btnSave.enabled = false;
 					break;
 				case ApplicationFacade.CUSTOMER_SAVE_CHANGES_ERROR:
 					Alert.show("Errore nel salvataggio");
-					break;
+					break;				
 			}
 
 		}

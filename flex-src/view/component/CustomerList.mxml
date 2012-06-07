@@ -79,10 +79,10 @@
 	</mx:DataGrid>
 	<mx:HBox>
 
-		<component:TIClearOnClick id="tiFirstname" text="Nome" />
-		<component:TIClearOnClick id="tiLastname" text="Cognome" />
-		<component:TIClearOnClick id="tiEmail" text="E-mail" />
-		<component:TIClearOnClick id="tiTelephoneNumber" text="Telefono" />
+		<component:TIClearOnClick id="tiFirstname" text="Nome" color="#000000"/>
+		<component:TIClearOnClick id="tiLastname" text="Cognome" color="#000000"/>
+		<component:TIClearOnClick id="tiEmail" text="E-mail" color="#000000"/>
+		<component:TIClearOnClick id="tiTelephoneNumber" text="Telefono" color="#000000"/>
 	</mx:HBox>
 	<mx:HBox width="100%" horizontalAlign="right">
 		<mx:Button id="btnAddUser" icon="@Embed(source='assets/images/add_user.png')" downIcon="@Embed(source='assets/images/add_user_little.png')"
