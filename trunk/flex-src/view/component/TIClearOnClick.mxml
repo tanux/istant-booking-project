@@ -15,6 +15,7 @@
 			[Embed(source="assets/images/cross.png")]
 			private static var _textInput_clearIcon:Class;
 			
+			[Bindable] public var text:String = "";
 			
 			
 			protected var logger:ILogger = Log.getLogger("flex3ui.AdvancedTextInput");
@@ -33,7 +34,7 @@
 	
 	<ui:AdvancedTextInput id="textInput"
 						  width="200"
-						  promptText="Search"
+						  promptText="{text}"
 						  promptColor="#808080"
 						  iconWidth="15"
 						  iconHeight="15"
@@ -45,7 +46,6 @@
 						  cancelUpSkin="{_textInput_clearIcon}"
 						  cancelOverSkin="{_textInput_clearIcon}"
 						  change="clearButton_cb_changeHandler(event)"
-						  />
-	
+						  />	
 	
 </mx:Box>

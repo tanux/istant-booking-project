@@ -14,7 +14,7 @@
 	
 	</fx:Script>
 
-	<component:TIClearOnClick/>
+	<component:TIClearOnClick text="mino"/>
 
 	
 	
