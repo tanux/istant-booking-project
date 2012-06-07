@@ -5,15 +5,16 @@
 				xmlns:component="view.component.*"
 				width="100%" height="100%" layout="absolute"
 				xmlns:components="org.tylerchesley.bark.components.*"
-				creationComplete="init();">	
+				xmlns:skins="assets.skins.ErrorNotificationSkins"
+				creationComplete="init();" xmlns:skins1="assets.skins.*">	
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->		
-	</fx:Declarations>	
-	<fx:Style source="/assets/skins/bark.css"/>
+	</fx:Declarations>		
 	<fx:Style source="/assets/skins/flex_skins.css"/>	
 	<fx:Script>
 		<![CDATA[
 			import org.tylerchesley.bark.managers.NotificationManager;
+			import assets.skins.ErrorNotificationSkin;
 			
 			import model.vo.Manager;
 			[Bindable] public var manager:Manager;
@@ -25,6 +26,7 @@
 			}
 		]]>
 	</fx:Script>
+	<fx:Style source="/assets/skins/bark.css"/>
 	<mx:states>
 		<s:State name="blankState" />
 		<s:State name="stateLogin" />
