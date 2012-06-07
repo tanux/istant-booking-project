@@ -78,8 +78,7 @@
 		</mx:columns>
 	</mx:DataGrid>
 	<mx:HBox>
-
-		<component:TIClearOnClick id="tiFirstname" text="Nome" color="#000000"/>
+		<component:TIClearOnClick id="tiFirstname" text="Nome" label="" color="#000000"/>
 		<component:TIClearOnClick id="tiLastname" text="Cognome" color="#000000"/>
 		<component:TIClearOnClick id="tiEmail" text="E-mail" color="#000000"/>
 		<component:TIClearOnClick id="tiTelephoneNumber" text="Telefono" color="#000000"/>
