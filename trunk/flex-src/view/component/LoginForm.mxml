@@ -1,4 +1,5 @@
 <mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" 
+		  xmlns:component="view.component.*"
 		  title="Login" horizontalAlign="center" verticalAlign="middle"
 		  width="20%" height="30%"
 		  styleName="panelSkinsICandy">
@@ -6,7 +7,7 @@
 	<mx:Form id="frmLogin" width="100%" >
 		<mx:FormItem paddingRight="15" id="fiUsername" width="100%" horizontalAlign="center">
 			<mx:Text id="txtUsername" color="#000000" fontStyle="italic" text="Username"/>
-			<mx:TextInput id="tiUsername" color="#000000" text="Username"/>					
+			<component:TIClearOnClick id="tiUsername" text="Username" color="#000000"/>				
 		</mx:FormItem>
 			
 		<mx:FormItem paddingRight="15" id="fiPassword" width="100%" horizontalAlign="center">
