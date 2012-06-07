@@ -37,7 +37,7 @@
 	<mx:VBox id="vbExt" styleName="vbExt" width="100%" height="100%">
 		
 		<mx:Box styleName="vbExt" width="100%" height="100%" includeIn="stateLogin">
-			<component:LoginForm id="cmpLoginFormManager" />			
+			<component:LoginForm id="cmpLoginFormManager"/>			
 		</mx:Box>
 		
 		<mx:Box styleName="vbExt" width="100%" height="100%" includeIn="stateMainApplication,stateSettings"> 

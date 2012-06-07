@@ -25,6 +25,8 @@
     <application path="ManagerShowVisit.mxml"/>
     <application path="ManagerMain.mxml"/>
     <application path="Print_test.mxml"/>
+    <application path="TestTextInputClearOnClick.mxml"/>
+    <application path="view/component/TIClearOnClick.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>

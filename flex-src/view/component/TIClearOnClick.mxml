@@ -1,0 +1,51 @@
+<mx:Box xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:ui="http://www.kapit.fr/flex3/ui"
+		width="100%" height="100%">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.logging.ILogger;
+			import mx.logging.Log;
+			
+			import spark.events.TextOperationEvent;
+			
+			[Bindable]
+			[Embed(source="assets/images/cross.png")]
+			private static var _textInput_clearIcon:Class;
+			
+			
+			
+			protected var logger:ILogger = Log.getLogger("flex3ui.AdvancedTextInput");
+			
+			public function dispose():void
+			{
+			}
+			
+			protected function clearButton_cb_changeHandler(event:Event):void
+				
+			{			
+				logger.info('textInput.showCancelButton = ');
+			}	
+		]]>
+	</fx:Script>
+	
+	<ui:AdvancedTextInput id="textInput"
+						  width="200"
+						  promptText="Search"
+						  promptColor="#808080"
+						  iconWidth="15"
+						  iconHeight="15"
+						  iconPadding="3"
+						  keepPromptOnFocus="false"
+						  showCancelButton="true"
+						  cancelWidth="12" cancelHeight="12"
+						  cancelDownSkin="{_textInput_clearIcon}"
+						  cancelUpSkin="{_textInput_clearIcon}"
+						  cancelOverSkin="{_textInput_clearIcon}"
+						  change="clearButton_cb_changeHandler(event)"
+						  />
+	
+	
+</mx:Box>
