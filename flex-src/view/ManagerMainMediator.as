@@ -33,8 +33,8 @@ package view
 		private function doLogin(evt:Event):void{	
 			CursorManager.setBusyCursor();
 			var manager:Manager = new Manager();			
-			manager.username = managerMain.cmpLoginFormManager.tiUsername.text
-			manager.password = managerMain.cmpLoginFormManager.tiPassword.text;			
+			manager.username = managerMain.cmpLoginFormManager.tiUsername.textInput.text
+			manager.password = managerMain.cmpLoginFormManager.tiPassword.textInput.text;			
 			var genericUser:GenericUser = new GenericUser(USER_TYPE);
 			genericUser.setUserAsManager = manager;
 			facade.sendNotification(ApplicationFacade.MANAGER_DO_LOGIN, genericUser);
