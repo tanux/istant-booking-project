@@ -81,41 +81,36 @@ package view.managermain
 					customerListCmp.tiTelephoneNumber.text = customerInList.getCustomer.telephoneNumber as String;
 					customerListCmp.btnSave.enabled = true;
 					break;
-				case ApplicationFacade.CUSTOMER_SAVE_CHANGES_SUCCESS:
-					Alert.show(customerListCmp.tiFirstname.text);
-					notify('default', 'Successo', 'L\'operazione è andata a buon fine', customerListCmp.successIcon, 5000);
+				case ApplicationFacade.CUSTOMER_SAVE_CHANGES_SUCCESS:					
+					notify('default', 'Successo', 'L\'operazione è andata a buon fine', customerListCmp.successIcon, 3000);
 					customerInList = notification.getBody() as CustomerInList;
+					
 					customerListCmp.tiFirstname.text = "Nome" as String;
 					customerListCmp.tiFirstname.textInput.text = "Nome" as String;
-					customerListCmp.tiFirstname.textInput.showCancelButton = false;
+					
 
 					customerListCmp.tiLastname.text = "Cognome" as String;
 					customerListCmp.tiLastname.textInput.text = "Cognome" as String;
-					customerListCmp.tiLastname.textInput.showCancelButton = false;
+					
 					
 					customerListCmp.tiEmail.text = "E-mail" as String;
 					customerListCmp.tiEmail.textInput.text = "E-mail" as String;
-					customerListCmp.tiEmail.textInput.showCancelButton = false;
+					
 					
 					customerListCmp.tiTelephoneNumber.text = "Telefono" as String;
 					customerListCmp.tiTelephoneNumber.textInput.text = "Telefono" as String;
-					customerListCmp.tiTelephoneNumber.textInput.showCancelButton = false;
+					
 					
 					customerListCmp.btnSave.enabled = false;
 					break;
 				case ApplicationFacade.CUSTOMER_SAVE_CHANGES_ERROR:
-					Alert.show("Errore nel salvataggio");
+					notify('default', 'Errore', 'L\'operazione non è stata completata con successo', customerListCmp.errorIcon, 3000);
 					break;				
 			}
 
 		}
 		
-		private function notify(type:String = 'default',
-								title:String = '', 
-								description:String = '', 
-								icon:Object = null,
-								duration:Number = 3000) : void {
-			
+		private function notify(type:String,title:String,description:String,icon:Object, duration:Number) : void {
 			var notification:Notification = new Notification(type, duration, title, description, icon);
 			notification.addEventListener(NotificationEvent.NOTIFICATION_ITEM_CLICK, clickHandler);
 			customerListCmp.dispatchEvent(new NotificationEvent(NotificationEvent.NOTIFY, notification));
