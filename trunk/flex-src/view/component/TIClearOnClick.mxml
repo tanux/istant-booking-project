@@ -16,8 +16,7 @@
 			private static var _textInput_clearIcon:Class;
 			
 			[Bindable] public var text:String = "";
-			
-			
+						
 			protected var logger:ILogger = Log.getLogger("flex3ui.AdvancedTextInput");
 			
 			public function dispose():void
@@ -25,7 +24,6 @@
 			}
 			
 			protected function clearButton_cb_changeHandler(event:Event):void
-				
 			{			
 				logger.info('textInput.showCancelButton = ');
 			}	
@@ -33,7 +31,7 @@
 	</fx:Script>
 	
 	<ui:AdvancedTextInput id="textInput"
-						  width="200"
+						  width="100%"
 						  promptText="{text}"
 						  promptColor="#808080"
 						  iconWidth="15"
@@ -47,5 +45,4 @@
 						  cancelOverSkin="{_textInput_clearIcon}"
 						  change="clearButton_cb_changeHandler(event)"
 						  />	
-	
 </mx:Box>
