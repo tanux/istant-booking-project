@@ -21,12 +21,11 @@
   <theme themeIsDefault="false" themeIsSDK="true" themeLocation="${SDK_THEMES_DIR}/frameworks/themes/Halo"/>
   <applications>
     <application path="Test.mxml"/>
-    <application path="AffiliateMain.mxml"/>
-    <application path="ManagerShowVisit.mxml"/>
-    <application path="ManagerMain.mxml"/>
     <application path="Print_test.mxml"/>
-    <application path="TestTextInputClearOnClick.mxml"/>
+    <application path="AffiliateMain.mxml"/>
     <application path="view/component/TIClearOnClick.mxml"/>
+    <application path="ManagerMain.mxml"/>
+    <application path="TestTextInputClearOnClick.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>
