@@ -48,6 +48,12 @@ package view
 			CursorManager.removeBusyCursor();
 		}
 		
+		private function goToHome(evt:Event):void{
+			CursorManager.setBusyCursor();
+			managerMain.currentState = "stateMainApplication";
+			CursorManager.removeBusyCursor();
+		}
+		
 		private function doLogout(evt:Event):void{
 			CursorManager.setBusyCursor();
 			facade.sendNotification(ApplicationFacade.MANAGER_DO_LOGOUT);
@@ -60,6 +66,8 @@ package view
 					var managerLoggedIn:Manager = notification.getBody() as Manager;
 					managerMain.cmpControlBar.txUserLoggedIn.text = "Dott."+managerLoggedIn.lastname+" "+managerLoggedIn.firstname;
 					managerMain.cmpControlBar.btnSettings.addEventListener(MouseEvent.CLICK, goToSetting);
+					managerMain.cmpControlBar.btnLogout.addEventListener(MouseEvent.CLICK, doLogout);
+					managerMain.cmpControlBar.btnHome.addEventListener(MouseEvent.CLICK, goToHome);
 					break;
 				case ApplicationFacade.MANAGER_EXECUTE_LOGIN:
 					facade.registerCommand(ApplicationFacade.MANAGER_DO_LOGIN, DoLoginCommand);
@@ -73,6 +81,7 @@ package view
 					managerMain.cmpControlBar.txUserLoggedIn.text = "Dott."+manager.lastname+" "+manager.firstname;
 					managerMain.cmpControlBar.btnSettings.addEventListener(MouseEvent.CLICK, goToSetting);
 					managerMain.cmpControlBar.btnLogout.addEventListener(MouseEvent.CLICK, doLogout);
+					managerMain.cmpControlBar.btnHome.addEventListener(MouseEvent.CLICK, goToHome);
 					facade.registerMediator(new CustomerListMediator(managerMain.cmpCustomerList));					
 					facade.registerCommand(ApplicationFacade.GET_CUSTOMER_LIST,CustomerGetListCommand);
 					facade.sendNotification(ApplicationFacade.GET_CUSTOMER_LIST);										
