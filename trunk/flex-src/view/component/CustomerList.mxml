@@ -57,7 +57,6 @@
 										 dataProvider="{customerList}" 
 										 labelFunction="makeDataLabel"
 										 matchType="word"
-										 text="Cerca..." 
 										 textAlign="right"
 										 />
 			</mx:Box>

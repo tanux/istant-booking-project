@@ -33,7 +33,6 @@
 	<ui:AdvancedTextInput id="textInput"
 						  width="100%"
 						  promptText="{text}"
-						  promptColor="#808080"
 						  color="#000000"
 						  iconWidth="15"
 						  iconHeight="15"
