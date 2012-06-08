@@ -44,23 +44,73 @@
 				var customerInList:CustomerInList = new CustomerInList(c,position);				
 				facade.sendNotification(ApplicationFacade.CUSTOMER_SELECTED, customerInList);				
 			}
+			
+			import mx.rpc.events.FaultEvent;
+			import mx.collections.ArrayCollection;
+			import mx.rpc.events.ResultEvent;
+			import mx.controls.Alert;
+			
+			
+			
+			
+			private function getDataSuccess(returnedEvent:ResultEvent):void{
+				customerList = returnedEvent.result as ArrayCollection;
+				this.enabled = true;
+			}
+			
+			private function init():void{
+				//con.getBooks();//
+				this.enabled = false;
+			}
+			
+			private function fault(f:FaultEvent):void{
+				Alert.show(f.fault.message as String);
+			}
+			
+			private function filterPhrase():void{
+				customerList.filterFunction = filterFirst;
+				customerList.refresh();
+			} 
+			
+			//if true it show results, if false it shows nothing
+			private function filterFirst(row:Object):Boolean
+			{
+				if(searchText.length == 0){
+					return true;
+				}
+				
+				var columnName:String;
+				var columnValue:String;
+				var keywords:Array = searchText.text.split(" ");
+				var wordFound:Boolean;
+				
+				// Loop Over Words
+				for(var word:int = 0; word < keywords.length; word++) {
+					wordFound = false;
+					// Loop Over Columns
+					for( var column:int = 0; column < dgCustomerList.columnCount; column++){
+						columnName = dgCustomerList.columns[column].dataField;
+						if (row[columnName] != null) {
+							columnValue = row[columnName];
+							columnValue = columnValue.toLowerCase();
+							if(columnValue.search(keywords[word].toLowerCase()) >= 0 ) {
+								wordFound = true;
+								break;
+							} 
+						}
+					}
+					if (!wordFound) return false;
+				}
+				return true;
+			}
 		]]>
 	</fx:Script>
 	
 	
 	<mx:HBox width="100%" textAlign="left" horizontalAlign="right" verticalAlign="middle">
 		<mx:Canvas>
-			<mx:Box>
-				<autocomplete:AutoComplete id="advancedAutoComplete" 
-										 width="250"
-										 paddingTop="1"
-										 dataProvider="{customerList}" 
-										 labelFunction="makeDataLabel"
-										 matchType="word"
-										 textAlign="right"
-										 />
-			</mx:Box>
-			<mx:Box width="20%" height="90%" paddingTop="2" paddingLeft="2">
+			<mx:TextInput id="searchText" paddingLeft="20" change="filterPhrase()"/>			
+			<mx:Box width="100%" height="90%" paddingTop="2" paddingLeft="2">
 				<mx:Image source="assets/images/find.png" height="20" />	
 			</mx:Box>			
 		</mx:Canvas>
@@ -76,7 +126,7 @@
 		</mx:columns>
 	</mx:DataGrid>
 	<mx:HBox>
-		<component:TIClearOnClick id="tiFirstname" text="Nome" label="" />
+		<component:TIClearOnClick id="tiFirstname" text="Nome"/>
 		<component:TIClearOnClick id="tiLastname" text="Cognome" />
 		<component:TIClearOnClick id="tiEmail" text="E-mail" />
 		<component:TIClearOnClick id="tiTelephoneNumber" text="Telefono" />
