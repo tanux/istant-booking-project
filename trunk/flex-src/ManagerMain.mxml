@@ -47,6 +47,7 @@
 			
 			<component:ControlTopBar id="cmpControlBar" />
 			
+			<!-- Main Application -->
 			<mx:Box width="100%" height="100%" horizontalAlign="center" includeIn="stateMainApplication">
 				<component:VisitPropertiesAffiliateMain id="cmpVisitProperties" />
 				<mx:Box width="80%"	height="100%">	
@@ -54,6 +55,7 @@
 				</mx:Box>
 			</mx:Box>
 			
+			<!-- Settings -->
 			<mx:Box width="100%" height="100%" horizontalAlign="center" paddingTop="10" includeIn="stateSettings">
 				<mx:Accordion headerStyleName="accordionHeaderICandy" width="80%" height="100%" alpha="1.0" backgroundAlpha="0.0" borderStyle="none">
 					<mx:Canvas width="100%" height="100%" label="Management Location">
@@ -68,6 +70,7 @@
 				</mx:Accordion>
 			</mx:Box>
 			
+			<!-- Show Visit -->
 			<mx:Box width="100%" height="100%" horizontalAlign="center" includeIn="stateShowVisit">
 				<mx:HBox width="80%" height="80%" horizontalAlign="center" verticalAlign="middle" paddingTop="5">
 					<mx:VBox width="30%" height="100%">
@@ -77,8 +80,7 @@
 					<mx:Box width="70%" height="100%" horizontalAlign="center" verticalAlign="middle">
 						<component:ListReservationManagerSettings width="100%" height="100%"/>
 					</mx:Box>	
-				</mx:HBox>
-				
+				</mx:HBox>				
 				<mx:HBox verticalAlign="middle" horizontalAlign="right" width="80%">
 					<mx:Button icon="@Embed(source='assets/images/delete_user.png')" downIcon="@Embed(source='assets/images/delete_user_little.png')"
 							   width="45" height="40"/>
@@ -87,7 +89,9 @@
 					<mx:Button icon="@Embed(source='assets/images/print.png')" downIcon="@Embed(source='assets/images/print_little.png')"
 							   width="45" height="40"/>
 				</mx:HBox>
-			</mx:Box>	
+			</mx:Box>
+			
+			
 		</mx:Box>
 	</mx:VBox>	
 </mx:Application>
