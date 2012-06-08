@@ -1,7 +1,28 @@
+
 <mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml"  
 		  paddingLeft="10" paddingRight="10" paddingTop="20"
 		  title="Giorno" horizontalAlign="center" verticalAlign="middle"
 		  styleName="panelSkinsICandy">
+	<mx:Script>
+		<![CDATA[	
+			
+			[Bindable]public var dateBeforeCurrentDate:Date = new Date();
+			
+			/*
+			
+			Creare un mediator e schiaffarci dentro questa funzione e richiamarla al dispatch opportuno
+			
+			private function calculateDateBeforeCurrentDate():Date{
+				var today:Date = new Date();
+				var millisecondsPerDay:Number = 1000 * 60 * 60 * 24;				
+				var yesterday:Date = new Date();
+				yesterday.setTime(today.getTime() - millisecondsPerDay);	
+				Alert.show("Data: "+yesterday.getFullYear()+","+yesterday.getMonth()+","+yesterday.getDate());
+				return new Date(yesterday.getFullYear(),yesterday.getMonth(), yesterday.getDate());				
+			}*/
+			
+		]]>
+	</mx:Script>
 	
 	<mx:Box id="boxDay" width="95%" height="80%" 
 			paddingTop="5" paddingBottom="5" paddingLeft="5" paddingRight="5">
@@ -11,7 +32,8 @@
 						firstDayOfWeek="1"
 						minYear="2012" maxYear="2013"
 						showToday="true" yearNavigationEnabled="true"
-						disabledRanges="{[ {rangeStart: new Date(2012,0,0), rangeEnd: new Date(2012,4,8)}, ]}"/>
+						disabledRanges="{[ {rangeEnd: dateBeforeCurrentDate}, ]}"
+						/>
 		
 	</mx:Box>
 	

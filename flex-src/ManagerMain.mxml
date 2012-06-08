@@ -75,7 +75,7 @@
 				<mx:HBox width="80%" height="80%" horizontalAlign="center" verticalAlign="middle" paddingTop="5">
 					<mx:VBox width="30%" height="100%">
 						<component:VisitLocations width="100%" height="50%" />
-						<component:VisitDay width="100%" height="50%"/>
+						<component:VisitDay id="visitDay" width="100%" height="50%"/>
 					</mx:VBox>
 					<mx:Box width="70%" height="100%" horizontalAlign="center" verticalAlign="middle">
 						<component:ListReservationManagerSettings width="100%" height="100%"/>
