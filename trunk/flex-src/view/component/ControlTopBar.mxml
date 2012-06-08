@@ -14,7 +14,7 @@
 					   width="45" height="40"/>
 			<mx:Button id="btnSettings" icon="@Embed(source='assets/images/gear.png')" downIcon="@Embed(source='assets/images/gear_little.png')"
 					   width="45" height="40"/>
-			<mx:Button id="btnFolder" icon="@Embed(source='assets/images/folder.png')" downIcon="@Embed(source='assets/images/folder_little.png')"
+			<mx:Button id="btnShowVisit" icon="@Embed(source='assets/images/folder.png')" downIcon="@Embed(source='assets/images/folder_little.png')"
 					   width="45" height="40"/>
 		</mx:HBox>
 		
