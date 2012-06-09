@@ -72,6 +72,9 @@ package
 		public static const CUSTOMER_ADD_ERROR:String = "CustomerAddError";
 		public static const CUSTOMER_ADD_FAULT:String = "CustomerAddFault";
 		public static const CUSTOMER_DELETE:String = "CustomerDelete";
+		public static const CUSTOMER_DELETE_SUCCESS:String = "CustomerDeleteSuccess";
+		public static const CUSTOMER_DELETE_ERROR:String = "CustomerDeleteError";
+		public static const CUSTOMER_DELETE_FAULT:String = "CustomerDeleteFault";
 				
 		public static function getInstance() : ApplicationFacade{
 			if (instance == null)

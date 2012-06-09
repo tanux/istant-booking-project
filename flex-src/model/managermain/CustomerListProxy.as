@@ -40,6 +40,11 @@ package model.managermain
 			at.addResponder(responder);
 		}
 		
+		public function deleteCustomer(customer:Customer):void{
+			var at:AsyncToken = service.deleteCustomer(customer.id as int);
+			at.addResponder(responder);			
+		}
+		
 		private function onResult(evt:ResultEvent):void{
 			switch( (evt.token.message as RemotingMessage).operation){
 				case "getCustomerList":
@@ -63,6 +68,13 @@ package model.managermain
 					}
 					else{
 						sendNotification(ApplicationFacade.CUSTOMER_ADD_ERROR);
+					}
+				case "deleteCustomer":
+					if (evt.result != null){
+						sendNotification(ApplicationFacade.CUSTOMER_DELETE_SUCCESS, evt.result);
+					}
+					else{
+						sendNotification(ApplicationFacade.CUSTOMER_DELETE_ERROR);
 					}
 			}	
 		}
