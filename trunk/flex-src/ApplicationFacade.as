@@ -68,6 +68,9 @@ package
 		public static const CUSTOMER_SAVE_CHANGES_ERROR:String = "CustomerSaveChangesError";
 		public static const CUSTOMER_SAVE_CHANGES_FAULT:String = "CustomerSaveChangesFault";
 		public static const CUSTOMER_ADD:String = "CustomerAdd";
+		public static const CUSTOMER_ADD_SUCCESS:String = "CustomerAddSuccess";
+		public static const CUSTOMER_ADD_ERROR:String = "CustomerAddError";
+		public static const CUSTOMER_ADD_FAULT:String = "CustomerAddFault";
 		public static const CUSTOMER_DELETE:String = "CustomerDelete";
 				
 		public static function getInstance() : ApplicationFacade{

@@ -35,8 +35,9 @@ package view.managermain
 			newCustomer.firstName = customerListCmp.tiFirstname.textInput.text;
 			newCustomer.lastName = customerListCmp.tiLastname.textInput.text;
 			newCustomer.email = customerListCmp.tiEmail.textInput.text;
-			newCustomer.telephoneNumber = customerListCmp.tiTelephoneNumber.textInput.text;			
+			newCustomer.telephoneNumber = customerListCmp.tiTelephoneNumber.textInput.text;
 			facade.sendNotification(ApplicationFacade.CUSTOMER_ADD, newCustomer );
+			var cInList:CustomerInList = new CustomerInList(newCustomer, customerInList.getPosition);
 		}
 		
 		public function deleteCustomer(evt:Event): void{
@@ -83,30 +84,40 @@ package view.managermain
 					break;
 				case ApplicationFacade.CUSTOMER_SAVE_CHANGES_SUCCESS:
 					notify('default', 'Successo', 'L\'operazione è andata a buon fine', customerListCmp.successIcon, 5000);
-					customerInList = notification.getBody() as CustomerInList;
-					customerListCmp.tiFirstname.text = "Nome" as String;
-					customerListCmp.tiFirstname.textInput.text = "Nome" as String;
-					customerListCmp.tiFirstname.textInput.showCancelButton = false;
-
-					customerListCmp.tiLastname.text = "Cognome" as String;
-					customerListCmp.tiLastname.textInput.text = "Cognome" as String;
-					customerListCmp.tiLastname.textInput.showCancelButton = false;
-					
-					customerListCmp.tiEmail.text = "E-mail" as String;
-					customerListCmp.tiEmail.textInput.text = "E-mail" as String;
-					customerListCmp.tiEmail.textInput.showCancelButton = false;
-					
-					customerListCmp.tiTelephoneNumber.text = "Telefono" as String;
-					customerListCmp.tiTelephoneNumber.textInput.text = "Telefono" as String;
-					customerListCmp.tiTelephoneNumber.textInput.showCancelButton = false;
-					
+					resetTextInput();					
 					customerListCmp.btnSave.enabled = false;
 					break;
 				case ApplicationFacade.CUSTOMER_SAVE_CHANGES_ERROR:
 					Alert.show("Errore nel salvataggio");
-					break;				
+					break;
+				case ApplicationFacade.CUSTOMER_ADD_SUCCESS:
+					notify('default', 'Successo', 'Inserimento ok', customerListCmp.successIcon, 5000);
+					resetTextInput();
+					break;
+				case ApplicationFacade.CUSTOMER_ADD_ERROR:
+					Alert.show("Errore inserimento");
+					break;
+
 			}
 
+		}
+		
+		private function resetTextInput():void{
+			customerListCmp.tiFirstname.text = "Nome" as String;
+			customerListCmp.tiFirstname.textInput.text = "Nome" as String;
+			customerListCmp.tiFirstname.textInput.showCancelButton = false;
+			
+			customerListCmp.tiLastname.text = "Cognome" as String;
+			customerListCmp.tiLastname.textInput.text = "Cognome" as String;
+			customerListCmp.tiLastname.textInput.showCancelButton = false;
+			
+			customerListCmp.tiEmail.text = "E-mail" as String;
+			customerListCmp.tiEmail.textInput.text = "E-mail" as String;
+			customerListCmp.tiEmail.textInput.showCancelButton = false;
+			
+			customerListCmp.tiTelephoneNumber.text = "Telefono" as String;
+			customerListCmp.tiTelephoneNumber.textInput.text = "Telefono" as String;
+			customerListCmp.tiTelephoneNumber.textInput.showCancelButton = false;
 		}
 		
 		private function notify(type:String = 'default',
@@ -129,7 +140,10 @@ package view.managermain
 				ApplicationFacade.GET_CUSTOMER_LIST_FAULT,
 				ApplicationFacade.CUSTOMER_SELECTED,
 				ApplicationFacade.CUSTOMER_SAVE_CHANGES_SUCCESS,
-				ApplicationFacade.CUSTOMER_SAVE_CHANGES_ERROR
+				ApplicationFacade.CUSTOMER_SAVE_CHANGES_ERROR,
+				ApplicationFacade.CUSTOMER_ADD,
+				ApplicationFacade.CUSTOMER_ADD_SUCCESS,
+				ApplicationFacade.CUSTOMER_ADD_ERROR,
 				
 			];
 		}
