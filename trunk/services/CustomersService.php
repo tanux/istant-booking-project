@@ -32,14 +32,14 @@ class CustomersService {
 	
 	/**
 	 * Delete Customer from Customers' List
-	 * @param int $id
+	 * @param Customer $customer
 	 * @return int the number of row affected
 	 */
-	public function deleteCustomer($id){
+	public function deleteCustomer($customer){
 		$dbAdapter = ManageDatabase::getDbAdapter();
 		Zend_Db_Table::setDefaultAdapter($dbAdapter);
 		$customerTable = new Zend_Db_Table('customers');
-		$where = $customerTable->getAdapter()->quoteInto('id= ?', $id);
+		$where = $customerTable->getAdapter()->quoteInto('id= ?', $customer->id);
 		return $customerTable->delete($where);
 	}
 	

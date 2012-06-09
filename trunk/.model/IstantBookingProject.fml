@@ -333,9 +333,11 @@
         <item name="analyzed">true</item>
       </annotation>
       <annotation name="original signature">
-        <item name="returnType">opaque</item>
+        <item name="inputParamNames">id</item>
+        <item name="inputParams">Customer</item>
+        <item name="returnType">integer</item>
       </annotation>
-      <parameter name="id" type="integer"/>
+      <parameter name="customer" type="Customer"/>
     </function>
   </service>
   <entity name="Customer">

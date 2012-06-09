@@ -127,10 +127,10 @@ internal class _Super_CustomersService extends com.adobe.fiber.services.wrapper.
       *
       * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function deleteCustomer(id:int) : mx.rpc.AsyncToken
+    public function deleteCustomer(customer:model.vo.Customer) : mx.rpc.AsyncToken
     {
         var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("deleteCustomer");
-		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(id) ;
+		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(customer) ;
         return _internal_token;
     }
      
