@@ -28,7 +28,7 @@ package model.managermain
 		}
 		
 		public function removeCustomer(item:CustomerInList):void{
-			customers.removeItemAt(item.getCustomer.id as int);
+			customers.removeItemAt(item.getPosition);
 		}
 		
 		public function updateCustomer(item:CustomerInList):void{
