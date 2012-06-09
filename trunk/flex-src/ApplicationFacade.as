@@ -69,7 +69,7 @@ package
 		public static const CUSTOMER_SAVE_CHANGES_FAULT:String = "CustomerSaveChangesFault";
 		public static const CUSTOMER_ADD:String = "CustomerAdd";
 		public static const CUSTOMER_DELETE:String = "CustomerDelete";
-		
+				
 		public static function getInstance() : ApplicationFacade{
 			if (instance == null)
 				instance = new ApplicationFacade();

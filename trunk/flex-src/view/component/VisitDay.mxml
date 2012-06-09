@@ -5,34 +5,28 @@
 		  styleName="panelSkinsICandy">
 	<mx:Script>
 		<![CDATA[	
+			import mx.controls.Alert;
+			private var facade:ApplicationFacade = ApplicationFacade.getInstance() as ApplicationFacade;
 			
-			[Bindable]public var dateBeforeCurrentDate:Date = new Date();
-			
-			/*
-			
-			Creare un mediator e schiaffarci dentro questa funzione e richiamarla al dispatch opportuno
-			
-			private function calculateDateBeforeCurrentDate():Date{
+			protected function dateField_Handler():Date{
 				var today:Date = new Date();
 				var millisecondsPerDay:Number = 1000 * 60 * 60 * 24;				
 				var yesterday:Date = new Date();
-				yesterday.setTime(today.getTime() - millisecondsPerDay);	
-				Alert.show("Data: "+yesterday.getFullYear()+","+yesterday.getMonth()+","+yesterday.getDate());
+				yesterday.setTime(today.getTime() - millisecondsPerDay);
 				return new Date(yesterday.getFullYear(),yesterday.getMonth(), yesterday.getDate());				
-			}*/
-			
+			}
 		]]>
 	</mx:Script>
 	
 	<mx:Box id="boxDay" width="95%" height="80%" 
 			paddingTop="5" paddingBottom="5" paddingLeft="5" paddingRight="5">
-		<mx:DateChooser width="100%" height="100%" disabledDays="[0, 2, 6]"
+		<mx:DateChooser id="calendar" width="100%" height="100%" disabledDays="[0, 2, 6]"
 						dayNames= " [Dom, Lun, Mar, Mer, Gio, Ven, Sab] "
 						monthNames="[ Gennaio, Febbraio, Marzo, Aprile, Maggio, Giugno, Luglio, Agosto, Settembre, Ottobre, Novembre, Dicembre]"
 						firstDayOfWeek="1"
 						minYear="2012" maxYear="2013"
 						showToday="true" yearNavigationEnabled="true"
-						disabledRanges="{[ {rangeEnd: dateBeforeCurrentDate}, ]}"
+						disabledRanges="{[ {rangeEnd: dateField_Handler()}]}"
 						/>
 		
 	</mx:Box>
