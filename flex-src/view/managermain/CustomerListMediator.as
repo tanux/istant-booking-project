@@ -37,7 +37,6 @@ package view.managermain
 			newCustomer.email = customerListCmp.tiEmail.textInput.text;
 			newCustomer.telephoneNumber = customerListCmp.tiTelephoneNumber.textInput.text;
 			facade.sendNotification(ApplicationFacade.CUSTOMER_ADD, newCustomer );
-			var cInList:CustomerInList = new CustomerInList(newCustomer, customerInList.getPosition);
 		}
 		
 		public function deleteCustomer(evt:Event): void{
