@@ -35,6 +35,11 @@ package model.managermain
 			at.addResponder(responder);
 		}
 		
+		public function addCustomer (customer:Customer):void{
+			var at:AsyncToken = service.addCustomer(customer);
+			at.addResponder(responder);
+		}
+		
 		private function onResult(evt:ResultEvent):void{
 			switch( (evt.token.message as RemotingMessage).operation){
 				case "getCustomerList":
@@ -51,6 +56,13 @@ package model.managermain
 					}
 					else{
 						sendNotification(ApplicationFacade.CUSTOMER_SAVE_CHANGES_ERROR);
+					}
+				case "addCustomer":
+					if (evt.result != null){
+						sendNotification(ApplicationFacade.CUSTOMER_ADD_SUCCESS, evt.result);
+					}
+					else{
+						sendNotification(ApplicationFacade.CUSTOMER_ADD_ERROR);
 					}
 			}	
 		}
