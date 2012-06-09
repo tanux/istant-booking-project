@@ -73,6 +73,8 @@ package view
 		}	
 		
 		
+		
+		
 		override public function handleNotification(notification:INotification):void{
 			switch (notification.getName()){
 				case ApplicationFacade.MANAGER_LOGGED_IN:
@@ -106,7 +108,7 @@ package view
 					break;
 				case ApplicationFacade.MANAGER_LOGIN_FAULT:					
 					Alert.show("Fault: Errore di comunicazione con il server");
-					break;
+					break;			
 			}
 		}
 		
@@ -117,7 +119,7 @@ package view
 				ApplicationFacade.MANAGER_LOGIN_SUCCESS,
 				ApplicationFacade.MANAGER_LOGIN_ERROR,
 				ApplicationFacade.MANAGER_LOGOUT_SUCCESS,
-				ApplicationFacade.MANAGER_LOGIN_FAULT,				
+				ApplicationFacade.MANAGER_LOGIN_FAULT				
 			];
 		}
 				
