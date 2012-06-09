@@ -39,6 +39,7 @@ package view.managermain
 			facade.sendNotification(ApplicationFacade.CUSTOMER_ADD, newCustomer );
 		}
 		
+		
 		public function deleteCustomer(evt:Event): void{
 			var delCustomer:Customer = new Customer();
 			delCustomer.id = customerInList.getCustomer.id;
@@ -96,7 +97,13 @@ package view.managermain
 				case ApplicationFacade.CUSTOMER_ADD_ERROR:
 					Alert.show("Errore inserimento");
 					break;
-
+				case ApplicationFacade.CUSTOMER_DELETE_SUCCESS:
+					notify('default', 'Successo', 'Eliminazione ok', customerListCmp.successIcon, 5000);
+					resetTextInput();
+					break;
+				case ApplicationFacade.CUSTOMER_DELETE_ERROR:
+					Alert.show("Errore delete");
+					break;
 			}
 
 		}
@@ -140,10 +147,13 @@ package view.managermain
 				ApplicationFacade.CUSTOMER_SELECTED,
 				ApplicationFacade.CUSTOMER_SAVE_CHANGES_SUCCESS,
 				ApplicationFacade.CUSTOMER_SAVE_CHANGES_ERROR,
-				ApplicationFacade.CUSTOMER_ADD,
+				/**ApplicationFacade.CUSTOMER_ADD,**/
 				ApplicationFacade.CUSTOMER_ADD_SUCCESS,
 				ApplicationFacade.CUSTOMER_ADD_ERROR,
-				
+				ApplicationFacade.CUSTOMER_ADD_FAULT,
+				ApplicationFacade.CUSTOMER_DELETE_SUCCESS,
+				ApplicationFacade.CUSTOMER_DELETE_ERROR,
+				ApplicationFacade.CUSTOMER_DELETE_FAULT				
 			];
 		}
 		

@@ -13,15 +13,24 @@ package controller.managermain
 	
 	public class CustomerDeleteCommand extends SimpleCommand implements ICommand{
 		override public function execute(notification:INotification) : void {
-			var customer:CustomerInList=notification.getBody() as CustomerInList;	
-			if (facade.hasProxy(CustomerProxy.NAME)){
-				var customerProxy:CustomerProxy = facade.retrieveProxy(CustomerProxy.NAME) as CustomerProxy;
-				customerProxy.removeCustomer(customer);
+			var customerInList:CustomerInList = notification.getBody() as CustomerInList;
+			var customer:Customer=notification.getBody() as Customer;			
+			if (facade.hasProxy(CustomerListProxy.NAME)){
+				var customerListProxy:CustomerListProxy = facade.retrieveProxy(CustomerListProxy.NAME) as CustomerListProxy;
+				customerListProxy.deleteCustomer(customer);
+				if (facade.hasProxy(CustomerProxy.NAME)){
+					var customerProxy:CustomerProxy = facade.retrieveProxy(CustomerProxy.NAME) as CustomerProxy;
+					customerProxy.removeCustomer(customerInList)
+				}else{				
+					var newCustomerProxy:CustomerProxy = new CustomerProxy(CustomerProxy.NAME);
+					newCustomerProxy.removeCustomer(customerInList);
+					facade.registerProxy(newCustomerProxy);						
+				}
 			}
 			else{
-				var newCustomerProxy:CustomerProxy = new CustomerProxy(CustomerProxy.NAME);
-				newCustomerProxy.removeCustomer(customer);
-				facade.registerProxy(newCustomerProxy);					
+				var newCustomerListProxy:CustomerListProxy = new CustomerListProxy(CustomerListProxy.NAME);
+				newCustomerListProxy.deleteCustomer(customer);
+				facade.registerProxy(newCustomerListProxy);
 			}
 		}
 	}
