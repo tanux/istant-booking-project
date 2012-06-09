@@ -20,7 +20,7 @@ package controller.managermain
 				customerListProxy.deleteCustomer(customer);
 				if (facade.hasProxy(CustomerProxy.NAME)){
 					var customerProxy:CustomerProxy = facade.retrieveProxy(CustomerProxy.NAME) as CustomerProxy;
-					customerProxy.removeCustomer(customerInList)
+					customerProxy.removeCustomer(customerInList);
 				}else{				
 					var newCustomerProxy:CustomerProxy = new CustomerProxy(CustomerProxy.NAME);
 					newCustomerProxy.removeCustomer(customerInList);
