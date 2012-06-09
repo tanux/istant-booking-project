@@ -62,6 +62,7 @@ package model.managermain
 					else{
 						sendNotification(ApplicationFacade.CUSTOMER_SAVE_CHANGES_ERROR);
 					}
+					break;
 				case "addCustomer":
 					if (evt.result != null){
 						sendNotification(ApplicationFacade.CUSTOMER_ADD_SUCCESS, evt.result);
@@ -69,6 +70,7 @@ package model.managermain
 					else{
 						sendNotification(ApplicationFacade.CUSTOMER_ADD_ERROR);
 					}
+					break;
 				case "deleteCustomer":
 					if (evt.result != null){
 						sendNotification(ApplicationFacade.CUSTOMER_DELETE_SUCCESS, evt.result);
@@ -76,6 +78,7 @@ package model.managermain
 					else{
 						sendNotification(ApplicationFacade.CUSTOMER_DELETE_ERROR);
 					}
+					break;
 			}	
 		}
 		
