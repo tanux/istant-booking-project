@@ -41,7 +41,7 @@ package model.managermain
 		}
 		
 		public function deleteCustomer(customer:Customer):void{
-			var at:AsyncToken = service.deleteCustomer(customer.id as int);
+			var at:AsyncToken = service.deleteCustomer(customer);
 			at.addResponder(responder);			
 		}
 		
