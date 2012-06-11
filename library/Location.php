@@ -5,6 +5,6 @@ class Location {
 	public $city;
 	public $address;
 	public $telephoneNumber;
-	public $visitDays;	
+	public $receptionDays;	
 }
 ?>
