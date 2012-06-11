@@ -72,7 +72,7 @@
 			
 			<!-- Show Visit -->
 			<mx:Box width="100%" height="100%" horizontalAlign="center" includeIn="stateShowVisit">
-				<mx:HBox width="80%" height="80%" horizontalAlign="center" verticalAlign="middle" paddingTop="5">
+				<mx:HBox width="80%" height="100%" horizontalAlign="center" verticalAlign="middle" paddingTop="5">
 					<mx:VBox width="30%" height="100%">
 						<component:VisitLocations width="100%" height="50%" />
 						<component:VisitDay id="visitDay" width="100%" height="50%"/>
@@ -80,7 +80,7 @@
 					<mx:Box width="70%" height="100%" horizontalAlign="center" verticalAlign="middle">
 						<component:ListReservationManagerSettings width="100%" height="100%"/>
 					</mx:Box>	
-				</mx:HBox>				
+				</mx:HBox>								
 				<mx:HBox verticalAlign="middle" horizontalAlign="right" width="80%">
 					<mx:Button icon="@Embed(source='assets/images/delete_user.png')" downIcon="@Embed(source='assets/images/delete_user_little.png')"
 							   width="45" height="40"/>
@@ -89,6 +89,7 @@
 					<mx:Button icon="@Embed(source='assets/images/print.png')" downIcon="@Embed(source='assets/images/print_little.png')"
 							   width="45" height="40"/>
 				</mx:HBox>
+				
 			</mx:Box>
 			
 			
