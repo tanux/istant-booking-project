@@ -11,6 +11,7 @@ class CustomersService {
 		$select = $dbAdapter->select()->from('customers');
 		$stmt = $dbAdapter->query($select);
 		return $stmt->fetchAll();
+		
 	}
 	
 	/**

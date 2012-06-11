@@ -274,6 +274,27 @@
     <property name="email" type="opaque" required="true"/>
     <property name="password" type="opaque" required="true"/>
   </entity>
+  <entity name="ArrayObject">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">ArrayObject</item>
+      <item name="location">C:/easyphp/www/.metadata/.plugins/org.eclipse.php.core/__language__/4b249652/SPL.php</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="RemoteClass">ArrayObject</item>
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="getCustomerList">
+      <item name="propertySpecifier">STD_PROP_LIST,ARRAY_AS_PROPS</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">CustomersService</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">model.vo</item>
+    </annotation>
+    <property name="STD_PROP_LIST" type="opaque" required="true"/>
+    <property name="ARRAY_AS_PROPS" type="opaque" required="true"/>
+  </entity>
   <service name="CustomersService">
     <annotation name="ActionScriptGeneration">
       <item name="Source">CustomersService</item>
@@ -364,27 +385,6 @@
     <property name="email" type="opaque" required="true"/>
     <property name="telephoneNumber" type="opaque" required="true"/>
   </entity>
-  <entity name="ArrayObject">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">ArrayObject</item>
-      <item name="location">C:/easyphp/www/.metadata/.plugins/org.eclipse.php.core/__language__/4b249652/SPL.php</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="RemoteClass">ArrayObject</item>
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="getCustomerList">
-      <item name="propertySpecifier">STD_PROP_LIST,ARRAY_AS_PROPS</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">CustomersService</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">model.vo</item>
-    </annotation>
-    <property name="STD_PROP_LIST" type="opaque" required="true"/>
-    <property name="ARRAY_AS_PROPS" type="opaque" required="true"/>
-  </entity>
   <service name="LocationServices">
     <annotation name="ActionScriptGeneration">
       <item name="Source">LocationServices</item>
@@ -403,7 +403,6 @@
       <item name="DEFAULT_ENTITY_PACKAGE">model.vo</item>
       <item name="PHP_SERVICES_FOLDER">C:/easyphp/www/IstantBookingProject/public/bin-release/services</item>
       <item name="PHP_LOCATION">C:/easyphp/www/IstantBookingProject/services/LocationServices.php</item>
-      <item name="LINKED_FILE">LocationServices_LocationServices.php</item>
       <item name="PHP_SERVER_ROOT_URL">http://localhost</item>
       <item name="ABSOLUTE_ENDPOINT">http://localhost/IstantBookingProject/public/gateway.php</item>
       <item name="PHP_CLASS_NAME">LocationServices</item>
@@ -412,12 +411,18 @@
       <annotation name="analyze group">
         <item name="analyzed">false</item>
       </annotation>
-      <annotation name="ValidProperties">
-        <item name="propertySpecifier">STD_PROP_LIST,ARRAY_AS_PROPS</item>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="addLocation" return-type="integer">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
       </annotation>
       <annotation name="original signature">
         <item name="returnType">opaque</item>
       </annotation>
+      <parameter name="location" type="Location"/>
     </function>
   </service>
   <entity name="Location">
@@ -429,14 +434,8 @@
       <item name="RemoteClass">Location</item>
       <item name="IncludeRemoteClass">nonempty</item>
     </annotation>
-    <annotation name="getLocationList">
-      <item name="propertySpecifier">id,city,address,telephoneNumber,receptionDays</item>
-    </annotation>
     <annotation name="service Group">
-      <item name="service">LocationServices,LocationServicesDummy</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">model.vo</item>
+      <item name="service">LocationServices</item>
     </annotation>
     <property name="id" type="opaque" required="true"/>
     <property name="city" type="opaque" required="true"/>
