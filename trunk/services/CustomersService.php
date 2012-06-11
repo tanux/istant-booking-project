@@ -10,8 +10,7 @@ class CustomersService {
 		$dbAdapter = ManageDatabase::getDbAdapter();
 		$select = $dbAdapter->select()->from('customers');
 		$stmt = $dbAdapter->query($select);
-		return $stmt->fetchAll();
-		
+		return $stmt->fetchAll();		
 	}
 	
 	/**
@@ -20,15 +19,10 @@ class CustomersService {
 	 * @param Customer $customer
 	 * @return int the number of row affected
 	 */
-	public function addCustomer($customer){
-		$data=array(
-			'firstname' => $customer->firstName,
-			'lastname' => $customer->lastName,
-			'email' => $customer->email,
-			'telephone_number' => $customer->telephoneNumber
-		);
+	public function addCustomer($customer){		
+		$customerData = CustomersService::setCustomerData($customer);
 		$dbAdapter = ManageDatabase::getDbAdapter();		
-		return $dbAdapter->insert('customers', $data);
+		return $dbAdapter->insert('customers', $customerData);
 	}
 	
 	/**
