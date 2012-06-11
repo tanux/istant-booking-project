@@ -3,11 +3,11 @@
 		 backgroundColor="#6699cc" cornerRadius="20" borderStyle="solid">
 	<mx:HBox width="100%" textAlign="left" verticalAlign="middle" paddingTop="4" paddingLeft="5" paddingRight="5">
 		<mx:Box horizontalAlign="left" height="100%" width="80%" verticalAlign="middle">
-			<mx:Label color="white" fontSize="15" fontWeight="bold"
+			<mx:Label color="white" fontSize="13" fontWeight="bold"
 					  text="Elenco Prenotazioni Avellino per il giorno 15/02/2012"/>	
 		</mx:Box>
 		
-		<mx:Box horizontalAlign="right" verticalAlign="middle">
+		<mx:Box horizontalAlign="right" paddingRight="10" verticalAlign="middle">
 			<mx:Canvas>
 				<mx:Box>
 					<mx:TextInput text="Cerca..." paddingTop="1" textAlign="right"/>	
