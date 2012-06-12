@@ -17,8 +17,8 @@ package view.managermain
 	import org.tylerchesley.bark.events.NotificationEvent;
 	
 	import view.ManagerMainMediator;
-	import view.component.HouseButton;
 	import view.component.LocationList;
+	//import view.component.HouseButton;
 	
 	public class LocationListMediator extends Mediator implements IMediator{
 		public static const NAME:String = "LocationListMediator";

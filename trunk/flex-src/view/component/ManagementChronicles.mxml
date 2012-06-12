@@ -9,6 +9,6 @@
 				<mx:DataGridColumn id="clmTelep2hone" dataField="Telefono" headerText="Telefono" />
 			</mx:columns>
 		</mx:DataGrid>
-		<component:LocationChartsManagementLocation height="60%"/>
+		<component:LocationCharts height="60%"/>
 	</mx:VBox>	
 </mx:VBox>
