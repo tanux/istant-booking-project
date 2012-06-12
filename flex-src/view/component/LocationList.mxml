@@ -63,7 +63,7 @@
 	
 	<mx:DataGrid id="dgLocationList" width="60%" height="100%" dataProvider="{locationList}" doubleClickEnabled="true" itemClick="dgLocationList_itemClickHandler(event)">
 		<mx:columns>
-			<mx:DataGridColumn id="clmId" dataField="id" headerText="Id" visible="false"/>
+			<mx:DataGridColumn id="clmId" dataField="id" headerText="id" visible="false"/>
 			<mx:DataGridColumn id="clmLocation" dataField="city" headerText="Sede" />
 			<mx:DataGridColumn id="clmStreet" dataField="address" headerText="Indirizzo" />
 			<mx:DataGridColumn id="clmTelephone" dataField="telephone_number" headerText="Telefono" />
