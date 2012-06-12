@@ -94,9 +94,9 @@
 					</mx:VBox>	
 				</mx:HBox>								
 				<mx:HBox verticalAlign="middle" horizontalAlign="right" width="80%">
-					<mx:Button icon="@Embed(source='assets/images/delete_user.png')" downIcon="@Embed(source='assets/images/delete_user_little.png')"
+					<mx:Button id="btnDeleteUser" icon="@Embed(source='assets/images/delete_user.png')" downIcon="@Embed(source='assets/images/delete_user_little.png')"
 							   width="45" height="40"/>
-					<mx:Button icon="@Embed(source='assets/images/delete_multi_user.png')" downIcon="@Embed(source='assets/images/delete_multi_user_little.png')"
+					<mx:Button id="btnDeleteAllUser" icon="@Embed(source='assets/images/delete_multi_user.png')" downIcon="@Embed(source='assets/images/delete_multi_user_little.png')"
 							   width="45" height="40"/>
 					<mx:Button icon="@Embed(source='assets/images/print.png')" downIcon="@Embed(source='assets/images/print_little.png')"
 							   width="45" height="40"/>

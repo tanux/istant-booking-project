@@ -1,8 +1,0 @@
-<mx:DataGrid xmlns:mx="http://www.adobe.com/2006/mxml"
-			 width="60%" height="100%">
-	<mx:columns>
-		<mx:DataGridColumn id="clmLocation" dataField="Sede" headerText="Sede" />
-		<mx:DataGridColumn id="clmStreet" dataField="Indirizzo" headerText="Indirizzo" />
-		<mx:DataGridColumn id="clmTelephone" dataField="Telefono" headerText="Telefono" />
-	</mx:columns>
-</mx:DataGrid >
