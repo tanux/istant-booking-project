@@ -2,7 +2,6 @@
 <mx:VBox xmlns:fx="http://ns.adobe.com/mxml/2009"
 		 xmlns:s="library://ns.adobe.com/flex/spark"
 		 xmlns:mx="library://ns.adobe.com/flex/mx"		 
-		 xmlns:autocomplete="com.hillelcoren.components.*"
 		 xmlns:component="view.component.*"
 		 xmlns:vo="vo.*"
 		 width="100%" height="100%">		 	

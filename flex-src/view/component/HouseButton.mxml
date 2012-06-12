@@ -5,4 +5,6 @@
 			   width="45" height="40"/>
 	<mx:Button icon="@Embed(source='assets/images/house_delete.png')" downIcon="@Embed(source='assets/images/house_delete_little.png')"
 			   width="45" height="40"/>
+	<mx:Button id="btnSave" icon="@Embed(source='assets/images/save.png')" downIcon="@Embed(source='assets/images/save_little.png')"
+			   width="45" height="40" enabled="false"/>
 </mx:HBox>

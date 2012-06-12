@@ -75,7 +75,26 @@ package
 		public static const CUSTOMER_DELETE_SUCCESS:String = "CustomerDeleteSuccess";
 		public static const CUSTOMER_DELETE_ERROR:String = "CustomerDeleteError";
 		public static const CUSTOMER_DELETE_FAULT:String = "CustomerDeleteFault";
-				
+		
+		/*Location Notify*/
+		public static const LOCATION_SELECTED: String = "LocationSelected";
+		public static const GET_LOCATION_LIST:String = "GetLocationList";
+		public static const GET_LOCATION_LIST_SUCCESS:String = "GetLocationListSuccess";
+		public static const GET_LOCATION_LIST_ERROR:String = "GetLocationListError";
+		public static const GET_LOCATION_LIST_FAULT:String = "GetLocationListFault";
+		public static const LOCATION_SAVE_CHANGES:String = "LocationSaveChanges";
+		public static const LOCATION_SAVE_CHANGES_SUCCESS:String = "LocationSaveChangesSuccess";
+		public static const LOCATION_SAVE_CHANGES_ERROR:String = "LocationSaveChangesError";
+		public static const LOCATION_SAVE_CHANGES_FAULT:String = "LocationSaveChangesFault";
+		public static const LOCATION_ADD:String = "LocationAdd";
+		public static const LOCATION_ADD_SUCCESS:String = "LocationAddSuccess";
+		public static const LOCATION_ADD_ERROR:String = "LocationAddError";
+		public static const LOCATION_ADD_FAULT:String = "LocationAddFault";
+		public static const LOCATION_DELETE:String = "LocationDelete";
+		public static const LOCATION_DELETE_SUCCESS:String = "LocationDeleteSuccess";
+		public static const LOCATION_DELETE_ERROR:String = "LocationDeleteError";
+		public static const LOCATION_DELETE_FAULT:String = "LocationDeleteFault";
+		
 		public static function getInstance() : ApplicationFacade{
 			if (instance == null)
 				instance = new ApplicationFacade();
