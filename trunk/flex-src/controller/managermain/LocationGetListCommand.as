@@ -19,8 +19,8 @@ package controller.managermain
 				facade.registerProxy(newLocationListProxy);				
 			}
 			facade.registerCommand(ApplicationFacade.LOCATION_SAVE_CHANGES, LocationSaveChangesController);
-			facade.registerCommand(ApplicationFacade.CUSTOMER_ADD, LocationAddCommand);
-			//facade.registerCommand(ApplicationFacade.CUSTOMER_DELETE, LocationDeleteCommand);
+			facade.registerCommand(ApplicationFacade.LOCATION_ADD, LocationAddCommand);
+			facade.registerCommand(ApplicationFacade.LOCATION_DELETE, LocationDeleteCommand);
 		}
 	}
 }
