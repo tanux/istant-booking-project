@@ -17,7 +17,10 @@
 			
 			import mx.collections.ArrayCollection;
 			import mx.controls.Alert;
-			import mx.events.ListEvent;			
+			import mx.events.ListEvent;	
+			
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
 			
 			private var facade:ApplicationFacade = ApplicationFacade.getInstance() as ApplicationFacade;
 			[Bindable]public var locationList:ArrayCollection;
@@ -42,10 +45,7 @@
 				facade.sendNotification(ApplicationFacade.LOCATION_SELECTED, locationInList);		
 			}
 			
-			import mx.rpc.events.FaultEvent;
-			import mx.collections.ArrayCollection;
-			import mx.rpc.events.ResultEvent;
-			import mx.controls.Alert;
+
 			
 			
 			

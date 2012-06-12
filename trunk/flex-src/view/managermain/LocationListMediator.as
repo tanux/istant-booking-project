@@ -41,11 +41,23 @@ package view.managermain
 		
 		
 		public function deleteLocation(evt:Event): void{
-
+			var delLocation:Location = new Location();
+			delLocation.id = locationInList.getLocation.id;
+			delLocation.city = locationListCmp.tiLocationName.textInput.text;
+			delLocation.address = locationListCmp.tiStreet.textInput.text;
+			delLocation.telephoneNumber = locationListCmp.tiTelephone.textInput.text;
+			var lInList:LocationInList = new LocationInList(delLocation, locationInList.getPosition);
+			facade.sendNotification(ApplicationFacade.LOCATION_DELETE, lInList);
 		}
 		
 		private function saveChanges(evt:Event): void {			
-		
+			var locationChanged:Location = new Location();			
+			locationChanged.id = locationInList.getLocation.id;
+			locationChanged.city = locationListCmp.tiLocationName.textInput.text;
+			locationChanged.address = locationListCmp.tiStreet.textInput.text;
+			locationChanged.telephoneNumber = locationListCmp.tiTelephone.textInput.text;
+			var cInList:LocationInList = new LocationInList(locationChanged, locationInList.getPosition);
+			facade.sendNotification(ApplicationFacade.LOCATION_SAVE_CHANGES, cInList);
 		}
 		
 		override public function handleNotification(notification:INotification):void{
@@ -72,6 +84,21 @@ package view.managermain
 					break;
 				case ApplicationFacade.GET_LOCATION_LIST_FAULT:
 					Alert.show("LocationList: Fault");
+					break;
+				case ApplicationFacade.LOCATION_SAVE_CHANGES_SUCCESS:
+					notify('default', 'Successo', 'L\'operazione è andata a buon fine', locationListCmp.successIcon, 5000);
+					resetTextInput();					
+					locationListCmp.cmpHouseButton.btnSave.enabled = false;
+					break;
+				case ApplicationFacade.LOCATION_SAVE_CHANGES_ERROR:
+					Alert.show("Errore nel salvataggio");
+					break;
+				case ApplicationFacade.LOCATION_DELETE_SUCCESS:
+					notify('default', 'Successo', 'Eliminazione ok', locationListCmp.successIcon, 5000);
+					resetTextInput();
+					break;
+				case ApplicationFacade.LOCATION_DELETE_ERROR:
+					Alert.show("Errore delete");
 					break;
 			}
 			
@@ -101,7 +128,12 @@ package view.managermain
 				ApplicationFacade.LOCATION_ADD_ERROR,
 				ApplicationFacade.GET_LOCATION_LIST_SUCCESS,
 				ApplicationFacade.GET_LOCATION_LIST_ERROR,
-				ApplicationFacade.GET_LOCATION_LIST_FAULT
+				ApplicationFacade.GET_LOCATION_LIST_FAULT,
+				ApplicationFacade.LOCATION_SAVE_CHANGES_SUCCESS,
+				ApplicationFacade.LOCATION_SAVE_CHANGES_ERROR,
+				ApplicationFacade.LOCATION_DELETE_SUCCESS,
+				ApplicationFacade.LOCATION_DELETE_ERROR,
+				ApplicationFacade.LOCATION_DELETE_FAULT	
 			];
 		}
 		
