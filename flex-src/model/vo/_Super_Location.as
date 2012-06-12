@@ -3,7 +3,7 @@
  * of this value object you may modify the generated sub-class of this class - Location.as.
  */
 
-package IstantBookingProject
+package model.vo
 {
 import com.adobe.fiber.services.IFiberManagingService;
 import com.adobe.fiber.util.FiberUtils;

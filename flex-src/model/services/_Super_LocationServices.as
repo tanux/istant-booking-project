@@ -5,9 +5,9 @@
 package model.services
 {
 import com.adobe.fiber.core.model_internal;
-import IstantBookingProject.Location;
 import com.adobe.fiber.services.wrapper.RemoteObjectServiceWrapper;
 import com.adobe.serializers.utility.TypeUtility;
+import model.vo.Location;
 import mx.rpc.AbstractOperation;
 import mx.rpc.AsyncToken;
 import mx.rpc.remoting.Operation;
@@ -91,7 +91,7 @@ internal class _Super_LocationServices extends com.adobe.fiber.services.wrapper.
       *
       * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function addLocation(location:IstantBookingProject.Location) : mx.rpc.AsyncToken
+    public function addLocation(location:model.vo.Location) : mx.rpc.AsyncToken
     {
         var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("addLocation");
 		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(location) ;
@@ -109,7 +109,7 @@ internal class _Super_LocationServices extends com.adobe.fiber.services.wrapper.
       *
       * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function deleteLocation(location:IstantBookingProject.Location) : mx.rpc.AsyncToken
+    public function deleteLocation(location:model.vo.Location) : mx.rpc.AsyncToken
     {
         var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("deleteLocation");
 		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(location) ;
@@ -127,7 +127,7 @@ internal class _Super_LocationServices extends com.adobe.fiber.services.wrapper.
       *
       * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function saveChangesLocation(location:IstantBookingProject.Location) : mx.rpc.AsyncToken
+    public function saveChangesLocation(location:model.vo.Location) : mx.rpc.AsyncToken
     {
         var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("saveChangesLocation");
 		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(location) ;

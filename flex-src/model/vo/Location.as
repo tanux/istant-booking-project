@@ -10,7 +10,7 @@
  * corresponding entity 
  **/ 
  
-package IstantBookingProject
+package model.vo
 {
 
 import com.adobe.fiber.core.model_internal;
@@ -30,17 +30,17 @@ public class Location extends _Super_Location
      */     
     public static function _initRemoteClassAlias() : void
     {
-        _Super_Location.model_internal::initRemoteClassAliasSingle(IstantBookingProject.Location);
+        _Super_Location.model_internal::initRemoteClassAliasSingle(model.vo.Location);
         _Super_Location.model_internal::initRemoteClassAliasAllRelated();
     }
      
     model_internal static function initRemoteClassAliasSingleChild() : void
     {
-        _Super_Location.model_internal::initRemoteClassAliasSingle(IstantBookingProject.Location);
+        _Super_Location.model_internal::initRemoteClassAliasSingle(model.vo.Location);
     }
     
     {
-        _Super_Location.model_internal::initRemoteClassAliasSingle(IstantBookingProject.Location);
+        _Super_Location.model_internal::initRemoteClassAliasSingle(model.vo.Location);
     }
     /** 
      * END OF DO NOT MODIFY SECTION
