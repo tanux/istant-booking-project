@@ -1,4 +1,4 @@
-package view.managermain
+package view.manager.settings
 {
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -27,15 +27,13 @@ package view.managermain
 			super(NAME, viewComponent);
 			locationListCmp.cmpHouseButton.btnAdd.addEventListener(MouseEvent.CLICK, addLocation);
 			locationListCmp.cmpHouseButton.btnDelete.addEventListener(MouseEvent.CLICK, deleteLocation);
-			locationListCmp.cmpHouseButton.btnSave.addEventListener(MouseEvent.CLICK, saveChanges);
+			locationListCmp.cmpHouseButton.btnSave.addEventListener(MouseEvent.CLICK, saveChanges);			
 		}
 		private function init(evt:Event) : void {}
 		
-		public function addLocation(evt:Event): void{
+		public function addLocation(evt:Event): void{			
 			var newLocation:Location = new Location();
-			newLocation.city = locationListCmp.tiLocationName.textInput.text;
-			Alert.show(newLocation.city);
-			Alert.show(locationListCmp.tiLocationName.textInput.text);
+			newLocation.city = locationListCmp.tiLocationName.textInput.text;			
 			newLocation.address = locationListCmp.tiStreet.textInput.text;
 			newLocation.telephoneNumber = locationListCmp.tiTelephone.textInput.text;
 			facade.sendNotification(ApplicationFacade.LOCATION_ADD, newLocation );
@@ -66,8 +64,8 @@ package view.managermain
 			switch (notification.getName()){
 				case ApplicationFacade.LOCATION_SELECTED:
 					locationInList = notification.getBody() as LocationInList;
-					locationListCmp.tiLocationName = locationInList.getLocation.city as String;
-					locationListCmp.tiStreet = locationInList.getLocation.address as String;
+					locationListCmp.tiLocationName.text = locationInList.getLocation.city as String;
+					locationListCmp.tiStreet.text = locationInList.getLocation.address as String;
 					locationListCmp.tiTelephone.text = locationInList.getLocation.telephoneNumber as String;
 					break;
 				case ApplicationFacade.LOCATION_ADD_SUCCESS:

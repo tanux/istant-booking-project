@@ -11,7 +11,7 @@ package model.managermain
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
 	import view.component.CustomerList;
-	import view.managermain.CustomerListMediator;
+	import view.manager.main.CustomerListMediator;
 	
 	public class CustomerProxy extends Proxy implements IProxy{
 		public static const NAME = "CustomerProxy";

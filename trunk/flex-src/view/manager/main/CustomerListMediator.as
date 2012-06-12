@@ -1,4 +1,4 @@
-package view.managermain
+package view.manager.main
 {
 	import flash.events.Event;
 	import flash.events.MouseEvent;

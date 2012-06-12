@@ -17,7 +17,8 @@ package view
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	
-	import view.managermain.CustomerListMediator;
+	import view.manager.main.CustomerListMediator;
+	import view.manager.settings.LocationListMediator;
 	
 	public class ManagerMainMediator extends Mediator implements IMediator{
 		public static const NAME:String = "ManagerMainMediator";
@@ -26,9 +27,14 @@ package view
 		public function ManagerMainMediator(viewComponent:Object){
 			super(NAME, viewComponent);
 			managerMain.addEventListener(FlexEvent.CREATION_COMPLETE, init);
+			managerMain.addEventListener(managerMain.SETTINGS_MANAGER_CREATED, registerSettingsManager);
 		}
 		
 		private function init(evt:Event) : void {}
+		
+		private function registerSettingsManager(evt:Event):void{			
+			facade.registerMediator(new LocationListMediator(managerMain.cmpManagementLocation.cmpLocationList));			
+		}
 		
 		private function doLogin(evt:Event):void{	
 			CursorManager.setBusyCursor();					
@@ -69,10 +75,11 @@ package view
 			managerMain.cmpControlBar.btnSettings.addEventListener(MouseEvent.CLICK, goToSetting);
 			managerMain.cmpControlBar.btnLogout.addEventListener(MouseEvent.CLICK, doLogout);
 			managerMain.cmpControlBar.btnHome.addEventListener(MouseEvent.CLICK, goToHome);
-			managerMain.cmpControlBar.btnShowVisit.addEventListener(MouseEvent.CLICK, goToShowVisit);			
+			managerMain.cmpControlBar.btnShowVisit.addEventListener(MouseEvent.CLICK, goToShowVisit);
+			facade.registerMediator(new CustomerListMediator(managerMain.cmpCustomerList));					
+			facade.registerCommand(ApplicationFacade.GET_CUSTOMER_LIST,CustomerGetListCommand);
+			facade.sendNotification(ApplicationFacade.GET_CUSTOMER_LIST);
 		}	
-		
-		
 		
 		
 		override public function handleNotification(notification:INotification):void{
@@ -94,9 +101,6 @@ package view
 					var manager:Manager = notification.getBody() as Manager;
 					managerMain.cmpControlBar.txUserLoggedIn.text = "Dott."+manager.lastname+" "+manager.firstname;
 					changeStateManager();					
-					facade.registerMediator(new CustomerListMediator(managerMain.cmpCustomerList));					
-					facade.registerCommand(ApplicationFacade.GET_CUSTOMER_LIST,CustomerGetListCommand);
-					facade.sendNotification(ApplicationFacade.GET_CUSTOMER_LIST);										
 					break;
 				case ApplicationFacade.MANAGER_LOGIN_ERROR:
 					CursorManager.removeBusyCursor();
@@ -121,8 +125,7 @@ package view
 				ApplicationFacade.MANAGER_LOGOUT_SUCCESS,
 				ApplicationFacade.MANAGER_LOGIN_FAULT				
 			];
-		}
-				
+		}		
 		
 		public function get managerMain():ManagerMain{
 			return viewComponent as ManagerMain;			
