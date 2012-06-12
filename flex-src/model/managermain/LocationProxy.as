@@ -11,7 +11,7 @@ package model.managermain
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
 	import view.component.LocationList;
-	import view.managermain.LocationListMediator;
+	import view.manager.settings.LocationListMediator;
 	
 	public class LocationProxy extends Proxy implements IProxy{
 		public static const NAME = "LocationProxy";
