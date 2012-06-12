@@ -24,14 +24,6 @@
 			
 			private var facade:ApplicationFacade = ApplicationFacade.getInstance() as ApplicationFacade;
 			[Bindable]public var locationList:ArrayCollection;
-			private function makeDataLabel(item:Object) : String {
-				var l:Location = new Location();
-				l.id = item.id;
-				l.city = item.city;
-				l.address = item.address;
-				l.telephoneNumber = item.telephone_number;
-				return l.city + " " + l.address + " " + l.telephoneNumber ;
-			}
 			
 			protected function dgLocationList_itemClickHandler(event:ListEvent):void{				
 				var selectedRow:Object = event.currentTarget.selectedItem;
