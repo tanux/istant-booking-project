@@ -1,7 +1,6 @@
 package controller.managermain
 {
 	import model.managermain.CustomerListProxy;
-	
 	import mx.controls.Alert;
 	
 	import org.puremvc.as3.interfaces.ICommand;

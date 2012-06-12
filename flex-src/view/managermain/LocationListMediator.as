@@ -3,7 +3,7 @@ package view.managermain
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
-	import IstantBookingProject.Location;
+	import model.vo.Location;
 	import model.vo.LocationInList;
 	
 	import mx.collections.ArrayCollection;
@@ -17,21 +17,26 @@ package view.managermain
 	import org.tylerchesley.bark.events.NotificationEvent;
 	
 	import view.ManagerMainMediator;
-	import view.component.ManagementLocation;
-	import view.component.LocationPanelManagementLocation;
+	import view.component.HouseButton;
+	import view.component.LocationList;
 	
-	public class ManagementLocationMediator extends Mediator implements IMediator{
-		public static const NAME:String = "ManagementLocationMediator";
+	public class LocationListMediator extends Mediator implements IMediator{
+		public static const NAME:String = "LocationListMediator";
 		[Bindable]private var locationInList:LocationInList;
-		public function ManagementLocationMediator(viewComponent:Object){
+		public function LocationListMediator(viewComponent:Object){
 			super(NAME, viewComponent);
-			
-			
+			locationListCmp.cmpHouseButton.btnAdd.addEventListener(MouseEvent.CLICK, addLocation);
 		}
 		private function init(evt:Event) : void {}
 		
 		public function addLocation(evt:Event): void{
-
+			var newLocation:Location = new Location();
+			newLocation.city = locationListCmp.tiLocationName.textInput.text;
+			Alert.show(newLocation.city);
+			Alert.show(locationListCmp.tiLocationName.textInput.text);
+			newLocation.address = locationListCmp.tiStreet.textInput.text;
+			newLocation.telephoneNumber = locationListCmp.tiTelephone.textInput.text;
+			facade.sendNotification(ApplicationFacade.LOCATION_ADD, newLocation );
 		}
 		
 		
@@ -50,6 +55,23 @@ package view.managermain
 					locationListCmp.tiLocationName = locationInList.getLocation.city as String;
 					locationListCmp.tiStreet = locationInList.getLocation.address as String;
 					locationListCmp.tiTelephone.text = locationInList.getLocation.telephoneNumber as String;
+					break;
+				case ApplicationFacade.LOCATION_ADD_SUCCESS:
+					notify('default', 'Successo', 'Inserimento ok', locationListCmp.successIcon, 5000);
+					resetTextInput();
+					break;
+				case ApplicationFacade.LOCATION_ADD_ERROR:
+					Alert.show("Errore inserimento");
+					break;
+				case ApplicationFacade.GET_LOCATION_LIST_SUCCESS:					
+					var locationListResult:ArrayCollection = notification.getBody() as ArrayCollection;					
+					locationListCmp.locationList = locationListResult;					
+					break;
+				case ApplicationFacade.GET_LOCATION_LIST_ERROR:
+					Alert.show("Location: Errore!");
+					break;
+				case ApplicationFacade.GET_LOCATION_LIST_FAULT:
+					Alert.show("LocationList: Fault");
 					break;
 			}
 			
@@ -74,12 +96,17 @@ package view.managermain
 		
 		override public function listNotificationInterests():Array{
 			return [
-				ApplicationFacade.LOCATION_SELECTED			
+				ApplicationFacade.LOCATION_SELECTED,
+				ApplicationFacade.LOCATION_ADD_SUCCESS,
+				ApplicationFacade.LOCATION_ADD_ERROR,
+				ApplicationFacade.GET_LOCATION_LIST_SUCCESS,
+				ApplicationFacade.GET_LOCATION_LIST_ERROR,
+				ApplicationFacade.GET_LOCATION_LIST_FAULT
 			];
 		}
 		
-		public function get locationListCmp():LocationPanelManagementLocation{
-			return viewComponent as LocationPanelManagementLocation;
+		public function get locationListCmp():LocationList{
+			return viewComponent as LocationList;
 		}
 		
 		
