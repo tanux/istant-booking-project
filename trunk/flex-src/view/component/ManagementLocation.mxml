@@ -1,7 +1,7 @@
 <mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml"
 		 width="80%" height="100%" horizontalAlign="center" verticalAlign="middle" paddingTop="5" xmlns:component="view.component.*">
 	<mx:VBox width="100%" height="100%">
-		<component:LocationPanelManagementLocation id="cmpLocationPanelManagementLocation" />	
+		<component:LocationList id="cmpLocationList" />	
 		<component:LocationChartsManagementLocation id="cmpLocationCharts" width="100%" height="50%"/>
 	</mx:VBox>	
 </mx:HBox>

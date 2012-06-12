@@ -1,7 +1,5 @@
 package model.vo
 {
-	import model.vo.Location;
-
 	public class LocationInList{
 		
 		private var location:Location;

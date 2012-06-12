@@ -15,9 +15,6 @@
 			import model.vo.Location;
 			import model.vo.LocationInList;
 			
-			//import view.component.ManagementLocation;
-			//import view.component.LocationGridManagementLocation;
-			
 			import mx.collections.ArrayCollection;
 			import mx.controls.Alert;
 			import mx.events.ListEvent;			
@@ -30,7 +27,7 @@
 				l.city = item.city;
 				l.address = item.address;
 				l.telephoneNumber = item.telephone_number;
-				return l.id+" "+l.city+" "+l.address+" "+l.telephoneNumber ;
+				return l.city + " " + l.address + " " + l.telephoneNumber ;
 			}
 			
 			protected function dgLocationList_itemClickHandler(event:ListEvent):void{				
@@ -42,7 +39,7 @@
 				l.telephoneNumber = selectedRow.telephone_number;
 				var position:int = event.currentTarget.selectedIndex;
 				var locationInList:LocationInList = new LocationInList(l,position);				
-				facade.sendNotification(ApplicationFacade.LOCATION_SELECTED, LocationInList);		
+				facade.sendNotification(ApplicationFacade.LOCATION_SELECTED, locationInList);		
 			}
 			
 			import mx.rpc.events.FaultEvent;
@@ -73,9 +70,10 @@
 	
 	<mx:DataGrid id="dgLocationList" width="60%" height="100%" dataProvider="{locationList}" doubleClickEnabled="true" itemClick="dgLocationList_itemClickHandler(event)">
 		<mx:columns>
-			<mx:DataGridColumn id="clmLocation" dataField="Sede" headerText="Sede" />
-			<mx:DataGridColumn id="clmStreet" dataField="Indirizzo" headerText="Indirizzo" />
-			<mx:DataGridColumn id="clmTelephone" dataField="Telefono" headerText="Telefono" />
+			<mx:DataGridColumn id="clmId" dataField="id" headerText="Id" visible="false"/>
+			<mx:DataGridColumn id="clmLocation" dataField="city" headerText="Sede" />
+			<mx:DataGridColumn id="clmStreet" dataField="address" headerText="Indirizzo" />
+			<mx:DataGridColumn id="clmTelephone" dataField="telephone_number" headerText="Telefono" />
 		</mx:columns>
 	</mx:DataGrid >
 
@@ -95,15 +93,15 @@
 				<mx:VBox id="vbLocation" width="100%" horizontalAlign="center">
 					<mx:HBox id="hbLocationName" width="100%">
 						<mx:Label id="lblLocationName" text="Nome" color="black" fontSize="15" width="30%" textAlign="right"/>
-						<mx:TextInput id="tiLocationName" width="50%"/>
+						<component:TIClearOnClick id="tiLocationName" text="city" width="50%"/>
 					</mx:HBox>
 					<mx:HBox id="hbStreet" width="100%">
 						<mx:Label id="lblStreet" text="Indirizzo" color="black" fontSize="15" width="30%" textAlign="right"/>
-						<mx:TextInput id="tiStreet" width="50%"/>
+						<component:TIClearOnClick id="tiStreet" text="street" width="50%"/>
 					</mx:HBox>
 					<mx:HBox id="hbTelephone" width="100%">
 						<mx:Label id="txtTelephone" text="Telefono" color="black" fontSize="15" width="30%" textAlign="right"/>
-						<mx:TextInput id="tiTelephone" width="50%"/>
+						<component:TIClearOnClick id="tiTelephone" text="telephone" width="50%"/>
 					</mx:HBox>
 				</mx:VBox>
 			</mx:Box>

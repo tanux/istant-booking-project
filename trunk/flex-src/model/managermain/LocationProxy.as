@@ -10,8 +10,8 @@ package model.managermain
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
-	import view.component.LocationPanelManagementLocation;
-	import view.managermain.ManagementLocationMediator;
+	import view.component.LocationList;
+	import view.managermain.LocationListMediator;
 	
 	public class LocationProxy extends Proxy implements IProxy{
 		public static const NAME = "LocationProxy";
@@ -22,8 +22,8 @@ package model.managermain
 		
 		public function addLocation(item:Location):void{
 			locations.addItem({city:item.city,
-				address:item.address,
-				telephone_number:item.telephoneNumber});
+							   address:item.address,
+							   telephone_number:item.telephoneNumber});
 		}
 		
 		public function removeLocation(item:LocationInList):void{
@@ -37,8 +37,8 @@ package model.managermain
 				telephone_number:item.getLocation.telephoneNumber}, item.getPosition);
 		}
 		public function get locations() : ArrayCollection{
-			var locationList:LocationPanelManagementLocation = facade.retrieveMediator(ManagementLocationMediator.NAME).getViewComponent() as LocationPanelManagementLocation;
-			return locationList.LocationPanelManagementLocation as ArrayCollection;
+			var locationList:LocationList = facade.retrieveMediator(LocationListMediator.NAME).getViewComponent() as LocationList;
+			return locationList.locationList as ArrayCollection;
 		}
 	}
 }
