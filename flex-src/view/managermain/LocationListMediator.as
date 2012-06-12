@@ -26,6 +26,8 @@ package view.managermain
 		public function LocationListMediator(viewComponent:Object){
 			super(NAME, viewComponent);
 			locationListCmp.cmpHouseButton.btnAdd.addEventListener(MouseEvent.CLICK, addLocation);
+			locationListCmp.cmpHouseButton.btnDelete.addEventListener(MouseEvent.CLICK, deleteLocation);
+			locationListCmp.cmpHouseButton.btnSave.addEventListener(MouseEvent.CLICK, saveChanges);
 		}
 		private function init(evt:Event) : void {}
 		
