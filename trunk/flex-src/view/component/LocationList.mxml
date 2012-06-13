@@ -35,7 +35,9 @@
 				var position:int = event.currentTarget.selectedIndex;
 				var locationInList:LocationInList = new LocationInList(l,position);				
 				facade.sendNotification(ApplicationFacade.LOCATION_SELECTED, locationInList);		
-			}	
+			}
+			
+			
 			
 			private function getDataSuccess(returnedEvent:ResultEvent):void{
 				locationList = returnedEvent.result as ArrayCollection;
