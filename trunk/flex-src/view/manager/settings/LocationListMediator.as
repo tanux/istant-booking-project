@@ -37,9 +37,18 @@ package view.manager.settings
 			newLocation.address = locationListCmp.tiStreet.textInput.text;
 			newLocation.telephoneNumber = locationListCmp.tiTelephone.textInput.text;
 			var rD: String = "";
+			////////////////////
 			if (locationListCmp.cbLunedi.selected != true)
-				rD = rD + "1";
-			Alert.show(rD as String);
+				rD = rD + "1 ";
+			if (locationListCmp.cbMartedi.selected != true)
+				rD = rD + "2 ";
+			if (locationListCmp.cbMercoledi.selected != true)
+				rD = rD + "3 ";
+			if (locationListCmp.cbGiovedi.selected != true)
+				rD = rD + "4 ";
+			if (locationListCmp.cbVenerdi.selected != true)
+				rD = rD + "5";
+			////////////////////
 			newLocation.receptionDays = rD;
 			facade.sendNotification(ApplicationFacade.LOCATION_ADD, newLocation );
 		}

@@ -103,22 +103,22 @@
 				<mx:VRule height="100%"/>
 				<mx:VBox horizontalAlign="center">
 					<mx:Label text="Martedì" color="black"/>
-					<mx:CheckBox id="cbMartedi" selected="true" />
+					<mx:CheckBox id="cbMartedi" selected="false" />
 				</mx:VBox>
 				<mx:VRule height="100%"/>
 				<mx:VBox horizontalAlign="center">
 					<mx:Label text="Mercoledì" color="black"/>
-					<mx:CheckBox />
+					<mx:CheckBox id="cbMercoledi" selected="false"/>
 				</mx:VBox>
 				<mx:VRule height="100%"/>
 				<mx:VBox horizontalAlign="center">
 					<mx:Label text="Giovedì" color="black"/>
-					<mx:CheckBox />
+					<mx:CheckBox id="cbGiovedi" selected="false"/>
 				</mx:VBox>
 				<mx:VRule height="100%"/>
 				<mx:VBox horizontalAlign="center">
 					<mx:Label text="Venerdì" color="black"/>
-					<mx:CheckBox />
+					<mx:CheckBox id="cbVenerdi" selected="false"/>
 				</mx:VBox>
 			</mx:HBox>
 			
