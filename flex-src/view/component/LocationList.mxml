@@ -98,12 +98,12 @@
 							 paddingTop="5" paddingRight="20" paddingLeft="20">
 				<mx:VBox horizontalAlign="center">
 					<mx:Label text="Lunedì" color="black"/>
-					<mx:CheckBox />
+					<mx:CheckBox id="cbLunedi" selected="false"/>
 				</mx:VBox>
 				<mx:VRule height="100%"/>
 				<mx:VBox horizontalAlign="center">
 					<mx:Label text="Martedì" color="black"/>
-					<mx:CheckBox />
+					<mx:CheckBox id="cbMartedi" selected="true" />
 				</mx:VBox>
 				<mx:VRule height="100%"/>
 				<mx:VBox horizontalAlign="center">
