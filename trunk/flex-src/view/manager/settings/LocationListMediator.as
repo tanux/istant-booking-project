@@ -35,7 +35,12 @@ package view.manager.settings
 			var newLocation:Location = new Location();
 			newLocation.city = locationListCmp.tiLocationName.textInput.text;			
 			newLocation.address = locationListCmp.tiStreet.textInput.text;
-			newLocation.telephoneNumber = locationListCmp.tiTelephone.textInput.text;			
+			newLocation.telephoneNumber = locationListCmp.tiTelephone.textInput.text;
+			var rD: String = "";
+			if (locationListCmp.cbLunedi.selected != true)
+				rD = rD + "1";
+			Alert.show(rD as String);
+			newLocation.receptionDays = rD;
 			facade.sendNotification(ApplicationFacade.LOCATION_ADD, newLocation );
 		}
 		
@@ -67,6 +72,8 @@ package view.manager.settings
 					locationListCmp.tiLocationName.text = locationInList.getLocation.city as String;
 					locationListCmp.tiStreet.text = locationInList.getLocation.address as String;
 					locationListCmp.tiTelephone.text = locationInList.getLocation.telephoneNumber as String;
+					if((locationInList.getLocation.receptionDays as String)!= "0")
+						locationListCmp.cbLunedi.selected = true;
 					locationListCmp.cmpHouseButton.btnSave.enabled = true;
 					break;
 				case ApplicationFacade.LOCATION_ADD_SUCCESS:
