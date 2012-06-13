@@ -81,8 +81,6 @@ package view.manager.settings
 					locationListCmp.tiLocationName.text = locationInList.getLocation.city as String;
 					locationListCmp.tiStreet.text = locationInList.getLocation.address as String;
 					locationListCmp.tiTelephone.text = locationInList.getLocation.telephoneNumber as String;
-					if((locationInList.getLocation.receptionDays as String)!= "0")
-						locationListCmp.cbLunedi.selected = true;
 					locationListCmp.cmpHouseButton.btnSave.enabled = true;
 					break;
 				case ApplicationFacade.LOCATION_ADD_SUCCESS:
