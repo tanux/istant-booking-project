@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml">
+<mx:VBox xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx">
+	
 	<mx:VBox height="100%" width="100%" textAlign="left" verticalAlign="middle" paddingTop="4" 
 			 backgroundColor="#6699cc" cornerRadius="8" borderStyle="solid">
 		<mx:HBox >
