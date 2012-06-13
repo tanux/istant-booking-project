@@ -49,7 +49,7 @@ package view.manager.settings
 			if (locationListCmp.cbVenerdi.selected != true)
 				rD = rD + "5";
 			////////////////////
-			newLocation.receptionDays = rD;
+			newLocation.receptionDays = rD;			
 			facade.sendNotification(ApplicationFacade.LOCATION_ADD, newLocation );
 		}
 		
