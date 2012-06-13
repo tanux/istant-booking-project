@@ -65,7 +65,7 @@ package view
 		
 		private function goToShowVisit(evt:Event):void{
 			CursorManager.setBusyCursor();
-			managerMain.currentState = "stateShowVisit";
+			managerMain.currentState = "stateShowBooking";
 			CursorManager.removeBusyCursor();
 		}
 		
