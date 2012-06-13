@@ -101,18 +101,6 @@
 					</mx:VBox>
 					<mx:VBox width="70%" height="100%" horizontalAlign="center" verticalAlign="middle">
 						<component:BookingListManagerSettings id="cmpBookingList" width="100%" height="100%"/>
-						<!--Test-->
-						<mx:Box width="100%" horizontalAlign="right" verticalAlign="middle">
-							<mx:Canvas width="33.3%">
-								<mx:Box horizontalAlign="right" width="100%">
-									<mx:TextInput width="100%" text="Cerca..." paddingTop="1" textAlign="right"/>	
-								</mx:Box>
-								<mx:Box horizontalAlign="right" height="90%" paddingTop="2" paddingLeft="2">
-									<mx:Image source="assets/images/find.png" height="20" />	
-								</mx:Box>			
-							</mx:Canvas>
-						</mx:Box>
-						<!--End test -->
 					</mx:VBox>	
 				</mx:HBox>								
 				<mx:HBox verticalAlign="middle" horizontalAlign="right" width="80%">
