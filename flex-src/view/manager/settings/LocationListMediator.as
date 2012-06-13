@@ -35,7 +35,7 @@ package view.manager.settings
 			var newLocation:Location = new Location();
 			newLocation.city = locationListCmp.tiLocationName.textInput.text;			
 			newLocation.address = locationListCmp.tiStreet.textInput.text;
-			newLocation.telephoneNumber = locationListCmp.tiTelephone.textInput.text;
+			newLocation.telephoneNumber = locationListCmp.tiTelephone.textInput.text;			
 			facade.sendNotification(ApplicationFacade.LOCATION_ADD, newLocation );
 		}
 		
