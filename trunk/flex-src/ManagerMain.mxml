@@ -110,10 +110,7 @@
 					<mx:Button icon="@Embed(source='assets/images/print.png')" downIcon="@Embed(source='assets/images/print_little.png')"
 							   width="45" height="40"/>
 				</mx:HBox>
-				
-			</mx:Box>
-			
-			
+			</mx:Box>			
 		</mx:Box>
 	</mx:VBox>	
 </mx:Application>

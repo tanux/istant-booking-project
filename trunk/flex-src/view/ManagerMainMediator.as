@@ -2,6 +2,7 @@ package view
 {
 	import controller.loginmanager.DoLoginCommand;
 	import controller.managermain.CustomerGetListCommand;
+	import controller.managermain.LocationGetListCommand;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -52,6 +53,8 @@ package view
 			CursorManager.setBusyCursor();
 			managerMain.currentState = "stateSettings";
 			CursorManager.removeBusyCursor();
+			facade.registerCommand(ApplicationFacade.GET_LOCATION_LIST,LocationGetListCommand);
+			facade.sendNotification(ApplicationFacade.GET_LOCATION_LIST);
 		}
 		
 		private function goToHome(evt:Event):void{

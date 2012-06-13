@@ -23,7 +23,8 @@ package model.managermain
 		public function addLocation(item:Location):void{
 			locations.addItem({city:item.city,
 							   address:item.address,
-							   telephone_number:item.telephoneNumber});
+							   telephone_number:item.telephoneNumber, 
+							   reception_days:item.receptionDays});
 		}
 		
 		public function removeLocation(item:LocationInList):void{

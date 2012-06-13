@@ -56,8 +56,8 @@ package view.manager.settings
 			locationChanged.city = locationListCmp.tiLocationName.textInput.text;
 			locationChanged.address = locationListCmp.tiStreet.textInput.text;
 			locationChanged.telephoneNumber = locationListCmp.tiTelephone.textInput.text;
-			var cInList:LocationInList = new LocationInList(locationChanged, locationInList.getPosition);
-			facade.sendNotification(ApplicationFacade.LOCATION_SAVE_CHANGES, cInList);
+			var lInList:LocationInList = new LocationInList(locationChanged, locationInList.getPosition);
+			facade.sendNotification(ApplicationFacade.LOCATION_SAVE_CHANGES, lInList);
 		}
 		
 		override public function handleNotification(notification:INotification):void{
@@ -67,6 +67,7 @@ package view.manager.settings
 					locationListCmp.tiLocationName.text = locationInList.getLocation.city as String;
 					locationListCmp.tiStreet.text = locationInList.getLocation.address as String;
 					locationListCmp.tiTelephone.text = locationInList.getLocation.telephoneNumber as String;
+					locationListCmp.cmpHouseButton.btnSave.enabled = true;
 					break;
 				case ApplicationFacade.LOCATION_ADD_SUCCESS:
 					notify('default', 'Successo', 'Inserimento ok', locationListCmp.successIcon, 5000);
@@ -83,7 +84,7 @@ package view.manager.settings
 					Alert.show("Location: Errore!");
 					break;
 				case ApplicationFacade.GET_LOCATION_LIST_FAULT:
-					Alert.show("LocationList: Fault");
+					Alert.show("LocationList: Fault! Errore comunicazione server");
 					break;
 				case ApplicationFacade.LOCATION_SAVE_CHANGES_SUCCESS:
 					notify('default', 'Successo', 'L\'operazione è andata a buon fine', locationListCmp.successIcon, 5000);
@@ -105,7 +106,19 @@ package view.manager.settings
 		}
 		
 		private function resetTextInput():void{
-
+			locationListCmp.tiLocationName.text = "city" as String;
+			locationListCmp.tiLocationName.textInput.text = "city" as String;
+			locationListCmp.tiLocationName.textInput.showCancelButton = false;
+			
+			locationListCmp.tiStreet.text = "address" as String;
+			locationListCmp.tiStreet.textInput.text = "address" as String;
+			locationListCmp.tiStreet.textInput.showCancelButton = false;
+			
+			locationListCmp.tiTelephone.text =  "telephone" as String;
+			locationListCmp.tiTelephone.textInput.text = "telephone" as String;
+			locationListCmp.tiTelephone.textInput.showCancelButton = false;
+			
+			locationListCmp.cmpHouseButton.btnSave.enabled = false;
 		}
 		
 		private function notify(type:String = 'default',
