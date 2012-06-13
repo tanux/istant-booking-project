@@ -57,8 +57,7 @@
 				this.enabled = true;
 			}
 			
-			private function init():void{
-				//con.getBooks();//
+			private function init():void{				
 				this.enabled = false;
 			}
 			

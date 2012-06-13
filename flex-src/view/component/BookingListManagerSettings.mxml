@@ -1,20 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml"
-		 backgroundColor="#6699cc" cornerRadius="8" borderStyle="solid">
-	<mx:HBox width="100%" textAlign="left" verticalAlign="middle" paddingTop="4" paddingLeft="5" paddingRight="5">
-		<mx:Box horizontalAlign="left" height="100%" width="80%" verticalAlign="middle">
-			<mx:Label color="white" fontSize="13" fontWeight="bold"
-					  text="Elenco Prenotazioni Avellino per il giorno 15/02/2012"/>	
-		</mx:Box>
-	</mx:HBox>
-	<mx:Canvas width="100%" height="100%">
-		<mx:DataGrid id="dgRisultati" width="100%" height="100%">
-			<mx:columns>
-				<mx:DataGridColumn id="clmNome" dataField="Nome" headerText="Nome" />
-				<mx:DataGridColumn id="clmCognome" dataField="Cognome" headerText="Cognome" />
-				<mx:DataGridColumn id="clmCF" dataField="Ora" headerText="Ora" />
-			</mx:columns>
-		</mx:DataGrid>
-	</mx:Canvas>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml">
+	<mx:VBox height="100%" width="100%" textAlign="left" verticalAlign="middle" paddingTop="4" 
+			 backgroundColor="#6699cc" cornerRadius="8" borderStyle="solid">
+		<mx:HBox >
+			<mx:Box horizontalAlign="left" width="80%" verticalAlign="middle">
+				<mx:Label color="white" fontSize="13" fontWeight="bold"
+						  text="Elenco Prenotazioni Avellino per il giorno 15/02/2012"/>	
+			</mx:Box>
+		</mx:HBox>
+		<mx:Canvas width="100%" height="100%">
+			<mx:DataGrid id="dgRisultati" width="100%" height="100%">
+				<mx:columns>
+					<mx:DataGridColumn id="clmNome" dataField="Nome" headerText="Nome" />
+					<mx:DataGridColumn id="clmCognome" dataField="Cognome" headerText="Cognome" />
+					<mx:DataGridColumn id="clmCF" dataField="Ora" headerText="Ora" />
+				</mx:columns>
+			</mx:DataGrid>
+		</mx:Canvas>
+	</mx:VBox>
+	<!--Test-->
+	<mx:Box width="100%" horizontalAlign="right" verticalAlign="middle">
+		<mx:Canvas width="33.3%">
+			<mx:Box horizontalAlign="right" width="100%">
+				<mx:TextInput width="100%" text="Cerca..." paddingTop="1" textAlign="right"/>	
+			</mx:Box>
+			<mx:Box horizontalAlign="right" height="90%" paddingTop="2" paddingLeft="2">
+				<mx:Image source="assets/images/find.png" height="20" />	
+			</mx:Box>			
+		</mx:Canvas>
+	</mx:Box>
+	<!--End test -->
 </mx:VBox>
 	
