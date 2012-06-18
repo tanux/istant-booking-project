@@ -31,11 +31,12 @@ package model.managermain
 			locations.removeItemAt(item.getPosition);
 		}
 		
-		public function updateLocation(item:LocationInList):void{
+		public function updateLocation(item:LocationInList):void{						
 			locations.setItemAt({id:item.getLocation.id,
 				city:item.getLocation.city,
 				address:item.getLocation.address,
-				telephone_number:item.getLocation.telephoneNumber}, item.getPosition);
+				telephone_number:item.getLocation.telephoneNumber,
+				reception_days:item.getLocation.receptionDays}, item.getPosition);
 		}
 		public function get locations() : ArrayCollection{
 			var locationList:LocationList = facade.retrieveMediator(LocationListMediator.NAME).getViewComponent() as LocationList;

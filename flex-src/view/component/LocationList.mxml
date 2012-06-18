@@ -11,19 +11,25 @@
 	</fx:Declarations>	
 	<fx:Script>
 		<![CDATA[			
-			
 			import model.vo.Location;
 			import model.vo.LocationInList;
+			import model.vo.SelectedDay;
 			
 			import mx.collections.ArrayCollection;
 			import mx.controls.Alert;
-			import mx.events.ListEvent;	
-			
+			import mx.events.ListEvent;
 			import mx.rpc.events.FaultEvent;
 			import mx.rpc.events.ResultEvent;
 			
 			private var facade:ApplicationFacade = ApplicationFacade.getInstance() as ApplicationFacade;
-			[Bindable]public var locationList:ArrayCollection;
+			[Bindable]public var locationList:ArrayCollection;			
+			[Bindable]public var days:Array = [{label:"Lunedi",numberAssociated:"1",selected:false},
+												{label:"Martedi",numberAssociated:"2",selected:false},
+												{label:"Mercoledi",numberAssociated:"3",selected:false},
+												{label:"Giovedi",numberAssociated:"4",selected:false},
+												{label:"Venerdi",numberAssociated:"5",selected:false},
+												{label:"Sabato",numberAssociated:"6",selected:false}]; 
+						
 			
 			protected function dgLocationList_itemClickHandler(event:ListEvent):void{				
 				var selectedRow:Object = event.currentTarget.selectedItem;
@@ -32,6 +38,7 @@
 				l.city = selectedRow.city;
 				l.address = selectedRow.address;
 				l.telephoneNumber = selectedRow.telephone_number;
+				l.receptionDays = selectedRow.reception_days;
 				var position:int = event.currentTarget.selectedIndex;
 				var locationInList:LocationInList = new LocationInList(l,position);				
 				facade.sendNotification(ApplicationFacade.LOCATION_SELECTED, locationInList);		
@@ -62,6 +69,7 @@
 			<mx:DataGridColumn id="clmLocation" dataField="city" headerText="Sede" />
 			<mx:DataGridColumn id="clmStreet" dataField="address" headerText="Indirizzo" />
 			<mx:DataGridColumn id="clmTelephone" dataField="telephone_number" headerText="Telefono" />
+			<mx:DataGridColumn id="clmReceptionDays" dataField="reception_days" visible="false" />			
 		</mx:columns>
 	</mx:DataGrid >
 
@@ -93,34 +101,22 @@
 					</mx:HBox>
 				</mx:VBox>
 			</mx:Box>
-	
+			
 			<mx:HBox id="hbDays" width="100%" verticalCenter="middle" horizontalAlign="center" height="30%"
-							 paddingTop="5" paddingRight="20" paddingLeft="20">
-				<mx:VBox horizontalAlign="center">
-					<mx:Label text="Lunedì" color="black"/>
-					<mx:CheckBox id="cbLunedi" selected="false"/>
-				</mx:VBox>
-				<mx:VRule height="100%"/>
-				<mx:VBox horizontalAlign="center">
-					<mx:Label text="Martedì" color="black"/>
-					<mx:CheckBox id="cbMartedi" selected="false" />
-				</mx:VBox>
-				<mx:VRule height="100%"/>
-				<mx:VBox horizontalAlign="center">
-					<mx:Label text="Mercoledì" color="black"/>
-					<mx:CheckBox id="cbMercoledi" selected="false"/>
-				</mx:VBox>
-				<mx:VRule height="100%"/>
-				<mx:VBox horizontalAlign="center">
-					<mx:Label text="Giovedì" color="black"/>
-					<mx:CheckBox id="cbGiovedi" selected="false"/>
-				</mx:VBox>
-				<mx:VRule height="100%"/>
-				<mx:VBox horizontalAlign="center">
-					<mx:Label text="Venerdì" color="black"/>
-					<mx:CheckBox id="cbVenerdi" selected="false"/>
-				</mx:VBox>
-			</mx:HBox>
+							 paddingTop="5" paddingRight="20" paddingLeft="20">				
+				<mx:Repeater id="rptContentDays" dataProvider="{days}"> 
+					<mx:VBox horizontalAlign="center">
+						<mx:Label id="lblDays" 
+								  text="{rptContentDays.currentItem.label}" 
+								  color="black"/>
+						<mx:CheckBox id="chkBxDay"									 
+									 data="{rptContentDays.currentItem.numberAssociated}" 
+									 selected="{rptContentDays.currentItem.selected}"
+									 />
+					</mx:VBox>
+					<mx:VRule height="100%"/>
+				</mx:Repeater>
+			</mx:HBox>		
 			
 			<component:HouseButton id="cmpHouseButton" horizontalAlign="center" width="100%" paddingBottom="10" />
 			

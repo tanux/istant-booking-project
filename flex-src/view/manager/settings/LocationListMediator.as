@@ -1,13 +1,20 @@
 package view.manager.settings
 {
+	import com.adobe.serializers.json.JSONDecoder;
+	import com.adobe.serializers.json.JSONEncoder;
+	import com.adobe.serializers.json.JSONSerializationFilter;
+	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
 	import model.vo.Location;
 	import model.vo.LocationInList;
+	import model.vo.SelectedDay;
 	
 	import mx.collections.ArrayCollection;
 	import mx.controls.Alert;
+	import mx.controls.CheckBox;
+	import mx.data.ChangeObject;
 	import mx.events.ListEvent;
 	
 	import org.puremvc.as3.interfaces.IMediator;
@@ -16,13 +23,17 @@ package view.manager.settings
 	import org.tylerchesley.bark.core.Notification;
 	import org.tylerchesley.bark.events.NotificationEvent;
 	
+	import spark.components.ToggleButton;
+	
 	import view.ManagerMainMediator;
 	import view.component.LocationList;
-	//import view.component.HouseButton;
+
+
 	
 	public class LocationListMediator extends Mediator implements IMediator{
 		public static const NAME:String = "LocationListMediator";
 		[Bindable]private var locationInList:LocationInList;
+						
 		public function LocationListMediator(viewComponent:Object){
 			super(NAME, viewComponent);
 			locationListCmp.cmpHouseButton.btnAdd.addEventListener(MouseEvent.CLICK, addLocation);
@@ -31,46 +42,50 @@ package view.manager.settings
 		}
 		private function init(evt:Event) : void {}
 		
-		public function addLocation(evt:Event): void{			
-			var newLocation:Location = new Location();
-			newLocation.city = locationListCmp.tiLocationName.textInput.text;			
-			newLocation.address = locationListCmp.tiStreet.textInput.text;
-			newLocation.telephoneNumber = locationListCmp.tiTelephone.textInput.text;
-			var rD: String = "";
-			////////////////////
-			if (locationListCmp.cbLunedi.selected != true)
-				rD = rD + "1 ";
-			if (locationListCmp.cbMartedi.selected != true)
-				rD = rD + "2 ";
-			if (locationListCmp.cbMercoledi.selected != true)
-				rD = rD + "3 ";
-			if (locationListCmp.cbGiovedi.selected != true)
-				rD = rD + "4 ";
-			if (locationListCmp.cbVenerdi.selected != true)
-				rD = rD + "5";
-			////////////////////
-			newLocation.receptionDays = rD;			
-			facade.sendNotification(ApplicationFacade.LOCATION_ADD, newLocation );
+		
+		
+		private function makeArraysDays(): Array {							
+			var days:Array = new Array();
+			var i:int;
+			var length:int = locationListCmp.days.length;			
+			for (i=0; i<length; i++){
+				var day:SelectedDay = new SelectedDay();
+				day.selected = locationListCmp.chkBxDay[i].selected;
+				day.numberAssociated = i+1;
+				day.label = locationListCmp.days[i].label as String;
+				days.push(day);
+			}
+			return days;
 		}
 		
 		
-		public function deleteLocation(evt:Event): void{
+		private function addLocation(evt:Event): void{			
+			var jsEnc:JSONEncoder = new JSONEncoder();
+			var newLocation:Location = new Location();			
+			newLocation.city = locationListCmp.tiLocationName.textInput.text;			
+			newLocation.address = locationListCmp.tiStreet.textInput.text;
+			newLocation.telephoneNumber = locationListCmp.tiTelephone.textInput.text;			
+			newLocation.receptionDays = jsEnc.encode(makeArraysDays());						
+			facade.sendNotification(ApplicationFacade.LOCATION_ADD, newLocation);			
+		}
+		
+		
+		private function deleteLocation(evt:Event): void{
 			var delLocation:Location = new Location();
 			delLocation.id = locationInList.getLocation.id;
-			delLocation.city = locationListCmp.tiLocationName.textInput.text;
-			delLocation.address = locationListCmp.tiStreet.textInput.text;
-			delLocation.telephoneNumber = locationListCmp.tiTelephone.textInput.text;
 			var lInList:LocationInList = new LocationInList(delLocation, locationInList.getPosition);
 			facade.sendNotification(ApplicationFacade.LOCATION_DELETE, lInList);
 		}
 		
-		private function saveChanges(evt:Event): void {			
+		private function saveChanges(evt:Event): void {
+			var jsEnc:JSONEncoder = new JSONEncoder();
 			var locationChanged:Location = new Location();			
 			locationChanged.id = locationInList.getLocation.id;
 			locationChanged.city = locationListCmp.tiLocationName.textInput.text;
 			locationChanged.address = locationListCmp.tiStreet.textInput.text;
-			locationChanged.telephoneNumber = locationListCmp.tiTelephone.textInput.text;
-			var lInList:LocationInList = new LocationInList(locationChanged, locationInList.getPosition);
+			locationChanged.telephoneNumber = locationListCmp.tiTelephone.textInput.text;			
+			locationChanged.receptionDays = jsEnc.encode(makeArraysDays());
+			var lInList:LocationInList = new LocationInList(locationChanged, locationInList.getPosition);			
 			facade.sendNotification(ApplicationFacade.LOCATION_SAVE_CHANGES, lInList);
 		}
 		
@@ -80,7 +95,11 @@ package view.manager.settings
 					locationInList = notification.getBody() as LocationInList;
 					locationListCmp.tiLocationName.text = locationInList.getLocation.city as String;
 					locationListCmp.tiStreet.text = locationInList.getLocation.address as String;
-					locationListCmp.tiTelephone.text = locationInList.getLocation.telephoneNumber as String;
+					locationListCmp.tiTelephone.text = locationInList.getLocation.telephoneNumber as String;					
+					var jsDec:JSONDecoder = new JSONDecoder();
+					for (var i:int=0; i<locationListCmp.days.length; i++){
+						locationListCmp.chkBxDay[i].selected = jsDec.decode(locationInList.getLocation.receptionDays.toString())[i].selected;	
+					}
 					locationListCmp.cmpHouseButton.btnSave.enabled = true;
 					break;
 				case ApplicationFacade.LOCATION_ADD_SUCCESS:
@@ -131,6 +150,10 @@ package view.manager.settings
 			locationListCmp.tiTelephone.text =  "telephone" as String;
 			locationListCmp.tiTelephone.textInput.text = "telephone" as String;
 			locationListCmp.tiTelephone.textInput.showCancelButton = false;
+			
+			for (var i:int=0; i<locationListCmp.days.length; i++){
+				locationListCmp.chkBxDay[i].selected = false;
+			}
 			
 			locationListCmp.cmpHouseButton.btnSave.enabled = false;
 		}
