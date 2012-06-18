@@ -71,9 +71,9 @@ package model.managermain
 						sendNotification(ApplicationFacade.LOCATION_ADD_ERROR);
 					}
 					break;
-				case "deleteLocation":
-					if (evt.result != null){
-						sendNotification(ApplicationFacade.LOCATION_DELETE_SUCCESS, evt.result);
+				case "deleteLocation":					
+					if (evt.result > 0){
+						sendNotification(ApplicationFacade.LOCATION_DELETE_SUCCESS);
 					}
 					else{
 						sendNotification(ApplicationFacade.LOCATION_DELETE_ERROR);

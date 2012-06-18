@@ -44,11 +44,6 @@
 			<location>C:/easyphp/www/IstantBookingProject/services/CustomersService.php</location>
 		</link>
 		<link>
-			<name>services/LocationServices1_LocationServices.php</name>
-			<type>1</type>
-			<location>C:/easyphp/www/IstantBookingProject/services/LocationServices.php</location>
-		</link>
-		<link>
 			<name>services/LocationServices_LocationServices.php</name>
 			<type>1</type>
 			<location>C:/easyphp/www/IstantBookingProject/services/LocationServices.php</location>
