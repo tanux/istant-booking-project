@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generato il: Giu 05, 2012 alle 14:52
+-- Generato il: Giu 19, 2012 alle 14:07
 -- Versione del server: 5.5.16
 -- Versione PHP: 5.3.8
 
@@ -78,17 +78,17 @@ CREATE TABLE IF NOT EXISTS `customers` (
   `telephone_number` varchar(30) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf32 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf32 AUTO_INCREMENT=8 ;
 
 --
 -- Dump dei dati per la tabella `customers`
 --
 
 INSERT INTO `customers` (`id`, `firstname`, `lastname`, `email`, `telephone_number`) VALUES
-(1, 'gaetano', 'esposito', 'gaetano@mail.it', '081946487'),
-(2, 'concetta', 'natale', 'cettina@mail.it', '0101010101'),
-(3, 'antonio', 'antonino', 'antonio@mail.it', '081949595'),
-(4, 'concetta', 'esposito', 'concetta@mail.it', '0811111111');
+(4, 'concetta', 'esposito', 'concetta@mail.it', '0811111111'),
+(5, 'Claudio', 'Delpiero', 'claudio@mail.it', '097'),
+(6, 'Alessandro', 'Moggi', 'mo', '012'),
+(7, 'asd', 'asd', 'asd', 'asd');
 
 -- --------------------------------------------------------
 
@@ -99,9 +99,9 @@ INSERT INTO `customers` (`id`, `firstname`, `lastname`, `email`, `telephone_numb
 CREATE TABLE IF NOT EXISTS `locations` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `city` varchar(50) NOT NULL,
-  `address` int(255) NOT NULL,
-  `telephone_number` int(255) NOT NULL,
-  `receptions_days` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `telephone_number` varchar(255) NOT NULL,
+  `reception_days` text NOT NULL,
   PRIMARY KEY (`id`,`city`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 AUTO_INCREMENT=1 ;
 
