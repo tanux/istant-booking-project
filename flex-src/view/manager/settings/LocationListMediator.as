@@ -130,6 +130,7 @@ package view.manager.settings
 				case ApplicationFacade.LOCATION_DELETE_SUCCESS:
 					notify('default', 'Successo', 'Eliminazione ok', locationListCmp.successIcon, 5000);
 					resetTextInput();
+					locationListCmp.cmpHouseButton.btnSave.enabled = false;
 					break;
 				case ApplicationFacade.LOCATION_DELETE_ERROR:
 					Alert.show("Errore delete");
