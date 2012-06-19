@@ -112,6 +112,10 @@ package view
 				case ApplicationFacade.MANAGER_LOGOUT_SUCCESS:
 					CursorManager.removeBusyCursor();
 					managerMain.currentState = "stateLogin";
+					managerMain.cmpLoginFormManager.tiPassword.textInput.text="pwd";
+					managerMain.cmpLoginFormManager.tiPassword.textInput.showCancelButton=false;
+					managerMain.cmpLoginFormManager.tiUsername.textInput.text="Username";
+					managerMain.cmpLoginFormManager.tiUsername.textInput.showCancelButton=false;
 					break;
 				case ApplicationFacade.MANAGER_LOGIN_FAULT:					
 					Alert.show("Fault: Errore di comunicazione con il server");
