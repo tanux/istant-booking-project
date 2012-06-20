@@ -8,6 +8,13 @@
 	<fx:Declarations>
 		<fx:Object id="successIcon" icon="@Embed(source='assets/images/ok.png')" />
 		<fx:Object id="errorIcon" icon="@Embed(source='assets/images/error.png')" />
+		
+		<mx:PhoneNumberValidator id="pnV" 
+								 source="{tiTelephoneNumber.textInput}" property="text"
+								 invalidCharError="Il numero inserito contiene caratteri non numerici!"/>
+		<mx:EmailValidator id="emV" source="{tiEmail.textInput}" property="text"
+						   invalidCharError="La mail non contiene il simbolo @. Ricontrollare l'indirizzo."/>
+		
 	</fx:Declarations>	
 	<fx:Script>
 		<![CDATA[			
