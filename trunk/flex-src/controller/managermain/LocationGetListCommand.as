@@ -7,9 +7,9 @@ package controller.managermain
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
-	public class LocationGetListCommand extends SimpleCommand implements ICommand{
-		override public function execute(notification:INotification):void{
-			if (facade.hasProxy(LocationListProxy.NAME)){
+	public class LocationGetListCommand extends SimpleCommand implements ICommand{		
+		override public function execute(notification:INotification):void{			
+			if (facade.hasProxy(LocationListProxy.NAME)){				
 				var locationListProxy:LocationListProxy = facade.retrieveProxy(LocationListProxy.NAME) as LocationListProxy;
 				locationListProxy.getLocationList();				
 			}
