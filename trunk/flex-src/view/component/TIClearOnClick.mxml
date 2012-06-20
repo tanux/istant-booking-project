@@ -43,7 +43,7 @@
 						  cancelDownSkin="{_textInput_clearIcon}"
 						  cancelUpSkin="{_textInput_clearIcon}"
 						  cancelOverSkin="{_textInput_clearIcon}"
-						  change="clearButton_cb_changeHandler(event)"
+						  change="clearButton_cb_changeHandler(event); "
 						  displayAsPassword="false"
 						  />	
 </mx:Box>

@@ -9,6 +9,7 @@ package view.manager.main
 	import mx.collections.ArrayCollection;
 	import mx.controls.Alert;
 	import mx.events.ListEvent;
+	import mx.validators.Validator;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
