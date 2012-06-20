@@ -101,6 +101,8 @@ package view.manager.settings
 						locationListCmp.chkBxDay[i].selected = jsDec.decode(locationInList.getLocation.receptionDays.toString())[i].selected;	
 					}
 					locationListCmp.cmpHouseButton.btnSave.enabled = true;
+					locationListCmp.cmpHouseButton.btnAdd.enabled = false;
+					locationListCmp.cmpHouseButton.btnDelete.enabled = true;
 					break;
 				case ApplicationFacade.LOCATION_ADD_SUCCESS:
 					notify('default', 'Successo', 'Inserimento ok', locationListCmp.successIcon, 5000);
@@ -123,6 +125,8 @@ package view.manager.settings
 					notify('default', 'Successo', 'L\'operazione è andata a buon fine', locationListCmp.successIcon, 5000);
 					resetTextInput();					
 					locationListCmp.cmpHouseButton.btnSave.enabled = false;
+					locationListCmp.cmpHouseButton.btnAdd.enabled = true;
+					locationListCmp.cmpHouseButton.btnDelete.enabled = false;
 					break;
 				case ApplicationFacade.LOCATION_SAVE_CHANGES_ERROR:
 					Alert.show("Errore nel salvataggio");
@@ -131,6 +135,8 @@ package view.manager.settings
 					notify('default', 'Successo', 'Eliminazione ok', locationListCmp.successIcon, 5000);
 					resetTextInput();
 					locationListCmp.cmpHouseButton.btnSave.enabled = false;
+					locationListCmp.cmpHouseButton.btnAdd.enabled = true;
+					locationListCmp.cmpHouseButton.btnDelete.enabled = false;
 					break;
 				case ApplicationFacade.LOCATION_DELETE_ERROR:
 					Alert.show("Errore delete");

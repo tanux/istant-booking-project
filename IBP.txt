@@ -4,17 +4,17 @@ LOGIN
 
 MANAGER
 	- Sezione Customer
-		- Add Customer: controllo su utente già inserito
-				controllo su campi obbligatori (nome, cognome e telefono sono necessari a mio avviso)
+		- Add Customer: controllo su utente giï¿½ inserito: provando ad inserire un utente avente una mail giÃ  presente in archivio viene restituito un addCustomerFault. Bisogna Gestire l'alert relativo.
+				        controllo su campi obbligatori (nome, cognome e telefono sono necessari a mio avviso)
 		- Modify Customer: modifica anche se nelle text input non sono stati inseriti nuovi dati
-				   disabilita tasto addCustomer (può portare ad errori)						OK
+				   disabilita tasto addCustomer (puï¿½ portare ad errori)						OK
 		- Delete Customer: il tasto salva non torna trasparente								OK
 		- Text Input: no controllo su formattazione e-mail e sul numero di telefono (devono essere tutti numeri)
-		- Ricerca: i dati inseriti vanno cancellati "a mano" non c'è un tasto che pulisca la TextInput
+		- Ricerca: i dati inseriti vanno cancellati "a mano" non c'ï¿½ un tasto che pulisca la TextInput
 
 	- Sezione Setting
-		- Add,Delete,Modify: reset text input e bottone salva da disabilitare
+		- Add,Delete,Modify: reset text input e bottone salva da disabilitare				OK
 		- Text Input: controllo su formato dati inseriti (numero di telefono sono numeri?)
 LOGOUT
-	- Campo Username: figurano ancora i dati del precedente accesso 							OK
+	- Campo Username: figurano ancora i dati del precedente accesso 						OK
 	- Campo Pwd: figurano ancora i dati del precedente accesso								OK
