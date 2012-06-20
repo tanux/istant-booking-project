@@ -5,13 +5,56 @@
 				xmlns:component="view.component.*">
 	
 	<fx:Declarations>
-		<mx:PhoneNumberValidator id="pnV" 
-								 source="{phoneInput.textInput}" property="text"
-								 invalidCharError="Il numero inserito contiene caratteri non numerici!"/>
-		<mx:EmailValidator id="emV" source="{mail.textInput}" property="text"
-						   invalidCharError="La mail non contiene il simbolo @. Ricontrollare l'indirizzo."/>		
-	</fx:Declarations>	
+		
+		<mx:StringValidator id="useridValidator"
+							source="{userid}" property="text"
+							minLength="8" maxLength="15" />
+		
+		<mx:NumberValidator id="ageValidator"
+							source="{age}" property="text"
+							precision="0" allowNegative="false"
+							minValue="18" maxValue="100" />  
+		
+		<mx:EmailValidator  id="emailValidator" source="{email}" property="text" />
+		<mx:PhoneNumberValidator id="phoneValidator" source="{phone}"  property="text" />
+		
+	</fx:Declarations>
 
-	<component:TIClearOnClick id="phoneInput" />
-	<component:TIClearOnClick id="mail" />
+	<fx:Script>
+		<![CDATA[
+			import spark.events.TextOperationEvent;
+			import mx.validators.Validator;
+			import mx.controls.Alert;
+			import mx.validators.ValidationResult;
+			import mx.events.ValidationResultEvent;
+			
+			protected function submit_clickHandler(event:MouseEvent):void
+			{
+				Alert.show("Form valido. Invio Dati");
+			}
+			
+			private function mayEnableButton():void
+			{
+			submit.enabled = (Validator.validateAll([useridValidator, ageValidator, emailValidator, phoneValidator]).length == 0);
+			}
+		]]>
+	</fx:Script>
+	
+	<mx:Form x="0" y="0" width="250" height="170" >
+		<mx:FormItem label="Nome utente">
+			<mx:TextInput id="userid" change="mayEnableButton()"/>
+		</mx:FormItem>
+		<mx:FormItem label="Età">
+			<mx:TextInput id="age" change="mayEnableButton()"/>
+		</mx:FormItem>
+		<mx:FormItem label="e-mail">
+			<mx:TextInput id="email"  change="mayEnableButton()"/>
+		</mx:FormItem>
+		<mx:FormItem label="Telefono">
+			<mx:TextInput id="phone"  change="mayEnableButton()"/>
+		</mx:FormItem>
+		<mx:FormItem label="Invia" >
+			<mx:Button id="submit" click="submit_clickHandler(event)"/>
+		</mx:FormItem>
+	</mx:Form>
 </mx:Application>

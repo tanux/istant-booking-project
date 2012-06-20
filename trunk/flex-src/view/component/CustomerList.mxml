@@ -108,6 +108,20 @@
 				}
 				return true;
 			}
+			
+			import mx.validators.Validator;
+			import mx.validators.ValidationResult;
+			import mx.events.ValidationResultEvent;
+			
+			protected function submit_clickHandler(event:MouseEvent):void
+			{
+				Alert.show("Form valido. Invio Dati");
+			}
+			
+			private function mayEnableButton():void
+			{
+				btnAddUser.enabled = (Validator.validateAll([pnV, emV]).length == 0);
+			}
 		]]>
 	</fx:Script>
 	
@@ -138,7 +152,7 @@
 	</mx:HBox>
 	<mx:HBox width="100%" horizontalAlign="right">
 		<mx:Button id="btnAddUser" icon="@Embed(source='assets/images/add_user.png')" downIcon="@Embed(source='assets/images/add_user_little.png')"
-				   width="45" height="40"/>
+				   width="45" height="40" enabled="true" click="submit_clickHandler(event)"/>
 		<mx:Button id="btnDelUser" icon="@Embed(source='assets/images/delete_user.png')" downIcon="@Embed(source='assets/images/delete_user_little.png')"
 				   width="45" height="40" enabled="false"/>
 		<mx:Button id="btnSave" icon="@Embed(source='assets/images/save.png')" downIcon="@Embed(source='assets/images/save_little.png')"
