@@ -1,15 +1,17 @@
 <?xml version="1.0"?>
 <!-- validators\PNValidator.mxml -->
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+<mx:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:mx="library://ns.adobe.com/flex/mx"
 				xmlns:component="view.component.*">
 	
-	<!-- Define the PhoneNumberValidator. -->
-	<mx:PhoneNumberValidator id="pnV" 
-							 source="{phoneInput.textInput}" property="text"
-							 invalidCharError="Il numero inserito contiene caratteri non numerici!"/>
-	<mx:EmailValidator id="emV" source="{mail.textInput}" property="text"
-					   invalidCharError="La mail non contiene il simbolo @. Ricontrollare l'indirizzo."/>
-	<!-- Define the TextInput control for entering the phone number. -->
+	<fx:Declarations>
+		<mx:PhoneNumberValidator id="pnV" 
+								 source="{phoneInput.textInput}" property="text"
+								 invalidCharError="Il numero inserito contiene caratteri non numerici!"/>
+		<mx:EmailValidator id="emV" source="{mail.textInput}" property="text"
+						   invalidCharError="La mail non contiene il simbolo @. Ricontrollare l'indirizzo."/>		
+	</fx:Declarations>	
+
 	<component:TIClearOnClick id="phoneInput" />
 	<component:TIClearOnClick id="mail" />
 </mx:Application>
