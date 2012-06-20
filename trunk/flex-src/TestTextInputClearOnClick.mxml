@@ -1,24 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
-				xmlns:mx="library://ns.adobe.com/flex/mx"
-				xmlns:s="library://ns.adobe.com/flex/spark"
-				xmlns:component="view.component.*"
-				width="100%" height="100%" layout="absolute"
-				xmlns:components="org.tylerchesley.bark.components.*"
-				creationComplete="init();">	
-	<fx:Declarations>
-		<!-- Place non-visual elements (e.g., services, value objects) here -->		
-	</fx:Declarations>	
+<?xml version="1.0"?>
+<!-- validators\PNValidator.mxml -->
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+				xmlns:component="view.component.*">
 	
-	<fx:Script>
+	<!-- Define the PhoneNumberValidator. -->
+	<mx:PhoneNumberValidator id="pnV" 
+							 source="{phoneInput2.textInput}" property="text"
+							 invalidCharError="Il numero inserito contiene caratteri non numerici!"/>
 	
-	</fx:Script>
-
-	<component:TIClearOnClick text="mino"/>
-
-	
-	
-	
-
+	<!-- Define the TextInput control for entering the phone number. -->
+	<mx:TextInput id="phoneInput"/>
+	<mx:TextInput id="zipCodeInput"/>
+	<component:TIClearOnClick id="phoneInput2" />
 </mx:Application>
-

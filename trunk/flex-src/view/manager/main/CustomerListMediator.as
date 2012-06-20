@@ -82,12 +82,14 @@ package view.manager.main
 					customerListCmp.tiTelephoneNumber.text = customerInList.getCustomer.telephoneNumber as String;
 					customerListCmp.btnSave.enabled = true;
 					customerListCmp.btnAddUser.enabled = false;
+					customerListCmp.btnDelUser.enabled = true;
 					break;
 				case ApplicationFacade.CUSTOMER_SAVE_CHANGES_SUCCESS:
 					notify('default', 'Successo', 'L\'operazione è andata a buon fine', customerListCmp.successIcon, 5000);
 					resetTextInput();					
 					customerListCmp.btnSave.enabled = false;
 					customerListCmp.btnAddUser.enabled = true;
+					customerListCmp.btnDelUser.enabled = false;
 					break;
 				case ApplicationFacade.CUSTOMER_SAVE_CHANGES_ERROR:
 					Alert.show("Errore nel salvataggio");
@@ -103,6 +105,8 @@ package view.manager.main
 					notify('default', 'Successo', 'Eliminazione ok', customerListCmp.successIcon, 5000);
 					resetTextInput();
 					customerListCmp.btnSave.enabled = false;
+					customerListCmp.btnAddUser.enabled = true;
+					customerListCmp.btnDelUser.enabled = false;
 					break;
 				case ApplicationFacade.CUSTOMER_DELETE_ERROR:
 					Alert.show("Errore delete");
