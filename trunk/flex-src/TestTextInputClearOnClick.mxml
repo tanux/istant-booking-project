@@ -48,10 +48,10 @@
 	</fx:Script>
 	
 	<mx:HBox>
-		<component:TIClearOnClick id="tiFirstname" />
-		<component:TIClearOnClick id="tiLastname"/>
-		<component:TIClearOnClick id="tiEmail" />
-		<component:TIClearOnClick id="tiTelephoneNumber"/>
+		<component:TIClearOnClick id="tiFirstname" text="Nome"/>
+		<component:TIClearOnClick id="tiLastname" text="Cognome"/>
+		<component:TIClearOnClick id="tiEmail" text="Email"/>
+		<component:TIClearOnClick id="tiTelephoneNumber" text="Telefono"/>
 		<mx:Button id="submitButton" enabled="false" click="submitForm()"/>
 	</mx:HBox>
 	
