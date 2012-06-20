@@ -10,11 +10,10 @@
 		<fx:Object id="errorIcon" icon="@Embed(source='assets/images/error.png')" />
 		
 		<mx:PhoneNumberValidator id="pnV" 
-								 source="{tiTelephoneNumber.textInput}" property="text"
-								 invalidCharError="Il numero inserito contiene caratteri non numerici!"/>
-		<mx:EmailValidator id="emV" source="{tiEmail.textInput}" property="text"
-						   invalidCharError="La mail non contiene il simbolo @. Ricontrollare l'indirizzo."/>
-		
+								 source="{tiTelephoneNumber.textInput}" property="text" required="true"
+								 valid="telNumbValid(event)" invalid="telNumbValid(event)"/>
+		<mx:EmailValidator id="emV" source="{tiEmail.textInput}" property="text" required="true"
+						   valid="eMailValid(event)" invalid="eMailValid(event)"/>
 	</fx:Declarations>	
 	<fx:Script>
 		<![CDATA[			
@@ -108,6 +107,29 @@
 				}
 				return true;
 			}
+			
+			import mx.events.ValidationResultEvent;
+			[Bindable] public var email: Boolean = false;
+			[Bindable] public var tel: Boolean = false;
+			private function eMailValid(eventObj:ValidationResultEvent):void {
+				if(eventObj.type==ValidationResultEvent.VALID){    
+					// Enable Submit button.
+					email = true;
+				}
+				else
+					email = false;
+				if (tel==true && email==true)
+					btnAddUser.enabled=true;
+			}
+			private function telNumbValid(eventObj:ValidationResultEvent):void {
+				if(eventObj.type==ValidationResultEvent.VALID)    
+					// Enable Submit button.
+					tel = true;
+				else
+					tel = false;
+				if (tel==true && email==true)
+					btnAddUser.enabled=true;
+			}
 		]]>
 	</fx:Script>
 	
@@ -138,11 +160,11 @@
 	</mx:HBox>
 	<mx:HBox width="100%" horizontalAlign="right">
 		<mx:Button id="btnAddUser" icon="@Embed(source='assets/images/add_user.png')" downIcon="@Embed(source='assets/images/add_user_little.png')"
-				   width="45" height="40" enabled="true"/>
+				   width="45" height="40" enabled="false"/>
 		<mx:Button id="btnDelUser" icon="@Embed(source='assets/images/delete_user.png')" downIcon="@Embed(source='assets/images/delete_user_little.png')"
-				   width="45" height="40" enabled="false"/>
+				   width="45" height="40" enabled="true"/>
 		<mx:Button id="btnSave" icon="@Embed(source='assets/images/save.png')" downIcon="@Embed(source='assets/images/save_little.png')"
-				   width="45" height="40" enabled="false"/>
+				   width="45" height="40" enabled="true"/>
 		<mx:Button id="btnBooking" icon="@Embed(source='assets/images/prenota.png')" downIcon="@Embed(source='assets/images/prenota_little.png')"
 				   width="45" height="40"/>
 	</mx:HBox>

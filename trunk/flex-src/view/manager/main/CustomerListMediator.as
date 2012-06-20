@@ -82,15 +82,13 @@ package view.manager.main
 					customerListCmp.tiEmail.text = customerInList.getCustomer.email as String;
 					customerListCmp.tiTelephoneNumber.text = customerInList.getCustomer.telephoneNumber as String;
 					customerListCmp.btnSave.enabled = true;
-					customerListCmp.btnAddUser.enabled = false;
 					customerListCmp.btnDelUser.enabled = true;
 					break;
 				case ApplicationFacade.CUSTOMER_SAVE_CHANGES_SUCCESS:
 					notify('default', 'Successo', 'L\'operazione è andata a buon fine', customerListCmp.successIcon, 5000);
 					resetTextInput();					
-					customerListCmp.btnSave.enabled = false;
-					customerListCmp.btnAddUser.enabled = true;
-					customerListCmp.btnDelUser.enabled = false;
+					//customerListCmp.btnSave.enabled = false;
+					//customerListCmp.btnDelUser.enabled = false;
 					break;
 				case ApplicationFacade.CUSTOMER_SAVE_CHANGES_ERROR:
 					Alert.show("Errore nel salvataggio");
@@ -98,6 +96,7 @@ package view.manager.main
 				case ApplicationFacade.CUSTOMER_ADD_SUCCESS:
 					notify('default', 'Successo', 'Inserimento ok', customerListCmp.successIcon, 5000);
 					resetTextInput();
+					customerListCmp.btnAddUser.enabled = false;
 					break;
 				case ApplicationFacade.CUSTOMER_ADD_ERROR:
 					Alert.show("Errore inserimento");
@@ -105,9 +104,8 @@ package view.manager.main
 				case ApplicationFacade.CUSTOMER_DELETE_SUCCESS:
 					notify('default', 'Successo', 'Eliminazione ok', customerListCmp.successIcon, 5000);
 					resetTextInput();
-					customerListCmp.btnSave.enabled = false;
-					customerListCmp.btnAddUser.enabled = true;
-					customerListCmp.btnDelUser.enabled = false;
+					//customerListCmp.btnSave.enabled = false;
+					//customerListCmp.btnDelUser.enabled = false;
 					break;
 				case ApplicationFacade.CUSTOMER_DELETE_ERROR:
 					Alert.show("Errore delete");
