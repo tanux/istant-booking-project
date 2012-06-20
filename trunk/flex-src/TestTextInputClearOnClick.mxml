@@ -5,11 +5,11 @@
 	
 	<!-- Define the PhoneNumberValidator. -->
 	<mx:PhoneNumberValidator id="pnV" 
-							 source="{phoneInput2.textInput}" property="text"
+							 source="{phoneInput.textInput}" property="text"
 							 invalidCharError="Il numero inserito contiene caratteri non numerici!"/>
-	
+	<mx:EmailValidator id="emV" source="{mail.textInput}" property="text"
+					   invalidCharError="La mail non contiene il simbolo @. Ricontrollare l'indirizzo."/>
 	<!-- Define the TextInput control for entering the phone number. -->
-	<mx:TextInput id="phoneInput"/>
-	<mx:TextInput id="zipCodeInput"/>
-	<component:TIClearOnClick id="phoneInput2" />
+	<component:TIClearOnClick id="phoneInput" />
+	<component:TIClearOnClick id="mail" />
 </mx:Application>
