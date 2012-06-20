@@ -21,7 +21,7 @@
 			
 			import org.tylerchesley.bark.managers.NotificationManager;
 			
-			[Bindable] public var manager:Manager;
+			[Bindable] public var manager:Manager;			
 			private var facade:ApplicationFacade = ApplicationFacade.getInstance() as ApplicationFacade;
 			public var SETTINGS_MANAGER_CREATED:String = "SettingsManagerCreated";
 			private function init():void{	

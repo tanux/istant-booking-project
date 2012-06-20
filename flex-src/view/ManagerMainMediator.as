@@ -1,5 +1,7 @@
 package view
 {
+	import com.hillelcoren.assets.skins.FacebookSkin;
+	
 	import controller.loginmanager.DoLoginCommand;
 	import controller.managermain.CustomerGetListCommand;
 	import controller.managermain.LocationGetListCommand;
@@ -8,8 +10,10 @@ package view
 	import flash.events.MouseEvent;
 	
 	import model.vo.GenericUser;
+	import model.vo.Location;
 	import model.vo.Manager;
 	
+	import mx.collections.ArrayCollection;
 	import mx.controls.Alert;
 	import mx.events.FlexEvent;
 	import mx.managers.CursorManager;
@@ -19,6 +23,7 @@ package view
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	
 	import view.manager.main.CustomerListMediator;
+	import view.manager.main.LocationsInAccordionMediator;
 	import view.manager.settings.LocationListMediator;
 	
 	public class ManagerMainMediator extends Mediator implements IMediator{
@@ -79,9 +84,12 @@ package view
 			managerMain.cmpControlBar.btnLogout.addEventListener(MouseEvent.CLICK, doLogout);
 			managerMain.cmpControlBar.btnHome.addEventListener(MouseEvent.CLICK, goToHome);
 			managerMain.cmpControlBar.btnShowVisit.addEventListener(MouseEvent.CLICK, goToShowVisit);
-			facade.registerMediator(new CustomerListMediator(managerMain.cmpCustomerList));					
-			facade.registerCommand(ApplicationFacade.GET_CUSTOMER_LIST,CustomerGetListCommand);
+			facade.registerMediator(new CustomerListMediator(managerMain.cmpCustomerList));
+			facade.registerMediator(new LocationsInAccordionMediator(managerMain.cmpVisitProperties.cmpLocations));
+			facade.registerCommand(ApplicationFacade.GET_CUSTOMER_LIST,CustomerGetListCommand);			
+			facade.registerCommand(ApplicationFacade.GET_LOCATION_LIST, LocationGetListCommand);
 			facade.sendNotification(ApplicationFacade.GET_CUSTOMER_LIST);
+			facade.sendNotification(ApplicationFacade.GET_LOCATION_LIST);
 		}	
 		
 		
@@ -119,7 +127,7 @@ package view
 					break;
 				case ApplicationFacade.MANAGER_LOGIN_FAULT:					
 					Alert.show("Fault: Errore di comunicazione con il server");
-					break;			
+					break;
 			}
 		}
 		
@@ -130,7 +138,8 @@ package view
 				ApplicationFacade.MANAGER_LOGIN_SUCCESS,
 				ApplicationFacade.MANAGER_LOGIN_ERROR,
 				ApplicationFacade.MANAGER_LOGOUT_SUCCESS,
-				ApplicationFacade.MANAGER_LOGIN_FAULT				
+				ApplicationFacade.MANAGER_LOGIN_FAULT
+				
 			];
 		}		
 		

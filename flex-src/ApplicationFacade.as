@@ -5,7 +5,6 @@ package
 	 * */
 	import controller.AffiliateStartupCommand;
 	import controller.ManagerStartupCommand;
-	import controller.StartupCommand;
 	
 	import mx.controls.Alert;
 	
