@@ -33,10 +33,10 @@ package view.manager.main
 		
 		public function addCustomer(evt:Event): void{
 			var newCustomer:Customer = new Customer();
-			newCustomer.firstName = customerListCmp.tiFirstname.textInput.text;
-			newCustomer.lastName = customerListCmp.tiLastname.textInput.text;
-			newCustomer.email = customerListCmp.tiEmail.textInput.text;
-			newCustomer.telephoneNumber = customerListCmp.tiTelephoneNumber.textInput.text;
+			newCustomer.firstName = customerListCmp.tiFirstname.text;
+			newCustomer.lastName = customerListCmp.tiLastname.text;
+			newCustomer.email = customerListCmp.tiEmail.text;
+			newCustomer.telephoneNumber = customerListCmp.tiTelephoneNumber.text;
 			facade.sendNotification(ApplicationFacade.CUSTOMER_ADD, newCustomer );
 		}
 		
@@ -44,10 +44,10 @@ package view.manager.main
 		public function deleteCustomer(evt:Event): void{
 			var delCustomer:Customer = new Customer();
 			delCustomer.id = customerInList.getCustomer.id;
-			delCustomer.firstName = customerListCmp.tiFirstname.textInput.text;
-			delCustomer.lastName = customerListCmp.tiLastname.textInput.text;
-			delCustomer.email = customerListCmp.tiEmail.textInput.text;
-			delCustomer.telephoneNumber = customerListCmp.tiTelephoneNumber.textInput.text;
+			delCustomer.firstName = customerListCmp.tiFirstname.text;
+			delCustomer.lastName = customerListCmp.tiLastname.text;
+			delCustomer.email = customerListCmp.tiEmail.text;
+			delCustomer.telephoneNumber = customerListCmp.tiTelephoneNumber.text;
 			var cInList:CustomerInList = new CustomerInList(delCustomer, customerInList.getPosition);
 			facade.sendNotification(ApplicationFacade.CUSTOMER_DELETE, cInList);
 		}
@@ -55,10 +55,10 @@ package view.manager.main
 		private function saveChanges(evt:Event): void {			
 			var customerChanged:Customer = new Customer();			
 			customerChanged.id = customerInList.getCustomer.id;
-			customerChanged.firstName = customerListCmp.tiFirstname.textInput.text;
-			customerChanged.lastName = customerListCmp.tiLastname.textInput.text;
-			customerChanged.email = customerListCmp.tiEmail.textInput.text;
-			customerChanged.telephoneNumber = customerListCmp.tiTelephoneNumber.textInput.text;
+			customerChanged.firstName = customerListCmp.tiFirstname.text;
+			customerChanged.lastName = customerListCmp.tiLastname.text;
+			customerChanged.email = customerListCmp.tiEmail.text;
+			customerChanged.telephoneNumber = customerListCmp.tiTelephoneNumber.text;
 			var cInList:CustomerInList = new CustomerInList(customerChanged, customerInList.getPosition);
 			facade.sendNotification(ApplicationFacade.CUSTOMER_SAVE_CHANGES, cInList);			
 		}
@@ -116,20 +116,16 @@ package view.manager.main
 		
 		private function resetTextInput():void{
 			customerListCmp.tiFirstname.text = "Nome" as String;
-			customerListCmp.tiFirstname.textInput.text = "Nome" as String;
-			customerListCmp.tiFirstname.textInput.showCancelButton = false;
+			customerListCmp.tiFirstname.showCancelButton = false;
 			
 			customerListCmp.tiLastname.text = "Cognome" as String;
-			customerListCmp.tiLastname.textInput.text = "Cognome" as String;
-			customerListCmp.tiLastname.textInput.showCancelButton = false;
+			customerListCmp.tiLastname.showCancelButton = false;
 			
 			customerListCmp.tiEmail.text = "E-mail" as String;
-			customerListCmp.tiEmail.textInput.text = "E-mail" as String;
-			customerListCmp.tiEmail.textInput.showCancelButton = false;
+			customerListCmp.tiEmail.showCancelButton = false;
 			
 			customerListCmp.tiTelephoneNumber.text = "Telefono" as String;
-			customerListCmp.tiTelephoneNumber.textInput.text = "Telefono" as String;
-			customerListCmp.tiTelephoneNumber.textInput.showCancelButton = false;
+			customerListCmp.tiTelephoneNumber.showCancelButton = false;
 		}
 		
 		private function notify(type:String = 'default',

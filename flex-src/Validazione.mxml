@@ -37,7 +37,7 @@
 			private function mayEnableButton():void
 			{
 				btn.enabled = (Validator.validateAll([useridValidator, ageValidator, emailValidator, phoneValidator]).length == 0);
-			
+				
 			}
 			
 			//////////////
@@ -49,7 +49,7 @@
 			[Embed(source="assets/images/cross.png")]
 			private static var _textInput_clearIcon:Class;
 			
-			[Bindable] public var text:String = "";
+			[Bindable] public var text:String = "Prova";
 			
 			protected var logger:ILogger = Log.getLogger("flex3ui.AdvancedTextInput");
 			
@@ -61,12 +61,25 @@
 			{			
 				logger.info('textInput.showCancelButton = ');
 			}	
+			
+			public function activateAdd(): void{
+				userid.editable = true;
+				userid.enabled = true;
+				age.editable = true;
+				age.enabled = true;
+				email.editable = true;
+				email.enabled = true;
+				phone.editable = true;
+				phone.enabled = true;
+			}
 		]]>
 	</fx:Script>
 	
 	<mx:Form x="0" y="0" >
 		<mx:FormItem label="Nome utente">
 			<ui:AdvancedTextInput id="userid"
+								  enabled="false"
+								  editable="false"
 								  width="100%"
 								  promptText="{text}"
 								  color="#000000"
@@ -86,6 +99,8 @@
 		</mx:FormItem>
 		<mx:FormItem label="Età">
 			<ui:AdvancedTextInput id="age"
+								  enabled="false"
+								  editable="false"
 								  width="100%"
 								  promptText="{text}"
 								  color="#000000"
@@ -104,6 +119,8 @@
 		</mx:FormItem>
 		<mx:FormItem label="e-mail">
 			<ui:AdvancedTextInput id="email"
+								  enabled="false"
+								  editable="false"
 								  width="100%"
 								  promptText="{text}"
 								  color="#000000"
@@ -122,6 +139,8 @@
 		</mx:FormItem>
 		<mx:FormItem label="Telefono">
 			<ui:AdvancedTextInput id="phone"
+								  enabled="false"
+								  editable="false"
 								  width="100%"
 								  promptText="{text}"
 								  color="#000000"
@@ -140,6 +159,9 @@
 		</mx:FormItem>
 		<mx:FormItem  label="Invia">
 			<s:Button id="btn" enabled="false" click="submit_clickHandler(event)"/>
+		</mx:FormItem>
+		<mx:FormItem  label="Attiva">
+			<s:Button id="att" enabled="true" click="activateAdd()"/>
 		</mx:FormItem>
 	</mx:Form>
 	

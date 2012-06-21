@@ -24,6 +24,7 @@
     <application path="Print_test.mxml"/>
     <application path="AffiliateMain.mxml"/>
     <application path="ManagerMain.mxml"/>
+    <application path="Validazione.mxml"/>
     <application path="TestTextInputClearOnClick.mxml"/>
     <application path="Validator.mxml"/>
   </applications>
