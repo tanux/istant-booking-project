@@ -4,16 +4,20 @@
 		 xmlns:mx="library://ns.adobe.com/flex/mx"		 
 		 xmlns:component="view.component.*"
 		 xmlns:vo="vo.*"
+		 xmlns:ui="http://www.kapit.fr/flex3/ui"
 		 width="100%" height="100%">		 	
 	<fx:Declarations>
 		<fx:Object id="successIcon" icon="@Embed(source='assets/images/ok.png')" />
 		<fx:Object id="errorIcon" icon="@Embed(source='assets/images/error.png')" />
 		
-		<mx:PhoneNumberValidator id="pnV" 
-								 source="{tiTelephoneNumber.textInput}" property="text" required="true"
-								 valid="telNumbValid(event)" invalid="telNumbValid(event)"/>
-		<mx:EmailValidator id="emV" source="{tiEmail.textInput}" property="text" required="true"
-						   valid="eMailValid(event)" invalid="eMailValid(event)"/>
+		<mx:StringValidator id="firtnameValidator"
+							source="{tiFirstname}" property="text"
+							minLength="3" maxLength="25" />
+		<mx:StringValidator id="lastnameValidator"
+							source="{tiLastname}" property="text"
+							minLength="3" maxLength="25" />
+		<mx:EmailValidator  id="emailValidator" source="{tiEmail}" property="text" />
+		<mx:PhoneNumberValidator id="phoneValidator" source="{tiTelephoneNumber}"  property="text" />
 	</fx:Declarations>	
 	<fx:Script>
 		<![CDATA[			
@@ -53,10 +57,7 @@
 			import mx.rpc.events.FaultEvent;
 			import mx.collections.ArrayCollection;
 			import mx.rpc.events.ResultEvent;
-			import mx.controls.Alert;
-			
-			
-			
+			import mx.controls.Alert;			
 			
 			private function getDataSuccess(returnedEvent:ResultEvent):void{
 				customerList = returnedEvent.result as ArrayCollection;
@@ -107,29 +108,38 @@
 				}
 				return true;
 			}
-			
+			import mx.controls.Alert;
 			import mx.events.ValidationResultEvent;
-			[Bindable] public var email: Boolean = false;
-			[Bindable] public var tel: Boolean = false;
-			private function eMailValid(eventObj:ValidationResultEvent):void {
-				if(eventObj.type==ValidationResultEvent.VALID){    
-					// Enable Submit button.
-					email = true;
-				}
-				else
-					email = false;
-				if (tel==true && email==true)
-					btnAddUser.enabled=true;
+			import mx.validators.ValidationResult;
+			import mx.validators.Validator;
+			
+			import spark.events.TextOperationEvent;
+						
+			private function mayEnableButton():void
+			{
+				btnAddUser.enabled = (Validator.validateAll([firtnameValidator, lastnameValidator, emailValidator, phoneValidator]).length == 0);
 			}
-			private function telNumbValid(eventObj:ValidationResultEvent):void {
-				if(eventObj.type==ValidationResultEvent.VALID)    
-					// Enable Submit button.
-					tel = true;
-				else
-					tel = false;
-				if (tel==true && email==true)
-					btnAddUser.enabled=true;
+			
+			import mx.logging.ILogger;
+			import mx.logging.Log;
+			
+			import spark.events.TextOperationEvent;
+			
+			[Embed(source="assets/images/cross.png")]
+			private static var _textInput_clearIcon:Class;
+			
+			[Bindable] public var text:String = "Prova";
+			
+			protected var logger:ILogger = Log.getLogger("flex3ui.AdvancedTextInput");
+			
+			public function dispose():void
+			{
 			}
+			
+			protected function clearButton_cb_changeHandler(event:Event):void
+			{			
+				logger.info('textInput.showCancelButton = ');
+			}		
 		]]>
 	</fx:Script>
 	
@@ -153,10 +163,70 @@
 		</mx:columns>
 	</mx:DataGrid>
 	<mx:HBox>
-		<component:TIClearOnClick id="tiFirstname" text="Nome"/>
-		<component:TIClearOnClick id="tiLastname" text="Cognome" />
-		<component:TIClearOnClick id="tiEmail" text="E-mail" />
-		<component:TIClearOnClick id="tiTelephoneNumber" text="Telefono" />
+		<ui:AdvancedTextInput id="tiFirstname"
+							  width="100%"
+							  promptText="Nome"
+							  color="#000000"
+							  iconWidth="15"
+							  iconHeight="15"
+							  iconPadding="3"
+							  keepPromptOnFocus="false"
+							  showCancelButton="true"
+							  cancelWidth="12" cancelHeight="12"
+							  cancelDownSkin="{_textInput_clearIcon}"
+							  cancelUpSkin="{_textInput_clearIcon}"
+							  cancelOverSkin="{_textInput_clearIcon}"
+							  change="mayEnableButton();clearButton_cb_changeHandler(event); "
+							  displayAsPassword="false"
+							  />
+		<ui:AdvancedTextInput id="tiLastname"
+							  width="100%"
+							  promptText="Cognome"
+							  color="#000000"
+							  iconWidth="15"
+							  iconHeight="15"
+							  iconPadding="3"
+							  keepPromptOnFocus="false"
+							  showCancelButton="true"
+							  cancelWidth="12" cancelHeight="12"
+							  cancelDownSkin="{_textInput_clearIcon}"
+							  cancelUpSkin="{_textInput_clearIcon}"
+							  cancelOverSkin="{_textInput_clearIcon}"
+							  change="mayEnableButton();clearButton_cb_changeHandler(event); "
+							  displayAsPassword="false"
+							  />		
+		<ui:AdvancedTextInput id="tiEmail"
+							  width="100%"
+							  promptText="E-mail"
+							  color="#000000"
+							  iconWidth="15"
+							  iconHeight="15"
+							  iconPadding="3"
+							  keepPromptOnFocus="false"
+							  showCancelButton="true"
+							  cancelWidth="12" cancelHeight="12"
+							  cancelDownSkin="{_textInput_clearIcon}"
+							  cancelUpSkin="{_textInput_clearIcon}"
+							  cancelOverSkin="{_textInput_clearIcon}"
+							  change="mayEnableButton();clearButton_cb_changeHandler(event); "
+							  displayAsPassword="false"
+							  />		
+		<ui:AdvancedTextInput id="tiTelephoneNumber"
+							  width="100%"
+							  promptText="Telefono"
+							  color="#000000"
+							  iconWidth="15"
+							  iconHeight="15"
+							  iconPadding="3"
+							  keepPromptOnFocus="false"
+							  showCancelButton="true"
+							  cancelWidth="12" cancelHeight="12"
+							  cancelDownSkin="{_textInput_clearIcon}"
+							  cancelUpSkin="{_textInput_clearIcon}"
+							  cancelOverSkin="{_textInput_clearIcon}"
+							  change="mayEnableButton();clearButton_cb_changeHandler(event); "
+							  displayAsPassword="false"
+							  />
 	</mx:HBox>
 	<mx:HBox width="100%" horizontalAlign="right">
 		<mx:Button id="btnAddUser" icon="@Embed(source='assets/images/add_user.png')" downIcon="@Embed(source='assets/images/add_user_little.png')"
