@@ -77,18 +77,19 @@ package view.manager.main
 					break;
 				case ApplicationFacade.CUSTOMER_SELECTED:
 					customerInList = notification.getBody() as CustomerInList;
+					customerListCmp.abilitaAdd=false;
 					customerListCmp.tiFirstname.text = customerInList.getCustomer.firstName as String;
 					customerListCmp.tiLastname.text = customerInList.getCustomer.lastName as String;
 					customerListCmp.tiEmail.text = customerInList.getCustomer.email as String;
 					customerListCmp.tiTelephoneNumber.text = customerInList.getCustomer.telephoneNumber as String;
-					customerListCmp.btnSave.enabled = true;
 					customerListCmp.btnDelUser.enabled = true;
 					break;
 				case ApplicationFacade.CUSTOMER_SAVE_CHANGES_SUCCESS:
 					notify('default', 'Successo', 'L\'operazione è andata a buon fine', customerListCmp.successIcon, 5000);
 					resetTextInput();					
-					//customerListCmp.btnSave.enabled = false;
-					//customerListCmp.btnDelUser.enabled = false;
+					customerListCmp.abilitaAdd=true;
+					customerListCmp.btnSave.enabled = false;
+					customerListCmp.btnDelUser.enabled = false;
 					break;
 				case ApplicationFacade.CUSTOMER_SAVE_CHANGES_ERROR:
 					Alert.show("Errore nel salvataggio");
@@ -104,8 +105,8 @@ package view.manager.main
 				case ApplicationFacade.CUSTOMER_DELETE_SUCCESS:
 					notify('default', 'Successo', 'Eliminazione ok', customerListCmp.successIcon, 5000);
 					resetTextInput();
-					//customerListCmp.btnSave.enabled = false;
-					//customerListCmp.btnDelUser.enabled = false;
+					customerListCmp.btnDelUser.enabled = false;
+					customerListCmp.abilitaAdd=true;
 					break;
 				case ApplicationFacade.CUSTOMER_DELETE_ERROR:
 					Alert.show("Errore delete");
