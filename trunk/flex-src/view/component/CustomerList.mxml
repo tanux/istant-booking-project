@@ -114,10 +114,24 @@
 			import mx.validators.Validator;
 			
 			import spark.events.TextOperationEvent;
-						
+			
+			[Bindable] public var abilitaAdd: Boolean = true;
+			
 			private function mayEnableButton():void
 			{
-				btnAddUser.enabled = (Validator.validateAll([firtnameValidator, lastnameValidator, emailValidator, phoneValidator]).length == 0);
+				if (Validator.validateAll([firtnameValidator, lastnameValidator, emailValidator, phoneValidator]).length == 0)
+					if (abilitaAdd!=false){
+						btnAddUser.enabled = true;
+						btnSave.enabled = false;
+					}
+					else{
+						btnAddUser.enabled = false;
+						btnSave.enabled = true;
+					}
+				else{
+					btnAddUser.enabled = false;
+					btnSave.enabled = false;
+				}
 			}
 			
 			import mx.logging.ILogger;
@@ -232,9 +246,9 @@
 		<mx:Button id="btnAddUser" icon="@Embed(source='assets/images/add_user.png')" downIcon="@Embed(source='assets/images/add_user_little.png')"
 				   width="45" height="40" enabled="false"/>
 		<mx:Button id="btnDelUser" icon="@Embed(source='assets/images/delete_user.png')" downIcon="@Embed(source='assets/images/delete_user_little.png')"
-				   width="45" height="40" enabled="true"/>
+				   width="45" height="40" enabled="false"/>
 		<mx:Button id="btnSave" icon="@Embed(source='assets/images/save.png')" downIcon="@Embed(source='assets/images/save_little.png')"
-				   width="45" height="40" enabled="true"/>
+				   width="45" height="40" enabled="false"/>
 		<mx:Button id="btnBooking" icon="@Embed(source='assets/images/prenota.png')" downIcon="@Embed(source='assets/images/prenota_little.png')"
 				   width="45" height="40"/>
 	</mx:HBox>
