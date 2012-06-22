@@ -83,6 +83,11 @@ package view.manager.main
 					customerListCmp.tiEmail.text = customerInList.getCustomer.email as String;
 					customerListCmp.tiTelephoneNumber.text = customerInList.getCustomer.telephoneNumber as String;
 					customerListCmp.btnDelUser.enabled = true;
+					
+					customerListCmp.tiFirstname.showCancelButton = true;
+					customerListCmp.tiLastname.showCancelButton = true;
+					customerListCmp.tiEmail.showCancelButton = true;
+					customerListCmp.tiTelephoneNumber.showCancelButton = true;
 					break;
 				case ApplicationFacade.CUSTOMER_SAVE_CHANGES_SUCCESS:
 					notify('default', 'Successo', 'L\'operazione è andata a buon fine', customerListCmp.successIcon, 5000);
