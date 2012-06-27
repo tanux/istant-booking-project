@@ -22,16 +22,24 @@
 		</mx:Canvas>
 	</mx:VBox>
 	<!--Test-->
-	<mx:Box width="100%" horizontalAlign="right" verticalAlign="middle">
-		<mx:Canvas width="33.3%">
-			<mx:Box horizontalAlign="right" width="100%">
+	<mx:HBox width="100%" horizontalAlign="center" verticalAlign="top">
+		<mx:Canvas width="33.4%">
+			<mx:Box horizontalAlign="left" width="100%">
 				<mx:TextInput width="100%" text="Cerca..." paddingTop="1" textAlign="right"/>	
 			</mx:Box>
-			<mx:Box horizontalAlign="right" height="90%" paddingTop="2" paddingLeft="2">
+			<mx:Box horizontalAlign="left" height="90%" paddingTop="2" paddingLeft="2">
 				<mx:Image source="assets/images/find.png" height="20" />	
 			</mx:Box>			
 		</mx:Canvas>
-	</mx:Box>
+		<mx:HBox verticalAlign="middle" horizontalAlign="right" width="66.6%">
+			<mx:Button id="btnDeleteUser" icon="@Embed(source='assets/images/delete_user.png')" downIcon="@Embed(source='assets/images/delete_user_little.png')"
+					   width="45" height="40"/>
+			<mx:Button id="btnDeleteAllUser" icon="@Embed(source='assets/images/delete_multi_user.png')" downIcon="@Embed(source='assets/images/delete_multi_user_little.png')"
+					   width="45" height="40"/>
+			<mx:Button icon="@Embed(source='assets/images/print.png')" downIcon="@Embed(source='assets/images/print_little.png')"
+					   width="45" height="40" click=""/>
+		</mx:HBox>
+	</mx:HBox>
 	<!--End test -->
 </mx:VBox>
 	

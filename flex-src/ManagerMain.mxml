@@ -93,25 +93,18 @@
 			</mx:Box>
 			
 			<!-- Show Booking -->
-			<mx:Box width="100%" id="showBookingContent" height="100%" horizontalAlign="center" includeIn="stateShowBooking">
+			<mx:VBox width="100%" id="showBookingContent" height="100%" horizontalAlign="center" includeIn="stateShowBooking">
 				<mx:HBox width="80%" height="100%" horizontalAlign="center" verticalAlign="middle" paddingTop="5">
 					<mx:VBox width="30%" height="100%">
 						<component:VisitLocations width="100%" height="50%" />
 						<component:VisitDay id="visitDay" width="100%" height="50%"/>
 					</mx:VBox>
 					<mx:VBox width="70%" height="100%" horizontalAlign="center" verticalAlign="middle">
-						<component:BookingListManagerSettings id="cmpBookingList" width="100%" height="100%"/>
+						<component:BookingListManagerSettings id="cmpBookingList" width="100%" height="50%"/>
+						<component:BookingListManagerSettings id="cmpBookingList2" width="100%" height="50%"/>
 					</mx:VBox>	
 				</mx:HBox>								
-				<mx:HBox verticalAlign="middle" horizontalAlign="right" width="80%">
-					<mx:Button id="btnDeleteUser" icon="@Embed(source='assets/images/delete_user.png')" downIcon="@Embed(source='assets/images/delete_user_little.png')"
-							   width="45" height="40"/>
-					<mx:Button id="btnDeleteAllUser" icon="@Embed(source='assets/images/delete_multi_user.png')" downIcon="@Embed(source='assets/images/delete_multi_user_little.png')"
-							   width="45" height="40"/>
-					<mx:Button icon="@Embed(source='assets/images/print.png')" downIcon="@Embed(source='assets/images/print_little.png')"
-							   width="45" height="40" click="doPrint();"/>
-				</mx:HBox>
-			</mx:Box>			
+			</mx:VBox>			
 		</mx:Box>
 	</mx:VBox>	
 </mx:Application>
