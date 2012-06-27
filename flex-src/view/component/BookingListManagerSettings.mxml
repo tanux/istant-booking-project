@@ -2,6 +2,65 @@
 <mx:VBox xmlns:fx="http://ns.adobe.com/mxml/2009"
 		 xmlns:s="library://ns.adobe.com/flex/spark"
 		 xmlns:mx="library://ns.adobe.com/flex/mx">
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			[Bindable]public var customerList:ArrayCollection;
+			
+			//STAMPA
+			import mx.printing.*;
+		
+			// Create a PrintJob instance.
+			private function doPrint():void {
+				// Create an instance of the FlexPrintJob class.
+				var printJob:FlexPrintJob = new FlexPrintJob();
+				// Start the print job.
+				if (printJob.start() != true) return;
+				// Add the object to print. Do not scale it.
+				printJob.addObject(dgRisultati, FlexPrintJobScaleType.SHOW_ALL);
+				// Send the job to the printer.
+				printJob.send();
+			}
+			
+			//RICERCA	
+			private function filterPhrase():void{
+				customerList.filterFunction = filterFirst;
+				customerList.refresh();
+			} 
+			
+			//if true it show results, if false it shows nothing
+			private function filterFirst(row:Object):Boolean
+			{
+				if(searchText.length == 0){
+					return true;
+				}
+				
+				var columnName:String;
+				var columnValue:String;
+				var keywords:Array = searchText.text.split(" ");
+				var wordFound:Boolean;
+				
+				// Loop Over Words
+				for(var word:int = 0; word < keywords.length; word++) {
+					wordFound = false;
+					// Loop Over Columns
+					for( var column:int = 0; column < dgRisultati.columnCount; column++){
+						columnName = dgRisultati.columns[column].dataField;
+						if (row[columnName] != null) {
+							columnValue = row[columnName];
+							columnValue = columnValue.toLowerCase();
+							if(columnValue.search(keywords[word].toLowerCase()) >= 0 ) {
+								wordFound = true;
+								break;
+							} 
+						}
+					}
+					if (!wordFound) return false;
+				}
+				return true;
+			}
+		]]>
+	</fx:Script>	
 	
 	<mx:VBox height="100%" width="100%" textAlign="left" verticalAlign="middle" paddingTop="4" 
 			 backgroundColor="#6699cc" cornerRadius="8" borderStyle="solid">
@@ -25,7 +84,7 @@
 	<mx:HBox width="100%" horizontalAlign="center" verticalAlign="top">
 		<mx:Canvas width="33.4%">
 			<mx:Box horizontalAlign="left" width="100%">
-				<mx:TextInput width="100%" text="Cerca..." paddingTop="1" textAlign="right"/>	
+				<mx:TextInput id="searchText" change="filterPhrase()" width="100%" paddingTop="1" textAlign="right"/>	
 			</mx:Box>
 			<mx:Box horizontalAlign="left" height="90%" paddingTop="2" paddingLeft="2">
 				<mx:Image source="assets/images/find.png" height="20" />	
@@ -37,7 +96,7 @@
 			<mx:Button id="btnDeleteAllUser" icon="@Embed(source='assets/images/delete_multi_user.png')" downIcon="@Embed(source='assets/images/delete_multi_user_little.png')"
 					   width="45" height="40"/>
 			<mx:Button icon="@Embed(source='assets/images/print.png')" downIcon="@Embed(source='assets/images/print_little.png')"
-					   width="45" height="40" click=""/>
+					   width="45" height="40" click="doPrint()"/>
 		</mx:HBox>
 	</mx:HBox>
 	<!--End test -->
