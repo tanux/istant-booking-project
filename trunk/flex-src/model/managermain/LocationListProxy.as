@@ -84,7 +84,7 @@ package model.managermain
 		
 		private function onFault(evt:FaultEvent):void{
 			sendNotification(ApplicationFacade.GET_LOCATION_LIST_FAULT);
-			//modificare per comprendere anche il caso di fault save changes customer
+			//modificare per comprendere anche il caso di fault save changes location
 		}
 	}
 }
