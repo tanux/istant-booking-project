@@ -20,8 +20,6 @@ package view.manager.main
 			super(NAME, viewComponent);
 		}
 		
-		
-		
 		override public function handleNotification(notification:INotification):void{ 
 			switch (notification.getName()){
 				case ApplicationFacade.LOCATION_SELECTED_MAIN:
