@@ -1,5 +1,7 @@
 package view.manager.main
 {
+	import flash.events.Event;
+	
 	import mx.collections.ArrayCollection;
 	import mx.controls.Alert;
 	
@@ -10,19 +12,24 @@ package view.manager.main
 	import view.component.LocationList;
 	import view.component.VisitLocations;
 	
-	public class LocationsInAccordionMediator extends Mediator implements IMediator{
+	public class VisitLocationMediator extends Mediator implements IMediator{
 		
 		public static const NAME:String = "LocationsInAccordionMediator";
 		
-		public function LocationsInAccordionMediator(viewComponent:Object){			
-			super(NAME, viewComponent);			
+		public function VisitLocationMediator(viewComponent:Object){			
+			super(NAME, viewComponent);	
+			visitDayCmp.addEventListener(VisitLocations.LOCATION_SELECTED, notifyLocationSelected);
+		}
+		
+		private function notifyLocationSelected(evt:Event):void{
+			sendNotification(ApplicationFacade.LOCATION_SELECTED_MAIN, visitDayCmp.locationSelected);
 		}
 		
 		override public function handleNotification(notification:INotification):void{ 
 			switch (notification.getName()){
 				case ApplicationFacade.GET_LOCATION_LIST_SUCCESS:
 					var locations:ArrayCollection = notification.getBody() as ArrayCollection;                                  
-					locationListInAccordionCmp.locationList = locations;	
+					visitDayCmp.locationList = locations;	
 					break;
 				case ApplicationFacade.GET_LOCATION_LIST_ERROR:
 					Alert.show("Errore nel caricamento della lista delle location");
@@ -37,7 +44,7 @@ package view.manager.main
 			];      
 		}
 		
-		public function get locationListInAccordionCmp():VisitLocations{
+		public function get visitDayCmp():VisitLocations{
 			return viewComponent as VisitLocations;
 		}
 	}

@@ -7,9 +7,9 @@
 		<![CDATA[	
 			import mx.controls.Alert;
 			private var facade:ApplicationFacade = ApplicationFacade.getInstance() as ApplicationFacade;
-			var arrayDate:Array = new Array(new Date(2012,06,11),new Date(2012,06,18));			
-			protected function dateField_Handler():Date{
-				
+			var arrayDate:Array = new Array(new Date(2012,06,11),new Date(2012,06,18));
+			[Bindable]public var disabledDays:Array = new Array(); 
+			protected function dateField_Handler():Date{				
 				for (var i:int=0; i<arrayDate.length; i++){
 					calendar.disabledRanges.push(arrayDate[i]);		
 				}
@@ -31,13 +31,13 @@
 	
 	<mx:Box id="boxDay" width="95%" height="80%" 
 			paddingTop="5" paddingBottom="5" paddingLeft="5" paddingRight="5">
-		<mx:DateChooser id="calendar" width="100%" height="100%" disabledDays="[0, 2, 6]"
+		<mx:DateChooser id="calendar" width="100%" height="100%" disabledDays="{disabledDays}"
 						dayNames= " [Dom, Lun, Mar, Mer, Gio, Ven, Sab] "
 						monthNames="[ Gennaio, Febbraio, Marzo, Aprile, Maggio, Giugno, Luglio, Agosto, Settembre, Ottobre, Novembre, Dicembre]"
 						firstDayOfWeek="1"
 						minYear="2012" maxYear="2013"
 						showToday="true" 						
-						disabledRanges="{[ arrayDate[1],{rangeEnd: dateField_Handler()} ]}"
+						
 						
 						/>
 		

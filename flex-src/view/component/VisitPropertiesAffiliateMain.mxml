@@ -7,6 +7,6 @@
 		 verticalAlign="middle">
 	
 	<component:VisitLocations id="cmpLocations" width="33.3%" height="100%"/>
-	<component:VisitDay id="giorno" width="33.3%" height="100%"/>
+	<component:VisitDay id="cmpVisitDay" width="33.3%" height="100%"/>
 	<component:VisitHour id="ora" width="33.3%" height="100%"/>
 </mx:HBox>

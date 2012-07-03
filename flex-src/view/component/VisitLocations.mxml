@@ -7,22 +7,36 @@
 		  styleName="panelSkinsICandy">
 	<fx:Script>
 		<![CDATA[
+			import model.vo.Location;
+			
 			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			public static const LOCATION_SELECTED:String = "LocationSelected";			
 			[Bindable]public var locationList:ArrayCollection;
+			[Bindable]public var locationSelected:Location = new Location();
+			public function selectLocation():void{
+				dispatchEvent(new Event( LOCATION_SELECTED ));
+			}	
+			
 		]]>
 	</fx:Script>
 	
 	<mx:VBox width="95%" id="boxSede" borderStyle="solid" paddingTop="5" paddingBottom="5" 
 			 paddingLeft="5" paddingRight="5" maxHeight="150">
 		<mx:Accordion id="acrdLocationList" width="100%" resizeToContent="true">
-			<mx:Repeater id="rptLocation" dataProvider="{locationList}">
+			<mx:Repeater id="rptLocation" dataProvider="{locationList}" >
 				<mx:VBox label="{rptLocation.currentItem.city}" paddingTop="5">
 						<mx:Box >
 							<mx:Text text="Indirizzo: {String(rptLocation.currentItem.address)}" />
 						</mx:Box>
 						<mx:Box >
 							<mx:Text text="Telefono: {String(rptLocation.currentItem.telephone_number)}" />
-						</mx:Box>
+						</mx:Box>			
+						<mx:Box id="boxBtnSelectLocation" >
+							<mx:Button label="Seleziona" id="btnSelectLocation" click="locationSelected.id = event.currentTarget.getRepeaterItem().id;
+									   												   locationSelected.receptionDays = event.currentTarget.getRepeaterItem().reception_days;							
+									   												   selectLocation();" />                                    
+						</mx:Box>  
 				</mx:VBox>				
 			</mx:Repeater>
 		</mx:Accordion>
