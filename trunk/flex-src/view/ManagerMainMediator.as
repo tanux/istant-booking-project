@@ -23,7 +23,8 @@ package view
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	
 	import view.manager.main.CustomerListMediator;
-	import view.manager.main.LocationsInAccordionMediator;
+	import view.manager.main.VisitDayMediator;
+	import view.manager.main.VisitLocationMediator;
 	import view.manager.settings.LocationListMediator;
 	
 	public class ManagerMainMediator extends Mediator implements IMediator{
@@ -85,7 +86,8 @@ package view
 			managerMain.cmpControlBar.btnHome.addEventListener(MouseEvent.CLICK, goToHome);
 			managerMain.cmpControlBar.btnShowVisit.addEventListener(MouseEvent.CLICK, goToShowVisit);
 			facade.registerMediator(new CustomerListMediator(managerMain.cmpCustomerList));
-			facade.registerMediator(new LocationsInAccordionMediator(managerMain.cmpVisitProperties.cmpLocations));
+			facade.registerMediator(new VisitLocationMediator(managerMain.cmpVisitProperties.cmpLocations));
+			facade.registerMediator(new VisitDayMediator(managerMain.cmpVisitProperties.cmpVisitDay));
 			facade.registerCommand(ApplicationFacade.GET_CUSTOMER_LIST,CustomerGetListCommand);			
 			facade.registerCommand(ApplicationFacade.GET_LOCATION_LIST, LocationGetListCommand);
 			facade.sendNotification(ApplicationFacade.GET_CUSTOMER_LIST);
