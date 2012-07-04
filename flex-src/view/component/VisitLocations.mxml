@@ -25,7 +25,7 @@
 			 paddingLeft="5" paddingRight="5" maxHeight="150">
 		<mx:Accordion id="acrdLocationList" width="100%" resizeToContent="true">
 			<mx:Repeater id="rptLocation" dataProvider="{locationList}" >
-				<mx:VBox label="{rptLocation.currentItem.city}" paddingTop="5">
+				<mx:VBox id="acrdHeaderLocationName" label="{rptLocation.currentItem.city}" paddingTop="5">
 						<mx:Box >
 							<mx:Text text="Indirizzo: {String(rptLocation.currentItem.address)}" />
 						</mx:Box>
@@ -34,6 +34,7 @@
 						</mx:Box>			
 						<mx:Box id="boxBtnSelectLocation" >
 							<mx:Button label="Seleziona" id="btnSelectLocation" click="locationSelected.id = event.currentTarget.getRepeaterItem().id;
+									   												   locationSelected.city = event.currentTarget.getRepeaterItem().city;	
 									   												   locationSelected.receptionDays = event.currentTarget.getRepeaterItem().reception_days;							
 									   												   selectLocation();" />                                    
 						</mx:Box>  

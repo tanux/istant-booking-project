@@ -7,6 +7,7 @@
 		<![CDATA[	
 			import mx.controls.Alert;
 			private var facade:ApplicationFacade = ApplicationFacade.getInstance() as ApplicationFacade;
+			[Bindable]public var selectedDate:Date;
 			var arrayDate:Array = new Array(new Date(2012,06,11),new Date(2012,06,18));
 			[Bindable]public var disabledDays:Array = new Array(); 
 			protected function dateField_Handler():Date{				
@@ -36,8 +37,7 @@
 						monthNames="[ Gennaio, Febbraio, Marzo, Aprile, Maggio, Giugno, Luglio, Agosto, Settembre, Ottobre, Novembre, Dicembre]"
 						firstDayOfWeek="1"
 						minYear="2012" maxYear="2013"
-						showToday="true" 						
-						
+						showToday="true" 
 						
 						/>
 		

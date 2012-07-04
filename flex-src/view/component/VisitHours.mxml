@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel xmlns:fx="http://ns.adobe.com/mxml/2009"
+		  xmlns:mx="library://ns.adobe.com/flex/mx"
+		  xmlns:s="library://ns.adobe.com/flex/spark"  
+		  paddingLeft="10" paddingRight="10" paddingTop="20"
+		  title="Orari Liberi" horizontalAlign="center" verticalAlign="middle"
+		  styleName="panelSkinsICandy">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			[Bindable]public var hours:Array = [{hour:"15.00",busy:false},
+												{hour:"16.00",busy:false},
+												{hour:"17.00",busy:false},
+												{hour:"18.00",busy:false},
+												{hour:"19.00",busy:false},
+												{hour:"20.00",busy:false}]; 
+			
+		]]>
+	</fx:Script>
+	<!--
+	<mx:VBox width="95%" id="boxHour" borderStyle="solid" paddingTop="5" paddingBottom="5" 
+			 paddingLeft="5" paddingRight="5">
+		<mx:Accordion id="acrdHourList" width="100%" resizeToContent="true">
+			<mx:Repeater id="rptHour" dataProvider="{hours}" >
+				<mx:VBox label="{rptHour.currentItem.hour}" paddingTop="5">
+					<mx:Box id="boxBtnSelectLocation" >
+						<mx:Button label="Prenota" id="btnSelectHour" />                                    
+					</mx:Box>  
+				</mx:VBox>				
+			</mx:Repeater>
+		</mx:Accordion>
+	</mx:VBox>
+	-->
+	
+	<mx:VBox id="vbHours" width="100%" verticalAlign="middle" height="30%"
+			 paddingTop="5" paddingRight="20" paddingLeft="20">				
+		<mx:Repeater id="rptContentHours" dataProvider="{hours}"> 
+							
+				<mx:RadioButton id="rbHour"									 
+							 label="{rptContentHours.currentItem.hour}" 
+							 visible="{!(rptContentHours.currentItem.busy)}"
+							 />
+		</mx:Repeater>
+	</mx:VBox>	
+	
+</mx:Panel>
