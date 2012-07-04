@@ -35,6 +35,13 @@ package view
 			super(NAME, viewComponent);
 			managerMain.addEventListener(FlexEvent.CREATION_COMPLETE, init);
 			managerMain.addEventListener(managerMain.SETTINGS_MANAGER_CREATED, registerSettingsManager);
+			
+		}
+		
+		private function doBooking(event:Event):void{
+			Alert.show("Dati Prenotazione:\nID Location:#"+managerMain.cmpVisitProperties.cmpLocations.locationSelected.id+
+				"\nNome Citta: "+managerMain.cmpVisitProperties.cmpLocations.locationSelected.city+
+				"\nGiorno: "+managerMain.cmpVisitProperties.cmpVisitDay.selectedDate);
 		}
 		
 		private function init(evt:Event) : void {}
@@ -92,6 +99,7 @@ package view
 			facade.registerCommand(ApplicationFacade.GET_LOCATION_LIST, LocationGetListCommand);
 			facade.sendNotification(ApplicationFacade.GET_CUSTOMER_LIST);
 			facade.sendNotification(ApplicationFacade.GET_LOCATION_LIST);
+			managerMain.cmpCustomerList.btnBooking.addEventListener(MouseEvent.CLICK, doBooking);
 		}	
 		
 		
@@ -140,8 +148,7 @@ package view
 				ApplicationFacade.MANAGER_LOGIN_SUCCESS,
 				ApplicationFacade.MANAGER_LOGIN_ERROR,
 				ApplicationFacade.MANAGER_LOGOUT_SUCCESS,
-				ApplicationFacade.MANAGER_LOGIN_FAULT
-				
+				ApplicationFacade.MANAGER_LOGIN_FAULT				
 			];
 		}		
 		
