@@ -453,7 +453,7 @@
       <item name="IncludeRemoteClass">nonempty</item>
     </annotation>
     <annotation name="service Group">
-      <item name="service">LocationServices</item>
+      <item name="service">LocationServices,LocationServicesDummy</item>
     </annotation>
     <annotation name="ActionScriptGeneration">
       <item name="Package">model.vo</item>

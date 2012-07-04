@@ -21,8 +21,8 @@ class LocationServices {
 	 */
 	public function addLocation($location){
 		$locationData = LocationServices::setLocationData($location);
-		$dbAdapter = ManageDatabase::getDbAdapter();		
-		return $dbAdapter->insert('locations', $locationData);		
+		$dbAdapter = ManageDatabase::getDbAdapter();	
+		return $dbAdapter->insert('locations', $locationData);			
 	}
 	
 	/**
