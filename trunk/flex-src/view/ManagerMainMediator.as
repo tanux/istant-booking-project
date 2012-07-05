@@ -1,5 +1,6 @@
 package view
 {
+	import com.adobe.serializers.json.JSONEncoder;
 	import com.hillelcoren.assets.skins.FacebookSkin;
 	
 	import controller.loginmanager.DoLoginCommand;
@@ -9,27 +10,37 @@ package view
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
+	import model.vo.Booking;
+	import model.vo.Customer;
 	import model.vo.GenericUser;
 	import model.vo.Location;
 	import model.vo.Manager;
 	
 	import mx.collections.ArrayCollection;
+	import mx.containers.TitleWindow;
 	import mx.controls.Alert;
 	import mx.events.FlexEvent;
 	import mx.managers.CursorManager;
+	import mx.managers.PopUpManager;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	
+	import view.component.ConfirmBookingWindow;
+	import view.component.VisitHours;
+	import view.manager.main.ConfirmBookingWindowMediator;
 	import view.manager.main.CustomerListMediator;
 	import view.manager.main.VisitDayMediator;
+	import view.manager.main.VisitHoursMediator;
 	import view.manager.main.VisitLocationMediator;
 	import view.manager.settings.LocationListMediator;
 	
 	public class ManagerMainMediator extends Mediator implements IMediator{
 		public static const NAME:String = "ManagerMainMediator";
 		public static const USER_TYPE:String = "managers";
+		public var manager:Manager;
+		private var confirmBookingTitleWindow:TitleWindow;
 		
 		public function ManagerMainMediator(viewComponent:Object){
 			super(NAME, viewComponent);
@@ -38,10 +49,23 @@ package view
 			
 		}
 		
-		private function doBooking(event:Event):void{
-			Alert.show("Dati Prenotazione:\nID Location:#"+managerMain.cmpVisitProperties.cmpLocations.locationSelected.id+
-				"\nNome Citta: "+managerMain.cmpVisitProperties.cmpLocations.locationSelected.city+
-				"\nGiorno: "+managerMain.cmpVisitProperties.cmpVisitDay.selectedDate);
+		private function showConfirmBooking(event:Event):void{
+			confirmBookingTitleWindow = PopUpManager.createPopUp(managerMain, ConfirmBookingWindow, true) as TitleWindow;
+			facade.registerMediator( new ConfirmBookingWindowMediator (confirmBookingTitleWindow) );
+			PopUpManager.centerPopUp(confirmBookingTitleWindow);			
+			var booking:Booking = new Booking();
+			booking.idManager = manager.id;
+			booking.idCustomer = managerMain.cmpCustomerList.customerSelected as Customer;			
+			booking.idLocation = managerMain.cmpVisitProperties.cmpLocations.locationSelected as Location;
+			booking.visitDay = managerMain.cmpVisitProperties.cmpVisitDay.selectedDate;
+			var jsEnc:JSONEncoder = new JSONEncoder();
+			booking.visitHour = managerMain.cmpVisitProperties.cmpVisitHours.hourSelected.hour; 
+			//	jsEnc.encode(managerMain.cmpVisitProperties.cmpVisitHours.hourSelected);
+			
+			if (facade.hasMediator(ConfirmBookingWindowMediator.NAME)){
+				var window:ConfirmBookingWindow =  facade.retrieveMediator( ConfirmBookingWindowMediator.NAME ).getViewComponent() as ConfirmBookingWindow;
+				window.booking = booking;
+			}
 		}
 		
 		private function init(evt:Event) : void {}
@@ -95,11 +119,12 @@ package view
 			facade.registerMediator(new CustomerListMediator(managerMain.cmpCustomerList));
 			facade.registerMediator(new VisitLocationMediator(managerMain.cmpVisitProperties.cmpLocations));
 			facade.registerMediator(new VisitDayMediator(managerMain.cmpVisitProperties.cmpVisitDay));
+			facade.registerMediator(new VisitHoursMediator(managerMain.cmpVisitProperties.cmpVisitHours));
 			facade.registerCommand(ApplicationFacade.GET_CUSTOMER_LIST,CustomerGetListCommand);			
 			facade.registerCommand(ApplicationFacade.GET_LOCATION_LIST, LocationGetListCommand);
 			facade.sendNotification(ApplicationFacade.GET_CUSTOMER_LIST);
 			facade.sendNotification(ApplicationFacade.GET_LOCATION_LIST);
-			managerMain.cmpCustomerList.btnBooking.addEventListener(MouseEvent.CLICK, doBooking);
+			managerMain.cmpCustomerList.btnBooking.addEventListener(MouseEvent.CLICK, showConfirmBooking);
 		}	
 		
 		
@@ -107,8 +132,8 @@ package view
 			switch (notification.getName()){
 				case ApplicationFacade.MANAGER_LOGGED_IN:
 					managerMain.currentState = "stateMainApplication";
-					var managerLoggedIn:Manager = notification.getBody() as Manager;
-					managerMain.cmpControlBar.txUserLoggedIn.text = "Dott."+managerLoggedIn.lastname+" "+managerLoggedIn.firstname;
+					manager = notification.getBody() as Manager;
+					managerMain.cmpControlBar.txUserLoggedIn.text = "Dott."+manager.lastname+" "+manager.firstname;
 					changeStateManager();					
 					break;
 				case ApplicationFacade.MANAGER_EXECUTE_LOGIN:
@@ -119,7 +144,7 @@ package view
 				case ApplicationFacade.MANAGER_LOGIN_SUCCESS:
 					CursorManager.removeBusyCursor();
 					managerMain.currentState = "stateMainApplication";
-					var manager:Manager = notification.getBody() as Manager;
+					manager = notification.getBody() as Manager;
 					managerMain.cmpControlBar.txUserLoggedIn.text = "Dott."+manager.lastname+" "+manager.firstname;
 					changeStateManager();					
 					break;
