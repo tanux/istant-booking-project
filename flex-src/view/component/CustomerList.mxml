@@ -31,6 +31,7 @@
 						
 			private var facade:ApplicationFacade = ApplicationFacade.getInstance() as ApplicationFacade;
 			[Bindable]public var customerList:ArrayCollection;
+			[Bindable]public var customerSelected:Customer;
 			private function makeDataLabel(item:Object) : String {
 				var c:Customer = new Customer();
 				c.id = item.id;
@@ -43,14 +44,14 @@
 			
 			protected function dgCustomerList_itemClickHandler(event:ListEvent):void{				
 				var selectedRow:Object = event.currentTarget.selectedItem;
-				var c:Customer = new Customer();
-				c.id = selectedRow.id;
-				c.firstName = selectedRow.firstname;
-				c.lastName = selectedRow.lastname;
-				c.email = selectedRow.email;
-				c.telephoneNumber = selectedRow.telephone_number;
+				customerSelected = new Customer();
+				customerSelected.id = selectedRow.id;
+				customerSelected.firstName = selectedRow.firstname;
+				customerSelected.lastName = selectedRow.lastname;
+				customerSelected.email = selectedRow.email;
+				customerSelected.telephoneNumber = selectedRow.telephone_number;
 				var position:int = event.currentTarget.selectedIndex;
-				var customerInList:CustomerInList = new CustomerInList(c,position);				
+				var customerInList:CustomerInList = new CustomerInList(customerSelected,position);				
 				facade.sendNotification(ApplicationFacade.CUSTOMER_SELECTED, customerInList);				
 			}
 			
