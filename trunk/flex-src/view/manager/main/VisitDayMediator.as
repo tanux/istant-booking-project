@@ -28,7 +28,7 @@ package view.manager.main
 			if (event.currentTarget.selectedDate == null) {
 				return 
 			}
-			var selectedData:Date = new Date();
+			var selectedData:Date = new Date();			
 			selectedData.date = event.currentTarget.selectedDate.getDate(); 
 			selectedData.month = event.currentTarget.selectedDate.getMonth();
 			selectedData.fullYear = event.currentTarget.selectedDate.getFullYear();
@@ -49,12 +49,26 @@ package view.manager.main
 					}
 					visitDayCmp.disabledDays.push(0);
 					break;
+				case ApplicationFacade.GET_NO_AVAILABLE_DAY_SUCCESS:
+					visitDayCmp.arrayDate = new Array();
+					var arrayDate:ArrayCollection = notification.getBody() as ArrayCollection;				
+					Alert.show(""+arrayDate[0].date);
+					/*for (var i:int=0; i<arrayDate.length; i++){
+						//var date:Date = new Date();
+						
+					}*/					
+					break;
+				case ApplicationFacade.GET_NO_AVAILABLE_DAY_SUCCESS:
+					Alert.show("Errore in GET_NO_AVAILABLE_DAY");
+					break;
 			}
 		}
 		
 		override public function listNotificationInterests():Array{
 			return [
-				ApplicationFacade.LOCATION_SELECTED_MAIN				
+				ApplicationFacade.LOCATION_SELECTED_MAIN,
+				ApplicationFacade.GET_NO_AVAILABLE_DAY_SUCCESS,
+				ApplicationFacade.GET_NO_AVAILABLE_DAY_ERROR,
 			];      
 		}
 		

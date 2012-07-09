@@ -94,7 +94,16 @@ package
 		public static const LOCATION_DELETE_SUCCESS:String = "LocationDeleteSuccess";
 		public static const LOCATION_DELETE_ERROR:String = "LocationDeleteError";
 		public static const LOCATION_DELETE_FAULT:String = "LocationDeleteFault";
+		public static const GET_NO_AVAILABLE_DAY:String = "GetNoAvailableDay";
+		public static const GET_NO_AVAILABLE_DAY_SUCCESS:String = "GetNoAvailableDaySuccess";
+		public static const GET_NO_AVAILABLE_DAY_ERROR:String = "GetNoAvailableDayError";
+		public static const GET_NO_AVAILABLE_DAY_FAULT:String = "GetNoAvailableDayFault";
 		
+		/*Booking Notify*/		
+		public static const BOOKING_ADD:String = "BookingAdd";
+		public static const BOOKING_ADD_SUCCESS:String = "BookingAddSuccess";		
+		public static const BOOKING_ADD_ERROR:String = "BookingAddError";
+		public static const BOOKING_ADD_FAULT:String = "BookingAddFault";
 		public static function getInstance() : ApplicationFacade{
 			if (instance == null)
 				instance = new ApplicationFacade();

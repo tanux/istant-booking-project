@@ -1,6 +1,7 @@
 <?php
-
+define('NUMBER_HOUR',6);
 class LocationServices {
+	
 	
 	/**
 	 * Get Location's List
@@ -11,6 +12,21 @@ class LocationServices {
 		$select = $dbAdapter->select()->from('locations');
 		$stmt = $dbAdapter->query($select);
 		return $stmt->fetchAll();
+	}
+	
+	/**
+	 * Check and return no avalilable date
+	 * @return array
+	 */
+	public function getNoAvailableDate(){
+		$dbAdapter = ManageDatabase::getDbAdapter();
+		Zend_Db_Table::setDefaultAdapter($dbAdapter);
+		$counterDateTable = new Zend_Db_Table('counter_date');
+		$where = $counterDateTable->getAdapter()->quoteInto('counter= ?', NUMBER_HOUR);
+		$select = $dbAdapter->select()->from('counter_date','date')->where($where);		
+		$stmt = $dbAdapter->query($select);
+		if ($stmt->rowCount() > 0)
+			return $stmt->fetchAll();
 	}
 	
 	/**

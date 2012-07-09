@@ -1,6 +1,7 @@
 package controller.managermain
 {
 	import model.managermain.LocationListProxy;
+	
 	import mx.controls.Alert;
 	
 	import org.puremvc.as3.interfaces.ICommand;
@@ -21,6 +22,7 @@ package controller.managermain
 			facade.registerCommand(ApplicationFacade.LOCATION_SAVE_CHANGES, LocationSaveChangesController);
 			facade.registerCommand(ApplicationFacade.LOCATION_ADD, LocationAddCommand);
 			facade.registerCommand(ApplicationFacade.LOCATION_DELETE, LocationDeleteCommand);
+			facade.registerCommand(ApplicationFacade.GET_NO_AVAILABLE_DAY, GetAvailableDayCommand);
 		}
 	}
 }

@@ -4,6 +4,7 @@ package view
 	import com.hillelcoren.assets.skins.FacebookSkin;
 	
 	import controller.loginmanager.DoLoginCommand;
+	import controller.managermain.BookingAddCommand;
 	import controller.managermain.CustomerGetListCommand;
 	import controller.managermain.LocationGetListCommand;
 	
@@ -50,18 +51,15 @@ package view
 		}
 		
 		private function showConfirmBooking(event:Event):void{
-			confirmBookingTitleWindow = PopUpManager.createPopUp(managerMain, ConfirmBookingWindow, true) as TitleWindow;
-			facade.registerMediator( new ConfirmBookingWindowMediator (confirmBookingTitleWindow) );
-			PopUpManager.centerPopUp(confirmBookingTitleWindow);			
+			confirmBookingTitleWindow = PopUpManager.createPopUp(managerMain, ConfirmBookingWindow, true) as TitleWindow;			
+			PopUpManager.centerPopUp(confirmBookingTitleWindow);
 			var booking:Booking = new Booking();
 			booking.idManager = manager.id;
 			booking.idCustomer = managerMain.cmpCustomerList.customerSelected as Customer;			
 			booking.idLocation = managerMain.cmpVisitProperties.cmpLocations.locationSelected as Location;
-			booking.visitDay = managerMain.cmpVisitProperties.cmpVisitDay.selectedDate;
-			var jsEnc:JSONEncoder = new JSONEncoder();
-			booking.visitHour = managerMain.cmpVisitProperties.cmpVisitHours.hourSelected.hour; 
-			//	jsEnc.encode(managerMain.cmpVisitProperties.cmpVisitHours.hourSelected);
-			
+			booking.visitDay = managerMain.cmpVisitProperties.cmpVisitDay.selectedDate;			
+			booking.visitHour = managerMain.cmpVisitProperties.cmpVisitHours.hourSelected;
+			facade.registerMediator( new ConfirmBookingWindowMediator (confirmBookingTitleWindow) );
 			if (facade.hasMediator(ConfirmBookingWindowMediator.NAME)){
 				var window:ConfirmBookingWindow =  facade.retrieveMediator( ConfirmBookingWindowMediator.NAME ).getViewComponent() as ConfirmBookingWindow;
 				window.booking = booking;
@@ -122,6 +120,7 @@ package view
 			facade.registerMediator(new VisitHoursMediator(managerMain.cmpVisitProperties.cmpVisitHours));
 			facade.registerCommand(ApplicationFacade.GET_CUSTOMER_LIST,CustomerGetListCommand);			
 			facade.registerCommand(ApplicationFacade.GET_LOCATION_LIST, LocationGetListCommand);
+			facade.registerCommand(ApplicationFacade.BOOKING_ADD, BookingAddCommand);
 			facade.sendNotification(ApplicationFacade.GET_CUSTOMER_LIST);
 			facade.sendNotification(ApplicationFacade.GET_LOCATION_LIST);
 			managerMain.cmpCustomerList.btnBooking.addEventListener(MouseEvent.CLICK, showConfirmBooking);

@@ -23,6 +23,7 @@ package view.manager.main
 		
 		private function notifyLocationSelected(evt:Event):void{
 			sendNotification(ApplicationFacade.LOCATION_SELECTED_MAIN, visitDayCmp.locationSelected);
+			sendNotification(ApplicationFacade.GET_NO_AVAILABLE_DAY, visitDayCmp.locationSelected);
 		}
 		
 		override public function handleNotification(notification:INotification):void{ 
