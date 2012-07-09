@@ -25,6 +25,11 @@ package model.managermain
 			responder = new Responder(onResult,onFault);
 		}
 		
+		public function getNoAvailableDay():void{
+			var at:AsyncToken = service.getNoAvailableDate();
+			at.addResponder(responder);
+		}
+		
 		public function getLocationList():void{
 			var at:AsyncToken = service.getLocationList();
 			at.addResponder(responder);			
@@ -79,10 +84,19 @@ package model.managermain
 						sendNotification(ApplicationFacade.LOCATION_DELETE_ERROR);
 					}
 					break;
+				case "getNoAvailableDate":
+					if (evt.result != null){	
+						Alert.show(""+evt.result[0].date);
+						sendNotification(ApplicationFacade.GET_NO_AVAILABLE_DAY_SUCCESS, evt.result);
+					}
+					else{
+						Alert.show("bo");
+						sendNotification(ApplicationFacade.GET_NO_AVAILABLE_DAY_ERROR, evt.result);
+					}
 			}	
 		}
 		
-		private function onFault(evt:FaultEvent):void{
+		private function onFault(evt:FaultEvent):void{			
 			sendNotification(ApplicationFacade.GET_LOCATION_LIST_FAULT);
 			//modificare per comprendere anche il caso di fault save changes location
 		}

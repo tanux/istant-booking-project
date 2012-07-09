@@ -34,6 +34,9 @@ internal class _Super_LocationServices extends com.adobe.fiber.services.wrapper.
         operation = new mx.rpc.remoting.Operation(null, "getLocationList");
          operation.resultElementType = Object;
         operations["getLocationList"] = operation;
+        operation = new mx.rpc.remoting.Operation(null, "getNoAvailableDate");
+         operation.resultElementType = Date;
+        operations["getNoAvailableDate"] = operation;
         operation = new mx.rpc.remoting.Operation(null, "addLocation");
          operation.resultType = int;
         operations["addLocation"] = operation;
@@ -76,6 +79,24 @@ internal class _Super_LocationServices extends com.adobe.fiber.services.wrapper.
     public function getLocationList() : mx.rpc.AsyncToken
     {
         var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getLocationList");
+		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send() ;
+        return _internal_token;
+    }
+     
+    /**
+      * This method is a generated wrapper used to call the 'getNoAvailableDate' operation. It returns an mx.rpc.AsyncToken whose 
+      * result property will be populated with the result of the operation when the server response is received. 
+      * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
+      * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
+      *
+      * @see mx.rpc.AsyncToken
+      * @see mx.rpc.CallResponder 
+      *
+      * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
+      */
+    public function getNoAvailableDate() : mx.rpc.AsyncToken
+    {
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getNoAvailableDate");
 		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send() ;
         return _internal_token;
     }

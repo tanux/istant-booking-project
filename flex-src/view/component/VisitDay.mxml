@@ -8,7 +8,7 @@
 			import mx.controls.Alert;
 			private var facade:ApplicationFacade = ApplicationFacade.getInstance() as ApplicationFacade;
 			[Bindable]public var selectedDate:Date;
-			var arrayDate:Array = new Array(new Date(2012,06,11),new Date(2012,06,18));
+			[Bindable]public var arrayDate:Array;// = new Array(new Date(2012,06,11),new Date(2012,06,18));
 			[Bindable]public var disabledDays:Array = new Array(); 
 			protected function dateField_Handler():Date{				
 				for (var i:int=0; i<arrayDate.length; i++){
