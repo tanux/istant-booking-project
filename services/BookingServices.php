@@ -19,11 +19,27 @@ class BookingServices {
 	
 	/**
 	 * 
+	 * Get Available Hours for certain date
+	 * @param $date
+	 * @return int visit hour
+	 */
+	public function getAvailableHours($date){
+		$dbAdapter = ManageDatabase::getDbAdapter();	
+		Zend_Db_Table::setDefaultAdapter($dbAdapter);		
+		$bookingsTable = new Zend_Db_Table('bookings');
+		$where = $bookingsTable->getAdapter()->quoteInto('visit_day= ?', $date);
+		$select = $dbAdapter->select()->from('bookings','visit_hour')->where($where);
+		$result = $dbAdapter->query($select);
+		return $result->rowCount();
+	}
+	
+	/**
+	 * 
 	 * Update counter date
 	 * @param $date
 	 * @return int number of row affected
 	 */
-	public function updateCounterDate($date){
+	private function updateCounterDate($date){
 		$dbAdapter = ManageDatabase::getDbAdapter();	
 		Zend_Db_Table::setDefaultAdapter($dbAdapter);		
 		$counterDateTable = new Zend_Db_Table('counter_date');

@@ -8,7 +8,9 @@ package view.manager.main
 	
 	import mx.collections.ArrayCollection;
 	import mx.controls.Alert;
+	import mx.controls.DateField;
 	import mx.events.CalendarLayoutChangeEvent;
+	import mx.events.FlexEvent;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -19,6 +21,7 @@ package view.manager.main
 	public class VisitDayMediator extends Mediator implements IMediator{
 		
 		public static const NAME:String = "VisitDayMediator";
+		private var counter_date_inserted:int = 0;
 		public function VisitDayMediator(viewComponent:Object){
 			super(NAME, viewComponent);
 			visitDayCmp.calendar.addEventListener(CalendarLayoutChangeEvent.CHANGE, detectSelectedDate);
@@ -33,7 +36,10 @@ package view.manager.main
 			selectedData.month = event.currentTarget.selectedDate.getMonth();
 			selectedData.fullYear = event.currentTarget.selectedDate.getFullYear();
 			visitDayCmp.selectedDate = selectedData;
+			sendNotification(ApplicationFacade.GET_AVAILABLE_HOURS, selectedData);
 		}
+		
+		
 		
 		override public function handleNotification(notification:INotification):void{ 
 			switch (notification.getName()){
@@ -47,16 +53,20 @@ package view.manager.main
 							visitDayCmp.disabledDays.push(days[i].numberAssociated);
 						}
 					}
-					visitDayCmp.disabledDays.push(0);
+					visitDayCmp.disabledDays.push(0);					
 					break;
-				case ApplicationFacade.GET_NO_AVAILABLE_DAY_SUCCESS:
-					visitDayCmp.arrayDate = new Array();
-					var arrayDate:ArrayCollection = notification.getBody() as ArrayCollection;				
-					Alert.show(""+arrayDate[0].date);
-					/*for (var i:int=0; i<arrayDate.length; i++){
-						//var date:Date = new Date();
-						
-					}*/					
+				case ApplicationFacade.GET_NO_AVAILABLE_DAY_SUCCESS:					
+					var arrayDate:ArrayCollection = notification.getBody() as ArrayCollection;
+					for (var i:int=0; i<counter_date_inserted; i++){
+						visitDayCmp.arrayDate.pop();
+					}
+					for (var i:int=0; i<arrayDate.length; i++){
+						var date:Date = DateField.stringToDate(arrayDate[i].date as String, "DD/MM/YYYY");
+						visitDayCmp.arrayDate.push(date);
+					}
+					counter_date_inserted = arrayDate.length;					
+					visitDayCmp.calendar.disabledRanges = visitDayCmp.arrayDate;
+					visitDayCmp.calendar.dispatchEvent(new FlexEvent(FlexEvent.CREATION_COMPLETE));
 					break;
 				case ApplicationFacade.GET_NO_AVAILABLE_DAY_SUCCESS:
 					Alert.show("Errore in GET_NO_AVAILABLE_DAY");

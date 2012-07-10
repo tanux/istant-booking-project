@@ -85,12 +85,10 @@ package model.managermain
 					}
 					break;
 				case "getNoAvailableDate":
-					if (evt.result != null){	
-						Alert.show(""+evt.result[0].date);
+					if (evt.result != null){
 						sendNotification(ApplicationFacade.GET_NO_AVAILABLE_DAY_SUCCESS, evt.result);
 					}
 					else{
-						Alert.show("bo");
 						sendNotification(ApplicationFacade.GET_NO_AVAILABLE_DAY_ERROR, evt.result);
 					}
 			}	

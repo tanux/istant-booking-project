@@ -38,7 +38,7 @@
 			
 			protected function calendar_creationCompleteHandler(event:FlexEvent):void
 			{
-				var arrayDate1:Array = new Array(new Date(2012,06,i),new Date(2012,06,i+1));
+				var arrayDate1:Array = new Array(new Date(2012,07,i),new Date(2012,07,i+1));
 				
 				calendar.disabledRanges = arrayDate1;		
 				
@@ -72,7 +72,7 @@
 					minYear="2012" maxYear="2013"
 					showToday="true"					
 					creationComplete="calendar_creationCompleteHandler(event)"
-					disabledDays="[0,1,2,3,6]"				
+									
 					/>
 		</mx:Panel>
 	<mx:Button id="btn1" label="Angri" click="makeArray(event)"/>
