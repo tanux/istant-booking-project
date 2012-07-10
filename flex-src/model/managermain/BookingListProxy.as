@@ -17,7 +17,7 @@ package model.managermain
 		public static const NAME:String = "BookingListProxy";
 		private var service:BookingServices;
 		private var responder:Responder;     
-		public function BookingListProxy(proxyName:String)		{
+		public function BookingListProxy(proxyName:String){
 			super(proxyName);
 			service = new BookingServices();
 			responder = new Responder(onResult, onFault);
@@ -25,6 +25,10 @@ package model.managermain
 		
 		public function addBooking(booking:Booking):void{
 			var at:AsyncToken = service.addBooking(booking);
+			at.addResponder(responder);
+		}
+		public function getBusyHours(visitDay:String):void{
+			var at:AsyncToken = service.getBusyHour(visitDay);
 			at.addResponder(responder);
 		}
 		
@@ -38,6 +42,12 @@ package model.managermain
 						sendNotification(ApplicationFacade.BOOKING_ADD_ERROR);
 					}                                       
 					break;
+				case "getBusyHour":
+					if (evt.result != null){
+						sendNotification(ApplicationFacade.GET_BUSY_HOURS_SUCCESS, evt.result);
+					}
+					break;
+					
 			}
 		}
 		public function onFault(evt:FaultEvent):void{

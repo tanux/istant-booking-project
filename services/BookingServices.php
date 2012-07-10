@@ -19,19 +19,20 @@ class BookingServices {
 	
 	/**
 	 * 
-	 * Get Available Hours for certain date
-	 * @param $date
-	 * @return int visit hour
+	 * Return busy hour for certain visit_day
+	 * @param String $visit_day
+	 * @return array
 	 */
-	public function getAvailableHours($date){
-		$dbAdapter = ManageDatabase::getDbAdapter();	
+	public function getBusyHour($visit_day){
+		$dbAdapter = ManageDatabase::getDbAdapter();
 		Zend_Db_Table::setDefaultAdapter($dbAdapter);		
-		$bookingsTable = new Zend_Db_Table('bookings');
-		$where = $bookingsTable->getAdapter()->quoteInto('visit_day= ?', $date);
+		$bookingsDateTable = new Zend_Db_Table('bookings');
+		$where = $bookingsDateTable->getAdapter()->quoteInto('visit_day= ?', $visit_day);
 		$select = $dbAdapter->select()->from('bookings','visit_hour')->where($where);
 		$result = $dbAdapter->query($select);
-		return $result->rowCount();
+		return $result->fetchAll();
 	}
+	
 	
 	/**
 	 * 
@@ -57,7 +58,6 @@ class BookingServices {
 			$counterDateData = array('date'=>$date, 'counter'=>$counter+1);
 			return $counterDateTable->update($counterDateData, $where);		
 		}
-		
 	}
 	
 	/**

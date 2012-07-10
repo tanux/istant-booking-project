@@ -1,7 +1,11 @@
 package view.manager.main
 {
+	import com.adobe.serializers.json.JSONDecoder;
+	import com.adobe.serializers.json.JSONEncoder;
+	
 	import model.vo.SelectedHour;
 	
+	import mx.collections.ArrayCollection;
 	import mx.controls.Alert;
 	import mx.events.ItemClickEvent;
 	
@@ -28,12 +32,31 @@ package view.manager.main
 		
 		override public function handleNotification(notification:INotification):void{ 
 			switch (notification.getName()){
-				
+				case ApplicationFacade.GET_BUSY_HOURS_SUCCESS:
+					var arrayVisitHour:ArrayCollection = notification.getBody() as ArrayCollection;
+					var hours:Array = [
+						{hour:'15.00',index:0,busy:false},
+						{hour:'16.00',index:1,busy:false},
+						{hour:'17.00',index:2,busy:false},
+						{hour:'18.00',index:3,busy:false},
+						{hour:'19.00',index:4,busy:false},
+						{hour:'20.00',index:5,busy:false}
+					];
+					if (arrayVisitHour.length > 0){
+						var jsDecode:JSONDecoder = new JSONDecoder();						
+						for (var i:int=0; i<arrayVisitHour.length; i++){
+							var obj:Object = jsDecode.decode(arrayVisitHour[i].visit_hour);
+							hours[obj.index].busy = obj.busy;
+						}							
+					}
+					visitHourCmp.hours = hours;
+					break;
 			}
 		}
 		
 		override public function listNotificationInterests():Array{
-			return [								
+			return [
+				ApplicationFacade.GET_BUSY_HOURS_SUCCESS
 			];      
 		}
 		

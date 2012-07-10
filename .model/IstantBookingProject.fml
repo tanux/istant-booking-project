@@ -503,14 +503,16 @@
       </annotation>
       <parameter name="booking" type="Booking"/>
     </function>
-    <function name="getAvailableHours" return-type="integer">
+    <function name="getBusyHour" return-type="opaque[]">
       <annotation name="analyze group">
-        <item name="analyzed">true</item>
+        <item name="analyzed">false</item>
       </annotation>
       <annotation name="original signature">
-        <item name="returnType">integer</item>
+        <item name="inputParamNames">visit_day</item>
+        <item name="inputParams">string</item>
+        <item name="returnType">opaque</item>
       </annotation>
-      <parameter name="date" type="opaque"/>
+      <parameter name="visit_day" type="string"/>
     </function>
   </service>
   <entity name="Booking">

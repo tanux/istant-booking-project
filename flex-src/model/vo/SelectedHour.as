@@ -1,23 +1,14 @@
 package model.vo
 {
 	public class SelectedHour{
-		private var _hour:String;
+		
 		private var _index:int;
 		private var _busy:Boolean;
+		private var _hour:String;
 		
 		
-		public function SelectedHour()
-		{
-		}
-		
-		public function get hour():String
-		{
-			return _hour;
-		}
-
-		public function set hour(value:String):void
-		{
-			_hour = value;
+		public function SelectedHour(){
+			
 		}
 
 		public function get index():int
@@ -38,6 +29,16 @@ package model.vo
 		public function set busy(value:Boolean):void
 		{
 			_busy = value;
+		}
+		
+		public function get hour():String
+		{
+			return _hour;
+		}
+		
+		public function set hour(value:String):void
+		{
+			_hour = value;
 		}
 	}
 }
