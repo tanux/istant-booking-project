@@ -6,29 +6,26 @@
 	<mx:Script>
 		<![CDATA[	
 			import mx.controls.Alert;
+			import mx.events.FlexEvent;
 			private var facade:ApplicationFacade = ApplicationFacade.getInstance() as ApplicationFacade;
 			[Bindable]public var selectedDate:Date;
-			[Bindable]public var arrayDate:Array;// = new Array(new Date(2012,06,11),new Date(2012,06,18));
-			[Bindable]public var disabledDays:Array = new Array(); 
-			protected function dateField_Handler():Date{				
-				for (var i:int=0; i<arrayDate.length; i++){
-					calendar.disabledRanges.push(arrayDate[i]);		
-				}
+			[Bindable]public var arrayDate:Array = new Array();
+			[Bindable]public var disabledDays:Array = new Array();
+			
+			protected function calendar_creationCompleteHandler(event:FlexEvent):void{				
+				calendar.disabledRanges = arrayDate;		
 				var today:Date = new Date();
 				var millisecondsPerDay:Number = 1000 * 60 * 60 * 24;				
 				var yesterday:Date = new Date();
 				yesterday.setTime(today.getTime() - millisecondsPerDay);				
-				return new Date(yesterday.getFullYear(),yesterday.getMonth(), yesterday.getDate());				
+				var data:Date = new Date(yesterday.getFullYear(),yesterday.getMonth(), yesterday.getDate());
+				calendar.disabledRanges.push({rangeEnd: data});
 			}
-			protected function makeArray():void{
-				for (var i:int=0; i<arrayDate.length; i++){
-					calendar.disabledRanges.push(arrayDate[i]);		
-				}	
-				calendar.disabledRanges.push({rangeEnd: dateField_Handler()});
-				
-			}
+			
 		]]>
+		
 	</mx:Script>
+	
 	
 	<mx:Box id="boxDay" width="95%" height="80%" 
 			paddingTop="5" paddingBottom="5" paddingLeft="5" paddingRight="5">
@@ -37,8 +34,8 @@
 						monthNames="[ Gennaio, Febbraio, Marzo, Aprile, Maggio, Giugno, Luglio, Agosto, Settembre, Ottobre, Novembre, Dicembre]"
 						firstDayOfWeek="1"
 						minYear="2012" maxYear="2013"
-						showToday="true" 
-						
+						showToday="true"	
+						creationComplete="calendar_creationCompleteHandler(event)"
 						/>
 		
 	</mx:Box>

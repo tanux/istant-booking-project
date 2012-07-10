@@ -104,6 +104,9 @@ package
 		public static const BOOKING_ADD_SUCCESS:String = "BookingAddSuccess";		
 		public static const BOOKING_ADD_ERROR:String = "BookingAddError";
 		public static const BOOKING_ADD_FAULT:String = "BookingAddFault";
+		
+		public static const GET_AVAILABLE_HOURS:String = "GetAvailableHours";
+		
 		public static function getInstance() : ApplicationFacade{
 			if (instance == null)
 				instance = new ApplicationFacade();

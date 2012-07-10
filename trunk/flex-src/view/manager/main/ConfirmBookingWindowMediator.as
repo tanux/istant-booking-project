@@ -7,6 +7,7 @@ package view.manager.main
 	import model.vo.Booking;
 	
 	import mx.controls.Alert;
+	import mx.controls.DateField;
 	import mx.events.CloseEvent;
 	import mx.managers.CursorManager;
 	import mx.managers.PopUpManager;
@@ -41,13 +42,9 @@ package view.manager.main
 			booking.idManager = confirmBookingWindow.booking.idManager;
 			booking.idAffiliate = 0;
 			booking.idCustomer = confirmBookingWindow.booking.idCustomer.id;
-			booking.idLocation = confirmBookingWindow.booking.idLocation.id;			
-			var _date:Date = new Date();
-			var date:Number = confirmBookingWindow.booking.visitDay.getDate();
-			var month:Number = confirmBookingWindow.booking.visitDay.getMonth();
-			var fullYear:Number = confirmBookingWindow.booking.visitDay.getFullYear();
-			_date.setTime(Date.UTC(fullYear, month, date,0,0));
-			booking.visitDay = jsEnc.encode(_date);
+			booking.idLocation = confirmBookingWindow.booking.idLocation.id;
+			var stringFromDate:String = DateField.dateToString(confirmBookingWindow.booking.visitDay as Date, "DD/MM/YYYY");			
+			booking.visitDay = stringFromDate;
 			booking.visitHour = jsEnc.encode(confirmBookingWindow.booking.visitHour);
 			facade.sendNotification(ApplicationFacade.BOOKING_ADD, booking);
 			CursorManager.setBusyCursor();			
