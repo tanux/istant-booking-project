@@ -29,7 +29,6 @@ package view.manager.main
 			visitHourCmp.hourSelected.busy = true;
 		}
 		
-		
 		override public function handleNotification(notification:INotification):void{ 
 			switch (notification.getName()){
 				case ApplicationFacade.GET_BUSY_HOURS_SUCCESS:
