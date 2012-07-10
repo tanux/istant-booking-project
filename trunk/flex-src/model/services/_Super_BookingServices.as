@@ -34,9 +34,9 @@ internal class _Super_BookingServices extends com.adobe.fiber.services.wrapper.R
         operation = new mx.rpc.remoting.Operation(null, "addBooking");
          operation.resultType = int;
         operations["addBooking"] = operation;
-        operation = new mx.rpc.remoting.Operation(null, "getAvailableHours");
-         operation.resultType = int;
-        operations["getAvailableHours"] = operation;
+        operation = new mx.rpc.remoting.Operation(null, "getBusyHour");
+         operation.resultElementType = Object;
+        operations["getBusyHour"] = operation;
 
         _serviceControl.operations = operations;
         _serviceControl.convertResultHandler = com.adobe.serializers.utility.TypeUtility.convertResultHandler;
@@ -75,7 +75,7 @@ internal class _Super_BookingServices extends com.adobe.fiber.services.wrapper.R
     }
      
     /**
-      * This method is a generated wrapper used to call the 'getAvailableHours' operation. It returns an mx.rpc.AsyncToken whose 
+      * This method is a generated wrapper used to call the 'getBusyHour' operation. It returns an mx.rpc.AsyncToken whose 
       * result property will be populated with the result of the operation when the server response is received. 
       * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
       * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
@@ -85,10 +85,10 @@ internal class _Super_BookingServices extends com.adobe.fiber.services.wrapper.R
       *
       * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function getAvailableHours(date:Object) : mx.rpc.AsyncToken
+    public function getBusyHour(visit_day:String) : mx.rpc.AsyncToken
     {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getAvailableHours");
-		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(date) ;
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getBusyHour");
+		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(visit_day) ;
         return _internal_token;
     }
      

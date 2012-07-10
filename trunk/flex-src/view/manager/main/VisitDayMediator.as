@@ -36,7 +36,8 @@ package view.manager.main
 			selectedData.month = event.currentTarget.selectedDate.getMonth();
 			selectedData.fullYear = event.currentTarget.selectedDate.getFullYear();
 			visitDayCmp.selectedDate = selectedData;
-			sendNotification(ApplicationFacade.GET_AVAILABLE_HOURS, selectedData);
+			var stringFromDate:String = DateField.dateToString(visitDayCmp.selectedDate as Date, "DD/MM/YYYY");
+			sendNotification(ApplicationFacade.GET_BUSY_HOURS, stringFromDate);
 		}
 		
 		

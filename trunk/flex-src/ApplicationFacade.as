@@ -105,7 +105,10 @@ package
 		public static const BOOKING_ADD_ERROR:String = "BookingAddError";
 		public static const BOOKING_ADD_FAULT:String = "BookingAddFault";
 		
-		public static const GET_AVAILABLE_HOURS:String = "GetAvailableHours";
+		public static const GET_BUSY_HOURS:String = "GetBusyHours";
+		public static const GET_BUSY_HOURS_SUCCESS:String = "GetBusyHoursSuccess";
+		public static const GET_BUSY_HOURS_ERROR:String = "GetBusyHoursError";
+		public static const GET_BUSY_HOURS_FAULT:String = "GetBusyHoursFault";
 		
 		public static function getInstance() : ApplicationFacade{
 			if (instance == null)

@@ -6,6 +6,7 @@ package view
 	import controller.loginmanager.DoLoginCommand;
 	import controller.managermain.BookingAddCommand;
 	import controller.managermain.CustomerGetListCommand;
+	import controller.managermain.GetBusyHoursCommand;
 	import controller.managermain.LocationGetListCommand;
 	
 	import flash.events.Event;
@@ -121,6 +122,7 @@ package view
 			facade.registerCommand(ApplicationFacade.GET_CUSTOMER_LIST,CustomerGetListCommand);			
 			facade.registerCommand(ApplicationFacade.GET_LOCATION_LIST, LocationGetListCommand);
 			facade.registerCommand(ApplicationFacade.BOOKING_ADD, BookingAddCommand);
+			facade.registerCommand(ApplicationFacade.GET_BUSY_HOURS, GetBusyHoursCommand);
 			facade.sendNotification(ApplicationFacade.GET_CUSTOMER_LIST);
 			facade.sendNotification(ApplicationFacade.GET_LOCATION_LIST);
 			managerMain.cmpCustomerList.btnBooking.addEventListener(MouseEvent.CLICK, showConfirmBooking);

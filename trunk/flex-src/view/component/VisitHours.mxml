@@ -4,7 +4,7 @@
 		  xmlns:s="library://ns.adobe.com/flex/spark"  
 		  paddingLeft="10" paddingRight="10" paddingTop="20"
 		  title="Orari Liberi" horizontalAlign="center" verticalAlign="middle"
-		  styleName="panelSkinsICandy">
+		  styleName="panelSkinsICandy" >
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 		<s:RadioButtonGroup id="rbgHours" />
@@ -15,17 +15,15 @@
 			
 			import mx.collections.ArrayCollection;
 			import mx.controls.Alert;
+			import mx.events.FlexEvent;
 			import mx.events.ItemClickEvent;
 			[Bindalbe]public var hourSelected:SelectedHour;
-			[Bindable]public var hours:Array = [{hour:'15.00',index:1,busy:false},
-												{hour:'16.00',index:2,busy:false},
-												{hour:'17.00',index:3,busy:false},
-												{hour:'18.00',index:4,busy:false},
-												{hour:'19.00',index:5,busy:false},
-												{hour:'20.00',index:6,busy:false}];
-			
-			
-			
+			[Bindable]public var hours:Array = [{hour:'15.00',index:0,busy:false},
+												{hour:'16.00',index:1,busy:false},
+												{hour:'17.00',index:2,busy:false},
+												{hour:'18.00',index:3,busy:false},
+												{hour:'19.00',index:4,busy:false},
+												{hour:'20.00',index:5,busy:false}]; 
 		]]>
 	</fx:Script>
 	
