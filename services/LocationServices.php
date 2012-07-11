@@ -33,12 +33,14 @@ class LocationServices {
 	 * 
 	 * Add Location in Location's List
 	 * @param Location $location
-	 * @return int number of row affected
+	 * @return String $id
 	 */
 	public function addLocation($location){
 		$locationData = LocationServices::setLocationData($location);
 		$dbAdapter = ManageDatabase::getDbAdapter();	
-		return $dbAdapter->insert('locations', $locationData);			
+		Zend_Db_Table::setDefaultAdapter($dbAdapter);
+		$locationTable = new Zend_Db_Table('locations');
+		return $locationTable->insert($locationData);			
 	}
 	
 	/**

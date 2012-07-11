@@ -19,20 +19,14 @@ package controller.managermain
 			if (facade.hasProxy(LocationListProxy.NAME)){
 				var locationListProxy:LocationListProxy = facade.retrieveProxy(LocationListProxy.NAME) as LocationListProxy;
 				locationListProxy.addLocation(location);
-				if (facade.hasProxy(LocationProxy.NAME)){
-					var locationProxy:LocationProxy = facade.retrieveProxy(LocationProxy.NAME) as LocationProxy;
-					locationProxy.addLocation(location);
-				}else{				
-					var newLocationProxy:LocationProxy = new LocationProxy(LocationProxy.NAME);
-					newLocationProxy.addLocation(location);
-					facade.registerProxy(newLocationProxy);						
-				}
 			}
 			else{
 				var newLocationListProxy:LocationListProxy = new LocationListProxy(LocationListProxy.NAME);
 				newLocationListProxy.addLocation(location);
 				facade.registerProxy(newLocationListProxy);
 			}
+			var newLocationProxy:LocationProxy = new LocationProxy(LocationProxy.NAME, location);
+			facade.registerProxy(newLocationProxy);
 		}
 	}
 }

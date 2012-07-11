@@ -70,7 +70,11 @@ package model.managermain
 					break;
 				case "addLocation":
 					if (evt.result != null){
-						sendNotification(ApplicationFacade.LOCATION_ADD_SUCCESS, evt.result);
+						sendNotification(ApplicationFacade.LOCATION_ADD_SUCCESS);						
+						if (facade.hasProxy(LocationProxy.NAME)){
+							var locationProxy:LocationProxy = facade.retrieveProxy(LocationProxy.NAME) as LocationProxy;
+							locationProxy.addLocation(evt.result as String);
+						}
 					}
 					else{
 						sendNotification(ApplicationFacade.LOCATION_ADD_ERROR);

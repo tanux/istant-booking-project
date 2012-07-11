@@ -23,10 +23,10 @@ package controller.managermain
 				locationListProxy.deleteLocation(location);
 				if (facade.hasProxy(LocationProxy.NAME)){
 					var locationProxy:LocationProxy = facade.retrieveProxy(LocationProxy.NAME) as LocationProxy;
-					locationProxy.removeLocation(locationInList);
+					locationProxy.removeLocation(locationInList.getPosition);
 				}else{				
-					var newLocationProxy:LocationProxy = new LocationProxy(LocationProxy.NAME);
-					newLocationProxy.removeLocation(locationInList);
+					var newLocationProxy:LocationProxy = new LocationProxy(LocationProxy.NAME,location);
+					newLocationProxy.removeLocation(locationInList.getPosition);
 					facade.registerProxy(newLocationProxy);						
 				}
 			}

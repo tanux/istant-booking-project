@@ -20,11 +20,11 @@ package controller.managermain
 				locationListProxy.saveChangesLocation(location);
 				if(facade.hasProxy(LocationProxy.NAME)){
 					var locationProxy:LocationProxy = facade.retrieveProxy(LocationProxy.NAME) as LocationProxy;
-					locationProxy.updateLocation(locationInList);			
+					locationProxy.updateLocation(locationInList.getPosition);			
 				}
 				else{
-					var newLocationProxy:LocationProxy = new LocationProxy(LocationProxy.NAME);
-					newLocationProxy.updateLocation(locationInList);
+					var newLocationProxy:LocationProxy = new LocationProxy(LocationProxy.NAME, location);
+					newLocationProxy.updateLocation(locationInList.getPosition);
 					facade.registerProxy(newLocationProxy);			
 				}
 			}
@@ -32,17 +32,7 @@ package controller.managermain
 				var newLocationListProxy:LocationListProxy = new LocationListProxy(LocationListProxy.NAME);
 				newLocationListProxy.saveChangesLocation(location);
 				facade.registerProxy(newLocationListProxy);
-				if(facade.hasProxy(LocationProxy.NAME)){
-					var locationProxy:LocationProxy = facade.retrieveProxy(LocationProxy.NAME) as LocationProxy;
-					locationProxy.updateLocation(locationInList);				
-				}
-				else{					
-					var newLocationProxy:LocationProxy = new LocationProxy(LocationProxy.NAME);
-					newLocationProxy.updateLocation(locationInList);
-					facade.registerProxy(newLocationProxy);
-				}
 			}
-			
 		}
 	}
 }

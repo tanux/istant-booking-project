@@ -15,28 +15,31 @@ package model.managermain
 	
 	public class LocationProxy extends Proxy implements IProxy{
 		public static const NAME = "LocationProxy";
-		
-		public function LocationProxy(proxyName){
+		private var _location:Location;
+		public function LocationProxy(proxyName:String, location:Location){
 			super(proxyName, new ArrayCollection());
+			_location = new Location();
+			_location = location;
 		}
 		
-		public function addLocation(item:Location):void{
-			locations.addItem({city:item.city,
-							   address:item.address,
-							   telephone_number:item.telephoneNumber, 
-							   reception_days:item.receptionDays});
+		public function addLocation(idLocation:String):void{
+			locations.addItem({id:idLocation,
+							   city:_location.city,
+							   address:_location.address,
+							   telephone_number:_location.telephoneNumber, 
+							   reception_days:_location.receptionDays});
 		}
 		
-		public function removeLocation(item:LocationInList):void{
-			locations.removeItemAt(item.getPosition);
+		public function removeLocation(position:int):void{
+			locations.removeItemAt(position);
 		}
 		
-		public function updateLocation(item:LocationInList):void{						
-			locations.setItemAt({id:item.getLocation.id,
-				city:item.getLocation.city,
-				address:item.getLocation.address,
-				telephone_number:item.getLocation.telephoneNumber,
-				reception_days:item.getLocation.receptionDays}, item.getPosition);
+		public function updateLocation(position:int):void{						
+			locations.setItemAt({id:_location.id,
+				city:_location.city,
+				address:_location.address,
+				telephone_number:_location.telephoneNumber,
+				reception_days:_location.receptionDays},position);
 		}
 		public function get locations() : ArrayCollection{
 			var locationList:LocationList = facade.retrieveMediator(LocationListMediator.NAME).getViewComponent() as LocationList;
