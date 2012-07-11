@@ -106,6 +106,7 @@ package view
 			var mediatorName:String = "LocationsInAccordionMediatorShowBooking";
 			facade.registerMediator(new VisitLocationMediator(mediatorName,managerMain.cmpLocations));
 			sendNotification(ApplicationFacade.GET_LOCATION_LIST);
+			managerMain.cmpLocations.boxSede.enabled = true;
 		}
 		
 		private function doLogout(evt:Event):void{
@@ -120,7 +121,8 @@ package view
 			managerMain.cmpControlBar.btnShowVisit.addEventListener(MouseEvent.CLICK, goToShowBooking);
 			facade.registerMediator(new CustomerListMediator(managerMain.cmpCustomerList));
 			var mediatorName:String = "LocationsInAccordionMediatorMain";
-			facade.registerMediator(new VisitLocationMediator(mediatorName,managerMain.cmpVisitProperties.cmpLocations));
+			var visitLocationMediator:VisitLocationMediator = new VisitLocationMediator(mediatorName,managerMain.cmpVisitProperties.cmpLocations); 
+			facade.registerMediator(visitLocationMediator);
 			facade.registerMediator(new VisitDayMediator(managerMain.cmpVisitProperties.cmpVisitDay));
 			facade.registerMediator(new VisitHoursMediator(managerMain.cmpVisitProperties.cmpVisitHours));
 			facade.registerCommand(ApplicationFacade.GET_CUSTOMER_LIST,CustomerGetListCommand);			
@@ -168,6 +170,9 @@ package view
 				case ApplicationFacade.MANAGER_LOGIN_FAULT:					
 					Alert.show("Fault: Errore di comunicazione con il server");
 					break;
+				case ApplicationFacade.CUSTOMER_SELECTED:
+					managerMain.cmpVisitProperties.cmpLocations.boxSede.enabled = true;
+					break;
 			}
 		}
 		
@@ -178,7 +183,8 @@ package view
 				ApplicationFacade.MANAGER_LOGIN_SUCCESS,
 				ApplicationFacade.MANAGER_LOGIN_ERROR,
 				ApplicationFacade.MANAGER_LOGOUT_SUCCESS,
-				ApplicationFacade.MANAGER_LOGIN_FAULT				
+				ApplicationFacade.MANAGER_LOGIN_FAULT,
+				ApplicationFacade.CUSTOMER_SELECTED,
 			];
 		}		
 		
