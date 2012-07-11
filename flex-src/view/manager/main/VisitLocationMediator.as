@@ -13,9 +13,6 @@ package view.manager.main
 	import view.component.VisitLocations;
 	
 	public class VisitLocationMediator extends Mediator implements IMediator{
-		
-		//public static const NAME:String = "LocationsInAccordionMediator";
-		
 		public function VisitLocationMediator(mediatorName:String,viewComponent:Object){			
 			super(mediatorName, viewComponent);	
 			visitDayCmp.addEventListener(VisitLocations.LOCATION_SELECTED, notifyLocationSelected);
@@ -30,8 +27,7 @@ package view.manager.main
 			switch (notification.getName()){
 				case ApplicationFacade.GET_LOCATION_LIST_SUCCESS:					
 					var locations:ArrayCollection = notification.getBody() as ArrayCollection;					
-					visitDayCmp.locationList = locations;	
-					Alert.show(""+visitDayCmp.locationList[0].city);
+					visitDayCmp.locationList = locations;
 					break;
 				case ApplicationFacade.GET_LOCATION_LIST_ERROR:
 					Alert.show("Errore nel caricamento della lista delle location");
