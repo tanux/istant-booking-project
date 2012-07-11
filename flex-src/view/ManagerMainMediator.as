@@ -181,9 +181,8 @@ package view
 					break;
 				case ApplicationFacade.CUSTOMER_SELECTED:
 					managerMain.cmpVisitProperties.cmpLocations.boxSede.enabled = true;
-					break;
-				case ApplicationFacade.LOCATION_SELECTED:
 					managerMain.cmpVisitProperties.cmpVisitDay.boxDay.enabled = true;
+					managerMain.cmpVisitProperties.cmpVisitHours.vbHours.enabled = true;
 					break;
 			}
 		}
@@ -197,7 +196,6 @@ package view
 				ApplicationFacade.MANAGER_LOGOUT_SUCCESS,
 				ApplicationFacade.MANAGER_LOGIN_FAULT,
 				ApplicationFacade.CUSTOMER_SELECTED,
-				ApplicationFacade.LOCATION_SELECTED,
 
 			];
 		}		
