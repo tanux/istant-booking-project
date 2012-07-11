@@ -96,6 +96,7 @@ package view.manager.main
 					customerListCmp.tiLastname.showCancelButton = true;
 					customerListCmp.tiEmail.showCancelButton = true;
 					customerListCmp.tiTelephoneNumber.showCancelButton = true;
+					
 					break;
 				case ApplicationFacade.CUSTOMER_SAVE_CHANGES_SUCCESS:
 					notify('default', 'Successo', 'L\'operazione è andata a buon fine', customerListCmp.successIcon, 5000);
