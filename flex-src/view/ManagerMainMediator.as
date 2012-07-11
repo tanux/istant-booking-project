@@ -99,10 +99,13 @@ package view
 			CursorManager.removeBusyCursor();
 		}
 		
-		private function goToShowVisit(evt:Event):void{
+		private function goToShowBooking(evt:Event):void{
 			CursorManager.setBusyCursor();
 			managerMain.currentState = "stateShowBooking";
 			CursorManager.removeBusyCursor();
+			var mediatorName:String = "LocationsInAccordionMediatorShowBooking";
+			facade.registerMediator(new VisitLocationMediator(mediatorName,managerMain.cmpLocations));
+			sendNotification(ApplicationFacade.GET_LOCATION_LIST);
 		}
 		
 		private function doLogout(evt:Event):void{
@@ -114,9 +117,10 @@ package view
 			managerMain.cmpControlBar.btnSettings.addEventListener(MouseEvent.CLICK, goToSetting);
 			managerMain.cmpControlBar.btnLogout.addEventListener(MouseEvent.CLICK, doLogout);
 			managerMain.cmpControlBar.btnHome.addEventListener(MouseEvent.CLICK, goToHome);
-			managerMain.cmpControlBar.btnShowVisit.addEventListener(MouseEvent.CLICK, goToShowVisit);
+			managerMain.cmpControlBar.btnShowVisit.addEventListener(MouseEvent.CLICK, goToShowBooking);
 			facade.registerMediator(new CustomerListMediator(managerMain.cmpCustomerList));
-			facade.registerMediator(new VisitLocationMediator(managerMain.cmpVisitProperties.cmpLocations));
+			var mediatorName:String = "LocationsInAccordionMediatorMain";
+			facade.registerMediator(new VisitLocationMediator(mediatorName,managerMain.cmpVisitProperties.cmpLocations));
 			facade.registerMediator(new VisitDayMediator(managerMain.cmpVisitProperties.cmpVisitDay));
 			facade.registerMediator(new VisitHoursMediator(managerMain.cmpVisitProperties.cmpVisitHours));
 			facade.registerCommand(ApplicationFacade.GET_CUSTOMER_LIST,CustomerGetListCommand);			
