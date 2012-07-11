@@ -38,7 +38,7 @@ internal class _Super_LocationServices extends com.adobe.fiber.services.wrapper.
          operation.resultElementType = Object;
         operations["getNoAvailableDate"] = operation;
         operation = new mx.rpc.remoting.Operation(null, "addLocation");
-         operation.resultType = int;
+         operation.resultType = String;
         operations["addLocation"] = operation;
         operation = new mx.rpc.remoting.Operation(null, "deleteLocation");
          operation.resultType = int;
