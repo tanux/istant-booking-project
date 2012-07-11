@@ -96,12 +96,6 @@ package view.manager.main
 					customerListCmp.tiEmail.text = customerInList.getCustomer.email as String;
 					customerListCmp.tiTelephoneNumber.text = customerInList.getCustomer.telephoneNumber as String;
 					customerListCmp.btnDelUser.enabled = true;
-					
-					var visitLocationMediator:VisitLocationMediator = facade.retrieveMediator(getMediatorName()) as VisitLocationMediator;
-					
-					visitLocationMediator.visitDayCmp.boxSede.enabled=true;
-
-					
 					customerListCmp.tiFirstname.showCancelButton = true;
 					customerListCmp.tiLastname.showCancelButton = true;
 					customerListCmp.tiEmail.showCancelButton = true;
