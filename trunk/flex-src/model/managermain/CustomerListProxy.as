@@ -66,6 +66,10 @@ package model.managermain
 				case "addCustomer":
 					if (evt.result != null){
 						sendNotification(ApplicationFacade.CUSTOMER_ADD_SUCCESS, evt.result);
+						if (facade.hasProxy(CustomerProxy.NAME)){
+							var customerProxy:CustomerProxy = facade.retrieveProxy(CustomerProxy.NAME) as CustomerProxy;
+							customerProxy.addCustomer(evt.result as String);
+						}
 					}
 					else{
 						sendNotification(ApplicationFacade.CUSTOMER_ADD_ERROR);

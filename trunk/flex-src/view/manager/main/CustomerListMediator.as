@@ -155,7 +155,6 @@ package view.manager.main
 				ApplicationFacade.CUSTOMER_SELECTED,
 				ApplicationFacade.CUSTOMER_SAVE_CHANGES_SUCCESS,
 				ApplicationFacade.CUSTOMER_SAVE_CHANGES_ERROR,
-				/**ApplicationFacade.CUSTOMER_ADD,**/
 				ApplicationFacade.CUSTOMER_ADD_SUCCESS,
 				ApplicationFacade.CUSTOMER_ADD_ERROR,
 				ApplicationFacade.CUSTOMER_ADD_FAULT,

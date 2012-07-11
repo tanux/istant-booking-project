@@ -8,6 +8,7 @@ package view.manager.main
 	import mx.collections.ArrayCollection;
 	import mx.controls.Alert;
 	import mx.events.ItemClickEvent;
+	import mx.managers.CursorManager;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
@@ -49,6 +50,7 @@ package view.manager.main
 						}							
 					}
 					visitHourCmp.hours = hours;
+					CursorManager.removeBusyCursor();
 					break;
 			}
 		}

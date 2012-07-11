@@ -19,20 +19,14 @@ package controller.managermain
 			if (facade.hasProxy(CustomerListProxy.NAME)){
 				var customerListProxy:CustomerListProxy = facade.retrieveProxy(CustomerListProxy.NAME) as CustomerListProxy;
 				customerListProxy.addCustomer(customer);
-				if (facade.hasProxy(CustomerProxy.NAME)){
-					var customerProxy:CustomerProxy = facade.retrieveProxy(CustomerProxy.NAME) as CustomerProxy;
-					customerProxy.addCustomer(customer);
-				}else{				
-					var newCustomerProxy:CustomerProxy = new CustomerProxy(CustomerProxy.NAME);
-					newCustomerProxy.addCustomer(customer);
-					facade.registerProxy(newCustomerProxy);						
-				}
 			}
 			else{
 				var newCustomerListProxy:CustomerListProxy = new CustomerListProxy(CustomerListProxy.NAME);
 				newCustomerListProxy.addCustomer(customer);
 				facade.registerProxy(newCustomerListProxy);
 			}
+			var newCustomerProxy:CustomerProxy = new CustomerProxy(CustomerProxy.NAME, customer);
+			facade.registerProxy(newCustomerProxy);
 		}
 	}
 }

@@ -11,6 +11,7 @@ package view.manager.main
 	import mx.controls.DateField;
 	import mx.events.CalendarLayoutChangeEvent;
 	import mx.events.FlexEvent;
+	import mx.managers.CursorManager;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -38,6 +39,7 @@ package view.manager.main
 			visitDayCmp.selectedDate = selectedData;
 			var stringFromDate:String = DateField.dateToString(visitDayCmp.selectedDate as Date, "DD/MM/YYYY");
 			sendNotification(ApplicationFacade.GET_BUSY_HOURS, stringFromDate);
+			CursorManager.setBusyCursor();					
 		}
 		
 		
