@@ -19,10 +19,15 @@ package view.manager.main
 	
 	import view.ManagerMainMediator;
 	import view.component.CustomerList;
+	import view.component.LocationList;
+	import view.component.VisitLocations;
+	import view.component.VisitPropertiesAffiliateMain;
+	import view.manager.main.VisitLocationMediator;
 	
 	public class CustomerListMediator extends Mediator implements IMediator{
 		public static const NAME:String = "CustomerListMediator";
 		[Bindable]private var customerInList:CustomerInList;
+		
 		public function CustomerListMediator(viewComponent:Object){
 			super(NAME, viewComponent);
 			customerListCmp.btnSave.addEventListener(MouseEvent.CLICK,saveChanges);
@@ -91,6 +96,10 @@ package view.manager.main
 					customerListCmp.tiEmail.text = customerInList.getCustomer.email as String;
 					customerListCmp.tiTelephoneNumber.text = customerInList.getCustomer.telephoneNumber as String;
 					customerListCmp.btnDelUser.enabled = true;
+					
+					var visitLocationMediator:VisitLocationMediator = facade.retrieveMediator(VisitLocationMediator.NAME);
+					visitLocationMediator.visitDayCmp.boxSede.enabled=true;
+
 					
 					customerListCmp.tiFirstname.showCancelButton = true;
 					customerListCmp.tiLastname.showCancelButton = true;

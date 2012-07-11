@@ -22,7 +22,7 @@
 	</fx:Script>
 	
 	<mx:VBox width="95%" id="boxSede" borderStyle="solid" paddingTop="5" paddingBottom="5" 
-			 paddingLeft="5" paddingRight="5" maxHeight="150">
+			 paddingLeft="5" paddingRight="5" maxHeight="150" enabled="false">
 		<mx:Accordion id="acrdLocationList" width="100%" resizeToContent="true">
 			<mx:Repeater id="rptLocation" dataProvider="{locationList}" >
 				<mx:VBox id="acrdHeaderLocationName" label="{rptLocation.currentItem.city}" paddingTop="5">
