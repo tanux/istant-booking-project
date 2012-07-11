@@ -103,10 +103,15 @@ package view
 			CursorManager.setBusyCursor();
 			managerMain.currentState = "stateShowBooking";
 			CursorManager.removeBusyCursor();
-			var mediatorName:String = "LocationsInAccordionMediatorShowBooking";
-			facade.registerMediator(new VisitLocationMediator(mediatorName,managerMain.cmpLocations));
+			
+			var mediatorNameLocationsInAccordion:String = "LocationsInAccordionMediatorShowBooking";
+			facade.registerMediator(new VisitLocationMediator(mediatorNameLocationsInAccordion,managerMain.cmpLocations));
+			
 			sendNotification(ApplicationFacade.GET_LOCATION_LIST);
 			managerMain.cmpLocations.boxSede.enabled = true;
+			
+			var mediatorNameVisitDay:String = "VisitDayMediatorShowBooking";			
+			facade.registerMediator(new VisitDayMediator(mediatorNameVisitDay,managerMain.cmpCalendar));
 		}
 		
 		private function doLogout(evt:Event):void{
@@ -120,10 +125,13 @@ package view
 			managerMain.cmpControlBar.btnHome.addEventListener(MouseEvent.CLICK, goToHome);
 			managerMain.cmpControlBar.btnShowVisit.addEventListener(MouseEvent.CLICK, goToShowBooking);
 			facade.registerMediator(new CustomerListMediator(managerMain.cmpCustomerList));
-			var mediatorName:String = "LocationsInAccordionMediatorMain";
-			var visitLocationMediator:VisitLocationMediator = new VisitLocationMediator(mediatorName,managerMain.cmpVisitProperties.cmpLocations); 
-			facade.registerMediator(visitLocationMediator);
-			facade.registerMediator(new VisitDayMediator(managerMain.cmpVisitProperties.cmpVisitDay));
+			
+			var mediatorNameLocationsInAccordion:String = "LocationsInAccordionMediatorMain";			 
+			facade.registerMediator(new VisitLocationMediator(mediatorNameLocationsInAccordion,managerMain.cmpVisitProperties.cmpLocations));
+			
+			var mediatorNameVisitDay:String = "VisitDayMediatorMain";			
+			facade.registerMediator(new VisitDayMediator(mediatorNameVisitDay,managerMain.cmpVisitProperties.cmpVisitDay));
+			
 			facade.registerMediator(new VisitHoursMediator(managerMain.cmpVisitProperties.cmpVisitHours));
 			facade.registerCommand(ApplicationFacade.GET_CUSTOMER_LIST,CustomerGetListCommand);			
 			facade.registerCommand(ApplicationFacade.GET_LOCATION_LIST, LocationGetListCommand);

@@ -21,10 +21,10 @@ package view.manager.main
 	
 	public class VisitDayMediator extends Mediator implements IMediator{
 		
-		public static const NAME:String = "VisitDayMediator";
+		//public static const NAME:String = "VisitDayMediator";
 		private var counter_date_inserted:int = 0;
-		public function VisitDayMediator(viewComponent:Object){
-			super(NAME, viewComponent);
+		public function VisitDayMediator(mediatorName:String, viewComponent:Object){
+			super(mediatorName, viewComponent);
 			visitDayCmp.calendar.addEventListener(CalendarLayoutChangeEvent.CHANGE, detectSelectedDate);
 		}
 		
