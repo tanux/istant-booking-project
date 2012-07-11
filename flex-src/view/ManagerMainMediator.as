@@ -31,6 +31,7 @@ package view
 	
 	import view.component.ConfirmBookingWindow;
 	import view.component.VisitHours;
+	import view.component.VisitDay;
 	import view.manager.main.ConfirmBookingWindowMediator;
 	import view.manager.main.CustomerListMediator;
 	import view.manager.main.VisitDayMediator;
@@ -181,6 +182,9 @@ package view
 				case ApplicationFacade.CUSTOMER_SELECTED:
 					managerMain.cmpVisitProperties.cmpLocations.boxSede.enabled = true;
 					break;
+				case ApplicationFacade.LOCATION_SELECTED:
+					managerMain.cmpVisitProperties.cmpVisitDay.boxDay.enabled = true;
+					break;
 			}
 		}
 		
@@ -193,6 +197,8 @@ package view
 				ApplicationFacade.MANAGER_LOGOUT_SUCCESS,
 				ApplicationFacade.MANAGER_LOGIN_FAULT,
 				ApplicationFacade.CUSTOMER_SELECTED,
+				ApplicationFacade.LOCATION_SELECTED,
+
 			];
 		}		
 		
