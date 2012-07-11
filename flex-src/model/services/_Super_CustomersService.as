@@ -35,7 +35,7 @@ internal class _Super_CustomersService extends com.adobe.fiber.services.wrapper.
          operation.resultElementType = Object;
         operations["getCustomerList"] = operation;
         operation = new mx.rpc.remoting.Operation(null, "addCustomer");
-         operation.resultType = int;
+         operation.resultType = String;
         operations["addCustomer"] = operation;
         operation = new mx.rpc.remoting.Operation(null, "saveChangesCustomer");
          operation.resultType = String;

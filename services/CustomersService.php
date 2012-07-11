@@ -17,12 +17,14 @@ class CustomersService {
 	 * 
 	 * Add Customer in Customer's List
 	 * @param Customer $customer
-	 * @return int the number of row affected
+	 * @return String $id
 	 */
-	public function addCustomer($customer){		
+	public function addCustomer($customer){
 		$customerData = CustomersService::setCustomerData($customer);
-		$dbAdapter = ManageDatabase::getDbAdapter();		
-		return $dbAdapter->insert('customers', $customerData);
+		$dbAdapter = ManageDatabase::getDbAdapter();
+		Zend_Db_Table::setDefaultAdapter($dbAdapter);
+		$customerTable = new Zend_Db_Table('customers');
+		return $customerTable->insert($customerData);
 	}
 	
 	/**

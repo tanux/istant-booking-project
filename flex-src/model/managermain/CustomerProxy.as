@@ -15,28 +15,32 @@ package model.managermain
 	
 	public class CustomerProxy extends Proxy implements IProxy{
 		public static const NAME = "CustomerProxy";
+		private var _customer:Customer;
 		
-		public function CustomerProxy(proxyName){
+		public function CustomerProxy(proxyName:String, customer:Customer){
 			super(proxyName, new ArrayCollection());
+			_customer = new Customer();
+			_customer = customer;
 		}
 		
-		public function addCustomer(item:Customer):void{
-			customers.addItem({firstname:item.firstName,
-							   lastname:item.lastName,
-							   email:item.email,
-							   telephone_number:item.telephoneNumber});
+		public function addCustomer(idCustomer:String):void{			
+			customers.addItem({id:idCustomer,
+							   firstname:_customer.firstName,
+							   lastname:_customer.lastName,
+							   email:_customer.email,
+							   telephone_number:_customer.telephoneNumber});
 		}
 		
-		public function removeCustomer(item:CustomerInList):void{
-			customers.removeItemAt(item.getPosition);
+		public function removeCustomer(position:int):void{
+			customers.removeItemAt(position);
 		}
 		
-		public function updateCustomer(item:CustomerInList):void{
-			customers.setItemAt({id:item.getCustomer.id,
-				                 firstname:item.getCustomer.firstName,
-								 lastname:item.getCustomer.lastName,
-								 email:item.getCustomer.email,
-								 telephone_number:item.getCustomer.telephoneNumber}, item.getPosition);
+		public function updateCustomer(position:int):void{
+			customers.setItemAt({id:_customer.id,
+				                 firstname:_customer.firstName,
+								 lastname:_customer.lastName,
+								 email:_customer.email,
+								 telephone_number:_customer.telephoneNumber}, position);
 		}
 		public function get customers() : ArrayCollection{
 			var customerList:CustomerList = facade.retrieveMediator(CustomerListMediator.NAME).getViewComponent() as CustomerList;

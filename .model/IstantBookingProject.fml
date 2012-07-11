@@ -295,96 +295,6 @@
     <property name="STD_PROP_LIST" type="opaque" required="true"/>
     <property name="ARRAY_AS_PROPS" type="opaque" required="true"/>
   </entity>
-  <service name="CustomersService">
-    <annotation name="ActionScriptGeneration">
-      <item name="Source">CustomersService</item>
-      <item name="ServiceType">RemoteObject</item>
-      <item name="Package">model.services</item>
-      <item name="Endpoint">http://localhost/IstantBookingProject/public/gateway.php</item>
-      <item name="Destination">CustomersService</item>
-    </annotation>
-    <annotation name="ServiceTypeGroup">
-      <item name="ServiceBackendType">com.zend.php.flashbuilder.php</item>
-    </annotation>
-    <annotation name="ServiceConfig">
-      <item name="PHP_RELATIVE_LOCATION">IstantBookingProject/services/CustomersService.php</item>
-      <item name="PHP_SERVER_ROOT">C:/easyphp/www</item>
-      <item name="PHP_WORKSPACE_LOCATION">/IstantBookingProject/services/CustomersService.php</item>
-      <item name="DEFAULT_ENTITY_PACKAGE">model.vo</item>
-      <item name="PHP_SERVICES_FOLDER">C:/easyphp/www/IstantBookingProject/public/bin-release/services</item>
-      <item name="PHP_LOCATION">C:/easyphp/www/IstantBookingProject/services/CustomersService.php</item>
-      <item name="LINKED_FILE">CustomersService_CustomersService.php</item>
-      <item name="PHP_SERVER_ROOT_URL">http://localhost</item>
-      <item name="ABSOLUTE_ENDPOINT">http://localhost/IstantBookingProject/public/gateway.php</item>
-      <item name="PHP_CLASS_NAME">CustomersService</item>
-    </annotation>
-    <function name="getCustomerList" return-type="opaque[]">
-      <annotation name="analyze group">
-        <item name="analyzed">false</item>
-      </annotation>
-      <annotation name="ValidProperties">
-        <item name="propertySpecifier">STD_PROP_LIST,ARRAY_AS_PROPS</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="returnType">opaque</item>
-      </annotation>
-    </function>
-    <function name="addCustomer" return-type="integer">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParamNames">customer</item>
-        <item name="inputParams">Customer</item>
-        <item name="returnType">integer</item>
-      </annotation>
-      <parameter name="customer" type="Customer"/>
-    </function>
-    <function name="saveChangesCustomer" return-type="string">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="returnType">opaque</item>
-      </annotation>
-      <parameter name="customer" type="Customer"/>
-    </function>
-    <function name="deleteCustomer" return-type="integer">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParamNames">id</item>
-        <item name="inputParams">Customer</item>
-        <item name="returnType">integer</item>
-      </annotation>
-      <parameter name="customer" type="Customer"/>
-    </function>
-  </service>
-  <entity name="Customer">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">Customer</item>
-      <item name="location">C:/easyphp/www/IstantBookingProject/library/Customer.php</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="RemoteClass">Customer</item>
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="getCustomerList">
-      <item name="propertySpecifier">id,firstName,lastName,email,telephoneNumber</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">CustomersService,CustomersServiceDummy</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">model.vo</item>
-    </annotation>
-    <property name="id" type="opaque" required="true"/>
-    <property name="firstName" type="opaque" required="true"/>
-    <property name="lastName" type="opaque" required="true"/>
-    <property name="email" type="opaque" required="true"/>
-    <property name="telephoneNumber" type="opaque" required="true"/>
-  </entity>
   <service name="LocationServices">
     <annotation name="ActionScriptGeneration">
       <item name="Source">LocationServices</item>
@@ -537,5 +447,95 @@
     <property name="idLocation" type="opaque" required="true"/>
     <property name="visitDay" type="opaque" required="true"/>
     <property name="visitHour" type="opaque" required="true"/>
+  </entity>
+  <service name="CustomersService">
+    <annotation name="ActionScriptGeneration">
+      <item name="Source">CustomersService</item>
+      <item name="ServiceType">RemoteObject</item>
+      <item name="Package">model.services</item>
+      <item name="Endpoint">http://localhost/IstantBookingProject/public/gateway.php</item>
+      <item name="Destination">CustomersService</item>
+    </annotation>
+    <annotation name="ServiceTypeGroup">
+      <item name="ServiceBackendType">com.zend.php.flashbuilder.php</item>
+    </annotation>
+    <annotation name="ServiceConfig">
+      <item name="PHP_RELATIVE_LOCATION">IstantBookingProject/services/CustomersService.php</item>
+      <item name="PHP_SERVER_ROOT">C:/easyphp/www</item>
+      <item name="PHP_WORKSPACE_LOCATION">/IstantBookingProject/services/CustomersService.php</item>
+      <item name="DEFAULT_ENTITY_PACKAGE">model.vo</item>
+      <item name="PHP_SERVICES_FOLDER">C:/easyphp/www/IstantBookingProject/public/bin-release/services</item>
+      <item name="PHP_LOCATION">C:/easyphp/www/IstantBookingProject/services/CustomersService.php</item>
+      <item name="LINKED_FILE">CustomersService_CustomersService.php</item>
+      <item name="PHP_SERVER_ROOT_URL">http://localhost</item>
+      <item name="ABSOLUTE_ENDPOINT">http://localhost/IstantBookingProject/public/gateway.php</item>
+      <item name="PHP_CLASS_NAME">CustomersService</item>
+    </annotation>
+    <function name="getCustomerList" return-type="opaque[]">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="ValidProperties">
+        <item name="propertySpecifier">STD_PROP_LIST,ARRAY_AS_PROPS</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="addCustomer" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParamNames">customer</item>
+        <item name="inputParams">Customer</item>
+        <item name="returnType">string</item>
+      </annotation>
+      <parameter name="customer" type="Customer"/>
+    </function>
+    <function name="saveChangesCustomer" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="customer" type="Customer"/>
+    </function>
+    <function name="deleteCustomer" return-type="integer">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParamNames">id</item>
+        <item name="inputParams">Customer</item>
+        <item name="returnType">integer</item>
+      </annotation>
+      <parameter name="customer" type="Customer"/>
+    </function>
+  </service>
+  <entity name="Customer">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Customer</item>
+      <item name="location">C:/easyphp/www/IstantBookingProject/library/Customer.php</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="RemoteClass">Customer</item>
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="getCustomerList">
+      <item name="propertySpecifier">id,firstName,lastName,email,telephoneNumber</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">CustomersService,CustomersServiceDummy</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">model.vo</item>
+    </annotation>
+    <property name="id" type="opaque" required="true"/>
+    <property name="firstName" type="opaque" required="true"/>
+    <property name="lastName" type="opaque" required="true"/>
+    <property name="email" type="opaque" required="true"/>
+    <property name="telephoneNumber" type="opaque" required="true"/>
   </entity>
 </model>

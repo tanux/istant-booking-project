@@ -18,7 +18,7 @@ package controller.managermain
 				newCustomerListProxy.getCustomerList();
 				facade.registerProxy(newCustomerListProxy);				
 			}
-			facade.registerCommand(ApplicationFacade.CUSTOMER_SAVE_CHANGES, CustomerSaveChangesController);
+			facade.registerCommand(ApplicationFacade.CUSTOMER_SAVE_CHANGES, CustomerSaveChangesCommand);
 			facade.registerCommand(ApplicationFacade.CUSTOMER_ADD, CustomerAddCommand);
 			facade.registerCommand(ApplicationFacade.CUSTOMER_DELETE, CustomerDeleteCommand);
 		}
