@@ -28,8 +28,16 @@ package view.manager.main
 			customerListCmp.btnSave.addEventListener(MouseEvent.CLICK,saveChanges);
 			customerListCmp.btnAddUser.addEventListener(MouseEvent.CLICK, addCustomer);
 			customerListCmp.btnDelUser.addEventListener(MouseEvent.CLICK, deleteCustomer);
+			customerListCmp.btnCancel.addEventListener(MouseEvent.CLICK, resetAll);
 		}
 		private function init(evt:Event) : void {}
+		
+		public function resetAll(evt:Event):void{
+			resetTextInput();	
+			customerListCmp.btnAddUser.enabled = false;
+			customerListCmp.btnDelUser.enabled = false;
+			customerListCmp.btnSave.enabled = false;
+		}
 		
 		public function addCustomer(evt:Event): void{
 			var newCustomer:Customer = new Customer();
