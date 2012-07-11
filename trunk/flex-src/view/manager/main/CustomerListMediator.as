@@ -97,7 +97,8 @@ package view.manager.main
 					customerListCmp.tiTelephoneNumber.text = customerInList.getCustomer.telephoneNumber as String;
 					customerListCmp.btnDelUser.enabled = true;
 					
-					var visitLocationMediator:VisitLocationMediator = facade.retrieveMediator(VisitLocationMediator.NAME);
+					var visitLocationMediator:VisitLocationMediator = facade.retrieveMediator(getMediatorName()) as VisitLocationMediator;
+					
 					visitLocationMediator.visitDayCmp.boxSede.enabled=true;
 
 					
