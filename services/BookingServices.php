@@ -19,6 +19,24 @@ class BookingServices {
 	
 	/**
 	 * 
+	 * Get Booking List
+	 * @param String $idLocation
+	 * @param String $date
+	 * @return array booking list
+	 */
+	public function getBookingList($idLocation, $date){
+		$dbAdapter = ManageDatabase::getDbAdapter();
+		Zend_Db_Table::setDefaultAdapter($dbAdapter);		
+		$bookingsDateTable = new Zend_Db_Table('bookings');
+		$where1 = $bookingsDateTable->getAdapter()->quoteInto('id_location= ?', $idLocation);
+		$where2 = $bookingsDateTable->getAdapter()->quoteInto('visit_day= ?', $date);
+		$select = $dbAdapter->select()->from('bookings','id_customer')->where($where1)->where($where2);
+		$stmt = $dbAdapter->query($select);
+		return $stmt->fetchAll();
+	}
+	
+	/**
+	 * 
 	 * Return busy hour for certain visit_day
 	 * @param String $visit_day
 	 * @return array
@@ -69,6 +87,7 @@ class BookingServices {
 		$bookingData=array(
 			'id_affiliate'=>$booking->idAffiliate,
 			'id_customer'=>$booking->idCustomer,
+			'id_location'=>$booking->idLocation,
 			'id_manager'=>$booking->idManager,
 			'visit_day'=>$booking->visitDay,
 			'visit_hour'=>$booking->visitHour		

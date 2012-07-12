@@ -3,6 +3,7 @@ package model.managermain
 	import model.services.BookingServices;
 	import model.vo.Booking;
 	
+	import mx.controls.Alert;
 	import mx.messaging.messages.RemotingMessage;
 	import mx.rpc.AsyncToken;
 	import mx.rpc.Responder;
@@ -31,6 +32,10 @@ package model.managermain
 			var at:AsyncToken = service.getBusyHour(visitDay);
 			at.addResponder(responder);
 		}
+		public function getBookingList(idLocation:int, date:String):void{
+			var at:AsyncToken = service.getBookingList(idLocation, date);
+			at.addResponder(responder);
+		}
 		
 		public function onResult(evt:ResultEvent):void{
 			switch( (evt.token.message as RemotingMessage).operation){
@@ -47,6 +52,10 @@ package model.managermain
 						sendNotification(ApplicationFacade.GET_BUSY_HOURS_SUCCESS, evt.result);
 					}
 					break;
+				case "getBookingList":
+					if (evt.result != null){
+						sendNotification(ApplicationFacade.GET_BOOKING_LIST_SUCCESS, evt.result);
+					}
 					
 			}
 		}

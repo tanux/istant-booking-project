@@ -9,6 +9,7 @@ package view.manager.main
 	import mx.collections.ArrayCollection;
 	import mx.controls.Alert;
 	import mx.events.ListEvent;
+	import mx.rpc.events.FaultEvent;
 	import mx.validators.Validator;
 	
 	import org.puremvc.as3.interfaces.IMediator;
@@ -86,7 +87,8 @@ package view.manager.main
 					Alert.show("Lista Clienti: Errore nel prelevamento dati");
 					break;
 				case ApplicationFacade.GET_CUSTOMER_LIST_FAULT:
-					Alert.show("CustomerList: Fault");
+					var evt:FaultEvent = notification.getBody() as FaultEvent;
+					Alert.show("CustomerList Fault: "+evt.fault.faultDetail);
 					break;
 				case ApplicationFacade.CUSTOMER_SELECTED:
 					customerInList = notification.getBody() as CustomerInList;

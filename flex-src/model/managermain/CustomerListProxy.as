@@ -87,7 +87,7 @@ package model.managermain
 		}
 		
 		private function onFault(evt:FaultEvent):void{			
-			sendNotification(ApplicationFacade.GET_CUSTOMER_LIST_FAULT);
+			sendNotification(ApplicationFacade.GET_CUSTOMER_LIST_FAULT, evt);
 			//modificare per comprendere anche il caso di fault save changes customer
 		}
 	}
