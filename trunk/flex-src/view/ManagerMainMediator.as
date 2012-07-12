@@ -191,7 +191,8 @@ package view
 					managerMain.cmpLoginFormManager.tiUsername.textInput.showCancelButton=false;
 					break;
 				case ApplicationFacade.MANAGER_LOGIN_FAULT:					
-					Alert.show("Fault: Errore di comunicazione con il server");
+					var message:String = notification.getBody() as String;
+					Alert.show(message);
 					break;
 				case ApplicationFacade.CUSTOMER_SELECTED:
 					managerMain.cmpVisitProperties.cmpLocations.boxSede.enabled = true;
