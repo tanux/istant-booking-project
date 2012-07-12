@@ -104,6 +104,10 @@ package
 		public static const BOOKING_ADD_SUCCESS:String = "BookingAddSuccess";		
 		public static const BOOKING_ADD_ERROR:String = "BookingAddError";
 		public static const BOOKING_ADD_FAULT:String = "BookingAddFault";
+		public static const GET_BOOKING_LIST:String = "GetBookingList";
+		public static const GET_BOOKING_LIST_SUCCESS:String = "GetBookingListSuccess";
+		public static const GET_BOOKING_LIST_ERROR:String = "GetBookingListError";
+		public static const GET_BOOKING_LIST_FAULT:String = "GetBookingListFault";
 		
 		public static const GET_BUSY_HOURS:String = "GetBusyHours";
 		public static const GET_BUSY_HOURS_SUCCESS:String = "GetBusyHoursSuccess";

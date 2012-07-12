@@ -17,12 +17,12 @@ package view.manager.main
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	
+	import view.ManagerMainMediator;
 	import view.component.VisitDay;
 	
 	public class VisitDayMediator extends Mediator implements IMediator{
-		
-		//public static const NAME:String = "VisitDayMediator";
 		private var counter_date_inserted:int = 0;
+		private var locationSelected:Location;		
 		public function VisitDayMediator(mediatorName:String, viewComponent:Object){
 			super(mediatorName, viewComponent);
 			visitDayCmp.calendar.addEventListener(CalendarLayoutChangeEvent.CHANGE, detectSelectedDate);
@@ -38,16 +38,23 @@ package view.manager.main
 			selectedData.fullYear = event.currentTarget.selectedDate.getFullYear();
 			visitDayCmp.selectedDate = selectedData;
 			var stringFromDate:String = DateField.dateToString(visitDayCmp.selectedDate as Date, "DD/MM/YYYY");
-			sendNotification(ApplicationFacade.GET_BUSY_HOURS, stringFromDate);
+			
+			if (getMediatorName() == ManagerMainMediator.NAME_VISIT_DAY_MEDIATOR_MAIN){
+				sendNotification(ApplicationFacade.GET_BUSY_HOURS, stringFromDate);
+			}
+			else if (getMediatorName() == ManagerMainMediator.NAME_VISIT_DAY_MEDIATOR_SHOWBOOKING){	
+				if (locationSelected != null){
+					sendNotification(ApplicationFacade.GET_BOOKING_LIST, {idLocation:locationSelected.id, date:stringFromDate});	
+				}
+				else return;
+			}
 			CursorManager.setBusyCursor();					
 		}
-		
-		
 		
 		override public function handleNotification(notification:INotification):void{ 
 			switch (notification.getName()){
 				case ApplicationFacade.LOCATION_SELECTED_MAIN:
-					var locationSelected:Location = notification.getBody() as Location;
+					locationSelected = notification.getBody() as Location;
 					var jsDec:JSONDecoder = new JSONDecoder();					
 					var days:ArrayCollection = jsDec.decode(locationSelected.receptionDays.toString()) as ArrayCollection;
 					visitDayCmp.disabledDays = new Array();

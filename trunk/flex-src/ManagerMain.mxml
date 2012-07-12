@@ -87,8 +87,8 @@
 						<component:VisitDay id="cmpCalendar" width="100%" height="50%"/>
 					</mx:VBox>
 					<mx:VBox width="70%" height="100%" horizontalAlign="center" verticalAlign="middle">
-						<component:BookingListManagerSettings id="cmpBookingList" width="100%" height="50%"/>
-						<component:BookingListManagerSettings id="cmpBookingList2" width="100%" height="50%"/>
+						<component:BookingList id="cmpBookingList" width="100%" height="50%"/>
+						<component:BookingList id="cmpBookingList2" width="100%" height="50%"/>
 					</mx:VBox>	
 				</mx:HBox>								
 			</mx:VBox>	

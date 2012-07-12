@@ -1,10 +1,12 @@
 package view
 {
+	import com.adobe.serializers.json.JSONDecoder;
 	import com.adobe.serializers.json.JSONEncoder;
 	import com.hillelcoren.assets.skins.FacebookSkin;
 	
 	import controller.loginmanager.DoLoginCommand;
 	import controller.managermain.BookingAddCommand;
+	import controller.managermain.BookingGetListCommand;
 	import controller.managermain.CustomerGetListCommand;
 	import controller.managermain.GetBusyHoursCommand;
 	import controller.managermain.LocationGetListCommand;
@@ -30,8 +32,9 @@ package view
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	
 	import view.component.ConfirmBookingWindow;
-	import view.component.VisitHours;
 	import view.component.VisitDay;
+	import view.component.VisitHours;
+	import view.manager.bookings.BookingListMediator;
 	import view.manager.main.ConfirmBookingWindowMediator;
 	import view.manager.main.CustomerListMediator;
 	import view.manager.main.VisitDayMediator;
@@ -42,6 +45,15 @@ package view
 	public class ManagerMainMediator extends Mediator implements IMediator{
 		public static const NAME:String = "ManagerMainMediator";
 		public static const USER_TYPE:String = "managers";
+		
+		public static const NAME_VISIT_LOCATION_MEDIATOR_MAIN:String = "VisitLocationMediatorMain";
+		public static const NAME_VISIT_DAY_MEDIATOR_MAIN:String = "VisitDayMediatorMain";
+		
+		public static const NAME_VISIT_LOCATION_MEDIATOR_SHOWBOOKING:String = "VisitLocationMediatorShowBooking";
+		public static const NAME_VISIT_DAY_MEDIATOR_SHOWBOOKING:String = "VisitDayMediatorShowBooking";
+		
+		public static const NAME_BOOKING_LIST_MEDIATOR:String = "BookingListMediator";
+				
 		public var manager:Manager;
 		private var confirmBookingTitleWindow:TitleWindow;
 		
@@ -49,7 +61,6 @@ package view
 			super(NAME, viewComponent);
 			managerMain.addEventListener(FlexEvent.CREATION_COMPLETE, init);
 			managerMain.addEventListener(managerMain.SETTINGS_MANAGER_CREATED, registerSettingsManager);
-			
 		}
 		
 		private function showConfirmBooking(event:Event):void{
@@ -103,16 +114,17 @@ package view
 		private function goToShowBooking(evt:Event):void{
 			CursorManager.setBusyCursor();
 			managerMain.currentState = "stateShowBooking";
-			CursorManager.removeBusyCursor();
+			CursorManager.removeBusyCursor();			
 			
-			var mediatorNameLocationsInAccordion:String = "LocationsInAccordionMediatorShowBooking";
-			facade.registerMediator(new VisitLocationMediator(mediatorNameLocationsInAccordion,managerMain.cmpLocations));
-			
+			facade.registerMediator(new VisitLocationMediator(NAME_VISIT_LOCATION_MEDIATOR_SHOWBOOKING,managerMain.cmpLocations));			
 			sendNotification(ApplicationFacade.GET_LOCATION_LIST);
 			managerMain.cmpLocations.boxSede.enabled = true;
+			managerMain.cmpCalendar.boxDay.enabled = true;
+						
+			facade.registerMediator(new VisitDayMediator(NAME_VISIT_DAY_MEDIATOR_SHOWBOOKING,managerMain.cmpCalendar));
+			facade.registerMediator(new BookingListMediator(NAME_BOOKING_LIST_MEDIATOR, managerMain.cmpBookingList));
 			
-			var mediatorNameVisitDay:String = "VisitDayMediatorShowBooking";			
-			facade.registerMediator(new VisitDayMediator(mediatorNameVisitDay,managerMain.cmpCalendar));
+			facade.registerCommand(ApplicationFacade.GET_BOOKING_LIST, BookingGetListCommand);
 		}
 		
 		private function doLogout(evt:Event):void{
@@ -125,21 +137,23 @@ package view
 			managerMain.cmpControlBar.btnLogout.addEventListener(MouseEvent.CLICK, doLogout);
 			managerMain.cmpControlBar.btnHome.addEventListener(MouseEvent.CLICK, goToHome);
 			managerMain.cmpControlBar.btnShowVisit.addEventListener(MouseEvent.CLICK, goToShowBooking);
+			
 			facade.registerMediator(new CustomerListMediator(managerMain.cmpCustomerList));
 			
-			var mediatorNameLocationsInAccordion:String = "LocationsInAccordionMediatorMain";			 
-			facade.registerMediator(new VisitLocationMediator(mediatorNameLocationsInAccordion,managerMain.cmpVisitProperties.cmpLocations));
-			
-			var mediatorNameVisitDay:String = "VisitDayMediatorMain";			
-			facade.registerMediator(new VisitDayMediator(mediatorNameVisitDay,managerMain.cmpVisitProperties.cmpVisitDay));
-			
+			facade.registerMediator(new VisitLocationMediator(NAME_VISIT_LOCATION_MEDIATOR_MAIN,managerMain.cmpVisitProperties.cmpLocations));
+			facade.registerMediator(new VisitDayMediator(NAME_VISIT_DAY_MEDIATOR_MAIN,managerMain.cmpVisitProperties.cmpVisitDay));
 			facade.registerMediator(new VisitHoursMediator(managerMain.cmpVisitProperties.cmpVisitHours));
+			
 			facade.registerCommand(ApplicationFacade.GET_CUSTOMER_LIST,CustomerGetListCommand);			
-			facade.registerCommand(ApplicationFacade.GET_LOCATION_LIST, LocationGetListCommand);
-			facade.registerCommand(ApplicationFacade.BOOKING_ADD, BookingAddCommand);
+			
+			facade.registerCommand(ApplicationFacade.GET_LOCATION_LIST, LocationGetListCommand)
 			facade.registerCommand(ApplicationFacade.GET_BUSY_HOURS, GetBusyHoursCommand);
+			
+			facade.registerCommand(ApplicationFacade.BOOKING_ADD, BookingAddCommand);
+			
 			facade.sendNotification(ApplicationFacade.GET_CUSTOMER_LIST);
 			facade.sendNotification(ApplicationFacade.GET_LOCATION_LIST);
+			
 			managerMain.cmpCustomerList.btnBooking.addEventListener(MouseEvent.CLICK, showConfirmBooking);
 		}	
 		
@@ -196,7 +210,6 @@ package view
 				ApplicationFacade.MANAGER_LOGOUT_SUCCESS,
 				ApplicationFacade.MANAGER_LOGIN_FAULT,
 				ApplicationFacade.CUSTOMER_SELECTED,
-
 			];
 		}		
 		
