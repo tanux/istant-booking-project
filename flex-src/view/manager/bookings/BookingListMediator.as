@@ -38,6 +38,7 @@ package view.manager.bookings
 						}	
 					}
 					else{
+						bookingListCmp.customerList.removeAll();
 						Alert.show("Non ci sono prenotazioni per la data selezionata");
 					}
 					CursorManager.removeBusyCursor();					
