@@ -154,7 +154,17 @@
 			protected function clearButton_cb_changeHandler(event:Event):void
 			{			
 				logger.info('textInput.showCancelButton = ');
-			}		
+			}	
+			
+			//////ABILITA TASTO P////////
+			import view.component.VisitLocations;
+			private function bookingEnableButton():void
+			{
+				//if (loc == true)
+					//btnBooking.enabled = true;
+				//else
+					//btnBooking.enabled = false;
+			}
 		]]>
 	</fx:Script>
 	
@@ -253,7 +263,7 @@
 		<mx:Button id="btnSave" icon="@Embed(source='assets/images/save.png')" downIcon="@Embed(source='assets/images/save_little.png')"
 				   width="45" height="40" enabled="false"/>		
 		<mx:Button id="btnBooking" icon="@Embed(source='assets/images/prenota.png')" downIcon="@Embed(source='assets/images/prenota_little.png')"
-				   width="45" height="40" />
+				   width="45" height="40" enabled="false"/>
 	</mx:HBox>
 
 </mx:VBox>

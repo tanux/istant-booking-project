@@ -14,8 +14,11 @@
 			public static const LOCATION_SELECTED:String = "LocationSelected";			
 			[Bindable]public var locationList:ArrayCollection;
 			[Bindable]public var locationSelected:Location = new Location();
+			[Bindable]public var loc: Boolean = false;
+
 			public function selectLocation():void{
 				dispatchEvent(new Event( LOCATION_SELECTED ));
+				loc = true;
 			}	
 			
 		]]>
