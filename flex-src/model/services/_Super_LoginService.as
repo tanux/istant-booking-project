@@ -45,7 +45,7 @@ internal class _Super_LoginService extends com.adobe.fiber.services.wrapper.Remo
         _serviceControl.convertResultHandler = com.adobe.serializers.utility.TypeUtility.convertResultHandler;
         _serviceControl.source = "LoginService";
         _serviceControl.endpoint = "http://localhost/IstantBookingProject/public/gateway.php";
-
+		//_serviceControl.endpoint = "http://oculistacoppola.orgfree.com/IstantBookingProject/public/gateway.php";
 
          preInitializeService();
          model_internal::initialize();

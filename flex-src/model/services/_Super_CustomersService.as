@@ -48,7 +48,7 @@ internal class _Super_CustomersService extends com.adobe.fiber.services.wrapper.
         _serviceControl.convertResultHandler = com.adobe.serializers.utility.TypeUtility.convertResultHandler;
         _serviceControl.source = "CustomersService";
         _serviceControl.endpoint = "http://localhost/IstantBookingProject/public/gateway.php";
-
+		//_serviceControl.endpoint = "http://oculistacoppola.orgfree.com/IstantBookingProject/public/gateway.php";
 
          preInitializeService();
          model_internal::initialize();

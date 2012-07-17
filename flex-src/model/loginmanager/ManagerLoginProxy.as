@@ -58,7 +58,7 @@ package model.loginmanager
 		private function onFault(evt:FaultEvent):void{			
 			var message:String = "ID: "+evt.messageId+" Message: "+evt.message.toString();
 			sendNotification(ApplicationFacade.MANAGER_LOGIN_FAULT, message);
-			Alert.show("Login Fault");
+			Alert.show("Login Fault Detail: "+evt.fault.faultDetail);
 		}
 	}
 }
