@@ -156,15 +156,6 @@
 				logger.info('textInput.showCancelButton = ');
 			}	
 			
-			//////ABILITA TASTO P////////
-			import view.component.VisitLocations;
-			private function bookingEnableButton():void
-			{
-				//if (loc == true)
-					//btnBooking.enabled = true;
-				//else
-					//btnBooking.enabled = false;
-			}
 		]]>
 	</fx:Script>
 	
