@@ -12,7 +12,7 @@
 		
 		<mx:StringValidator id="firtnameValidator"
 							source="{tiFirstname}" property="text"
-							minLength="3" maxLength="25" />
+							minLength="3" maxLength="25"  />
 		<mx:StringValidator id="lastnameValidator"
 							source="{tiLastname}" property="text"
 							minLength="3" maxLength="25" />

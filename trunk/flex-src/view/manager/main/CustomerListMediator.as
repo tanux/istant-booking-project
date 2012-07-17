@@ -43,6 +43,9 @@ package view.manager.main
 			customerListCmp.btnAddUser.enabled = false;
 			customerListCmp.btnDelUser.enabled = false;
 			customerListCmp.btnSave.enabled = false;
+			customerListCmp.abilitaAdd=true;
+			customerListCmp.dgCustomerList.selectedIndex = null;
+			
 		}
 		
 		public function addCustomer(evt:Event): void{
@@ -110,6 +113,7 @@ package view.manager.main
 					customerListCmp.abilitaAdd=true;
 					customerListCmp.btnSave.enabled = false;
 					customerListCmp.btnDelUser.enabled = false;
+					customerListCmp.dgCustomerList.selectedIndex = null;
 					break;
 				case ApplicationFacade.CUSTOMER_SAVE_CHANGES_ERROR:
 					Alert.show("Errore nel salvataggio");
@@ -127,6 +131,7 @@ package view.manager.main
 					resetTextInput();
 					customerListCmp.btnDelUser.enabled = false;
 					customerListCmp.abilitaAdd=true;
+					customerListCmp.dgCustomerList.selectedIndex = -1;
 					break;
 				case ApplicationFacade.CUSTOMER_DELETE_ERROR:
 					Alert.show("Errore delete");
