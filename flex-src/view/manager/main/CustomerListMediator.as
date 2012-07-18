@@ -28,6 +28,7 @@ package view.manager.main
 	public class CustomerListMediator extends Mediator implements IMediator{
 		public static const NAME:String = "CustomerListMediator";
 		[Bindable]private var customerInList:CustomerInList;
+		[Bindalbe] public var custom:Boolean = false;
 		
 		public function CustomerListMediator(viewComponent:Object){
 			super(NAME, viewComponent);
@@ -105,7 +106,7 @@ package view.manager.main
 					customerListCmp.tiLastname.showCancelButton = true;
 					customerListCmp.tiEmail.showCancelButton = true;
 					customerListCmp.tiTelephoneNumber.showCancelButton = true;
-					
+					custom = true;					
 					break;
 				case ApplicationFacade.CUSTOMER_SAVE_CHANGES_SUCCESS:
 					notify('default', 'Successo', 'L\'operazione è andata a buon fine', customerListCmp.successIcon, 5000);

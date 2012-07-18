@@ -31,6 +31,7 @@ package view.manager.main
 		}
 		
 		private function detectSelectedDate(event:CalendarLayoutChangeEvent):void{
+			sendNotification(ApplicationFacade.DATE_SELECTED);
 			if (event.currentTarget.selectedDate == null) {
 				return 
 			}
@@ -52,7 +53,6 @@ package view.manager.main
 			}
 			CursorManager.setBusyCursor();	
 			day=true;
-			Alert.show("Giorno selezionato");
 		}
 		
 		override public function handleNotification(notification:INotification):void{ 

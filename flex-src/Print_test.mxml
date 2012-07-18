@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!-- printing\DGPrint.mxml -->
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml">
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:component="view.component.*">
 	
 	<mx:Script>
 		<![CDATA[
@@ -15,7 +15,7 @@
 				if (printJob.start() != true) return;
 				
 				// Add the object to print. Do not scale it.
-				printJob.addObject(myDataGrid, FlexPrintJobScaleType.NONE);
+				printJob.addObject(print, FlexPrintJobScaleType.NONE);
 				
 				// Send the job to the printer.
 				printJob.send();
@@ -23,17 +23,7 @@
 		]]>
 	</mx:Script>
 	
-	<mx:VBox id="myVBox">
-		<mx:DataGrid id="myDataGrid" width="300">
-			<mx:dataProvider>
-				<mx:Object Product="Flash" Code="1000"/>
-				<mx:Object Product="Flex" Code="2000"/>
-				<mx:Object Product="ColdFusion" Code="3000"/>
-				<mx:Object Product="JRun" Code="4000"/>
-			</mx:dataProvider>
-		</mx:DataGrid>
-		<mx:Button id="myButton" 
-				   label="Print" 
-				   click="doPrint();"/>
-	</mx:VBox>
+	<component:PrintBookingList id="print">
+		
+	</component:PrintBookingList>
 </mx:Application>

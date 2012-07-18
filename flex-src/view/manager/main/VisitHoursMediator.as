@@ -13,6 +13,7 @@ package view.manager.main
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	
+	import view.ManagerMainMediator;
 	import view.component.VisitHours;
 	
 	public class VisitHoursMediator extends Mediator{
@@ -25,12 +26,13 @@ package view.manager.main
 		}
 		
 		private function handleHour(event:ItemClickEvent):void {
+			sendNotification(ApplicationFacade.HOUR_SELECTED);
 			visitHourCmp.hourSelected = new SelectedHour();
 			visitHourCmp.hourSelected.hour = event.currentTarget.selectedValue.hour;
 			visitHourCmp.hourSelected.index = event.currentTarget.selectedValue.index;
 			visitHourCmp.hourSelected.busy = true;
+			var visitDayMediator:VisitDayMediator = facade.retrieveMediator(ManagerMainMediator.NAME_VISIT_DAY_MEDIATOR_MAIN) as VisitDayMediator;
 			hour=true;
-			Alert.show("Ora selezionata");
 		}
 		
 		override public function handleNotification(notification:INotification):void{ 
