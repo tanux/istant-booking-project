@@ -24,7 +24,6 @@ package view.manager.main
 		private function notifyLocationSelected(evt:Event):void{
 			sendNotification(ApplicationFacade.LOCATION_SELECTED_MAIN, visitDayCmp.locationSelected);
 			sendNotification(ApplicationFacade.GET_NO_AVAILABLE_DAY, visitDayCmp.locationSelected);
-			//sendNotification(ApplicationFacade.ACTIVATE_BTN_BOOKING,
 		}
 		
 		override public function handleNotification(notification:INotification):void{ 
@@ -38,7 +37,6 @@ package view.manager.main
 					break;
 				case ApplicationFacade.LOCATION_SELECTED_MAIN:
 					loc=true;
-					Alert.show("Location Selezionata");
 					break;
 			}
 		}               

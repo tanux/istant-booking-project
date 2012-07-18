@@ -58,9 +58,7 @@ package view
 		public var manager:Manager;
 		private var confirmBookingTitleWindow:TitleWindow;
 		
-		private var visitLocationMediator: VisitLocationMediator;
-		private var visitDayMediator: VisitDayMediator;
-		private var visitHoursMediator: VisitHoursMediator;
+		
 		
 		public function ManagerMainMediator(viewComponent:Object){
 			super(NAME, viewComponent);
@@ -69,17 +67,30 @@ package view
 		}
 
 		private function checkDataBooking (event:Event):void{
-			
-			if (visitLocationMediator.loc==true){
-				if(visitDayMediator.day==true){
-					if(visitHoursMediator.hour==true){
-						showConfirmBooking();
-					}else
-						Alert.show("ATTENZIONE! Ora non selezionata!");
-				}else
-					Alert.show("ATTENZIONE! Giorno non selezionato!");				
-			}else
-				Alert.show("ATTENZIONE! Sede non selezionata!");
+			var customerListMediator:CustomerListMediator = facade.retrieveMediator(CustomerListMediator.NAME) as CustomerListMediator;
+			if (customerListMediator.custom){
+				var visitLocationMediator: VisitLocationMediator = facade.retrieveMediator(NAME_VISIT_LOCATION_MEDIATOR_MAIN) as VisitLocationMediator;
+				if (visitLocationMediator.loc){
+					var visitDayMediator: VisitDayMediator = facade.retrieveMediator(NAME_VISIT_DAY_MEDIATOR_MAIN) as VisitDayMediator;
+					if(visitDayMediator.day){
+						var visitHoursMediator: VisitHoursMediator = facade.retrieveMediator(VisitHoursMediator.NAME) as VisitHoursMediator;
+						if(visitHoursMediator.hour){
+							showConfirmBooking();
+						}
+						else{
+							Alert.show("ATTENZIONE! Ora non selezionata!");
+						}
+					}
+					else{
+						Alert.show("ATTENZIONE! Giorno non selezionato!");
+					}
+				}else{
+					Alert.show("ATTENZIONE! Sede non selezionata!");
+				}
+			}
+			else {
+				Alert.show("ATTENZIONE! Devi selezionare un utente per poter prenotare");
+			}			
 		}
 		
 		private function showConfirmBooking():void{
@@ -215,7 +226,11 @@ package view
 					break;
 				case ApplicationFacade.CUSTOMER_SELECTED:
 					managerMain.cmpVisitProperties.cmpLocations.boxSede.enabled = true;
+					break;
+				case ApplicationFacade.LOCATION_SELECTED_MAIN:
 					managerMain.cmpVisitProperties.cmpVisitDay.boxDay.enabled = true;
+					break;
+				case ApplicationFacade.DATE_SELECTED:
 					managerMain.cmpVisitProperties.cmpVisitHours.vbHours.enabled = true;
 					break;
 			}
@@ -231,7 +246,7 @@ package view
 				ApplicationFacade.MANAGER_LOGIN_FAULT,
 				ApplicationFacade.CUSTOMER_SELECTED,
 				ApplicationFacade.LOCATION_SELECTED_MAIN,
-				
+				ApplicationFacade.DATE_SELECTED,
 			];
 		}		
 		

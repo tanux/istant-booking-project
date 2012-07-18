@@ -5,18 +5,8 @@
 	<fx:Script>
 		<![CDATA[
 			import mx.collections.ArrayCollection;
-			[Bindable]public var customerList:ArrayCollection;
+			[Bindable]public var customerList:ArrayCollection;			
 			
-			import mx.printing.*;
-		
-			
-			private function doPrint():void {
-				var printJob:FlexPrintJob = new FlexPrintJob();
-				if (printJob.start() != true) 
-					return;
-				printJob.addObject(boxExternal, FlexPrintJobScaleType.SHOW_ALL);			
-				printJob.send();
-			}
 			
 			//RICERCA	
 			private function filterPhrase():void{
@@ -76,7 +66,7 @@
 			</mx:DataGrid>
 		</mx:Canvas>
 	</mx:VBox>
-	<!--Test-->
+	
 	<mx:HBox width="100%" horizontalAlign="center" verticalAlign="top">
 		<mx:Canvas width="33.4%">
 			<mx:Box horizontalAlign="left" width="100%">
@@ -91,10 +81,10 @@
 					   width="45" height="40"/>
 			<mx:Button id="btnDeleteAllUser" icon="@Embed(source='assets/images/delete_multi_user.png')" downIcon="@Embed(source='assets/images/delete_multi_user_little.png')"
 					   width="45" height="40"/>
-			<mx:Button icon="@Embed(source='assets/images/print.png')" downIcon="@Embed(source='assets/images/print_little.png')"
-					   width="45" height="40" click="doPrint()"/>
+			<mx:Button id="btnPrintBookingList" icon="@Embed(source='assets/images/print.png')" downIcon="@Embed(source='assets/images/print_little.png')"
+					   width="45" height="40" />
 		</mx:HBox>
 	</mx:HBox>
-	<!--End test -->
+	
 </mx:VBox>
 	

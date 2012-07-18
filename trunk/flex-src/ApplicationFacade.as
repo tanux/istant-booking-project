@@ -109,6 +109,8 @@ package
 		public static const GET_BOOKING_LIST_ERROR:String = "GetBookingListError";
 		public static const GET_BOOKING_LIST_FAULT:String = "GetBookingListFault";
 		
+		public static const DATE_SELECTED:String = "DateSelected";
+		public static const HOUR_SELECTED:String = "HourSelected";
 		public static const GET_BUSY_HOURS:String = "GetBusyHours";
 		public static const GET_BUSY_HOURS_SUCCESS:String = "GetBusyHoursSuccess";
 		public static const GET_BUSY_HOURS_ERROR:String = "GetBusyHoursError";
