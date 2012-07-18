@@ -23,6 +23,7 @@ package view
 	import mx.collections.ArrayCollection;
 	import mx.containers.TitleWindow;
 	import mx.controls.Alert;
+	import mx.core.Application;
 	import mx.events.FlexEvent;
 	import mx.managers.CursorManager;
 	import mx.managers.PopUpManager;
@@ -62,7 +63,7 @@ package view
 			managerMain.addEventListener(FlexEvent.CREATION_COMPLETE, init);
 			managerMain.addEventListener(managerMain.SETTINGS_MANAGER_CREATED, registerSettingsManager);
 		}
-		
+
 		private function showConfirmBooking(event:Event):void{
 			confirmBookingTitleWindow = PopUpManager.createPopUp(managerMain, ConfirmBookingWindow, true) as TitleWindow;			
 			PopUpManager.centerPopUp(confirmBookingTitleWindow);
@@ -132,6 +133,15 @@ package view
 			facade.sendNotification(ApplicationFacade.MANAGER_DO_LOGOUT);
 		}
 		
+		//////////////////////
+		private function enabledBtnBooking():void{
+			facade.registerMediator(new VisitLocationMediator(NAME_VISIT_LOCATION_MEDIATOR_MAIN,managerMain.cmpVisitProperties.cmpLocations));
+			var visitLocationMediator: VisitLocationMediator;
+			
+			if (visitLocationMediator.loc==true)
+				managerMain.cmpCustomerList.btnBooking.enabled = true;
+		}
+		/////////////////////
 		private function changeStateManager():void{
 			managerMain.cmpControlBar.btnSettings.addEventListener(MouseEvent.CLICK, goToSetting);
 			managerMain.cmpControlBar.btnLogout.addEventListener(MouseEvent.CLICK, doLogout);
@@ -199,6 +209,9 @@ package view
 					managerMain.cmpVisitProperties.cmpVisitDay.boxDay.enabled = true;
 					managerMain.cmpVisitProperties.cmpVisitHours.vbHours.enabled = true;
 					break;
+				case ApplicationFacade.ACTIVATE_BTN_BOOKING:
+					enabledBtnBooking();
+					break;
 			}
 		}
 		
@@ -211,6 +224,9 @@ package view
 				ApplicationFacade.MANAGER_LOGOUT_SUCCESS,
 				ApplicationFacade.MANAGER_LOGIN_FAULT,
 				ApplicationFacade.CUSTOMER_SELECTED,
+				ApplicationFacade.ACTIVATE_BTN_BOOKING,
+				ApplicationFacade.LOCATION_SELECTED_MAIN,
+				
 			];
 		}		
 		

@@ -23,6 +23,8 @@ package view.manager.main
 	public class VisitDayMediator extends Mediator implements IMediator{
 		private var counter_date_inserted:int = 0;
 		private var locationSelected:Location;		
+		[Bindable] public var day: Boolean = false;
+		
 		public function VisitDayMediator(mediatorName:String, viewComponent:Object){
 			super(mediatorName, viewComponent);
 			visitDayCmp.calendar.addEventListener(CalendarLayoutChangeEvent.CHANGE, detectSelectedDate);
@@ -48,7 +50,9 @@ package view.manager.main
 				}
 				else return;
 			}
-			CursorManager.setBusyCursor();					
+			CursorManager.setBusyCursor();	
+			day=true;
+			Alert.show("Giorno selezionato");
 		}
 		
 		override public function handleNotification(notification:INotification):void{ 

@@ -17,6 +17,7 @@ package view.manager.main
 	
 	public class VisitHoursMediator extends Mediator{
 		public static const NAME:String = "VisitHourMediator";
+		[Bindable] public var hour: Boolean = false;
 		
 		public function VisitHoursMediator(viewComponent:Object){
 			super(NAME, viewComponent);
@@ -28,6 +29,8 @@ package view.manager.main
 			visitHourCmp.hourSelected.hour = event.currentTarget.selectedValue.hour;
 			visitHourCmp.hourSelected.index = event.currentTarget.selectedValue.index;
 			visitHourCmp.hourSelected.busy = true;
+			hour=true;
+			Alert.show("Ora selezionata");
 		}
 		
 		override public function handleNotification(notification:INotification):void{ 
