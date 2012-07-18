@@ -14,7 +14,7 @@
 				var printJob:FlexPrintJob = new FlexPrintJob();
 				if (printJob.start() != true) 
 					return;
-				printJob.addObject(dgRisultati, FlexPrintJobScaleType.SHOW_ALL);			
+				printJob.addObject(boxExternal, FlexPrintJobScaleType.SHOW_ALL);			
 				printJob.send();
 			}
 			
@@ -56,7 +56,7 @@
 		]]>
 	</fx:Script>	
 	
-	<mx:VBox height="100%" width="100%" textAlign="left" verticalAlign="middle" paddingTop="4" 
+	<mx:VBox id="boxExternal" height="100%" width="100%" textAlign="left" verticalAlign="middle" paddingTop="4" 
 			 backgroundColor="#6699cc" cornerRadius="8" borderStyle="solid">
 		<mx:HBox >
 			<mx:Box horizontalAlign="left" width="80%" verticalAlign="middle">
