@@ -2,6 +2,7 @@ package view.manager.bookings
 {
 	import com.adobe.serializers.json.JSONDecoder;
 	
+	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
 	import mx.collections.ArrayCollection;
@@ -26,7 +27,7 @@ package view.manager.bookings
 			bookingListCmp.btnPrintBookingList.addEventListener(MouseEvent.CLICK, printBookingList);
 		}
 		
-		private function printBookingList():void {
+		private function printBookingList(evt:Event):void {
 			var printJob:FlexPrintJob = new FlexPrintJob();
 			if (printJob.start()){
 				var formPrintBookingList:PrintBookingList = new PrintBookingList();
