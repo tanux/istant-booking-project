@@ -58,20 +58,28 @@ package view
 		public var manager:Manager;
 		private var confirmBookingTitleWindow:TitleWindow;
 		
+		private var visitLocationMediator: VisitLocationMediator;
+		private var visitDayMediator: VisitDayMediator;
+		private var visitHoursMediator: VisitHoursMediator;
+		
 		public function ManagerMainMediator(viewComponent:Object){
 			super(NAME, viewComponent);
 			managerMain.addEventListener(FlexEvent.CREATION_COMPLETE, init);
-			managerMain.addEventListener(managerMain.SETTINGS_MANAGER_CREATED, registerSettingsManager);
+			managerMain.addEventListener(managerMain.SETTINGS_MANAGER_CREATED, registerSettingsManager);	
 		}
 
 		private function checkDataBooking (event:Event):void{
-			//facade.registerMediator(new VisitLocationMediator(NAME_VISIT_LOCATION_MEDIATOR_MAIN,managerMain.cmpVisitProperties.cmpLocations));
-			var visitLocationMediator: VisitLocationMediator;
 			
-			if (visitLocationMediator.loc!=true){
-				showConfirmBooking();
+			if (visitLocationMediator.loc==true){
+				if(visitDayMediator.day==true){
+					if(visitHoursMediator.hour==true){
+						showConfirmBooking();
+					}else
+						Alert.show("ATTENZIONE! Ora non selezionata!");
+				}else
+					Alert.show("ATTENZIONE! Giorno non selezionato!");				
 			}else
-				Alert.show("ATTENZIONE! Uno dei campi non è stato selezionato, controllare e riprovare");
+				Alert.show("ATTENZIONE! Sede non selezionata!");
 		}
 		
 		private function showConfirmBooking():void{
