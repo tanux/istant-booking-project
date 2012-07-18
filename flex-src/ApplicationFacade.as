@@ -113,9 +113,7 @@ package
 		public static const GET_BUSY_HOURS_SUCCESS:String = "GetBusyHoursSuccess";
 		public static const GET_BUSY_HOURS_ERROR:String = "GetBusyHoursError";
 		public static const GET_BUSY_HOURS_FAULT:String = "GetBusyHoursFault";
-		
-		public static const ACTIVATE_BTN_BOOKING:String = "ActivateBtnBooking";
-		
+
 		public static function getInstance() : ApplicationFacade{
 			if (instance == null)
 				instance = new ApplicationFacade();
