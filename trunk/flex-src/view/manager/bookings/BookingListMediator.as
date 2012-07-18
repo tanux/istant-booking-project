@@ -27,7 +27,7 @@ package view.manager.bookings
 			bookingListCmp.btnPrintBookingList.addEventListener(MouseEvent.CLICK, printBookingList);
 		}
 		
-		private function printBookingList(evt:Event):void {
+		private function printBookingList(evt:MouseEvent):void {
 			var printJob:FlexPrintJob = new FlexPrintJob();
 			if (printJob.start()){
 				var formPrintBookingList:PrintBookingList = new PrintBookingList();
