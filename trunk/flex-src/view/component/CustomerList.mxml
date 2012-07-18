@@ -254,7 +254,7 @@
 		<mx:Button id="btnSave" icon="@Embed(source='assets/images/save.png')" downIcon="@Embed(source='assets/images/save_little.png')"
 				   width="45" height="40" enabled="false"/>		
 		<mx:Button id="btnBooking" icon="@Embed(source='assets/images/prenota.png')" downIcon="@Embed(source='assets/images/prenota_little.png')"
-				   width="45" height="40" enabled="false"/>
+				   width="45" height="40" enabled="true"/>
 	</mx:HBox>
 
 </mx:VBox>
