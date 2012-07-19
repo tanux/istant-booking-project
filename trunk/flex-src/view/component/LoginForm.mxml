@@ -12,7 +12,7 @@
 			
 		<mx:FormItem paddingRight="15" id="fiPassword" width="100%" horizontalAlign="center">
 			<mx:Text id="txtPassword" color="#000000" fontStyle="italic" text="Password" />	
-			<component:TIClearOnClick id="tiPassword" text="pwd" color="#000000"/>				
+			<component:TIClearOnClick id="tiPassword" text="pwd" color="#000000" displayAsPwd="true" />				
 		</mx:FormItem>		
 		
 	</mx:Form>
