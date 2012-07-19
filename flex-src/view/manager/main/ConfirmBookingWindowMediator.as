@@ -56,7 +56,7 @@ package view.manager.main
 					CursorManager.removeBusyCursor();
 					Alert.show("Prenotazione Inviata");
 					facade.removeMediator(ConfirmBookingWindowMediator.NAME);
-					PopUpManager.removePopUp(confirmBookingWindow);
+					PopUpManager.removePopUp(confirmBookingWindow);			
 					break;
 				case ApplicationFacade.BOOKING_ADD_ERROR:
 					CursorManager.removeBusyCursor();
