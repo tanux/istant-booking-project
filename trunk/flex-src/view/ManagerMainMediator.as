@@ -233,6 +233,27 @@ package view
 				case ApplicationFacade.DATE_SELECTED:
 					managerMain.cmpVisitProperties.cmpVisitHours.vbHours.enabled = true;
 					break;
+				case ApplicationFacade.BOOKING_ADD_SUCCESS:
+					managerMain.cmpVisitProperties.cmpLocations.boxSede.enabled = false;
+					managerMain.cmpVisitProperties.cmpVisitDay.boxDay.enabled = false;
+					managerMain.cmpVisitProperties.cmpVisitHours.vbHours.enabled = false;
+					
+					
+					var visitLocationMediator: VisitLocationMediator = facade.retrieveMediator(NAME_VISIT_LOCATION_MEDIATOR_MAIN) as VisitLocationMediator;
+					visitLocationMediator.loc = false;
+					
+					var visitDayMediator: VisitDayMediator = facade.retrieveMediator(NAME_VISIT_DAY_MEDIATOR_MAIN) as VisitDayMediator;
+					visitDayMediator.day = false;
+					
+					var visitHoursMediator: VisitHoursMediator = facade.retrieveMediator(VisitHoursMediator.NAME) as VisitHoursMediator;
+					visitHoursMediator.hour = false;
+					Alert.show("BOOKING ADD IN MAIN MEDIATOR OK");
+					
+					var customerListMediator: CustomerListMediator = facade.retrieveMediator(CustomerListMediator.NAME) as CustomerListMediator;
+					customerListMediator.customerListCmp.dgCustomerList.selectedIndex = -1;
+					customerListMediator.resetTextInput();
+					
+					break;
 			}
 		}
 		
@@ -247,6 +268,7 @@ package view
 				ApplicationFacade.CUSTOMER_SELECTED,
 				ApplicationFacade.LOCATION_SELECTED_MAIN,
 				ApplicationFacade.DATE_SELECTED,
+				ApplicationFacade.BOOKING_ADD_SUCCESS
 			];
 		}		
 		

@@ -114,7 +114,7 @@ package view.manager.main
 					customerListCmp.abilitaAdd=true;
 					customerListCmp.btnSave.enabled = false;
 					customerListCmp.btnDelUser.enabled = false;
-					customerListCmp.dgCustomerList.selectedIndex = null;
+					customerListCmp.dgCustomerList.selectedIndex = -1;
 					break;
 				case ApplicationFacade.CUSTOMER_SAVE_CHANGES_ERROR:
 					Alert.show("Errore nel salvataggio");
@@ -141,7 +141,7 @@ package view.manager.main
 
 		}
 		
-		private function resetTextInput():void{
+		public function resetTextInput():void{
 			customerListCmp.tiFirstname.text = "Nome" as String;
 			customerListCmp.tiFirstname.showCancelButton = false;
 			
