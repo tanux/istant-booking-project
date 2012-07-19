@@ -6,7 +6,7 @@
 		<![CDATA[
 			import mx.collections.ArrayCollection;
 			[Bindable]public var customerList:ArrayCollection;			
-			
+			[Bindable]public var visibleBtnDel: Boolean = false;
 			
 			//RICERCA	
 			private function filterPhrase():void{
@@ -78,9 +78,9 @@
 		</mx:Canvas>
 		<mx:HBox verticalAlign="middle" horizontalAlign="right" width="66.6%">
 			<mx:Button id="btnDeleteUser" icon="@Embed(source='assets/images/delete_user.png')" downIcon="@Embed(source='assets/images/delete_user_little.png')"
-					   width="45" height="40"/>
+					   width="45" height="40" visible="{visibleBtnDel}"/>
 			<mx:Button id="btnDeleteAllUser" icon="@Embed(source='assets/images/delete_multi_user.png')" downIcon="@Embed(source='assets/images/delete_multi_user_little.png')"
-					   width="45" height="40"/>
+					   width="45" height="40" visible="{visibleBtnDel}"/>
 			<mx:Button id="btnPrintBookingList" icon="@Embed(source='assets/images/print.png')" downIcon="@Embed(source='assets/images/print_little.png')"
 					   width="45" height="40" />
 		</mx:HBox>
