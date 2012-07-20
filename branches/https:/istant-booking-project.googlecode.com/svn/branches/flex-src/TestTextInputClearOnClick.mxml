@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!-- validators\PNValidator.mxml -->
+<mx:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:mx="library://ns.adobe.com/flex/mx"
+				xmlns:component="view.component.*">
+	
+	<fx:Declarations>
+		<mx:PhoneNumberValidator id="pnV" 
+								 source="{tiTelephoneNumber.textInput}" property="text" required="true"
+								 valid="telNumbValid(event)" invalid="telNumbValid(event)"/>
+		<mx:EmailValidator id="emV" source="{tiEmail.textInput}" property="text" required="true"
+						   valid="eMailValid(event)" invalid="eMailValid(event)"/>
+	</fx:Declarations>
+
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.events.ValidationResultEvent;
+			[Bindable] public var email: Boolean = false;
+			[Bindable] public var tel: Boolean = false;
+			private function eMailValid(eventObj:ValidationResultEvent):void {
+				if(eventObj.type==ValidationResultEvent.VALID){    
+					// Enable Submit button.
+					email = true;
+				}
+				else
+					email = false;
+				if (tel==true && email==true)
+					submitButton.enabled=true;
+			}
+			private function telNumbValid(eventObj:ValidationResultEvent):void {
+				if(eventObj.type==ValidationResultEvent.VALID)    
+					// Enable Submit button.
+					tel = true;
+				else
+					tel = false;
+				if (tel==true && email==true)
+					submitButton.enabled=true;
+			}
+			
+			
+			// Submit form is everything is valid. 
+			private function submitForm():void {
+				Alert.show("Form Submitted!");
+			}
+
+		]]>
+	</fx:Script>
+	
+	<mx:HBox>
+		<component:TIClearOnClick id="tiFirstname" text="Nome"/>
+		<component:TIClearOnClick id="tiLastname" text="Cognome"/>
+		<component:TIClearOnClick id="tiEmail" text="Email"/>
+		<component:TIClearOnClick id="tiTelephoneNumber" text="Telefono"/>
+		<mx:Button id="submitButton" enabled="false" click="submitForm()"/>
+	</mx:HBox>
+	
+	
+	
+	
+</mx:Application>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:mx="library://ns.adobe.com/flex/mx"
+				xmlns:s="library://ns.adobe.com/flex/spark"
+				xmlns:component="view.component.*"
+				width="100%" height="100%" layout="absolute"
+				xmlns:components="org.tylerchesley.bark.components.*"
+				xmlns:skins="assets.skins.ErrorNotificationSkins"
+				creationComplete="init();" xmlns:skins1="assets.skins.*">	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->		
+	</fx:Declarations>		
+	<fx:Style source="/assets/skins/flex_skins.css"/>	
+	<fx:Script>
+		<![CDATA[
+			import assets.skins.ErrorNotificationSkin;
+			
+			import model.vo.Manager;
+			
+			import mx.events.FlexEvent;
+			
+			import org.tylerchesley.bark.managers.NotificationManager;
+			
+			[Bindable] public var manager:Manager;			
+			private var facade:ApplicationFacade = ApplicationFacade.getInstance() as ApplicationFacade;
+			public var SETTINGS_MANAGER_CREATED:String = "SettingsManagerCreated";
+			private function init():void{	
+				facade.sendNotification(ApplicationFacade.STARTUP_MANAGER_APP, this); 
+				NotificationManager.initialize();
+			}
+			
+			protected function settingsManagerContent_creationCompleteHandler(event:FlexEvent):void	{
+				dispatchEvent(new Event(SETTINGS_MANAGER_CREATED));				
+			}
+		]]>
+	</fx:Script>
+	<fx:Style source="/assets/skins/bark.css"/>
+	<mx:states>
+		<s:State name="blankState" />
+		<s:State name="stateLogin" />
+		<s:State name="stateMainApplication" />
+		<s:State name="stateSettings" />
+		<s:State name="stateShowBooking" />
+	</mx:states>
+	
+	<mx:Image id="imgEye" styleName="imgEye" source="@Embed('/assets/images/occhio.png')" width="50%" height="50%"/>
+	
+	<mx:VBox id="vbExt" styleName="vbExt" width="100%" height="100%">
+		
+		<mx:Box styleName="vbExt" width="100%" height="100%" includeIn="stateLogin">
+			<component:LoginForm id="cmpLoginFormManager"/>			
+		</mx:Box>
+		
+		<mx:Box styleName="vbExt" width="100%" height="100%" includeIn="stateMainApplication,stateSettings, stateShowBooking"> 
+			
+			<component:ControlTopBar id="cmpControlBar" />
+			
+			<!-- Main Application -->
+			<mx:Box width="100%" height="100%" horizontalAlign="center" includeIn="stateMainApplication">
+				<component:VisitPropertiesAffiliateMain id="cmpVisitProperties" />
+				<mx:Box width="80%"	height="100%">	
+					<component:CustomerList id="cmpCustomerList"/>
+				
+				</mx:Box>
+			</mx:Box>
+			
+			<!-- Settings -->
+			<mx:Box id="settingsManagerContent" width="100%" height="100%" horizontalAlign="center" paddingTop="10" includeIn="stateSettings" creationComplete="settingsManagerContent_creationCompleteHandler(event)">
+				<mx:Accordion headerStyleName="accordionHeaderICandy" width="80%" height="100%" alpha="1.0" backgroundAlpha="0.0" borderStyle="none">
+					<mx:Canvas width="100%" height="100%" label="Management Location">
+						<component:ManagementLocation id="cmpManagementLocation" width="100%" color="black"/>
+					</mx:Canvas>
+					<mx:Canvas width="100%" height="100%" label="Management Affiliation" >
+						<component:ManagementAffiliation id="cmpManagementAffiliation" width="100%" color="black"/>
+					</mx:Canvas>
+					<mx:Canvas width="100%" height="100%" label="Booking History" >
+						<component:ManagementChronicles  width="100%" color="black"/>
+					</mx:Canvas>
+				</mx:Accordion>
+			</mx:Box>
+			
+			<!-- Show Booking -->
+			<mx:VBox width="100%" id="showBookingContent" height="100%" horizontalAlign="center" includeIn="stateShowBooking">
+				<mx:HBox width="80%" height="100%" horizontalAlign="center" verticalAlign="middle" paddingTop="5">
+					<mx:VBox width="30%" height="100%">
+						<component:VisitLocations id="cmpLocations" width="100%" height="50%" />						
+						<component:VisitDay id="cmpCalendar" width="100%" height="50%"/>
+					</mx:VBox>
+					<mx:VBox width="70%" height="100%" horizontalAlign="center" verticalAlign="middle">
+						<component:BookingList id="cmpBookingList" width="100%" height="50%" visibleBtnDel="true"/>
+						<component:BookingList id="cmpBookingList2" width="100%" height="50%"/>
+					</mx:VBox>	
+				</mx:HBox>								
+			</mx:VBox>	
+			
+		</mx:Box>
+	</mx:VBox>	
+</mx:Application>

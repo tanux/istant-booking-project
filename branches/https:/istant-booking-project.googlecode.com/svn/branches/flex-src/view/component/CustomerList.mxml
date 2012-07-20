@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"		 
+		 xmlns:component="view.component.*"
+		 xmlns:vo="vo.*"
+		 xmlns:ui="http://www.kapit.fr/flex3/ui"
+		 width="100%" height="100%">		 	
+	<fx:Declarations>
+		<fx:Object id="successIcon" icon="@Embed(source='assets/images/ok.png')" />
+		<fx:Object id="errorIcon" icon="@Embed(source='assets/images/error.png')" />
+		
+		<mx:StringValidator id="firtnameValidator"
+							source="{tiFirstname}" property="text"
+							minLength="3" maxLength="25"  />
+		<mx:StringValidator id="lastnameValidator"
+							source="{tiLastname}" property="text"
+							minLength="3" maxLength="25" />
+		<mx:EmailValidator  id="emailValidator" source="{tiEmail}" property="text" />
+		<mx:PhoneNumberValidator id="phoneValidator" source="{tiTelephoneNumber}"  property="text" />
+	</fx:Declarations>	
+	<fx:Script>
+		<![CDATA[			
+			
+			import model.vo.Customer;
+			import model.vo.CustomerInList;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.events.ListEvent;			
+						
+			private var facade:ApplicationFacade = ApplicationFacade.getInstance() as ApplicationFacade;
+			[Bindable]public var customerList:ArrayCollection;
+			[Bindable]public var customerSelected:Customer;
+			private function makeDataLabel(item:Object) : String {
+				var c:Customer = new Customer();
+				c.id = item.id;
+				c.firstName = item.firstname;
+				c.lastName = item.lastname;
+				c.email = item.email;
+				c.telephoneNumber = item.telephone_number;
+				return c.firstName + " " + c.lastName + " " + c.email;
+			}
+			
+			protected function dgCustomerList_itemClickHandler(event:ListEvent):void{				
+				var selectedRow:Object = event.currentTarget.selectedItem;
+				customerSelected = new Customer();
+				customerSelected.id = selectedRow.id;
+				customerSelected.firstName = selectedRow.firstname;
+				customerSelected.lastName = selectedRow.lastname;
+				customerSelected.email = selectedRow.email;
+				customerSelected.telephoneNumber = selectedRow.telephone_number;
+				var position:int = event.currentTarget.selectedIndex;
+				var customerInList:CustomerInList = new CustomerInList(customerSelected,position);				
+				facade.sendNotification(ApplicationFacade.CUSTOMER_SELECTED, customerInList);				
+			}
+			
+			import mx.rpc.events.FaultEvent;
+			import mx.collections.ArrayCollection;
+			import mx.rpc.events.ResultEvent;
+			import mx.controls.Alert;			
+			
+			private function getDataSuccess(returnedEvent:ResultEvent):void{
+				customerList = returnedEvent.result as ArrayCollection;
+				this.enabled = true;
+			}
+			
+			private function init():void{				
+				this.enabled = false;
+			}
+			
+			private function fault(f:FaultEvent):void{
+				Alert.show(f.fault.message as String);
+			}
+			
+			private function filterPhrase():void{
+				customerList.filterFunction = filterFirst;
+				customerList.refresh();
+			} 
+			
+			//if true it show results, if false it shows nothing
+			private function filterFirst(row:Object):Boolean
+			{
+				if(searchText.length == 0){
+					return true;
+				}
+				
+				var columnName:String;
+				var columnValue:String;
+				var keywords:Array = searchText.text.split(" ");
+				var wordFound:Boolean;
+				
+				// Loop Over Words
+				for(var word:int = 0; word < keywords.length; word++) {
+					wordFound = false;
+					// Loop Over Columns
+					for( var column:int = 0; column < dgCustomerList.columnCount; column++){
+						columnName = dgCustomerList.columns[column].dataField;
+						if (row[columnName] != null) {
+							columnValue = row[columnName];
+							columnValue = columnValue.toLowerCase();
+							if(columnValue.search(keywords[word].toLowerCase()) >= 0 ) {
+								wordFound = true;
+								break;
+							} 
+						}
+					}
+					if (!wordFound) return false;
+				}
+				return true;
+			}
+			import mx.controls.Alert;
+			import mx.events.ValidationResultEvent;
+			import mx.validators.ValidationResult;
+			import mx.validators.Validator;
+			
+			import spark.events.TextOperationEvent;
+			
+			[Bindable] public var abilitaAdd: Boolean = true;
+			
+			private function mayEnableButton():void
+			{
+				if (Validator.validateAll([firtnameValidator, lastnameValidator, emailValidator, phoneValidator]).length == 0)
+					if (abilitaAdd!=false){
+						btnAddUser.enabled = true;
+						btnSave.enabled = false;
+					}
+					else{
+						btnAddUser.enabled = false;
+						btnSave.enabled = true;
+					}
+				else{
+					btnAddUser.enabled = false;
+					btnSave.enabled = false;
+				}
+			}
+			
+			import mx.logging.ILogger;
+			import mx.logging.Log;
+			
+			import spark.events.TextOperationEvent;
+			
+			[Embed(source="assets/images/cross.png")]
+			private static var _textInput_clearIcon:Class;
+			
+			[Bindable] public var text:String = "Prova";
+			
+			protected var logger:ILogger = Log.getLogger("flex3ui.AdvancedTextInput");
+			
+			public function dispose():void
+			{
+			}
+			
+			protected function clearButton_cb_changeHandler(event:Event):void
+			{			
+				logger.info('textInput.showCancelButton = ');
+			}	
+			
+		]]>
+	</fx:Script>
+	
+	
+	<mx:HBox width="100%" textAlign="left" horizontalAlign="right" verticalAlign="middle">
+		<mx:Canvas>
+			<mx:TextInput id="searchText" paddingLeft="20" change="filterPhrase()"/>			
+			<mx:Box width="100%" height="90%" paddingTop="2" paddingLeft="2">
+				<mx:Image source="assets/images/find.png" height="20" />	
+			</mx:Box>			
+		</mx:Canvas>
+	</mx:HBox>
+	
+	<mx:DataGrid id="dgCustomerList" width="100%" height="50%" dataProvider="{customerList}" doubleClickEnabled="true" itemClick="dgCustomerList_itemClickHandler(event)">
+		<mx:columns>
+			<mx:DataGridColumn id="clmId" dataField="id" headerText="Id" visible="false"/>
+			<mx:DataGridColumn id="clmNome" dataField="firstname" headerText="Nome" />
+			<mx:DataGridColumn id="clmCognome" dataField="lastname" headerText="Cognome" />
+			<mx:DataGridColumn id="clmEMail" dataField="email" headerText="E-Mail" />
+			<mx:DataGridColumn id="clmTel" dataField="telephone_number" headerText="Telefono" />
+		</mx:columns>
+	</mx:DataGrid>
+	<mx:HBox verticalAlign="middle">
+		<ui:AdvancedTextInput id="tiFirstname"
+							  width="100%"
+							  promptText="Nome"
+							  color="#000000"
+							  iconWidth="15"
+							  iconHeight="15"
+							  iconPadding="3"
+							  keepPromptOnFocus="false"
+							  showCancelButton="true"
+							  cancelWidth="12" cancelHeight="12"
+							  cancelDownSkin="{_textInput_clearIcon}"
+							  cancelUpSkin="{_textInput_clearIcon}"
+							  cancelOverSkin="{_textInput_clearIcon}"
+							  change="mayEnableButton();clearButton_cb_changeHandler(event); "
+							  displayAsPassword="false"
+							  />
+		<ui:AdvancedTextInput id="tiLastname"
+							  width="100%"
+							  promptText="Cognome"
+							  color="#000000"
+							  iconWidth="15"
+							  iconHeight="15"
+							  iconPadding="3"
+							  keepPromptOnFocus="false"
+							  showCancelButton="true"
+							  cancelWidth="12" cancelHeight="12"
+							  cancelDownSkin="{_textInput_clearIcon}"
+							  cancelUpSkin="{_textInput_clearIcon}"
+							  cancelOverSkin="{_textInput_clearIcon}"
+							  change="mayEnableButton();clearButton_cb_changeHandler(event); "
+							  displayAsPassword="false"
+							  />		
+		<ui:AdvancedTextInput id="tiEmail"
+							  width="100%"
+							  promptText="E-mail"
+							  color="#000000"
+							  iconWidth="15"
+							  iconHeight="15"
+							  iconPadding="3"
+							  keepPromptOnFocus="false"
+							  showCancelButton="true"
+							  cancelWidth="12" cancelHeight="12"
+							  cancelDownSkin="{_textInput_clearIcon}"
+							  cancelUpSkin="{_textInput_clearIcon}"
+							  cancelOverSkin="{_textInput_clearIcon}"
+							  change="mayEnableButton();clearButton_cb_changeHandler(event); "
+							  displayAsPassword="false"
+							  />		
+		<ui:AdvancedTextInput id="tiTelephoneNumber"
+							  width="100%"
+							  promptText="Telefono"
+							  color="#000000"
+							  iconWidth="15"
+							  iconHeight="15"
+							  iconPadding="3"
+							  keepPromptOnFocus="false"
+							  showCancelButton="true"
+							  cancelWidth="12" cancelHeight="12"
+							  cancelDownSkin="{_textInput_clearIcon}"
+							  cancelUpSkin="{_textInput_clearIcon}"
+							  cancelOverSkin="{_textInput_clearIcon}"
+							  change="mayEnableButton();clearButton_cb_changeHandler(event); "
+							  displayAsPassword="false"
+							  />
+		<mx:Button id="btnCancel" icon="@Embed(source='assets/images/cross_cancel.png')" downIcon="@Embed(source='assets/images/cross_cancel_little.png')"
+				   width="20" height="20" enabled="true"/>
+	</mx:HBox>
+	<mx:HBox width="100%" horizontalAlign="right">
+		<mx:Button id="btnAddUser" icon="@Embed(source='assets/images/add_user.png')" downIcon="@Embed(source='assets/images/add_user_little.png')"
+				   width="45" height="40" enabled="false"/>
+		<mx:Button id="btnDelUser" icon="@Embed(source='assets/images/delete_user.png')" downIcon="@Embed(source='assets/images/delete_user_little.png')"
+				   width="45" height="40" enabled="false"/>
+		<mx:Button id="btnSave" icon="@Embed(source='assets/images/save.png')" downIcon="@Embed(source='assets/images/save_little.png')"
+				   width="45" height="40" enabled="false"/>		
+		<mx:Button id="btnBooking" icon="@Embed(source='assets/images/prenota.png')" downIcon="@Embed(source='assets/images/prenota_little.png')"
+				   width="45" height="40" enabled="true"/>
+	</mx:HBox>
+
+</mx:VBox>

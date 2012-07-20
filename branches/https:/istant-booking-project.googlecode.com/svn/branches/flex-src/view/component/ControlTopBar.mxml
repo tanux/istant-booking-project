@@ -1,0 +1,28 @@
+<mx:ApplicationControlBar xmlns:mx="http://www.adobe.com/2006/mxml"  
+						  width="80%" 
+						  height="50" 
+						  styleName="controlBar"
+						  >		
+	<mx:HBox id="hbControlBar" width="100%" height="80%" verticalAlign="middle">
+		
+		<mx:Box id="boxNomeOtticoOculista" width="33%">
+			<mx:Text id="txUserLoggedIn" color="white" fontSize="30" fontWeight="bold" text=""/>	
+		</mx:Box>
+		
+		<mx:HBox id="boxButtonSettings" width="33%" horizontalAlign="center" >
+			<mx:Button id="btnHome" icon="@Embed(source='assets/images/home.png')" downIcon="@Embed(source='assets/images/home_little.png')"
+					   width="45" height="40"/>
+			<mx:Button id="btnSettings" icon="@Embed(source='assets/images/gear.png')" downIcon="@Embed(source='assets/images/gear_little.png')"
+					   width="45" height="40"/>
+			<mx:Button id="btnShowVisit" icon="@Embed(source='assets/images/folder.png')" downIcon="@Embed(source='assets/images/folder_little.png')"
+					   width="45" height="40"/>
+		</mx:HBox>
+		
+		<mx:Box id="boxLogout" width="33%" horizontalAlign="right">
+			<mx:Button id="btnLogout" icon="@Embed(source='assets/images/log_out.png')" downIcon="@Embed(source='assets/images/log_out_little.png')"
+					   width="45" height="40"/>	
+		</mx:Box>
+	
+	</mx:HBox>
+	
+</mx:ApplicationControlBar>

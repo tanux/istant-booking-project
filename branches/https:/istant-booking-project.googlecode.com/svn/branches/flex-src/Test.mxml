@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:ui="http://www.kapit.fr/flex3/ui"
+			   minWidth="955" minHeight="450"  >
+	
+	<fx:Script>
+		<![CDATA[	
+			import mx.controls.Alert;
+			import mx.events.CalendarLayoutChangeEvent;
+			import mx.events.FlexEvent;
+			private var facade:ApplicationFacade = ApplicationFacade.getInstance() as ApplicationFacade;
+			
+			
+			/*
+			 * Passi da compiere:
+			Seleziono una citta dagli accordion;
+			Lancio una notifica "citta selezionata"
+			Si recuperano i dati dal database. In caso di SUCCESS:
+				Con i dati si costruisce l'array delle date
+				Si passa l'array al component
+				Si dispatcha l'evento calendar.dispatchEvent(new FlexEvent(FlexEvent.CREATION_COMPLETE));
+				che innesca l'esecuzione del metodo calendar_creationCompleteHandler
+			speriamo bene
+			*/
+			
+			public var i:int=1;
+			
+			
+			
+			
+			
+			protected function makeArray(evt:MouseEvent):void{
+				calendar.dispatchEvent(new FlexEvent(FlexEvent.CREATION_COMPLETE));
+			}				
+			
+			
+			protected function calendar_creationCompleteHandler(event:FlexEvent):void
+			{
+				var arrayDate1:Array = new Array(new Date(2012,07,i),new Date(2012,07,i+1));
+				
+				calendar.disabledRanges = arrayDate1;		
+				
+				i++;
+				
+				/*
+				 var arrayDate2:Array = new Array({rangeStart:new Date(2012,07,i),rangeEnd:new Date(2012,07,i)},{rangeStart:new Date(2012,07,i+3),rangeEnd:new Date(2012,07,i+3)});
+				
+				calendar.selectedRanges = arrayDate2;
+				*/
+				
+				var today:Date = new Date();
+				var millisecondsPerDay:Number = 1000 * 60 * 60 * 24;				
+				var yesterday:Date = new Date();
+				yesterday.setTime(today.getTime() - millisecondsPerDay);				
+				var data:Date = new Date(yesterday.getFullYear(),yesterday.getMonth(), yesterday.getDate());
+				calendar.disabledRanges.push({rangeEnd: data});
+				
+			}
+			
+		]]>
+	</fx:Script>
+	<mx:Panel   
+			  paddingLeft="10" paddingRight="10" paddingTop="20"
+			  title="Giorno" horizontalAlign="center" verticalAlign="middle"
+			  >
+	<mx:DateChooser id="calendar" width="100%" height="100%" 
+					dayNames= " [Dom, Lun, Mar, Mer, Gio, Ven, Sab] "
+					monthNames="[ Gennaio, Febbraio, Marzo, Aprile, Maggio, Giugno, Luglio, Agosto, Settembre, Ottobre, Novembre, Dicembre]"
+					firstDayOfWeek="1"
+					minYear="2012" maxYear="2013"
+					showToday="true"					
+					creationComplete="calendar_creationCompleteHandler(event)"
+									
+					/>
+		</mx:Panel>
+	<mx:Button id="btn1" label="Angri" click="makeArray(event)"/>
+	
+	
+</mx:Application>

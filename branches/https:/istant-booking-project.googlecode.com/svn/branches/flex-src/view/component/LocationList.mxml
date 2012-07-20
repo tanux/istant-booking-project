@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:mx="library://ns.adobe.com/flex/mx"		 
+		xmlns:component="view.component.*"
+		xmlns:vo="vo.*" 
+		width="100%" height="50%">
+	<fx:Declarations>
+		<fx:Object id="successIcon" icon="@Embed(source='assets/images/ok.png')" />
+		<fx:Object id="errorIcon" icon="@Embed(source='assets/images/error.png')" />
+	</fx:Declarations>	
+	<fx:Script>
+		<![CDATA[			
+			import model.vo.Location;
+			import model.vo.LocationInList;
+			import model.vo.SelectedDay;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.events.ListEvent;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			private var facade:ApplicationFacade = ApplicationFacade.getInstance() as ApplicationFacade;
+			[Bindable]public var locationList:ArrayCollection;			
+			[Bindable]public var days:Array = [{label:"Lunedi",numberAssociated:"1",selected:false},
+												{label:"Martedi",numberAssociated:"2",selected:false},
+												{label:"Mercoledi",numberAssociated:"3",selected:false},
+												{label:"Giovedi",numberAssociated:"4",selected:false},
+												{label:"Venerdi",numberAssociated:"5",selected:false},
+												{label:"Sabato",numberAssociated:"6",selected:false}]; 
+						
+			
+			protected function dgLocationList_itemClickHandler(event:ListEvent):void{				
+				var selectedRow:Object = event.currentTarget.selectedItem;
+				var l:Location = new Location();
+				l.id = selectedRow.id;
+				l.city = selectedRow.city;
+				l.address = selectedRow.address;
+				l.telephoneNumber = selectedRow.telephone_number;
+				l.receptionDays = selectedRow.reception_days;
+				var position:int = event.currentTarget.selectedIndex;
+				var locationInList:LocationInList = new LocationInList(l,position);				
+				facade.sendNotification(ApplicationFacade.LOCATION_SELECTED, locationInList);		
+			}			
+			
+			private function getDataSuccess(returnedEvent:ResultEvent):void{
+				locationList = returnedEvent.result as ArrayCollection;
+				this.enabled = true;
+			}
+			
+			private function init():void{
+				//con.getBooks();//
+				this.enabled = false;
+			}
+			
+			private function fault(f:FaultEvent):void{
+				Alert.show(f.fault.message as String);
+			}
+			
+		]]>
+	</fx:Script>	
+	
+	
+	
+	<mx:DataGrid id="dgLocationList" width="60%" height="100%" dataProvider="{locationList}" doubleClickEnabled="true" itemClick="dgLocationList_itemClickHandler(event)">
+		<mx:columns>
+			<mx:DataGridColumn id="clmId" dataField="id" headerText="id" visible="false"/>
+			<mx:DataGridColumn id="clmLocation" dataField="city" headerText="Sede" />
+			<mx:DataGridColumn id="clmStreet" dataField="address" headerText="Indirizzo" />
+			<mx:DataGridColumn id="clmTelephone" dataField="telephone_number" headerText="Telefono" />
+			<mx:DataGridColumn id="clmReceptionDays" dataField="reception_days" visible="false" />			
+		</mx:columns>
+	</mx:DataGrid >
+
+
+	<mx:Panel id="pnlLocation" styleName="panelSkinsICandy" width="40%" height="100%">
+		<mx:VBox width="100%" height="100%">
+			<mx:Box width="100%">
+				<mx:Canvas id="cnvAddRemoveLocation" width="100%" >
+					<mx:HBox id="hbAddRemoveLocation" width="100%" horizontalAlign="center" verticalAlign="middle">
+						<mx:Text id="txtAdd" color="white" fontSize="10" text="Aggiungi" fontWeight="bold"/>
+						<mx:Image id="imgPlus" source="@Embed(source='assets/images/plus.png')"/>
+						<mx:Text id="txtModify" text="Modifica" color="white" fontSize="10" fontWeight="bold"/>
+						<mx:Image id="imgPencil" source="@Embed(source='assets/images/pencil.png')"/>	
+					</mx:HBox>
+				</mx:Canvas>	
+			
+				<mx:VBox id="vbLocation" width="100%" horizontalAlign="center">
+					<mx:HBox id="hbLocationName" width="100%">
+						<mx:Label id="lblLocationName" text="Nome" color="black" fontSize="15" width="30%" textAlign="right"/>
+						<component:TIClearOnClick id="tiLocationName" text="city" width="50%"/>
+					</mx:HBox>
+					<mx:HBox id="hbStreet" width="100%">
+						<mx:Label id="lblStreet" text="Indirizzo" color="black" fontSize="15" width="30%" textAlign="right"/>
+						<component:TIClearOnClick id="tiStreet" text="street" width="50%"/>
+					</mx:HBox>
+					<mx:HBox id="hbTelephone" width="100%">
+						<mx:Label id="txtTelephone" text="Telefono" color="black" fontSize="15" width="30%" textAlign="right"/>
+						<component:TIClearOnClick id="tiTelephone" text="telephone" width="50%"/>
+					</mx:HBox>
+				</mx:VBox>
+			</mx:Box>
+			
+			<mx:HBox id="hbDays" width="100%" verticalCenter="middle" horizontalAlign="center" height="30%"
+							 paddingTop="5" paddingRight="20" paddingLeft="20">				
+				<mx:Repeater id="rptContentDays" dataProvider="{days}"> 
+					<mx:VBox horizontalAlign="center">
+						<mx:Label id="lblDays" 
+								  text="{rptContentDays.currentItem.label}" 
+								  color="black"/>
+						<mx:CheckBox id="chkBxDay"									 
+									 data="{rptContentDays.currentItem.numberAssociated}" 
+									 selected="{rptContentDays.currentItem.selected}"
+									 />
+					</mx:VBox>
+					<mx:VRule height="100%"/>
+				</mx:Repeater>
+			</mx:HBox>		
+			
+			<component:HouseButton id="cmpHouseButton" horizontalAlign="center" width="100%" paddingBottom="10" />
+			
+		</mx:VBox>	
+	</mx:Panel>
+</mx:HBox>

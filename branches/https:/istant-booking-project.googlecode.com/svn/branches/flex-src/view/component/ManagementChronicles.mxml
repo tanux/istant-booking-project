@@ -1,0 +1,14 @@
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" 
+		 xmlns:component="view.component.*"
+		 styleName="vbExt" width="100%" height="100%" paddingTop="5" >
+	<mx:VBox width="100%" height="100%">
+		<mx:DataGrid id="dgAffilation2" width="100%" height="40%">
+			<mx:columns>
+				<mx:DataGridColumn id="clmLocatio2n" dataField="Ottico" headerText="Nome Ottico" />
+				<mx:DataGridColumn id="clmStre2et" dataField="Indirizzo" headerText="Indirizzo" />
+				<mx:DataGridColumn id="clmTelep2hone" dataField="Telefono" headerText="Telefono" />
+			</mx:columns>
+		</mx:DataGrid>
+		<component:LocationCharts height="60%"/>
+	</mx:VBox>	
+</mx:VBox>

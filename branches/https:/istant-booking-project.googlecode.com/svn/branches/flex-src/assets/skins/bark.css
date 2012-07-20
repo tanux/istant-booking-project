@@ -1,0 +1,15 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/halo";
+
+.default {
+	skinClass: ClassReference("org.tylerchesley.bark.skins.NotificationRendererSkin");
+}
+
+/*
+.error {
+	skinClass: ClassReference("ErrorNotificationSkin");	
+}
+*/
+
+

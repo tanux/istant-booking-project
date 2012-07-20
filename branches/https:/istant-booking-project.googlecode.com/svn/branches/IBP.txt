@@ -1,0 +1,21 @@
+LOGIN
+	- Campo PWD: nascondere immissione password con dei puntini										OK
+	- TextInput: no case sensitive
+
+MANAGER MAIN
+	- Sezione Customer
+		- Add Customer: controllo su utente gi? inserito: provando ad inserire un utente avente una mail già presente in archivio viene restituito un addCustomerFault. Bisogna Gestire l'alert relativo.
+				        controllo su campi obbligatori (nome, cognome e telefono sono necessari a mio avviso)
+		- Modify Customer: modifica anche se nelle text input non sono stati inseriti nuovi dati
+
+MANAGER BOOKING
+	- Elimina Prenotazione
+		- Elimina prenotazione singola (con relativa gestione della tabella sottostante)
+		- Elimina tutte le prenotazioni (con relativa gestione della tabella sottostante)
+	- Reset della situazione iniziale dopo la prenotazione, nello specifico
+		deselezione utente, reset delle textInput, disabilitare i panel sede, giorno, ora
+
+MANAGER STATISTICHE
+	- Numero totale di visite per location (mese per mese)
+		Sono da considerare le prenotazioni globali, ossia quelle fatte dal manager e dai vari affiliates
+	- Numero di visite per Affiliates (mese per mese)

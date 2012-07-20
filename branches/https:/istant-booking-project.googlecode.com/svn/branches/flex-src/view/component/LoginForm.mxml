@@ -1,0 +1,23 @@
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" 
+		  xmlns:component="view.component.*"
+		  title="Login" horizontalAlign="center" verticalAlign="middle"
+		  width="20%" height="30%"
+		  styleName="panelSkinsICandy">
+	
+	<mx:Form id="frmLogin" width="100%" >
+		<mx:FormItem paddingRight="15" id="fiUsername" width="100%" horizontalAlign="center">
+			<mx:Text id="txtUsername" color="#000000" fontStyle="italic" text="Username"/>
+			<component:TIClearOnClick id="tiUsername" text="Username" color="#000000"/>				
+		</mx:FormItem>
+			
+		<mx:FormItem paddingRight="15" id="fiPassword" width="100%" horizontalAlign="center">
+			<mx:Text id="txtPassword" color="#000000" fontStyle="italic" text="Password" />	
+			<component:TIClearOnClick id="tiPassword" text="pwd" color="#000000" displayAsPwd="true" />				
+		</mx:FormItem>		
+		
+	</mx:Form>
+	<mx:Box horizontalAlign="center">
+		<mx:Button id="btnLogin" label="Login"/>
+	</mx:Box>
+	
+</mx:Panel>	

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel xmlns:fx="http://ns.adobe.com/mxml/2009"
+		  xmlns:mx="library://ns.adobe.com/flex/mx"
+		  xmlns:s="library://ns.adobe.com/flex/spark"  
+		  paddingLeft="10" paddingRight="10" paddingTop="20"
+		  title="Orari Liberi" horizontalAlign="center" verticalAlign="middle"
+		  styleName="panelSkinsICandy" >
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		<s:RadioButtonGroup id="rbgHours" />
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import model.vo.SelectedHour;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.events.FlexEvent;
+			import mx.events.ItemClickEvent;
+			[Bindalbe]public var hourSelected:SelectedHour;
+			[Bindable]public var hours:Array = [{hour:'15.00',index:0,busy:false},
+												{hour:'16.00',index:1,busy:false},
+												{hour:'17.00',index:2,busy:false},
+												{hour:'18.00',index:3,busy:false},
+												{hour:'19.00',index:4,busy:false},
+												{hour:'20.00',index:5,busy:false}]; 
+		]]>
+	</fx:Script>
+	
+	
+	<mx:VBox id="vbHours" width="100%" verticalAlign="middle" height="30%" enabled="false"
+			 paddingTop="5" paddingRight="20" paddingLeft="20">				
+		<mx:Repeater id="rptContentHours" dataProvider="{hours}"> 
+							
+				<s:RadioButton id="rbHour" group="{rbgHours}"									 
+							 value="{rptContentHours.currentItem}"
+							 label="{rptContentHours.currentItem.hour}" 
+							 visible="{!(rptContentHours.currentItem.busy)}"
+							 />
+		</mx:Repeater>
+	</mx:VBox>	
+	
+</mx:Panel>

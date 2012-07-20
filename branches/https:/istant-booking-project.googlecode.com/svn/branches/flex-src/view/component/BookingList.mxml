@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx">
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			[Bindable]public var customerList:ArrayCollection;			
+			[Bindable]public var visibleBtnDel: Boolean = false;
+			
+			//RICERCA	
+			private function filterPhrase():void{
+				customerList.filterFunction = filterFirst;
+				customerList.refresh();
+			} 
+			
+			//if true it show results, if false it shows nothing
+			private function filterFirst(row:Object):Boolean
+			{
+				if(searchText.length == 0){
+					return true;
+				}				
+				var columnName:String;
+				var columnValue:String;
+				var keywords:Array = searchText.text.split(" ");
+				var wordFound:Boolean;				
+				// Loop Over Words
+				for(var word:int = 0; word < keywords.length; word++) {
+					wordFound = false;
+					// Loop Over Columns
+					for( var column:int = 0; column < dgRisultati.columnCount; column++){
+						columnName = dgRisultati.columns[column].dataField;
+						if (row[columnName] != null) {
+							columnValue = row[columnName];
+							columnValue = columnValue.toLowerCase();
+							if(columnValue.search(keywords[word].toLowerCase()) >= 0 ) {
+								wordFound = true;
+								break;
+							} 
+						}
+					}
+					if (!wordFound) return false;
+				}
+				return true;
+			}
+		]]>
+	</fx:Script>	
+	
+	<mx:VBox id="boxExternal" height="100%" width="100%" textAlign="left" verticalAlign="middle" paddingTop="4" 
+			 backgroundColor="#6699cc" cornerRadius="8" borderStyle="solid">
+		<mx:HBox >
+			<mx:Box horizontalAlign="left" width="80%" verticalAlign="middle">
+				<mx:Label id="lblBookingList" color="white" fontSize="13" fontWeight="bold"
+						  text="Elenco delle Prenotazioni"/>	
+			</mx:Box>
+		</mx:HBox>
+		<mx:Canvas width="100%" height="100%">
+			<mx:DataGrid id="dgRisultati" width="100%" height="100%" dataProvider="{customerList}">
+				<mx:columns>
+					<mx:DataGridColumn id="clmId" dataField="id" headerText="Id" visible="false"/>
+					<mx:DataGridColumn id="clmNome" dataField="firstName" headerText="Nome" />
+					<mx:DataGridColumn id="clmCognome" dataField="lastName" headerText="Cognome" />
+					<mx:DataGridColumn id="clmEMail" dataField="email" headerText="E-Mail" />
+					<mx:DataGridColumn id="clmTel" dataField="telephoneNumber" headerText="Telefono" />
+				</mx:columns>
+			</mx:DataGrid>
+		</mx:Canvas>
+	</mx:VBox>
+	
+	<mx:HBox width="100%" horizontalAlign="center" verticalAlign="top">
+		<mx:Canvas width="33.4%">
+			<mx:Box horizontalAlign="left" width="100%">
+				<mx:TextInput id="searchText" change="filterPhrase()" width="100%" paddingTop="1" textAlign="right"/>	
+			</mx:Box>
+			<mx:Box horizontalAlign="left" height="90%" paddingTop="2" paddingLeft="2">
+				<mx:Image source="assets/images/find.png" height="20" />	
+			</mx:Box>			
+		</mx:Canvas>
+		<mx:HBox verticalAlign="middle" horizontalAlign="right" width="66.6%">
+			<mx:Button id="btnDeleteUser" icon="@Embed(source='assets/images/delete_user.png')" downIcon="@Embed(source='assets/images/delete_user_little.png')"
+					   width="45" height="40" visible="{visibleBtnDel}"/>
+			<mx:Button id="btnDeleteAllUser" icon="@Embed(source='assets/images/delete_multi_user.png')" downIcon="@Embed(source='assets/images/delete_multi_user_little.png')"
+					   width="45" height="40" visible="{visibleBtnDel}"/>
+			<mx:Button id="btnPrintBookingList" icon="@Embed(source='assets/images/print.png')" downIcon="@Embed(source='assets/images/print_little.png')"
+					   width="45" height="40" />
+		</mx:HBox>
+	</mx:HBox>
+	
+</mx:VBox>
+	
