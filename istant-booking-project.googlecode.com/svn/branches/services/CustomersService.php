@@ -36,7 +36,7 @@ class CustomersService {
 		$dbAdapter = ManageDatabase::getDbAdapter();
 		Zend_Db_Table::setDefaultAdapter($dbAdapter);
 		$customerTable = new Zend_Db_Table('customers');
-		$where = $customerTable->getAdapter()->quoteInto('id= ?', $customer->id);
+		$where = $customerTable->getAdapter()->quoteInto('id= ?', $customer->id);		
 		return $customerTable->delete($where);
 	}
 	

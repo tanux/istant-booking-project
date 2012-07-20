@@ -70,19 +70,21 @@ package view.manager.main
 					visitDayCmp.disabledDays.push(0);					
 					break;
 				case ApplicationFacade.GET_NO_AVAILABLE_DAY_SUCCESS:					
-					var arrayDate:ArrayCollection = notification.getBody() as ArrayCollection;
-					for (var i:int=0; i<counter_date_inserted; i++){
-						visitDayCmp.arrayDate.pop();
-					}
-					for (var i:int=0; i<arrayDate.length; i++){
-						var date:Date = DateField.stringToDate(arrayDate[i].date as String, "DD/MM/YYYY");
-						visitDayCmp.arrayDate.push(date);
-					}
-					counter_date_inserted = arrayDate.length;					
-					visitDayCmp.calendar.disabledRanges = visitDayCmp.arrayDate;
-					visitDayCmp.calendar.dispatchEvent(new FlexEvent(FlexEvent.CREATION_COMPLETE));
+					if (getMediatorName() == ManagerMainMediator.NAME_VISIT_DAY_MEDIATOR_MAIN){
+						var arrayDate:ArrayCollection = notification.getBody() as ArrayCollection;
+						for (var i:int=0; i<counter_date_inserted; i++){
+							visitDayCmp.arrayDate.pop();
+						}
+						for (var i:int=0; i<arrayDate.length; i++){
+							var date:Date = DateField.stringToDate(arrayDate[i].date as String, "DD/MM/YYYY");
+							visitDayCmp.arrayDate.push(date);
+						}
+						counter_date_inserted = arrayDate.length;					
+						visitDayCmp.calendar.disabledRanges = visitDayCmp.arrayDate;
+						visitDayCmp.calendar.dispatchEvent(new FlexEvent(FlexEvent.CREATION_COMPLETE));	
+					}					
 					break;
-				case ApplicationFacade.GET_NO_AVAILABLE_DAY_SUCCESS:
+				case ApplicationFacade.GET_NO_AVAILABLE_DAY_ERROR:
 					Alert.show("Errore in GET_NO_AVAILABLE_DAY");
 					break;
 			}

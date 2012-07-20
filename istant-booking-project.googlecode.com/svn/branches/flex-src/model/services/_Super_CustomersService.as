@@ -1,13 +1,13 @@
 /**
  * This is a generated class and is not intended for modification.  To customize behavior
- * of this service wrapper you may modify the generated sub-class of this class - LocationServices.as.
+ * of this service wrapper you may modify the generated sub-class of this class - CustomersService.as.
  */
 package model.services
 {
 import com.adobe.fiber.core.model_internal;
 import com.adobe.fiber.services.wrapper.RemoteObjectServiceWrapper;
 import com.adobe.serializers.utility.TypeUtility;
-import model.vo.Location;
+import model.vo.Customer;
 import mx.rpc.AbstractOperation;
 import mx.rpc.AsyncToken;
 import mx.rpc.remoting.Operation;
@@ -17,11 +17,11 @@ import mx.collections.ItemResponder;
 import com.adobe.fiber.valueobjects.AvailablePropertyIterator;
 
 [ExcludeClass]
-internal class _Super_LocationServices extends com.adobe.fiber.services.wrapper.RemoteObjectServiceWrapper
+internal class _Super_CustomersService extends com.adobe.fiber.services.wrapper.RemoteObjectServiceWrapper
 {
 
     // Constructor
-    public function _Super_LocationServices()
+    public function _Super_CustomersService()
     {
         // initialize service control
         _serviceControl = new mx.rpc.remoting.RemoteObject();
@@ -31,27 +31,24 @@ internal class _Super_LocationServices extends com.adobe.fiber.services.wrapper.
         var operations:Object = new Object();
         var operation:mx.rpc.remoting.Operation;
 
-        operation = new mx.rpc.remoting.Operation(null, "getLocationList");
+        operation = new mx.rpc.remoting.Operation(null, "getCustomerList");
          operation.resultElementType = Object;
-        operations["getLocationList"] = operation;
-        operation = new mx.rpc.remoting.Operation(null, "getNoAvailableDate");
-         operation.resultElementType = Object;
-        operations["getNoAvailableDate"] = operation;
-        operation = new mx.rpc.remoting.Operation(null, "addLocation");
+        operations["getCustomerList"] = operation;
+        operation = new mx.rpc.remoting.Operation(null, "addCustomer");
          operation.resultType = String;
-        operations["addLocation"] = operation;
-        operation = new mx.rpc.remoting.Operation(null, "deleteLocation");
+        operations["addCustomer"] = operation;
+        operation = new mx.rpc.remoting.Operation(null, "saveChangesCustomer");
+         operation.resultType = String;
+        operations["saveChangesCustomer"] = operation;
+        operation = new mx.rpc.remoting.Operation(null, "deleteCustomer");
          operation.resultType = int;
-        operations["deleteLocation"] = operation;
-        operation = new mx.rpc.remoting.Operation(null, "saveChangesLocation");
-         operation.resultType = String;
-        operations["saveChangesLocation"] = operation;
+        operations["deleteCustomer"] = operation;
 
         _serviceControl.operations = operations;
         _serviceControl.convertResultHandler = com.adobe.serializers.utility.TypeUtility.convertResultHandler;
-        _serviceControl.source = "LocationServices";
+        _serviceControl.source = "CustomersService";
         _serviceControl.endpoint = "http://localhost/IstantBookingProject/public/gateway.php";
-		//_serviceControl.endpoint = "http://oculistacoppola.orgfree.com/IstantBookingProject/public/gateway.php";
+
 
          preInitializeService();
          model_internal::initialize();
@@ -60,13 +57,13 @@ internal class _Super_LocationServices extends com.adobe.fiber.services.wrapper.
     //init initialization routine here, child class to override
     protected function preInitializeService():void
     {
-        destination = "LocationServices";
+        destination = "CustomersService";
       
     }
     
 
     /**
-      * This method is a generated wrapper used to call the 'getLocationList' operation. It returns an mx.rpc.AsyncToken whose 
+      * This method is a generated wrapper used to call the 'getCustomerList' operation. It returns an mx.rpc.AsyncToken whose 
       * result property will be populated with the result of the operation when the server response is received. 
       * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
       * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
@@ -76,15 +73,15 @@ internal class _Super_LocationServices extends com.adobe.fiber.services.wrapper.
       *
       * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function getLocationList() : mx.rpc.AsyncToken
+    public function getCustomerList() : mx.rpc.AsyncToken
     {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getLocationList");
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getCustomerList");
 		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send() ;
         return _internal_token;
     }
      
     /**
-      * This method is a generated wrapper used to call the 'getNoAvailableDate' operation. It returns an mx.rpc.AsyncToken whose 
+      * This method is a generated wrapper used to call the 'addCustomer' operation. It returns an mx.rpc.AsyncToken whose 
       * result property will be populated with the result of the operation when the server response is received. 
       * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
       * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
@@ -94,15 +91,15 @@ internal class _Super_LocationServices extends com.adobe.fiber.services.wrapper.
       *
       * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function getNoAvailableDate() : mx.rpc.AsyncToken
+    public function addCustomer(customer:model.vo.Customer) : mx.rpc.AsyncToken
     {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getNoAvailableDate");
-		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send() ;
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("addCustomer");
+		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(customer) ;
         return _internal_token;
     }
      
     /**
-      * This method is a generated wrapper used to call the 'addLocation' operation. It returns an mx.rpc.AsyncToken whose 
+      * This method is a generated wrapper used to call the 'saveChangesCustomer' operation. It returns an mx.rpc.AsyncToken whose 
       * result property will be populated with the result of the operation when the server response is received. 
       * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
       * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
@@ -112,15 +109,15 @@ internal class _Super_LocationServices extends com.adobe.fiber.services.wrapper.
       *
       * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function addLocation(location:model.vo.Location) : mx.rpc.AsyncToken
+    public function saveChangesCustomer(customer:model.vo.Customer) : mx.rpc.AsyncToken
     {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("addLocation");
-		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(location) ;
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("saveChangesCustomer");
+		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(customer) ;
         return _internal_token;
     }
      
     /**
-      * This method is a generated wrapper used to call the 'deleteLocation' operation. It returns an mx.rpc.AsyncToken whose 
+      * This method is a generated wrapper used to call the 'deleteCustomer' operation. It returns an mx.rpc.AsyncToken whose 
       * result property will be populated with the result of the operation when the server response is received. 
       * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
       * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
@@ -130,28 +127,10 @@ internal class _Super_LocationServices extends com.adobe.fiber.services.wrapper.
       *
       * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function deleteLocation(location:model.vo.Location) : mx.rpc.AsyncToken
+    public function deleteCustomer(customer:model.vo.Customer) : mx.rpc.AsyncToken
     {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("deleteLocation");
-		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(location) ;
-        return _internal_token;
-    }
-     
-    /**
-      * This method is a generated wrapper used to call the 'saveChangesLocation' operation. It returns an mx.rpc.AsyncToken whose 
-      * result property will be populated with the result of the operation when the server response is received. 
-      * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
-      * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
-      *
-      * @see mx.rpc.AsyncToken
-      * @see mx.rpc.CallResponder 
-      *
-      * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
-      */
-    public function saveChangesLocation(location:model.vo.Location) : mx.rpc.AsyncToken
-    {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("saveChangesLocation");
-		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(location) ;
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("deleteCustomer");
+		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(customer) ;
         return _internal_token;
     }
      

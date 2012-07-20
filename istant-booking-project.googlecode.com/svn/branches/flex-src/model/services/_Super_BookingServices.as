@@ -1,13 +1,13 @@
 /**
  * This is a generated class and is not intended for modification.  To customize behavior
- * of this service wrapper you may modify the generated sub-class of this class - AffiliateLoginService.as.
+ * of this service wrapper you may modify the generated sub-class of this class - BookingServices.as.
  */
 package model.services
 {
 import com.adobe.fiber.core.model_internal;
 import com.adobe.fiber.services.wrapper.RemoteObjectServiceWrapper;
 import com.adobe.serializers.utility.TypeUtility;
-import model.vo.Affiliate;
+import model.vo.Booking;
 import mx.rpc.AbstractOperation;
 import mx.rpc.AsyncToken;
 import mx.rpc.remoting.Operation;
@@ -17,11 +17,11 @@ import mx.collections.ItemResponder;
 import com.adobe.fiber.valueobjects.AvailablePropertyIterator;
 
 [ExcludeClass]
-internal class _Super_AffiliateLoginService extends com.adobe.fiber.services.wrapper.RemoteObjectServiceWrapper
+internal class _Super_BookingServices extends com.adobe.fiber.services.wrapper.RemoteObjectServiceWrapper
 {
 
     // Constructor
-    public function _Super_AffiliateLoginService()
+    public function _Super_BookingServices()
     {
         // initialize service control
         _serviceControl = new mx.rpc.remoting.RemoteObject();
@@ -31,18 +31,21 @@ internal class _Super_AffiliateLoginService extends com.adobe.fiber.services.wra
         var operations:Object = new Object();
         var operation:mx.rpc.remoting.Operation;
 
-        operation = new mx.rpc.remoting.Operation(null, "doLogin");
-         operation.resultType = model.vo.Affiliate;
-        operations["doLogin"] = operation;
-        operation = new mx.rpc.remoting.Operation(null, "verifiedLoggedIn");
-         operation.resultType = model.vo.Affiliate;
-        operations["verifiedLoggedIn"] = operation;
+        operation = new mx.rpc.remoting.Operation(null, "addBooking");
+         operation.resultType = int;
+        operations["addBooking"] = operation;
+        operation = new mx.rpc.remoting.Operation(null, "getBusyHour");
+         operation.resultElementType = Object;
+        operations["getBusyHour"] = operation;
+        operation = new mx.rpc.remoting.Operation(null, "getBookingList");
+         operation.resultElementType = Object;
+        operations["getBookingList"] = operation;
 
         _serviceControl.operations = operations;
         _serviceControl.convertResultHandler = com.adobe.serializers.utility.TypeUtility.convertResultHandler;
-        _serviceControl.source = "AffiliateLoginService";
+        _serviceControl.source = "BookingServices";
         _serviceControl.endpoint = "http://localhost/IstantBookingProject/public/gateway.php";
-		//_serviceControl.endpoint = "http://oculistacoppola.orgfree.com/IstantBookingProject/public/gateway.php";
+
 
          preInitializeService();
          model_internal::initialize();
@@ -51,13 +54,13 @@ internal class _Super_AffiliateLoginService extends com.adobe.fiber.services.wra
     //init initialization routine here, child class to override
     protected function preInitializeService():void
     {
-        destination = "AffiliateLoginService";
+        destination = "BookingServices";
       
     }
     
 
     /**
-      * This method is a generated wrapper used to call the 'doLogin' operation. It returns an mx.rpc.AsyncToken whose 
+      * This method is a generated wrapper used to call the 'addBooking' operation. It returns an mx.rpc.AsyncToken whose 
       * result property will be populated with the result of the operation when the server response is received. 
       * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
       * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
@@ -67,15 +70,15 @@ internal class _Super_AffiliateLoginService extends com.adobe.fiber.services.wra
       *
       * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function doLogin(username:Object, password:Object, user_type:Object) : mx.rpc.AsyncToken
+    public function addBooking(booking:model.vo.Booking) : mx.rpc.AsyncToken
     {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("doLogin");
-		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(username,password,user_type) ;
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("addBooking");
+		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(booking) ;
         return _internal_token;
     }
      
     /**
-      * This method is a generated wrapper used to call the 'verifiedLoggedIn' operation. It returns an mx.rpc.AsyncToken whose 
+      * This method is a generated wrapper used to call the 'getBusyHour' operation. It returns an mx.rpc.AsyncToken whose 
       * result property will be populated with the result of the operation when the server response is received. 
       * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
       * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
@@ -85,10 +88,28 @@ internal class _Super_AffiliateLoginService extends com.adobe.fiber.services.wra
       *
       * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function verifiedLoggedIn() : mx.rpc.AsyncToken
+    public function getBusyHour(visit_day:Object) : mx.rpc.AsyncToken
     {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("verifiedLoggedIn");
-		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send() ;
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getBusyHour");
+		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(visit_day) ;
+        return _internal_token;
+    }
+     
+    /**
+      * This method is a generated wrapper used to call the 'getBookingList' operation. It returns an mx.rpc.AsyncToken whose 
+      * result property will be populated with the result of the operation when the server response is received. 
+      * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
+      * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
+      *
+      * @see mx.rpc.AsyncToken
+      * @see mx.rpc.CallResponder 
+      *
+      * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
+      */
+    public function getBookingList(idLocation:Object, date:String) : mx.rpc.AsyncToken
+    {
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("getBookingList");
+		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(idLocation,date) ;
         return _internal_token;
     }
      
