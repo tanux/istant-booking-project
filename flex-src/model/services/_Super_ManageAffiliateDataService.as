@@ -42,7 +42,7 @@ internal class _Super_ManageAffiliateDataService extends com.adobe.fiber.service
         _serviceControl.convertResultHandler = com.adobe.serializers.utility.TypeUtility.convertResultHandler;
         _serviceControl.source = "ManageAffiliateDataService";
         _serviceControl.endpoint = "http://localhost/IstantBookingProject/public/gateway.php";
-		//_serviceControl.endpoint = "http://oculistacoppola.orgfree.com/IstantBookingProject/public/gateway.php";
+
 
          preInitializeService();
          model_internal::initialize();
