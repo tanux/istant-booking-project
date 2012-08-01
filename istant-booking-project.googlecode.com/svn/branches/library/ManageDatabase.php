@@ -1,7 +1,7 @@
 <?php
 define('FILE_CONFIG','../config/config.ini');
 define('SITE_CONFIG','staging');
-class ManageDatabase {
+class ManageDatabase {	
 	
 	/**
 	 * Set database parameter from config file and database adapter
@@ -9,14 +9,14 @@ class ManageDatabase {
 	 */
 	public static function getDbAdapter() {
 		$config_file = new Zend_Config_Ini ( FILE_CONFIG, SITE_CONFIG );
-		if (isset ( $config_file )) {
-			$config = array (
+		if (isset ( $config_file )) {			
+			$dbParams = array (
 				'host' => $config_file->database->params->host, 
 				'username' => $config_file->database->params->username, 
 				'password' => $config_file->database->params->password, 
 				'dbname' => $config_file->database->params->dbname
-			);
-			$dbAdapter = new Zend_Db_Adapter_Pdo_Mysql ( $config );
+			);			
+			$dbAdapter = new Zend_Db_Adapter_Pdo_Mysql ($dbParams);			
 			return $dbAdapter;
 		}
 	}
