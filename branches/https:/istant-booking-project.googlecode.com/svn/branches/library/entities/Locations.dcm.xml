@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Locations" table="locations">
+    <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="city" type="string" column="city" length="50"/>
+    <field name="address" type="string" column="address" length="255"/>
+    <field name="telephoneNumber" type="string" column="telephone_number" length="255"/>
+    <field name="receptionDays" type="text" column="reception_days"/>
+    <lifecycle-callbacks/>
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Bookings" table="bookings">
+    <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="idAffiliate" type="integer" column="id_affiliate"/>
+    <field name="idCustomer" type="text" column="id_customer"/>
+    <field name="idManager" type="integer" column="id_manager"/>
+    <field name="idLocation" type="integer" column="id_location"/>
+    <field name="visitDay" type="string" column="visit_day" length="255"/>
+    <field name="visitHour" type="string" column="visit_hour" length="255"/>
+    <lifecycle-callbacks/>
+  </entity>
+</doctrine-mapping>
