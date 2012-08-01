@@ -66,6 +66,3 @@ if (! $amf->production) {
 }
 // Handle request
 echo $server->handle();
-
-
-
