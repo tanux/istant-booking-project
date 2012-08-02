@@ -6,6 +6,7 @@ package view
 	
 	import controller.loginmanager.DoLoginCommand;
 	import controller.managermain.BookingAddCommand;
+	import controller.managermain.BookingDeleteCommand;
 	import controller.managermain.BookingGetListCommand;
 	import controller.managermain.CustomerGetListCommand;
 	import controller.managermain.GetBusyHoursCommand;
@@ -182,6 +183,7 @@ package view
 			facade.registerCommand(ApplicationFacade.GET_BUSY_HOURS, GetBusyHoursCommand);
 			
 			facade.registerCommand(ApplicationFacade.BOOKING_ADD, BookingAddCommand);
+			facade.registerCommand(ApplicationFacade.BOOKING_DELETE, BookingDeleteCommand);
 			
 			facade.sendNotification(ApplicationFacade.GET_CUSTOMER_LIST);
 			facade.sendNotification(ApplicationFacade.GET_LOCATION_LIST);
