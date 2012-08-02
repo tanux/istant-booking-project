@@ -19,16 +19,15 @@ class BookingServices {
 	
 	/**
 	 * logic delete booking	 
-	 * @param Booking $booking
+	 * @param int $idBooking
 	 * @return String $id
 	 */
-	public function deleteBooking($booking){
+	public function deleteBooking($idBooking){
 		$dbAdapter = ManageDatabase::getDbAdapter();	
 		Zend_Db_Table::setDefaultAdapter($dbAdapter);
-		$bookingTable = new Zend_Db_Table('bookings');
-		$bookingData = BookingServices::setBookingData($booking);
+		$bookingTable = new Zend_Db_Table('bookings');		
 		$bookingData['cancelled']= "true";
-		$where = $bookingTable->getAdapter()->quoteInto('id= ?', $booking->id);
+		$where = $bookingTable->getAdapter()->quoteInto('id= ?', $idBooking);
 		return $bookingTable->update($bookingData, $where);
 	}
 	
