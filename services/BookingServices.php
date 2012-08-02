@@ -15,7 +15,7 @@ class BookingServices {
 			return BookingServices::updateCounterDate($booking->visitDay);
 		else 
 			return null;		
-	}
+	}	
 	
 	/**
 	 * logic delete booking	 
@@ -27,9 +27,9 @@ class BookingServices {
 		Zend_Db_Table::setDefaultAdapter($dbAdapter);
 		$bookingTable = new Zend_Db_Table('bookings');
 		$bookingData = BookingServices::setBookingData($booking);
-		$bookingData['cancelled']=true;
+		$bookingData['cancelled']= "true";
 		$where = $bookingTable->getAdapter()->quoteInto('id= ?', $booking->id);
-		return $customerTable->update($bookingData, $where);
+		return $bookingTable->update($bookingData, $where);
 	}
 	
 	/**

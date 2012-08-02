@@ -69,6 +69,7 @@ public class _Super_Booking extends flash.events.EventDispatcher implements com.
     private var _internal_idLocation : Object;
     private var _internal_visitDay : Object;
     private var _internal_visitHour : Object;
+    private var _internal_cancelled : Object;
 
     private static var emptyArray:Array = new Array();
 
@@ -85,13 +86,7 @@ public class _Super_Booking extends flash.events.EventDispatcher implements com.
         _model = new _BookingEntityMetadata(this);
 
         // Bind to own data or source properties for cache invalidation triggering
-        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "id", model_internal::setterListenerId));
-        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "idAffiliate", model_internal::setterListenerIdAffiliate));
-        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "idManager", model_internal::setterListenerIdManager));
-        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "idCustomer", model_internal::setterListenerIdCustomer));
-        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "idLocation", model_internal::setterListenerIdLocation));
-        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "visitDay", model_internal::setterListenerVisitDay));
-        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "visitHour", model_internal::setterListenerVisitHour));
+        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "cancelled", model_internal::setterListenerCancelled));
 
     }
 
@@ -139,6 +134,12 @@ public class _Super_Booking extends flash.events.EventDispatcher implements com.
     public function get visitHour() : Object
     {
         return _internal_visitHour;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get cancelled() : Object
+    {
+        return _internal_cancelled;
     }
 
     public function clearAssociations() : void
@@ -219,6 +220,16 @@ public class _Super_Booking extends flash.events.EventDispatcher implements com.
         }
     }
 
+    public function set cancelled(value:Object) : void
+    {
+        var oldValue:Object = _internal_cancelled;
+        if (oldValue !== value)
+        {
+            _internal_cancelled = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "cancelled", oldValue, _internal_cancelled));
+        }
+    }
+
     /**
      * Data/source property setter listeners
      *
@@ -231,39 +242,9 @@ public class _Super_Booking extends flash.events.EventDispatcher implements com.
      *  - the validity of the property (and the containing entity) if the given data property is required.
      */
 
-    model_internal function setterListenerId(value:flash.events.Event):void
+    model_internal function setterListenerCancelled(value:flash.events.Event):void
     {
-        _model.invalidateDependentOnId();
-    }
-
-    model_internal function setterListenerIdAffiliate(value:flash.events.Event):void
-    {
-        _model.invalidateDependentOnIdAffiliate();
-    }
-
-    model_internal function setterListenerIdManager(value:flash.events.Event):void
-    {
-        _model.invalidateDependentOnIdManager();
-    }
-
-    model_internal function setterListenerIdCustomer(value:flash.events.Event):void
-    {
-        _model.invalidateDependentOnIdCustomer();
-    }
-
-    model_internal function setterListenerIdLocation(value:flash.events.Event):void
-    {
-        _model.invalidateDependentOnIdLocation();
-    }
-
-    model_internal function setterListenerVisitDay(value:flash.events.Event):void
-    {
-        _model.invalidateDependentOnVisitDay();
-    }
-
-    model_internal function setterListenerVisitHour(value:flash.events.Event):void
-    {
-        _model.invalidateDependentOnVisitHour();
+        _model.invalidateDependentOnCancelled();
     }
 
 
@@ -287,40 +268,10 @@ public class _Super_Booking extends flash.events.EventDispatcher implements com.
         var validationFailureMessages:Array = new Array();
 
         var propertyValidity:Boolean = true;
-        if (!_model.idIsValid)
+        if (!_model.cancelledIsValid)
         {
             propertyValidity = false;
-            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_idValidationFailureMessages);
-        }
-        if (!_model.idAffiliateIsValid)
-        {
-            propertyValidity = false;
-            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_idAffiliateValidationFailureMessages);
-        }
-        if (!_model.idManagerIsValid)
-        {
-            propertyValidity = false;
-            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_idManagerValidationFailureMessages);
-        }
-        if (!_model.idCustomerIsValid)
-        {
-            propertyValidity = false;
-            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_idCustomerValidationFailureMessages);
-        }
-        if (!_model.idLocationIsValid)
-        {
-            propertyValidity = false;
-            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_idLocationValidationFailureMessages);
-        }
-        if (!_model.visitDayIsValid)
-        {
-            propertyValidity = false;
-            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_visitDayValidationFailureMessages);
-        }
-        if (!_model.visitHourIsValid)
-        {
-            propertyValidity = false;
-            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_visitHourValidationFailureMessages);
+            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_cancelledValidationFailureMessages);
         }
 
         model_internal::_cacheInitialized_isValid = true;
@@ -401,191 +352,29 @@ public class _Super_Booking extends flash.events.EventDispatcher implements com.
         }
     }
 
-    model_internal var _doValidationCacheOfId : Array = null;
-    model_internal var _doValidationLastValOfId : Object;
+    model_internal var _doValidationCacheOfCancelled : Array = null;
+    model_internal var _doValidationLastValOfCancelled : Object;
 
-    model_internal function _doValidationForId(valueIn:Object):Array
+    model_internal function _doValidationForCancelled(valueIn:Object):Array
     {
         var value : Object = valueIn as Object;
 
-        if (model_internal::_doValidationCacheOfId != null && model_internal::_doValidationLastValOfId == value)
-           return model_internal::_doValidationCacheOfId ;
+        if (model_internal::_doValidationCacheOfCancelled != null && model_internal::_doValidationLastValOfCancelled == value)
+           return model_internal::_doValidationCacheOfCancelled ;
 
-        _model.model_internal::_idIsValidCacheInitialized = true;
+        _model.model_internal::_cancelledIsValidCacheInitialized = true;
         var validationFailures:Array = new Array();
         var errorMessage:String;
         var failure:Boolean;
 
         var valRes:ValidationResult;
-        if (_model.isIdAvailable && _internal_id == null)
+        if (_model.isCancelledAvailable && _internal_cancelled == null)
         {
-            validationFailures.push(new ValidationResult(true, "", "", "id is required"));
+            validationFailures.push(new ValidationResult(true, "", "", "cancelled is required"));
         }
 
-        model_internal::_doValidationCacheOfId = validationFailures;
-        model_internal::_doValidationLastValOfId = value;
-
-        return validationFailures;
-    }
-    
-    model_internal var _doValidationCacheOfIdAffiliate : Array = null;
-    model_internal var _doValidationLastValOfIdAffiliate : Object;
-
-    model_internal function _doValidationForIdAffiliate(valueIn:Object):Array
-    {
-        var value : Object = valueIn as Object;
-
-        if (model_internal::_doValidationCacheOfIdAffiliate != null && model_internal::_doValidationLastValOfIdAffiliate == value)
-           return model_internal::_doValidationCacheOfIdAffiliate ;
-
-        _model.model_internal::_idAffiliateIsValidCacheInitialized = true;
-        var validationFailures:Array = new Array();
-        var errorMessage:String;
-        var failure:Boolean;
-
-        var valRes:ValidationResult;
-        if (_model.isIdAffiliateAvailable && _internal_idAffiliate == null)
-        {
-            validationFailures.push(new ValidationResult(true, "", "", "idAffiliate is required"));
-        }
-
-        model_internal::_doValidationCacheOfIdAffiliate = validationFailures;
-        model_internal::_doValidationLastValOfIdAffiliate = value;
-
-        return validationFailures;
-    }
-    
-    model_internal var _doValidationCacheOfIdManager : Array = null;
-    model_internal var _doValidationLastValOfIdManager : Object;
-
-    model_internal function _doValidationForIdManager(valueIn:Object):Array
-    {
-        var value : Object = valueIn as Object;
-
-        if (model_internal::_doValidationCacheOfIdManager != null && model_internal::_doValidationLastValOfIdManager == value)
-           return model_internal::_doValidationCacheOfIdManager ;
-
-        _model.model_internal::_idManagerIsValidCacheInitialized = true;
-        var validationFailures:Array = new Array();
-        var errorMessage:String;
-        var failure:Boolean;
-
-        var valRes:ValidationResult;
-        if (_model.isIdManagerAvailable && _internal_idManager == null)
-        {
-            validationFailures.push(new ValidationResult(true, "", "", "idManager is required"));
-        }
-
-        model_internal::_doValidationCacheOfIdManager = validationFailures;
-        model_internal::_doValidationLastValOfIdManager = value;
-
-        return validationFailures;
-    }
-    
-    model_internal var _doValidationCacheOfIdCustomer : Array = null;
-    model_internal var _doValidationLastValOfIdCustomer : Object;
-
-    model_internal function _doValidationForIdCustomer(valueIn:Object):Array
-    {
-        var value : Object = valueIn as Object;
-
-        if (model_internal::_doValidationCacheOfIdCustomer != null && model_internal::_doValidationLastValOfIdCustomer == value)
-           return model_internal::_doValidationCacheOfIdCustomer ;
-
-        _model.model_internal::_idCustomerIsValidCacheInitialized = true;
-        var validationFailures:Array = new Array();
-        var errorMessage:String;
-        var failure:Boolean;
-
-        var valRes:ValidationResult;
-        if (_model.isIdCustomerAvailable && _internal_idCustomer == null)
-        {
-            validationFailures.push(new ValidationResult(true, "", "", "idCustomer is required"));
-        }
-
-        model_internal::_doValidationCacheOfIdCustomer = validationFailures;
-        model_internal::_doValidationLastValOfIdCustomer = value;
-
-        return validationFailures;
-    }
-    
-    model_internal var _doValidationCacheOfIdLocation : Array = null;
-    model_internal var _doValidationLastValOfIdLocation : Object;
-
-    model_internal function _doValidationForIdLocation(valueIn:Object):Array
-    {
-        var value : Object = valueIn as Object;
-
-        if (model_internal::_doValidationCacheOfIdLocation != null && model_internal::_doValidationLastValOfIdLocation == value)
-           return model_internal::_doValidationCacheOfIdLocation ;
-
-        _model.model_internal::_idLocationIsValidCacheInitialized = true;
-        var validationFailures:Array = new Array();
-        var errorMessage:String;
-        var failure:Boolean;
-
-        var valRes:ValidationResult;
-        if (_model.isIdLocationAvailable && _internal_idLocation == null)
-        {
-            validationFailures.push(new ValidationResult(true, "", "", "idLocation is required"));
-        }
-
-        model_internal::_doValidationCacheOfIdLocation = validationFailures;
-        model_internal::_doValidationLastValOfIdLocation = value;
-
-        return validationFailures;
-    }
-    
-    model_internal var _doValidationCacheOfVisitDay : Array = null;
-    model_internal var _doValidationLastValOfVisitDay : Object;
-
-    model_internal function _doValidationForVisitDay(valueIn:Object):Array
-    {
-        var value : Object = valueIn as Object;
-
-        if (model_internal::_doValidationCacheOfVisitDay != null && model_internal::_doValidationLastValOfVisitDay == value)
-           return model_internal::_doValidationCacheOfVisitDay ;
-
-        _model.model_internal::_visitDayIsValidCacheInitialized = true;
-        var validationFailures:Array = new Array();
-        var errorMessage:String;
-        var failure:Boolean;
-
-        var valRes:ValidationResult;
-        if (_model.isVisitDayAvailable && _internal_visitDay == null)
-        {
-            validationFailures.push(new ValidationResult(true, "", "", "visitDay is required"));
-        }
-
-        model_internal::_doValidationCacheOfVisitDay = validationFailures;
-        model_internal::_doValidationLastValOfVisitDay = value;
-
-        return validationFailures;
-    }
-    
-    model_internal var _doValidationCacheOfVisitHour : Array = null;
-    model_internal var _doValidationLastValOfVisitHour : Object;
-
-    model_internal function _doValidationForVisitHour(valueIn:Object):Array
-    {
-        var value : Object = valueIn as Object;
-
-        if (model_internal::_doValidationCacheOfVisitHour != null && model_internal::_doValidationLastValOfVisitHour == value)
-           return model_internal::_doValidationCacheOfVisitHour ;
-
-        _model.model_internal::_visitHourIsValidCacheInitialized = true;
-        var validationFailures:Array = new Array();
-        var errorMessage:String;
-        var failure:Boolean;
-
-        var valRes:ValidationResult;
-        if (_model.isVisitHourAvailable && _internal_visitHour == null)
-        {
-            validationFailures.push(new ValidationResult(true, "", "", "visitHour is required"));
-        }
-
-        model_internal::_doValidationCacheOfVisitHour = validationFailures;
-        model_internal::_doValidationLastValOfVisitHour = value;
+        model_internal::_doValidationCacheOfCancelled = validationFailures;
+        model_internal::_doValidationLastValOfCancelled = value;
 
         return validationFailures;
     }
