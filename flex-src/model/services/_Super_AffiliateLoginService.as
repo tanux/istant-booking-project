@@ -5,9 +5,9 @@
 package model.services
 {
 import com.adobe.fiber.core.model_internal;
-import IstantBookingProject.Affiliate;
 import com.adobe.fiber.services.wrapper.RemoteObjectServiceWrapper;
 import com.adobe.serializers.utility.TypeUtility;
+import model.vo.Affiliate;
 import mx.rpc.AbstractOperation;
 import mx.rpc.AsyncToken;
 import mx.rpc.remoting.Operation;
@@ -32,10 +32,10 @@ internal class _Super_AffiliateLoginService extends com.adobe.fiber.services.wra
         var operation:mx.rpc.remoting.Operation;
 
         operation = new mx.rpc.remoting.Operation(null, "doLogin");
-         operation.resultType = IstantBookingProject.Affiliate;
+         operation.resultType = model.vo.Affiliate;
         operations["doLogin"] = operation;
         operation = new mx.rpc.remoting.Operation(null, "verifiedLoggedIn");
-         operation.resultType = IstantBookingProject.Affiliate;
+         operation.resultType = model.vo.Affiliate;
         operations["verifiedLoggedIn"] = operation;
 
         _serviceControl.operations = operations;

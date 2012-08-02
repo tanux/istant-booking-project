@@ -5,9 +5,9 @@
 package model.services
 {
 import com.adobe.fiber.core.model_internal;
-import IstantBookingProject.Affiliate;
 import com.adobe.fiber.services.wrapper.RemoteObjectServiceWrapper;
 import com.adobe.serializers.utility.TypeUtility;
+import model.vo.Affiliate;
 import mx.rpc.AbstractOperation;
 import mx.rpc.AsyncToken;
 import mx.rpc.remoting.Operation;
@@ -67,7 +67,7 @@ internal class _Super_ManageAffiliateDataService extends com.adobe.fiber.service
       *
       * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function saveAffiliateData(affiliate:IstantBookingProject.Affiliate) : mx.rpc.AsyncToken
+    public function saveAffiliateData(affiliate:model.vo.Affiliate) : mx.rpc.AsyncToken
     {
         var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("saveAffiliateData");
 		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(affiliate) ;
@@ -85,7 +85,7 @@ internal class _Super_ManageAffiliateDataService extends com.adobe.fiber.service
       *
       * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function updateAffiliateData(affiliate:IstantBookingProject.Affiliate) : mx.rpc.AsyncToken
+    public function updateAffiliateData(affiliate:model.vo.Affiliate) : mx.rpc.AsyncToken
     {
         var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("updateAffiliateData");
 		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(affiliate) ;

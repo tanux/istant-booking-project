@@ -2,7 +2,7 @@
 /**
  * This is a generated class and is not intended for modification.  
  */
-package IstantBookingProject
+package model.vo
 {
 import com.adobe.fiber.styles.IStyle;
 import com.adobe.fiber.styles.Style;
