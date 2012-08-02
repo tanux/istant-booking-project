@@ -32,6 +32,7 @@ package view
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	
+	import view.component.BookingList;
 	import view.component.ConfirmBookingWindow;
 	import view.component.VisitDay;
 	import view.component.VisitHours;
@@ -155,6 +156,7 @@ package view
 			facade.registerMediator(new BookingListMediator(NAME_BOOKING_LIST_MEDIATOR, managerMain.cmpBookingList));
 			
 			facade.registerCommand(ApplicationFacade.GET_BOOKING_LIST, BookingGetListCommand);
+					
 		}
 		
 		private function doLogout(evt:Event):void{
