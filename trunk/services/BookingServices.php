@@ -44,7 +44,8 @@ class BookingServices {
 		$bookingsDateTable = new Zend_Db_Table('bookings');
 		$where1 = $bookingsDateTable->getAdapter()->quoteInto('id_location= ?', $idLocation);
 		$where2 = $bookingsDateTable->getAdapter()->quoteInto('visit_day= ?', $date);
-		$select = $dbAdapter->select()->from('bookings','id_customer')->where($where1)->where($where2);
+		$where3 = $bookingsDateTable->getAdapter()->quoteInto('cancelled= ?', "false");
+		$select = $dbAdapter->select()->from('bookings')->where($where1)->where($where2)->where($where3);
 		$stmt = $dbAdapter->query($select);
 		return $stmt->fetchAll();
 	}

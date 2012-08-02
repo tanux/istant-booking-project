@@ -36,9 +36,9 @@ package view.manager.bookings
 		
 		public function deleteBooking(evt:Event): void{
 			var delBooking:Booking = new Booking();
-			delBooking.id = bookingInList.getBooking.id;
-			delBooking.cancelled = true;
-
+			delBooking.id = bookingListCmp.bookingList.getItemAt(bookingInList.getPosition);
+			Alert.show("ID:"+delBooking.id);
+			
 			var bInList:BookingInList = new BookingInList(delBooking, bookingInList.getPosition);
 			facade.sendNotification(ApplicationFacade.BOOKING_DELETE, bInList);
 		}
@@ -64,18 +64,21 @@ package view.manager.bookings
 					var visitDayMediator:VisitDayMediator = facade.retrieveMediator(ManagerMainMediator.NAME_VISIT_DAY_MEDIATOR_SHOWBOOKING) as VisitDayMediator;					
 					var date:String = DateField.dateToString(visitDayMediator.visitDayCmp.selectedDate as Date, "DD/MM/YYYY");
 					bookingListCmp.lblBookingList.text = "Elenco delle Prenotazioni di "+city+" per il giorno "+date as String;
-					var _customerList:ArrayCollection = notification.getBody() as ArrayCollection;
-					if (_customerList.length > 0){
+					var _bookingList:ArrayCollection = notification.getBody() as ArrayCollection;
+					if (_bookingList.length > 0){
 						bookingListCmp.customerList = new ArrayCollection();
+						bookingListCmp.bookingList = new ArrayCollection();
 						var jsDecode:JSONDecoder = new JSONDecoder();
-						for (var i:int=0; i<_customerList.length; i++){
-							var customer:Object = jsDecode.decode(_customerList[i].id_customer);
+						for (var i:int=0; i<_bookingList.length; i++){							
+							bookingListCmp.bookingList.addItem(_bookingList[i].id);
+							var customer:Object = jsDecode.decode(_bookingList[i].id_customer);							
 							bookingListCmp.customerList.addItem(customer);
 						}	
 					}
 					else{
 						if (bookingListCmp.customerList != null){
-							bookingListCmp.customerList.removeAll();	
+							bookingListCmp.customerList.removeAll();
+							bookingListCmp.bookingList.removeAll();
 						}
 						Alert.show("Non ci sono prenotazioni per la data selezionata");
 					}
