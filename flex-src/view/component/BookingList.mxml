@@ -19,30 +19,21 @@
 			[Bindable]public var bookingList:ArrayCollection;
 			[Bindable]public var bookingSelected:Booking;
 
-			/**private function makeDataLabel(item:Object) : String {
+			
+			private function makeDataLabel(item:Object) : String {
 				var b:Booking = new Booking();
 				b.id = item.id;
-				b.
-				b.firstName = item.firstname;
-				b.lastName = item.lastname;
-				b.email = item.email;
-				b.telephoneNumber = item.telephone_number;
-				return c.firstName + " " + c.lastName + " " + c.email;
-			}**/
+				return ""+b.id;
+			}
 			
 			protected function dgBookingList_itemClickHandler(event:ListEvent):void{				
 				var selectedRow:Object = event.currentTarget.selectedItem;
 				bookingSelected = new Booking();
 				bookingSelected.id = selectedRow.id;
-				//AGGIUNTA DEGLI ALTRI CAMPI DA COMPLETARE
-				
 				var position:int = event.currentTarget.selectedIndex;
 				var bookingInList:BookingInList = new BookingInList(bookingSelected,position);				
 				facade.sendNotification(ApplicationFacade.BOOKING_SELECTED, bookingInList);				
-			}
-			
-			///////////////////
-			
+			}		
 			
 			//RICERCA	
 			private function filterPhrase():void{

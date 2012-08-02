@@ -26,6 +26,7 @@ package view.manager.bookings
 	
 	public class BookingListMediator extends Mediator{
 		[Bindable]private var bookingInList:BookingInList;
+		public static const NAME:String = "BookingListMediator";
 		
 		public function BookingListMediator(mediatorName:String, viewComponent:Object){
 			super(mediatorName, viewComponent);
@@ -33,8 +34,12 @@ package view.manager.bookings
 			bookingListCmp.btnDeleteUser.addEventListener(MouseEvent.CLICK, deleteBooking);
 		}
 		
-		private function deleteBooking(evt:MouseEvent):void{
-			
+		public function deleteBooking(evt:Event): void{
+			var delBooking:Booking = new Booking();
+			delBooking.id = bookingInList.getBooking.id;
+
+			var bInList:BookingInList = new BookingInList(delBooking, bookingInList.getPosition);
+			facade.sendNotification(ApplicationFacade.BOOKING_DELETE, bInList);
 		}
 		
 		private function printBookingList(evt:MouseEvent):void {
@@ -80,13 +85,24 @@ package view.manager.bookings
 					Alert.show("Prenotazione Selezionata");
 					bookingListCmp.btnDeleteUser.enabled= true;
 					break;
+				case ApplicationFacade.BOOKING_DELETE_SUCCESS:
+					bookingListCmp.btnDeleteUser.enabled = false;
+					bookingListCmp.dgRisultati.selectedIndex = -1;
+					Alert.show("Delete OK");
+					break;
+				case ApplicationFacade.BOOKING_DELETE_ERROR:
+					Alert.show("Errore delete");
+					break;
 			}
 		}
 		
 		override public function listNotificationInterests():Array{
 			return [
 				ApplicationFacade.GET_BOOKING_LIST_SUCCESS,
-				ApplicationFacade.BOOKING_SELECTED
+				ApplicationFacade.BOOKING_SELECTED,
+				ApplicationFacade.BOOKING_DELETE,
+				ApplicationFacade.BOOKING_DELETE_SUCCESS,
+				ApplicationFacade.BOOKING_DELETE_ERROR
 			];
 		}
 		
