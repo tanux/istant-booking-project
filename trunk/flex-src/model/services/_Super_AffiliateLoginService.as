@@ -1,6 +1,6 @@
 /**
  * This is a generated class and is not intended for modification.  To customize behavior
- * of this service wrapper you may modify the generated sub-class of this class - ManageAffiliateDataService.as.
+ * of this service wrapper you may modify the generated sub-class of this class - AffiliateLoginService.as.
  */
 package model.services
 {
@@ -17,11 +17,11 @@ import mx.collections.ItemResponder;
 import com.adobe.fiber.valueobjects.AvailablePropertyIterator;
 
 [ExcludeClass]
-internal class _Super_ManageAffiliateDataService extends com.adobe.fiber.services.wrapper.RemoteObjectServiceWrapper
+internal class _Super_AffiliateLoginService extends com.adobe.fiber.services.wrapper.RemoteObjectServiceWrapper
 {
 
     // Constructor
-    public function _Super_ManageAffiliateDataService()
+    public function _Super_AffiliateLoginService()
     {
         // initialize service control
         _serviceControl = new mx.rpc.remoting.RemoteObject();
@@ -31,16 +31,16 @@ internal class _Super_ManageAffiliateDataService extends com.adobe.fiber.service
         var operations:Object = new Object();
         var operation:mx.rpc.remoting.Operation;
 
-        operation = new mx.rpc.remoting.Operation(null, "saveAffiliateData");
-         operation.resultType = String;
-        operations["saveAffiliateData"] = operation;
-        operation = new mx.rpc.remoting.Operation(null, "updateAffiliateData");
-         operation.resultType = int;
-        operations["updateAffiliateData"] = operation;
+        operation = new mx.rpc.remoting.Operation(null, "doLogin");
+         operation.resultType = IstantBookingProject.Affiliate;
+        operations["doLogin"] = operation;
+        operation = new mx.rpc.remoting.Operation(null, "verifiedLoggedIn");
+         operation.resultType = IstantBookingProject.Affiliate;
+        operations["verifiedLoggedIn"] = operation;
 
         _serviceControl.operations = operations;
         _serviceControl.convertResultHandler = com.adobe.serializers.utility.TypeUtility.convertResultHandler;
-        _serviceControl.source = "ManageAffiliateDataService";
+        _serviceControl.source = "AffiliateLoginService";
         _serviceControl.endpoint = "http://localhost/IstantBookingProject/public/gateway.php";
 
 
@@ -51,13 +51,13 @@ internal class _Super_ManageAffiliateDataService extends com.adobe.fiber.service
     //init initialization routine here, child class to override
     protected function preInitializeService():void
     {
-        destination = "ManageAffiliateDataService";
+        destination = "AffiliateLoginService";
       
     }
     
 
     /**
-      * This method is a generated wrapper used to call the 'saveAffiliateData' operation. It returns an mx.rpc.AsyncToken whose 
+      * This method is a generated wrapper used to call the 'doLogin' operation. It returns an mx.rpc.AsyncToken whose 
       * result property will be populated with the result of the operation when the server response is received. 
       * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
       * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
@@ -67,15 +67,15 @@ internal class _Super_ManageAffiliateDataService extends com.adobe.fiber.service
       *
       * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function saveAffiliateData(affiliate:IstantBookingProject.Affiliate) : mx.rpc.AsyncToken
+    public function doLogin(username:Object, password:Object, user_type:Object) : mx.rpc.AsyncToken
     {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("saveAffiliateData");
-		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(affiliate) ;
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("doLogin");
+		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(username,password,user_type) ;
         return _internal_token;
     }
      
     /**
-      * This method is a generated wrapper used to call the 'updateAffiliateData' operation. It returns an mx.rpc.AsyncToken whose 
+      * This method is a generated wrapper used to call the 'verifiedLoggedIn' operation. It returns an mx.rpc.AsyncToken whose 
       * result property will be populated with the result of the operation when the server response is received. 
       * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
       * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
@@ -85,10 +85,10 @@ internal class _Super_ManageAffiliateDataService extends com.adobe.fiber.service
       *
       * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function updateAffiliateData(affiliate:IstantBookingProject.Affiliate) : mx.rpc.AsyncToken
+    public function verifiedLoggedIn() : mx.rpc.AsyncToken
     {
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("updateAffiliateData");
-		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(affiliate) ;
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("verifiedLoggedIn");
+		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send() ;
         return _internal_token;
     }
      

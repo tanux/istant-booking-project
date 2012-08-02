@@ -10,7 +10,7 @@
  * corresponding entity 
  **/ 
  
-package model.vo
+package IstantBookingProject
 {
 
 import com.adobe.fiber.core.model_internal;
@@ -30,17 +30,17 @@ public class Affiliate extends _Super_Affiliate
      */     
     public static function _initRemoteClassAlias() : void
     {
-        _Super_Affiliate.model_internal::initRemoteClassAliasSingle(model.vo.Affiliate);
+        _Super_Affiliate.model_internal::initRemoteClassAliasSingle(IstantBookingProject.Affiliate);
         _Super_Affiliate.model_internal::initRemoteClassAliasAllRelated();
     }
      
     model_internal static function initRemoteClassAliasSingleChild() : void
     {
-        _Super_Affiliate.model_internal::initRemoteClassAliasSingle(model.vo.Affiliate);
+        _Super_Affiliate.model_internal::initRemoteClassAliasSingle(IstantBookingProject.Affiliate);
     }
     
     {
-        _Super_Affiliate.model_internal::initRemoteClassAliasSingle(model.vo.Affiliate);
+        _Super_Affiliate.model_internal::initRemoteClassAliasSingle(IstantBookingProject.Affiliate);
     }
     /** 
      * END OF DO NOT MODIFY SECTION
