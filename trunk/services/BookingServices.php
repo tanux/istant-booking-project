@@ -18,6 +18,21 @@ class BookingServices {
 	}
 	
 	/**
+	 * logic delete booking	 
+	 * @param Booking $booking
+	 * @return String $id
+	 */
+	public function deleteBooking($booking){
+		$dbAdapter = ManageDatabase::getDbAdapter();	
+		Zend_Db_Table::setDefaultAdapter($dbAdapter);
+		$bookingTable = new Zend_Db_Table('bookings');
+		$bookingData = BookingServices::setBookingData($booking);
+		$bookingData['cancelled']=true;
+		$where = $bookingTable->getAdapter()->quoteInto('id= ?', $booking->id);
+		return $customerTable->update($bookingData, $where);
+	}
+	
+	/**
 	 * 
 	 * Get Booking List
 	 * @param String $idLocation
@@ -50,8 +65,7 @@ class BookingServices {
 		$result = $dbAdapter->query($select);
 		return $result->fetchAll();
 	}
-	
-	
+		
 	/**
 	 * 
 	 * Update counter date
@@ -90,7 +104,8 @@ class BookingServices {
 			'id_location'=>$booking->idLocation,
 			'id_manager'=>$booking->idManager,
 			'visit_day'=>$booking->visitDay,
-			'visit_hour'=>$booking->visitHour		
+			'visit_hour'=>$booking->visitHour,
+			'cancelled'=>false		
 		);
 		return $bookingData;
 	}
