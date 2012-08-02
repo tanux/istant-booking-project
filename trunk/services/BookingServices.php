@@ -104,7 +104,7 @@ class BookingServices {
 			'id_manager'=>$booking->idManager,
 			'visit_day'=>$booking->visitDay,
 			'visit_hour'=>$booking->visitHour,
-			'cancelled'=>false		
+			'cancelled'=>"false"		
 		);
 		return $bookingData;
 	}
