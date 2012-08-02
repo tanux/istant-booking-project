@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generato il: Lug 12, 2012 alle 19:16
+-- Generato il: Ago 02, 2012 alle 12:50
 -- Versione del server: 5.5.16
 -- Versione PHP: 5.3.8
 
@@ -64,8 +64,24 @@ CREATE TABLE IF NOT EXISTS `bookings` (
   `id_location` int(10) NOT NULL,
   `visit_day` varchar(255) NOT NULL,
   `visit_hour` varchar(255) NOT NULL,
+  `cancelled` varchar(5) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=58 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+
+--
+-- Dump dei dati per la tabella `bookings`
+--
+
+INSERT INTO `bookings` (`id`, `id_affiliate`, `id_customer`, `id_manager`, `id_location`, `visit_day`, `visit_hour`, `cancelled`) VALUES
+(1, 0, '{"id":"12","firstName":"Gaetano","lastName":"Esposito","email":"tanux87@mail.it","telephoneNumber":"3392321107"}', 1, 1, '16/07/2012', '{"hour":"15.00","index":0,"busy":true}', 'false'),
+(2, 0, '{"id":"12","firstName":"Gaetanos","lastName":"Esposito","email":"tanux87@mail.it","telephoneNumber":"3392321107"}', 1, 1, '23/07/2012', '{"hour":"20.00","index":5,"busy":true}', 'false'),
+(3, 0, '{"id":"12","firstName":"Gaetanos","lastName":"Esposito","email":"tanux87@mail.it","telephoneNumber":"3392321107"}', 1, 1, '30/07/2012', '{"busy":true,"index":5,"hour":"20.00"}', 'false'),
+(4, 0, '{"id":"12","firstName":"Gaetanos","lastName":"Esposito","email":"tanux87@mail.it","telephoneNumber":"3392321107"}', 1, 1, '30/07/2012', '{"busy":true,"index":4,"hour":"19.00"}', 'false'),
+(5, 0, '{"id":"13","firstName":"Concetta","lastName":"Natale","email":"cettina@mail.it","telephoneNumber":"3333333333"}', 1, 1, '23/07/2012', '{"busy":true,"index":2,"hour":"17.00"}', 'false'),
+(6, 0, '{"id":"13","firstName":"Concetta","lastName":"Natale","email":"cettina@mail.it","telephoneNumber":"3333333333"}', 1, 1, '30/07/2012', '{"busy":true,"index":0,"hour":"15.00"}', 'false'),
+(7, 0, '{"id":"13","firstName":"Concetta","lastName":"Natale","email":"cettina@mail.it","telephoneNumber":"3333333333"}', 1, 1, '30/07/2012', '{"busy":true,"index":1,"hour":"16.00"}', 'false'),
+(8, 0, '{"id":"13","firstName":"Concetta","lastName":"Natale","email":"cettina@mail.it","telephoneNumber":"3333333333"}', 1, 1, '30/07/2012', '{"busy":true,"index":2,"hour":"17.00"}', 'false'),
+(9, 0, '{"id":"12","firstName":"Gaetanos","lastName":"Esposito","email":"tanux87@mail.it","telephoneNumber":"3392321107"}', 1, 1, '30/07/2012', '{"busy":true,"index":3,"hour":"18.00"}', 'false');
 
 -- --------------------------------------------------------
 
@@ -78,6 +94,15 @@ CREATE TABLE IF NOT EXISTS `counter_date` (
   `counter` int(1) NOT NULL,
   PRIMARY KEY (`date`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dump dei dati per la tabella `counter_date`
+--
+
+INSERT INTO `counter_date` (`date`, `counter`) VALUES
+('16/07/2012', 1),
+('23/07/2012', 2),
+('30/07/2012', 6);
 
 -- --------------------------------------------------------
 
@@ -93,14 +118,15 @@ CREATE TABLE IF NOT EXISTS `customers` (
   `telephone_number` varchar(30) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf32 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf32 AUTO_INCREMENT=14 ;
 
 --
 -- Dump dei dati per la tabella `customers`
 --
 
 INSERT INTO `customers` (`id`, `firstname`, `lastname`, `email`, `telephone_number`) VALUES
-(9, 'gaetano', 'esposito', 'tanux@mail.it', '2222222222222');
+(12, 'Gaetanos', 'Esposito', 'tanux87@mail.it', '3392321107'),
+(13, 'Concetta', 'Natale', 'cettina@mail.it', '3333333333');
 
 -- --------------------------------------------------------
 
@@ -115,14 +141,14 @@ CREATE TABLE IF NOT EXISTS `locations` (
   `telephone_number` varchar(255) NOT NULL,
   `reception_days` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf32 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf32 AUTO_INCREMENT=2 ;
 
 --
 -- Dump dei dati per la tabella `locations`
 --
 
 INSERT INTO `locations` (`id`, `city`, `address`, `telephone_number`, `reception_days`) VALUES
-(16, 'Angri', 'Via Vespucci, 37', '081-946487', '[{"label":"Lunedi","selected":true,"numberAssociated":1},{"label":"Martedi","selected":false,"numberAssociated":2},{"label":"Mercoledi","selected":true,"numberAssociated":3},{"label":"Giovedi","selected":false,"numberAssociated":4},{"label":"Venerdi","selected":false,"numberAssociated":5},{"label":"Sabato","selected":false,"numberAssociated":6}]');
+(1, 'Angri', 'Via Vespucci, 37', '081', '[{"numberAssociated":1,"selected":true,"label":"Lunedi"},{"numberAssociated":2,"selected":false,"label":"Martedi"},{"numberAssociated":3,"selected":false,"label":"Mercoledi"},{"numberAssociated":4,"selected":false,"label":"Giovedi"},{"numberAssociated":5,"selected":false,"label":"Venerdi"},{"numberAssociated":6,"selected":false,"label":"Sabato"}]');
 
 -- --------------------------------------------------------
 
