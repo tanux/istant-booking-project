@@ -127,7 +127,7 @@ internal class _Super_BookingServices extends com.adobe.fiber.services.wrapper.R
       *
       * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function deleteBooking(idBooking:int) : mx.rpc.AsyncToken
+    public function deleteBooking(idBooking:Object) : mx.rpc.AsyncToken
     {
         var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("deleteBooking");
 		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(idBooking) ;

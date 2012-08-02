@@ -19,7 +19,7 @@ class BookingServices {
 	
 	/**
 	 * logic delete booking	 
-	 * @param int $idBooking
+	 * @param String $idBooking
 	 * @return String $id
 	 */
 	public function deleteBooking($idBooking){
