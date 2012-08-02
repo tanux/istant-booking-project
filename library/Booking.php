@@ -8,6 +8,7 @@ class Booking {
 	public $idLocation;
 	public $visitDay;
 	public $visitHour;
+	public $cancelled;
 }
 
 ?>

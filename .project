@@ -34,6 +34,11 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>services/AffiliateLoginService1_AffiliateLoginService.php</name>
+			<type>1</type>
+			<location>C:/easyphp/www/IstantBookingProject/services/AffiliateLoginService.php</location>
+		</link>
+		<link>
 			<name>services/AffiliateLoginService_AffiliateLoginService.php</name>
 			<type>1</type>
 			<location>C:/easyphp/www/IstantBookingProject/services/AffiliateLoginService.php</location>
