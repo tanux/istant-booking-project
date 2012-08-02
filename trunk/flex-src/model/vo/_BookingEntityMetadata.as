@@ -6,11 +6,9 @@ package model.vo
 {
 import com.adobe.fiber.styles.IStyle;
 import com.adobe.fiber.styles.Style;
-import com.adobe.fiber.styles.StyleValidator;
 import com.adobe.fiber.valueobjects.AbstractEntityMetadata;
 import com.adobe.fiber.valueobjects.AvailablePropertyIterator;
 import com.adobe.fiber.valueobjects.IPropertyIterator;
-import mx.events.ValidationResultEvent;
 import com.adobe.fiber.core.model_internal;
 import com.adobe.fiber.valueobjects.IModelType;
 import mx.events.PropertyChangeEvent;
@@ -24,7 +22,7 @@ internal class _BookingEntityMetadata extends com.adobe.fiber.valueobjects.Abstr
 
     model_internal static var allProperties:Array = new Array("id", "idAffiliate", "idManager", "idCustomer", "idLocation", "visitDay", "visitHour", "cancelled");
     model_internal static var allAssociationProperties:Array = new Array();
-    model_internal static var allRequiredProperties:Array = new Array("cancelled");
+    model_internal static var allRequiredProperties:Array = new Array();
     model_internal static var allAlwaysAvailableProperties:Array = new Array("id", "idAffiliate", "idManager", "idCustomer", "idLocation", "visitDay", "visitHour", "cancelled");
     model_internal static var guardedProperties:Array = new Array();
     model_internal static var dataProperties:Array = new Array("id", "idAffiliate", "idManager", "idCustomer", "idLocation", "visitDay", "visitHour", "cancelled");
@@ -38,11 +36,6 @@ internal class _BookingEntityMetadata extends com.adobe.fiber.valueobjects.Abstr
     model_internal static var dependedOnServices:Array = new Array();
     model_internal static var propertyTypeMap:Object;
 
-    
-    model_internal var _cancelledIsValid:Boolean;
-    model_internal var _cancelledValidator:com.adobe.fiber.styles.StyleValidator;
-    model_internal var _cancelledIsValidCacheInitialized:Boolean = false;
-    model_internal var _cancelledValidationFailureMessages:Array;
 
     model_internal var _instance:_Super_Booking;
     model_internal static var _nullStyle:com.adobe.fiber.styles.Style = new com.adobe.fiber.styles.Style();
@@ -79,11 +72,6 @@ internal class _BookingEntityMetadata extends com.adobe.fiber.valueobjects.Abstr
         model_internal::propertyTypeMap["cancelled"] = "Object";
 
         model_internal::_instance = value;
-        model_internal::_cancelledValidator = new StyleValidator(model_internal::_instance.model_internal::_doValidationForCancelled);
-        model_internal::_cancelledValidator.required = true;
-        model_internal::_cancelledValidator.requiredFieldError = "cancelled is required";
-        //model_internal::_cancelledValidator.source = model_internal::_instance;
-        //model_internal::_cancelledValidator.property = "cancelled";
     }
 
     override public function getEntityName():String
@@ -362,14 +350,6 @@ internal class _BookingEntityMetadata extends com.adobe.fiber.valueobjects.Abstr
     /**
      * derived property recalculation
      */
-    public function invalidateDependentOnCancelled():void
-    {
-        if (model_internal::_cancelledIsValidCacheInitialized )
-        {
-            model_internal::_instance.model_internal::_doValidationCacheOfCancelled = null;
-            model_internal::calculateCancelledIsValid();
-        }
-    }
 
     model_internal function fireChangeEvent(propertyName:String, oldValue:Object, newValue:Object):void
     {
@@ -424,100 +404,6 @@ internal class _BookingEntityMetadata extends com.adobe.fiber.valueobjects.Abstr
         return model_internal::_nullStyle;
     }
 
-    public function get cancelledValidator() : StyleValidator
-    {
-        return model_internal::_cancelledValidator;
-    }
-
-    model_internal function set _cancelledIsValid_der(value:Boolean):void 
-    {
-        var oldValue:Boolean = model_internal::_cancelledIsValid;         
-        if (oldValue !== value)
-        {
-            model_internal::_cancelledIsValid = value;
-            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "cancelledIsValid", oldValue, value));
-        }                             
-    }
-
-    [Bindable(event="propertyChange")]
-    public function get cancelledIsValid():Boolean
-    {
-        if (!model_internal::_cancelledIsValidCacheInitialized)
-        {
-            model_internal::calculateCancelledIsValid();
-        }
-
-        return model_internal::_cancelledIsValid;
-    }
-
-    model_internal function calculateCancelledIsValid():void
-    {
-        var valRes:ValidationResultEvent = model_internal::_cancelledValidator.validate(model_internal::_instance.cancelled)
-        model_internal::_cancelledIsValid_der = (valRes.results == null);
-        model_internal::_cancelledIsValidCacheInitialized = true;
-        if (valRes.results == null)
-             model_internal::cancelledValidationFailureMessages_der = emptyArray;
-        else
-        {
-            var _valFailures:Array = new Array();
-            for (var a:int = 0 ; a<valRes.results.length ; a++)
-            {
-                _valFailures.push(valRes.results[a].errorMessage);
-            }
-            model_internal::cancelledValidationFailureMessages_der = _valFailures;
-        }
-    }
-
-    [Bindable(event="propertyChange")]
-    public function get cancelledValidationFailureMessages():Array
-    {
-        if (model_internal::_cancelledValidationFailureMessages == null)
-            model_internal::calculateCancelledIsValid();
-
-        return _cancelledValidationFailureMessages;
-    }
-
-    model_internal function set cancelledValidationFailureMessages_der(value:Array) : void
-    {
-        var oldValue:Array = model_internal::_cancelledValidationFailureMessages;
-
-        var needUpdate : Boolean = false;
-        if (oldValue == null)
-            needUpdate = true;
-    
-        // avoid firing the event when old and new value are different empty arrays
-        if (!needUpdate && (oldValue !== value && (oldValue.length > 0 || value.length > 0)))
-        {
-            if (oldValue.length == value.length)
-            {
-                for (var a:int=0; a < oldValue.length; a++)
-                {
-                    if (oldValue[a] !== value[a])
-                    {
-                        needUpdate = true;
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                needUpdate = true;
-            }
-        }
-
-        if (needUpdate)
-        {
-            model_internal::_cancelledValidationFailureMessages = value;   
-            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "cancelledValidationFailureMessages", oldValue, value));
-            // Only execute calculateIsValid if it has been called before, to update the validationFailureMessages for
-            // the entire entity.
-            if (model_internal::_instance.model_internal::_cacheInitialized_isValid)
-            {
-                model_internal::_instance.model_internal::isValid_der = model_internal::_instance.model_internal::calculateIsValid();
-            }
-        }
-    }
-
 
      /**
      * 
@@ -543,10 +429,6 @@ internal class _BookingEntityMetadata extends com.adobe.fiber.valueobjects.Abstr
      {
          switch(propertyName)
          {
-            case("cancelled"):
-            {
-                return cancelledValidationFailureMessages;
-            }
             default:
             {
                 return emptyArray;

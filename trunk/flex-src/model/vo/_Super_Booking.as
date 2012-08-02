@@ -6,14 +6,10 @@
 package model.vo
 {
 import com.adobe.fiber.services.IFiberManagingService;
-import com.adobe.fiber.util.FiberUtils;
 import com.adobe.fiber.valueobjects.IValueObject;
-import flash.events.Event;
 import flash.events.EventDispatcher;
-import mx.binding.utils.ChangeWatcher;
 import mx.collections.ArrayCollection;
 import mx.events.PropertyChangeEvent;
-import mx.validators.ValidationResult;
 
 import flash.net.registerClassAlias;
 import flash.net.getClassByAlias;
@@ -86,7 +82,6 @@ public class _Super_Booking extends flash.events.EventDispatcher implements com.
         _model = new _BookingEntityMetadata(this);
 
         // Bind to own data or source properties for cache invalidation triggering
-        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "cancelled", model_internal::setterListenerCancelled));
 
     }
 
@@ -242,11 +237,6 @@ public class _Super_Booking extends flash.events.EventDispatcher implements com.
      *  - the validity of the property (and the containing entity) if the given data property is required.
      */
 
-    model_internal function setterListenerCancelled(value:flash.events.Event):void
-    {
-        _model.invalidateDependentOnCancelled();
-    }
-
 
     /**
      * valid related derived properties
@@ -268,11 +258,6 @@ public class _Super_Booking extends flash.events.EventDispatcher implements com.
         var validationFailureMessages:Array = new Array();
 
         var propertyValidity:Boolean = true;
-        if (!_model.cancelledIsValid)
-        {
-            propertyValidity = false;
-            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_cancelledValidationFailureMessages);
-        }
 
         model_internal::_cacheInitialized_isValid = true;
         model_internal::invalidConstraints_der = violatedConsts;
@@ -352,33 +337,6 @@ public class _Super_Booking extends flash.events.EventDispatcher implements com.
         }
     }
 
-    model_internal var _doValidationCacheOfCancelled : Array = null;
-    model_internal var _doValidationLastValOfCancelled : Object;
-
-    model_internal function _doValidationForCancelled(valueIn:Object):Array
-    {
-        var value : Object = valueIn as Object;
-
-        if (model_internal::_doValidationCacheOfCancelled != null && model_internal::_doValidationLastValOfCancelled == value)
-           return model_internal::_doValidationCacheOfCancelled ;
-
-        _model.model_internal::_cancelledIsValidCacheInitialized = true;
-        var validationFailures:Array = new Array();
-        var errorMessage:String;
-        var failure:Boolean;
-
-        var valRes:ValidationResult;
-        if (_model.isCancelledAvailable && _internal_cancelled == null)
-        {
-            validationFailures.push(new ValidationResult(true, "", "", "cancelled is required"));
-        }
-
-        model_internal::_doValidationCacheOfCancelled = validationFailures;
-        model_internal::_doValidationLastValOfCancelled = value;
-
-        return validationFailures;
-    }
-    
 
 }
 
