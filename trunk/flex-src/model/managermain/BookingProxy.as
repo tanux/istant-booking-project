@@ -25,6 +25,7 @@ package model.managermain
 		
 		public function removeBooking(position:int):void{
 			bookings.removeItemAt(position);
+			Alert.show("Proxy: delete Ok");
 		}
 		
 

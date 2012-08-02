@@ -37,6 +37,7 @@ package view.manager.bookings
 		public function deleteBooking(evt:Event): void{
 			var delBooking:Booking = new Booking();
 			delBooking.id = bookingInList.getBooking.id;
+			delBooking.cancelled = true;
 
 			var bInList:BookingInList = new BookingInList(delBooking, bookingInList.getPosition);
 			facade.sendNotification(ApplicationFacade.BOOKING_DELETE, bInList);
