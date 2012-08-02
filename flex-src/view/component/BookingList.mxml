@@ -5,7 +5,8 @@
 	<fx:Script>
 		<![CDATA[
 			import mx.collections.ArrayCollection;
-			[Bindable]public var customerList:ArrayCollection;			
+			[Bindable]public var bookingList:ArrayCollection;
+			[Bindable]public var customerList:ArrayCollection;
 			[Bindable]public var visibleBtnDel: Boolean = false;
 			
 			//Booking Selected
@@ -15,8 +16,7 @@
 			import mx.controls.Alert;
 			import mx.events.ListEvent;			
 			
-			private var facade:ApplicationFacade = ApplicationFacade.getInstance() as ApplicationFacade;
-			[Bindable]public var bookingList:ArrayCollection;
+			private var facade:ApplicationFacade = ApplicationFacade.getInstance() as ApplicationFacade;			
 			[Bindable]public var bookingSelected:Booking;
 
 			
@@ -37,8 +37,8 @@
 			
 			//RICERCA	
 			private function filterPhrase():void{
-				customerList.filterFunction = filterFirst;
-				customerList.refresh();
+				bookingList.filterFunction = filterFirst;
+				bookingList.refresh();
 			} 
 			
 			//if true it show results, if false it shows nothing
@@ -83,7 +83,7 @@
 		</mx:HBox>
 		<mx:Canvas width="100%" height="100%">
 			<mx:DataGrid id="dgRisultati" width="100%" height="100%" dataProvider="{customerList}" itemClick="dgBookingList_itemClickHandler(event)">
-				<mx:columns>
+				<mx:columns>					
 					<mx:DataGridColumn id="clmId" dataField="id" headerText="Id" visible="false"/>
 					<mx:DataGridColumn id="clmNome" dataField="firstName" headerText="Nome" />
 					<mx:DataGridColumn id="clmCognome" dataField="lastName" headerText="Cognome" />
