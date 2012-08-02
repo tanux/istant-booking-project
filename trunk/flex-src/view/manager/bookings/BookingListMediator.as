@@ -5,6 +5,9 @@ package view.manager.bookings
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
+	import model.vo.Booking;
+	import model.vo.BookingInList;
+	
 	import mx.collections.ArrayCollection;
 	import mx.controls.Alert;
 	import mx.controls.DateField;
@@ -22,9 +25,16 @@ package view.manager.bookings
 	import view.manager.main.VisitLocationMediator;
 	
 	public class BookingListMediator extends Mediator{
+		[Bindable]private var bookingInList:BookingInList;
+		
 		public function BookingListMediator(mediatorName:String, viewComponent:Object){
 			super(mediatorName, viewComponent);
 			bookingListCmp.btnPrintBookingList.addEventListener(MouseEvent.CLICK, printBookingList);
+			bookingListCmp.btnDeleteUser.addEventListener(MouseEvent.CLICK, deleteBooking);
+		}
+		
+		private function deleteBooking(evt:MouseEvent):void{
+			
 		}
 		
 		private function printBookingList(evt:MouseEvent):void {
@@ -65,12 +75,18 @@ package view.manager.bookings
 					}
 					CursorManager.removeBusyCursor();					
 					break;
+				case ApplicationFacade.BOOKING_SELECTED:
+					bookingInList = notification.getBody() as BookingInList;
+					Alert.show("Prenotazione Selezionata");
+					bookingListCmp.btnDeleteUser.enabled= true;
+					break;
 			}
 		}
 		
 		override public function listNotificationInterests():Array{
 			return [
-				ApplicationFacade.GET_BOOKING_LIST_SUCCESS				
+				ApplicationFacade.GET_BOOKING_LIST_SUCCESS,
+				ApplicationFacade.BOOKING_SELECTED
 			];
 		}
 		

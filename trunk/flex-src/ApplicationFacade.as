@@ -109,6 +109,12 @@ package
 		public static const GET_BOOKING_LIST_ERROR:String = "GetBookingListError";
 		public static const GET_BOOKING_LIST_FAULT:String = "GetBookingListFault";
 		
+		public static const BOOKING_DELETE:String = "BookingDelete";
+		public static const BOOKING_DELETE_SUCCESS:String = "BookingDeleteSuccess";		
+		public static const BOOKING_DELETE_ERROR:String = "BookingDeleteError";
+		public static const BOOKING_DELETE_FAULT:String = "BookingDeleteFault";
+		public static const BOOKING_SELECTED: String = "BookingSelected";
+		
 		public static const DATE_SELECTED:String = "DateSelected";
 		public static const HOUR_SELECTED:String = "HourSelected";
 		public static const GET_BUSY_HOURS:String = "GetBusyHours";
