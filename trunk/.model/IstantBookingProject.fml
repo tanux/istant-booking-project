@@ -517,11 +517,12 @@
       </annotation>
       <annotation name="original signature">
         <item name="inputParamNames">idLocation,date</item>
-        <item name="inputParams">opaque,opaque</item>
+        <item name="inputParams">opaque,opaque,opaque</item>
         <item name="returnType">opaque</item>
       </annotation>
       <parameter name="idLocation" type="opaque"/>
       <parameter name="date" type="opaque"/>
+      <parameter name="type" type="opaque"/>
     </function>
     <function name="deleteBooking" return-type="string">
       <annotation name="analyze group">
