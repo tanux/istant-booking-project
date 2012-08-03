@@ -1,5 +1,6 @@
 <?php
-
+define ('ADD','add');
+define ('DELETE', 'delete');
 class BookingServices {
 	
 	/**
@@ -12,23 +13,32 @@ class BookingServices {
 		$bookingData = BookingServices::setBookingData($booking);
 		$dbAdapter = ManageDatabase::getDbAdapter();			
 		if ($dbAdapter->insert('bookings', $bookingData) > 0)
-			return BookingServices::updateCounterDate($booking->visitDay);
+			return BookingServices::updateCounterDate($booking->visitDay,ADD);
 		else 
 			return null;		
 	}	
 	
 	/**
+	 * Deve:
+	 * 1)impostare a true il campo cancelled di una booking con uno specifico id
+	 * 2)ripristinare l'orario da busy=true a busy=false
+	 * 2)decrementare il numero di prenotazioni in quella giornata
 	 * logic delete booking	 
-	 * @param String $idBooking
+	 * @param Booking $booking
 	 * @return String $id
 	 */
-	public function deleteBooking($idBooking){
+	public function deleteBooking($booking){
 		$dbAdapter = ManageDatabase::getDbAdapter();	
 		Zend_Db_Table::setDefaultAdapter($dbAdapter);
 		$bookingTable = new Zend_Db_Table('bookings');		
 		$bookingData['cancelled']= "true";
-		$where = $bookingTable->getAdapter()->quoteInto('id= ?', $idBooking);
-		return $bookingTable->update($bookingData, $where);
+		$bookingData['visit_hour'] = $booking->visitHour;
+		$where = $bookingTable->getAdapter()->quoteInto('id= ?', $booking->id);
+		$id = $bookingTable->update($bookingData, $where);
+		if ($id != null){
+			BookingServices::updateCounterDate($booking->visitDay,DELETE);
+		}
+		return $id;			
 	}
 	
 	/**
@@ -72,7 +82,7 @@ class BookingServices {
 	 * @param $date
 	 * @return int number of row affected
 	 */
-	private function updateCounterDate($date){
+	private function updateCounterDate($date,$operation_type){
 		$dbAdapter = ManageDatabase::getDbAdapter();	
 		Zend_Db_Table::setDefaultAdapter($dbAdapter);		
 		$counterDateTable = new Zend_Db_Table('counter_date');
@@ -81,15 +91,25 @@ class BookingServices {
 		$result = $dbAdapter->query($select);		
 		$counter =  $result->fetch();
 		$counter = (int)$counter['counter'];
-		
-		if (!($counter >= 1 && $counter<=6)){
-			$counterDateData = array('date'=>$date, 'counter'=>1);
-			return $dbAdapter->insert('counter_date', $counterDateData);	
-		}		
-		elseif ($counter<6){			
-			$counterDateData = array('date'=>$date, 'counter'=>$counter+1);
-			return $counterDateTable->update($counterDateData, $where);		
+		if ($operation_type == ADD){
+			if (!($counter >= 1 && $counter<=6)){
+				$counterDateData = array('date'=>$date, 'counter'=>1);
+				return $dbAdapter->insert('counter_date', $counterDateData);	
+			}		
+			elseif ($counter<6){			
+				$counterDateData = array('date'=>$date, 'counter'=>$counter+1);
+				return $counterDateTable->update($counterDateData, $where);		
+			}	
 		}
+		elseif ($operation_type == DELETE){
+			if ($counter>0){
+				$counterDateData = array('date'=>$date, 'counter'=>$counter-1);
+				return $counterDateTable->update($counterDateData, $where);
+			}
+			else{
+				return $counterDateTable->delete($where);
+			}
+		}				
 	}
 	
 	/**

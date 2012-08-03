@@ -1,12 +1,14 @@
 package view.manager.bookings
 {
 	import com.adobe.serializers.json.JSONDecoder;
+	import com.adobe.serializers.json.JSONEncoder;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
 	import model.vo.Booking;
 	import model.vo.BookingInList;
+	import model.vo.SelectedHour;
 	
 	import mx.collections.ArrayCollection;
 	import mx.controls.Alert;
@@ -26,7 +28,9 @@ package view.manager.bookings
 	
 	public class BookingListMediator extends Mediator{
 		[Bindable]private var bookingInList:BookingInList;
+		[Bindable]private var date:String;
 		public static const NAME:String = "BookingListMediator";
+		
 		
 		public function BookingListMediator(mediatorName:String, viewComponent:Object){
 			super(mediatorName, viewComponent);
@@ -36,9 +40,10 @@ package view.manager.bookings
 		
 		public function deleteBooking(evt:Event): void{
 			var delBooking:Booking = new Booking();
-			delBooking.id = bookingListCmp.bookingList.getItemAt(bookingInList.getPosition);
-			Alert.show("ID:"+delBooking.id);
-			
+			delBooking = bookingListCmp.bookingList.getItemAt(bookingInList.getPosition) as Booking;
+			delBooking.visitDay = date;
+			var jsEncode:JSONEncoder = new JSONEncoder();
+			delBooking.visitHour = jsEncode.encode(delBooking.visitHour);
 			var bInList:BookingInList = new BookingInList(delBooking, bookingInList.getPosition);
 			facade.sendNotification(ApplicationFacade.BOOKING_DELETE, bInList);
 		}
@@ -62,18 +67,26 @@ package view.manager.bookings
 					var visitLocationMediator:VisitLocationMediator = facade.retrieveMediator(ManagerMainMediator.NAME_VISIT_LOCATION_MEDIATOR_SHOWBOOKING) as VisitLocationMediator;
 					var city:String = visitLocationMediator.visitDayCmp.locationSelected.city as String;	
 					var visitDayMediator:VisitDayMediator = facade.retrieveMediator(ManagerMainMediator.NAME_VISIT_DAY_MEDIATOR_SHOWBOOKING) as VisitDayMediator;					
-					var date:String = DateField.dateToString(visitDayMediator.visitDayCmp.selectedDate as Date, "DD/MM/YYYY");
+					date = DateField.dateToString(visitDayMediator.visitDayCmp.selectedDate as Date, "DD/MM/YYYY");
 					bookingListCmp.lblBookingList.text = "Elenco delle Prenotazioni di "+city+" per il giorno "+date as String;
 					var _bookingList:ArrayCollection = notification.getBody() as ArrayCollection;
 					if (_bookingList.length > 0){
 						bookingListCmp.customerList = new ArrayCollection();
 						bookingListCmp.bookingList = new ArrayCollection();
 						var jsDecode:JSONDecoder = new JSONDecoder();
-						for (var i:int=0; i<_bookingList.length; i++){							
-							bookingListCmp.bookingList.addItem(_bookingList[i].id);
+						for (var i:int=0; i<_bookingList.length; i++){
+							var booking:Booking = new Booking();
+							booking.id = _bookingList[i].id;
+							var jsDecode:JSONDecoder = new JSONDecoder();
+							var hour:SelectedHour = new SelectedHour();
+							hour.hour = jsDecode.decode(_bookingList[i].visit_hour).hour;
+							hour.busy = false;
+							hour.index = jsDecode.decode(_bookingList[i].visit_hour).index;							
+							booking.visitHour = hour;						
+							bookingListCmp.bookingList.addItem(booking);
 							var customer:Object = jsDecode.decode(_bookingList[i].id_customer);							
 							bookingListCmp.customerList.addItem(customer);
-						}	
+						}
 					}
 					else{
 						if (bookingListCmp.customerList != null){

@@ -31,7 +31,7 @@ package model.managermain
 		}
 		
 		public function deleteBooking(booking:Booking):void{
-			var at:AsyncToken = service.deleteBooking(booking.id);
+			var at:AsyncToken = service.deleteBooking(booking);
 			at.addResponder(responder);	
 			Alert.show("ListProxy: delete ok");
 		}

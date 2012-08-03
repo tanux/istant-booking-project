@@ -6,7 +6,7 @@
 		<![CDATA[
 			import mx.collections.ArrayCollection;
 			[Bindable]public var bookingList:ArrayCollection;
-			[Bindable]public var customerList:ArrayCollection;
+			[Bindable]public var customerList:ArrayCollection;			 
 			[Bindable]public var visibleBtnDel: Boolean = false;
 			
 			//Booking Selected

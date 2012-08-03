@@ -529,10 +529,10 @@
       </annotation>
       <annotation name="original signature">
         <item name="inputParamNames">booking</item>
-        <item name="inputParams">opaque</item>
+        <item name="inputParams">Booking</item>
         <item name="returnType">string</item>
       </annotation>
-      <parameter name="idBooking" type="opaque"/>
+      <parameter name="booking" type="Booking"/>
     </function>
   </service>
   <entity name="Booking">
