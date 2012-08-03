@@ -218,8 +218,11 @@
 				</mx:Repeater>
 			</mx:HBox>		
 			
-			<component:HouseButton id="cmpHouseButton" horizontalAlign="center" width="100%" paddingBottom="10" />
+			<mx:Box width="100%" verticalAlign="middle" horizontalAlign="center" >
+				<mx:Button id="btnReset" label="Reset" width="20%" />	
+			</mx:Box>
 			
+			<component:HouseButton id="cmpHouseButton" horizontalAlign="center" width="100%" paddingBottom="10" />
 		</mx:VBox>	
 	</mx:Panel>
 </mx:HBox>
