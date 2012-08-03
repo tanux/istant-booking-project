@@ -41,7 +41,11 @@ package model.managermain
 			at.addResponder(responder);
 		}
 		public function getBookingList(idLocation:int, date:String):void{
-			var at:AsyncToken = service.getBookingList(idLocation, date);
+			var at:AsyncToken = service.getBookingList(idLocation, date, "false");
+			at.addResponder(responder);
+		}
+		public function getDeletedBookingList(idLocation:int, date:String){
+			var at:AsyncToken = service.getBookingList(idLocation, date, "true");
 			at.addResponder(responder);
 		}
 		
