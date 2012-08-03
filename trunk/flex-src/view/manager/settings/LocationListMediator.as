@@ -39,7 +39,7 @@ package view.manager.settings
 			locationListCmp.cmpHouseButton.btnAdd.addEventListener(MouseEvent.CLICK, addLocation);
 			locationListCmp.cmpHouseButton.btnDelete.addEventListener(MouseEvent.CLICK, deleteLocation);
 			locationListCmp.cmpHouseButton.btnSave.addEventListener(MouseEvent.CLICK, saveChanges);
-			//locationListCmp.btnReset.addEventListener(MouseEvent.CLICK, resetAll);
+			locationListCmp.cmpHouseButton.btnReset.addEventListener(MouseEvent.CLICK, resetAll);
 		}
 		
 		private function init(evt:Event) : void {}
