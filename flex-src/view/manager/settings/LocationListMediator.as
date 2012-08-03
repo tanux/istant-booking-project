@@ -39,8 +39,9 @@ package view.manager.settings
 			locationListCmp.cmpHouseButton.btnAdd.addEventListener(MouseEvent.CLICK, addLocation);
 			locationListCmp.cmpHouseButton.btnDelete.addEventListener(MouseEvent.CLICK, deleteLocation);
 			locationListCmp.cmpHouseButton.btnSave.addEventListener(MouseEvent.CLICK, saveChanges);
-			locationListCmp.btnReset.addEventListener(MouseEvent.CLICK, resetAll);
+			//locationListCmp.btnReset.addEventListener(MouseEvent.CLICK, resetAll);
 		}
+		
 		private function init(evt:Event) : void {}
 		
 		private function resetAll(evt:Event): void{
@@ -101,6 +102,7 @@ package view.manager.settings
 			switch (notification.getName()){
 				case ApplicationFacade.LOCATION_SELECTED:
 					locationInList = notification.getBody() as LocationInList;
+					locationListCmp.abilitaAdd=false;
 					locationListCmp.tiLocationName.text = locationInList.getLocation.city as String;
 					locationListCmp.tiStreet.text = locationInList.getLocation.address as String;
 					locationListCmp.tiTelephone.text = locationInList.getLocation.telephoneNumber as String;					
@@ -131,7 +133,8 @@ package view.manager.settings
 					break;
 				case ApplicationFacade.LOCATION_SAVE_CHANGES_SUCCESS:
 					notify('default', 'Successo', 'L\'operazione è andata a buon fine', locationListCmp.successIcon, 5000);
-					resetTextInput();					
+					resetTextInput();
+					locationListCmp.abilitaAdd=true;
 					locationListCmp.cmpHouseButton.btnSave.enabled = false;
 					locationListCmp.cmpHouseButton.btnAdd.enabled = true;
 					locationListCmp.cmpHouseButton.btnDelete.enabled = false;
@@ -142,6 +145,7 @@ package view.manager.settings
 				case ApplicationFacade.LOCATION_DELETE_SUCCESS:
 					notify('default', 'Successo', 'Eliminazione ok', locationListCmp.successIcon, 5000);
 					resetTextInput();
+					locationListCmp.abilitaAdd=true;
 					locationListCmp.cmpHouseButton.btnSave.enabled = false;
 					locationListCmp.cmpHouseButton.btnAdd.enabled = true;
 					locationListCmp.cmpHouseButton.btnDelete.enabled = false;
