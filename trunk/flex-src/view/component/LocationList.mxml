@@ -218,7 +218,7 @@
 				</mx:Repeater>
 			</mx:HBox>		
 			
-			<mx:HBox width="100%" horizontalAlign="center">
+			<mx:HBox width="100%" horizontalAlign="center" paddingBottom="10">
 				<component:HouseButton id="cmpHouseButton" horizontalAlign="center" width="100%" />
 			</mx:HBox>
 			
