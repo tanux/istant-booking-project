@@ -38,11 +38,19 @@ package view.manager.settings
 			super(NAME, viewComponent);
 			locationListCmp.cmpHouseButton.btnAdd.addEventListener(MouseEvent.CLICK, addLocation);
 			locationListCmp.cmpHouseButton.btnDelete.addEventListener(MouseEvent.CLICK, deleteLocation);
-			locationListCmp.cmpHouseButton.btnSave.addEventListener(MouseEvent.CLICK, saveChanges);			
+			locationListCmp.cmpHouseButton.btnSave.addEventListener(MouseEvent.CLICK, saveChanges);
+			locationListCmp.btnReset.addEventListener(MouseEvent.CLICK, resetAll);
 		}
 		private function init(evt:Event) : void {}
 		
-		
+		private function resetAll(evt:Event): void{
+			resetTextInput();	
+			locationListCmp.cmpHouseButton.btnAdd.enabled = false;
+			locationListCmp.cmpHouseButton.btnDelete.enabled = false;
+			locationListCmp.cmpHouseButton.btnSave.enabled = false;
+			locationListCmp.abilitaAdd=true;
+			locationListCmp.dgLocationList.selectedIndex = -1;
+		}
 		
 		private function makeArraysDays(): Array {							
 			var days:Array = new Array();
