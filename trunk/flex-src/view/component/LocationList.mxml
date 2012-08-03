@@ -66,7 +66,7 @@
 			private function fault(f:FaultEvent):void{
 				Alert.show(f.fault.message as String);
 			}
-			//////////////////////////
+
 			import mx.controls.Alert;
 			import mx.events.ValidationResultEvent;
 			import mx.validators.ValidationResult;
@@ -218,11 +218,10 @@
 				</mx:Repeater>
 			</mx:HBox>		
 			
-			<mx:Box width="100%" verticalAlign="middle" horizontalAlign="center" >
-				<mx:Button id="btnReset" label="Reset" width="20%" />	
-			</mx:Box>
+			<mx:HBox width="100%" horizontalAlign="center">
+				<component:HouseButton id="cmpHouseButton" horizontalAlign="center" width="100%" />
+			</mx:HBox>
 			
-			<component:HouseButton id="cmpHouseButton" horizontalAlign="center" width="100%" paddingBottom="10" />
 		</mx:VBox>	
 	</mx:Panel>
 </mx:HBox>
