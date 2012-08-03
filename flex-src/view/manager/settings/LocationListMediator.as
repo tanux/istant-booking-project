@@ -62,9 +62,9 @@ package view.manager.settings
 		private function addLocation(evt:Event): void{			
 			var jsEnc:JSONEncoder = new JSONEncoder();
 			var newLocation:Location = new Location();			
-			newLocation.city = locationListCmp.tiLocationName.textInput.text;			
-			newLocation.address = locationListCmp.tiStreet.textInput.text;
-			newLocation.telephoneNumber = locationListCmp.tiTelephone.textInput.text;			
+			newLocation.city = locationListCmp.tiLocationName.text;			
+			newLocation.address = locationListCmp.tiStreet.text;
+			newLocation.telephoneNumber = locationListCmp.tiTelephone.text;			
 			newLocation.receptionDays = jsEnc.encode(makeArraysDays());						
 			facade.sendNotification(ApplicationFacade.LOCATION_ADD, newLocation);			
 		}
@@ -81,9 +81,9 @@ package view.manager.settings
 			var jsEnc:JSONEncoder = new JSONEncoder();
 			var locationChanged:Location = new Location();			
 			locationChanged.id = locationInList.getLocation.id;
-			locationChanged.city = locationListCmp.tiLocationName.textInput.text;
-			locationChanged.address = locationListCmp.tiStreet.textInput.text;
-			locationChanged.telephoneNumber = locationListCmp.tiTelephone.textInput.text;			
+			locationChanged.city = locationListCmp.tiLocationName.text;
+			locationChanged.address = locationListCmp.tiStreet.text;
+			locationChanged.telephoneNumber = locationListCmp.tiTelephone.text;			
 			locationChanged.receptionDays = jsEnc.encode(makeArraysDays());
 			var lInList:LocationInList = new LocationInList(locationChanged, locationInList.getPosition);			
 			facade.sendNotification(ApplicationFacade.LOCATION_SAVE_CHANGES, lInList);
@@ -146,18 +146,19 @@ package view.manager.settings
 		}
 		
 		private function resetTextInput():void{
-			locationListCmp.tiLocationName.text = "city" as String;
-			locationListCmp.tiLocationName.textInput.text = "city" as String;
-			locationListCmp.tiLocationName.textInput.showCancelButton = false;
+			locationListCmp.tiLocationName.text = "City" as String;
+			locationListCmp.tiLocationName.text = "City" as String;
+			locationListCmp.tiLocationName.showCancelButton = false;
 			
+			locationListCmp.tiStreet.text = "Address" as String;
 			locationListCmp.tiStreet.text = "address" as String;
-			locationListCmp.tiStreet.textInput.text = "address" as String;
-			locationListCmp.tiStreet.textInput.showCancelButton = false;
+			locationListCmp.tiStreet.showCancelButton = false;
 			
-			locationListCmp.tiTelephone.text =  "telephone" as String;
-			locationListCmp.tiTelephone.textInput.text = "telephone" as String;
-			locationListCmp.tiTelephone.textInput.showCancelButton = false;
+			locationListCmp.tiTelephone.text =  "Telephone" as String;
+			locationListCmp.tiTelephone.text = "Telephone" as String;
+			locationListCmp.tiTelephone.showCancelButton = false;
 			
+			locationListCmp.cmpHouseButton.btnAdd.enabled = false;
 			for (var i:int=0; i<locationListCmp.days.length; i++){
 				locationListCmp.chkBxDay[i].selected = false;
 			}
