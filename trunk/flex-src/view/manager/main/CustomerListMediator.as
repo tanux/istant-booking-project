@@ -45,8 +45,7 @@ package view.manager.main
 			customerListCmp.btnDelUser.enabled = false;
 			customerListCmp.btnSave.enabled = false;
 			customerListCmp.abilitaAdd=true;
-			customerListCmp.dgCustomerList.selectedIndex = null;
-			
+			customerListCmp.dgCustomerList.selectedIndex = -1;
 		}
 		
 		public function addCustomer(evt:Event): void{
