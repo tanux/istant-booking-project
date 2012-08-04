@@ -30,6 +30,7 @@ package view.manager.bookings
 		[Bindable]private var bookingInList:BookingInList;
 		[Bindable]private var date:String;
 		public static const NAME:String = "BookingListMediator";
+		public static const NAME_2: String = "BookingDeletedListMediator";
 		
 		
 		public function BookingListMediator(mediatorName:String, viewComponent:Object){
