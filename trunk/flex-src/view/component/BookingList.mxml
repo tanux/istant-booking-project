@@ -8,7 +8,7 @@
 			[Bindable]public var bookingList:ArrayCollection;
 			[Bindable]public var customerList:ArrayCollection;			 
 			[Bindable]public var visibleBtnDel: Boolean = false;
-			
+			[Bindable]public var testo:String="";
 			//Booking Selected
 			import model.vo.Booking;
 			import model.vo.BookingInList;
@@ -78,7 +78,7 @@
 		<mx:HBox >
 			<mx:Box horizontalAlign="left" width="80%" verticalAlign="middle">
 				<mx:Label id="lblBookingList" color="white" fontSize="13" fontWeight="bold"
-						  text="Elenco delle Prenotazioni"/>	
+						  text="{testo}"/>	
 			</mx:Box>
 		</mx:HBox>
 		<mx:Canvas width="100%" height="100%">

@@ -109,6 +109,11 @@ package
 		public static const GET_BOOKING_LIST_SUCCESS:String = "GetBookingListSuccess";
 		public static const GET_BOOKING_LIST_ERROR:String = "GetBookingListError";
 		public static const GET_BOOKING_LIST_FAULT:String = "GetBookingListFault";
+
+		public static const GET_BOOKING_DELETED_LIST:String = "GetBookingDeletedList";
+		public static const GET_BOOKING_DELETED_LIST_SUCCESS:String = "GetBookingDeletedListSuccess";
+		public static const GET_BOOKING_DELETED_LIST_ERROR:String = "GetBookingDeletedListError";
+		public static const GET_BOOKING_DELETED_LIST_FAULT:String = "GetBookingDeletedListFault";
 		
 		public static const BOOKING_DELETE:String = "BookingDelete";
 		public static const BOOKING_DELETE_SUCCESS:String = "BookingDeleteSuccess";		

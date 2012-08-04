@@ -69,7 +69,7 @@ package view.manager.bookings
 					var city:String = visitLocationMediator.visitDayCmp.locationSelected.city as String;	
 					var visitDayMediator:VisitDayMediator = facade.retrieveMediator(ManagerMainMediator.NAME_VISIT_DAY_MEDIATOR_SHOWBOOKING) as VisitDayMediator;					
 					date = DateField.dateToString(visitDayMediator.visitDayCmp.selectedDate as Date, "DD/MM/YYYY");
-					bookingListCmp.lblBookingList.text = "Elenco delle Prenotazioni di "+city+" per il giorno "+date as String;
+					bookingListCmp.lblBookingList.text = bookingListCmp.testo+" di "+city+" per il giorno "+date as String;
 					var _bookingList:ArrayCollection = notification.getBody() as ArrayCollection;
 					if (_bookingList.length > 0){
 						bookingListCmp.customerList = new ArrayCollection();

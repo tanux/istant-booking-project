@@ -69,6 +69,11 @@ package model.managermain
 						sendNotification(ApplicationFacade.GET_BOOKING_LIST_SUCCESS, evt.result);
 					}
 					break;
+				case "getBookingDeletedList":
+					if (evt.result != null){
+						sendNotification(ApplicationFacade.GET_BOOKING_DELETED_LIST_SUCCESS, evt.result);
+					}
+					break;
 				case "deleteBooking":
 					if (evt.result != null){
 						sendNotification(ApplicationFacade.BOOKING_DELETE_SUCCESS, evt.result);
