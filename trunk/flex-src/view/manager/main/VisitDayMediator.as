@@ -47,7 +47,8 @@ package view.manager.main
 			}
 			else if (getMediatorName() == ManagerMainMediator.NAME_VISIT_DAY_MEDIATOR_SHOWBOOKING){	
 				if (locationSelected != null){
-					sendNotification(ApplicationFacade.GET_BOOKING_LIST, {idLocation:locationSelected.id, date:stringFromDate});	
+					sendNotification(ApplicationFacade.GET_BOOKING_LIST, {idLocation:locationSelected.id, date:stringFromDate});
+					sendNotification(ApplicationFacade.GET_BOOKING_DELETED_LIST, {idLocation:locationSelected.id, date:stringFromDate});
 				}
 				else return;
 			}
