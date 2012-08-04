@@ -60,8 +60,6 @@ package view
 		public var manager:Manager;
 		private var confirmBookingTitleWindow:TitleWindow;
 		
-		
-		
 		public function ManagerMainMediator(viewComponent:Object){
 			super(NAME, viewComponent);
 			managerMain.addEventListener(FlexEvent.CREATION_COMPLETE, init);
@@ -140,24 +138,42 @@ package view
 		private function goToHome(evt:Event):void{
 			CursorManager.setBusyCursor();
 			managerMain.currentState = "stateMainApplication";
-			CursorManager.removeBusyCursor();
+			CursorManager.removeBusyCursor();			
+			
+			if (facade.retrieveMediator(NAME_VISIT_LOCATION_MEDIATOR_SHOWBOOKING) != null && 
+				facade.retrieveMediator(NAME_VISIT_LOCATION_MEDIATOR_SHOWBOOKING) != null){
+				facade.removeMediator(NAME_VISIT_LOCATION_MEDIATOR_SHOWBOOKING);
+				facade.removeMediator(NAME_VISIT_DAY_MEDIATOR_SHOWBOOKING);
+			}
+			if (facade.retrieveMediator(VisitHoursMediator.NAME) == null &&
+				facade.retrieveMediator(NAME_VISIT_DAY_MEDIATOR_MAIN) == null){				
+				facade.registerMediator(new VisitDayMediator(NAME_VISIT_DAY_MEDIATOR_MAIN,managerMain.cmpVisitProperties.cmpVisitDay));
+				facade.registerMediator(new VisitHoursMediator(managerMain.cmpVisitProperties.cmpVisitHours));
+			}
+			facade.sendNotification(ApplicationFacade.GET_LOCATION_LIST);
 		}
 		
 		private function goToShowBooking(evt:Event):void{
 			CursorManager.setBusyCursor();
 			managerMain.currentState = "stateShowBooking";
 			CursorManager.removeBusyCursor();			
-			
-			facade.registerMediator(new VisitLocationMediator(NAME_VISIT_LOCATION_MEDIATOR_SHOWBOOKING,managerMain.cmpLocations));			
-			sendNotification(ApplicationFacade.GET_LOCATION_LIST);
 			managerMain.cmpLocations.boxSede.enabled = true;
 			managerMain.cmpCalendar.boxDay.enabled = true;
+			
+			if (facade.retrieveMediator(VisitHoursMediator.NAME) != null &&
+				facade.retrieveMediator(NAME_VISIT_DAY_MEDIATOR_MAIN) != null){				
+				facade.removeMediator(NAME_VISIT_DAY_MEDIATOR_MAIN);
+				facade.removeMediator(VisitHoursMediator.NAME);
+			}			
+			
+			facade.registerMediator(new VisitLocationMediator(NAME_VISIT_LOCATION_MEDIATOR_SHOWBOOKING,managerMain.cmpLocations));			
+			sendNotification(ApplicationFacade.GET_LOCATION_LIST);			
 						
 			facade.registerMediator(new VisitDayMediator(NAME_VISIT_DAY_MEDIATOR_SHOWBOOKING,managerMain.cmpCalendar));
 			facade.registerMediator(new BookingListMediator(NAME_BOOKING_LIST_MEDIATOR, managerMain.cmpBookingList));
 			
 			facade.registerCommand(ApplicationFacade.GET_BOOKING_LIST, BookingGetListCommand);
-					
+			facade.registerCommand(ApplicationFacade.BOOKING_DELETE, BookingDeleteCommand);		
 		}
 		
 		private function doLogout(evt:Event):void{
@@ -171,19 +187,17 @@ package view
 			managerMain.cmpControlBar.btnHome.addEventListener(MouseEvent.CLICK, goToHome);
 			managerMain.cmpControlBar.btnShowVisit.addEventListener(MouseEvent.CLICK, goToShowBooking);
 			
-			facade.registerMediator(new CustomerListMediator(managerMain.cmpCustomerList));
-			
+			facade.registerMediator(new CustomerListMediator(managerMain.cmpCustomerList));			
 			facade.registerMediator(new VisitLocationMediator(NAME_VISIT_LOCATION_MEDIATOR_MAIN,managerMain.cmpVisitProperties.cmpLocations));
 			facade.registerMediator(new VisitDayMediator(NAME_VISIT_DAY_MEDIATOR_MAIN,managerMain.cmpVisitProperties.cmpVisitDay));
 			facade.registerMediator(new VisitHoursMediator(managerMain.cmpVisitProperties.cmpVisitHours));
 			
-			facade.registerCommand(ApplicationFacade.GET_CUSTOMER_LIST,CustomerGetListCommand);			
-			
-			facade.registerCommand(ApplicationFacade.GET_LOCATION_LIST, LocationGetListCommand)
+			facade.registerCommand(ApplicationFacade.GET_CUSTOMER_LIST,CustomerGetListCommand);
+			facade.registerCommand(ApplicationFacade.GET_LOCATION_LIST, LocationGetListCommand);
 			facade.registerCommand(ApplicationFacade.GET_BUSY_HOURS, GetBusyHoursCommand);
 			
 			facade.registerCommand(ApplicationFacade.BOOKING_ADD, BookingAddCommand);
-			facade.registerCommand(ApplicationFacade.BOOKING_DELETE, BookingDeleteCommand);
+			
 			
 			facade.sendNotification(ApplicationFacade.GET_CUSTOMER_LIST);
 			facade.sendNotification(ApplicationFacade.GET_LOCATION_LIST);
@@ -240,23 +254,16 @@ package view
 				case ApplicationFacade.BOOKING_ADD_SUCCESS:
 					managerMain.cmpVisitProperties.cmpLocations.boxSede.enabled = false;
 					managerMain.cmpVisitProperties.cmpVisitDay.boxDay.enabled = false;
-					managerMain.cmpVisitProperties.cmpVisitHours.vbHours.enabled = false;
-					
-					
+					managerMain.cmpVisitProperties.cmpVisitHours.vbHours.enabled = false;					
 					var visitLocationMediator: VisitLocationMediator = facade.retrieveMediator(NAME_VISIT_LOCATION_MEDIATOR_MAIN) as VisitLocationMediator;
-					visitLocationMediator.loc = false;
-					
+					visitLocationMediator.loc = false;					
 					var visitDayMediator: VisitDayMediator = facade.retrieveMediator(NAME_VISIT_DAY_MEDIATOR_MAIN) as VisitDayMediator;
-					visitDayMediator.day = false;
-					
+					visitDayMediator.day = false;					
 					var visitHoursMediator: VisitHoursMediator = facade.retrieveMediator(VisitHoursMediator.NAME) as VisitHoursMediator;
-					visitHoursMediator.hour = false;
-					Alert.show("BOOKING ADD IN MAIN MEDIATOR OK");
-					
+					visitHoursMediator.hour = false;										
 					var customerListMediator: CustomerListMediator = facade.retrieveMediator(CustomerListMediator.NAME) as CustomerListMediator;
 					customerListMediator.customerListCmp.dgCustomerList.selectedIndex = -1;
-					customerListMediator.resetTextInput();
-					
+					customerListMediator.resetTextInput();					
 					break;
 			}
 		}

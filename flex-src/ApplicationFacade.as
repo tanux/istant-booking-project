@@ -78,6 +78,7 @@ package
 		/*Location Notify*/
 		public static const LOCATION_SELECTED: String = "LocationSelected";
 		public static const LOCATION_SELECTED_MAIN: String = "LocationSelectedMain";
+		public static const LOCATION_SELECTED_SHOWBOOKING: String = "LocationSelectedShowBooking";
 		public static const GET_LOCATION_LIST:String = "GetLocationList";
 		public static const GET_LOCATION_LIST_SUCCESS:String = "GetLocationListSuccess";
 		public static const GET_LOCATION_LIST_ERROR:String = "GetLocationListError";
