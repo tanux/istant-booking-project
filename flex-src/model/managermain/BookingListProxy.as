@@ -32,8 +32,7 @@ package model.managermain
 		
 		public function deleteBooking(booking:Booking):void{
 			var at:AsyncToken = service.deleteBooking(booking);
-			at.addResponder(responder);	
-			Alert.show("ListProxy: delete ok");
+			at.addResponder(responder);
 		}
 		
 		public function getBusyHours(visitDay:String):void{
@@ -41,11 +40,11 @@ package model.managermain
 			at.addResponder(responder);
 		}
 		public function getBookingList(idLocation:int, date:String):void{
-			var at:AsyncToken = service.getBookingList(idLocation, date, "false");
+			var at:AsyncToken = service.getBookingList(idLocation, date);
 			at.addResponder(responder);
 		}
 		public function getDeletedBookingList(idLocation:int, date:String){
-			var at:AsyncToken = service.getBookingList(idLocation, date, "true");
+			var at:AsyncToken = service.getBookingDeletedList(idLocation, date);
 			at.addResponder(responder);
 		}
 		
