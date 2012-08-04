@@ -30,8 +30,7 @@ package view.manager.bookings
 		[Bindable]private var bookingInList:BookingInList;
 		[Bindable]private var date:String;
 		public static const NAME:String = "BookingListMediator";
-		public static const NAME_2: String = "BookingDeletedListMediator";
-		
+				
 		
 		public function BookingListMediator(mediatorName:String, viewComponent:Object){
 			super(mediatorName, viewComponent);
@@ -98,6 +97,43 @@ package view.manager.bookings
 					}
 					CursorManager.removeBusyCursor();					
 					break;
+				case ApplicationFacade.GET_BOOKING_DELETED_LIST_SUCCESS:
+					var delVisitLocationMediator:VisitLocationMediator = facade.retrieveMediator(ManagerMainMediator.NAME_VISIT_LOCATION_MEDIATOR_SHOWBOOKING) as VisitLocationMediator;
+					var delCity:String = visitLocationMediator.visitDayCmp.locationSelected.city as String;	
+					var delVisitDayMediator:VisitDayMediator = facade.retrieveMediator(ManagerMainMediator.NAME_VISIT_DAY_MEDIATOR_SHOWBOOKING) as VisitDayMediator;					
+					date = DateField.dateToString(visitDayMediator.visitDayCmp.selectedDate as Date, "DD/MM/YYYY");
+					bookingListCmp.lblBookingList.text = bookingListCmp.testo+" di "+city+" per il giorno "+date as String;
+					var _delBookingList:ArrayCollection = notification.getBody() as ArrayCollection;
+					
+					if (_delBookingList.length > 0){
+						bookingListCmp.customerList = new ArrayCollection();
+						bookingListCmp.bookingList = new ArrayCollection();
+						var delJsDecode:JSONDecoder = new JSONDecoder();
+						for (var j:int=0; j<_bookingList.length; j++){
+							var delBooking:Booking = new Booking();
+							delBooking.id = _bookingList[j].id;
+							var delJsDecode:JSONDecoder = new JSONDecoder();
+							var delHour:SelectedHour = new SelectedHour();
+							delHour.hour = delJsDecode.decode(_bookingList[j].visit_hour).hour;
+							delHour.busy = false;
+							delHour.index = delJsDecode.decode(_bookingList[j].visit_hour).index;							
+							delBooking.visitHour = hour;						
+							bookingListCmp.bookingList.addItem(booking);
+							var delCustomer:Object = delJsDecode.decode(_bookingList[j].id_customer);							
+							bookingListCmp.customerList.addItem(delCustomer);
+						}
+					}
+					else{
+						if (bookingListCmp.customerList != null){
+							bookingListCmp.customerList.removeAll();
+							bookingListCmp.bookingList.removeAll();
+						}
+						Alert.show("Non ci sono prenotazioni per la data selezionata");
+					}
+					
+					CursorManager.removeBusyCursor();					
+					//Alert.show("MINO");
+					break;
 				case ApplicationFacade.BOOKING_SELECTED:
 					bookingInList = notification.getBody() as BookingInList;
 					Alert.show("Prenotazione Selezionata");
@@ -117,6 +153,7 @@ package view.manager.bookings
 		override public function listNotificationInterests():Array{
 			return [
 				ApplicationFacade.GET_BOOKING_LIST_SUCCESS,
+				ApplicationFacade.GET_BOOKING_DELETED_LIST_SUCCESS,
 				ApplicationFacade.BOOKING_SELECTED,
 				ApplicationFacade.BOOKING_DELETE,
 				ApplicationFacade.BOOKING_DELETE_SUCCESS,
