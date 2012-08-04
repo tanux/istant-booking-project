@@ -13,7 +13,7 @@ package controller.managermain
 			var bookingParameter:Object = notification.getBody() as Object;
 			if (facade.hasProxy(BookingListProxy.NAME)){				
 				var bookingListProxy:BookingListProxy = facade.retrieveProxy(BookingListProxy.NAME) as BookingListProxy;
-				bookingListProxy.getDeletedBookingList(bookingParameter.idLocation,bookingParameter.date);				
+				bookingListProxy.getDeletedBookingList(bookingParameter.idLocation,bookingParameter.date);
 			}
 			else{
 				var newBookingListProxy:BookingListProxy = new BookingListProxy(BookingListProxy.NAME);
