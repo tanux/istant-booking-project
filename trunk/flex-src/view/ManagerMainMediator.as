@@ -8,6 +8,7 @@ package view
 	import controller.managermain.BookingAddCommand;
 	import controller.managermain.BookingDeleteCommand;
 	import controller.managermain.BookingGetListCommand;
+	import controller.managermain.BookingDeletedGetListCommand;
 	import controller.managermain.CustomerGetListCommand;
 	import controller.managermain.GetBusyHoursCommand;
 	import controller.managermain.LocationGetListCommand;
@@ -56,6 +57,7 @@ package view
 		public static const NAME_VISIT_DAY_MEDIATOR_SHOWBOOKING:String = "VisitDayMediatorShowBooking";
 		
 		public static const NAME_BOOKING_LIST_MEDIATOR:String = "BookingListMediator";
+		public static const NAME_DELETED_BOOKING_LIST_MEDIATOR:String = "BookingDeletedListMediator";
 				
 		public var manager:Manager;
 		private var confirmBookingTitleWindow:TitleWindow;
@@ -171,9 +173,12 @@ package view
 						
 			facade.registerMediator(new VisitDayMediator(NAME_VISIT_DAY_MEDIATOR_SHOWBOOKING,managerMain.cmpCalendar));
 			facade.registerMediator(new BookingListMediator(NAME_BOOKING_LIST_MEDIATOR, managerMain.cmpBookingList));
+			facade.registerMediator(new BookingListMediator(NAME_DELETED_BOOKING_LIST_MEDIATOR, managerMain.cmpBookingList2));
 			
 			facade.registerCommand(ApplicationFacade.GET_BOOKING_LIST, BookingGetListCommand);
-			facade.registerCommand(ApplicationFacade.BOOKING_DELETE, BookingDeleteCommand);		
+			facade.registerCommand(ApplicationFacade.GET_BOOKING_LIST, BookingDeletedGetListCommand);
+			facade.registerCommand(ApplicationFacade.BOOKING_DELETE, BookingDeleteCommand);
+			
 		}
 		
 		private function doLogout(evt:Event):void{
