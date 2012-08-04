@@ -135,8 +135,7 @@ package view.manager.bookings
 					//Alert.show("MINO");
 					break;
 				case ApplicationFacade.BOOKING_SELECTED:
-					bookingInList = notification.getBody() as BookingInList;
-					Alert.show("Prenotazione Selezionata");
+					bookingInList = notification.getBody() as BookingInList;					
 					bookingListCmp.btnDeleteUser.enabled= true;
 					break;
 				case ApplicationFacade.BOOKING_DELETE_SUCCESS:

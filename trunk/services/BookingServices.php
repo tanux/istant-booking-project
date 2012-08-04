@@ -45,17 +45,34 @@ class BookingServices {
 	 * 
 	 * Get Booking List
 	 * @param String $idLocation
-	 * @param String $date
-	 * @param String $type
+	 * @param String $date	 
 	 * @return array booking list
 	 */
-	public function getBookingList($idLocation, $date, $type){
+	public function getBookingList($idLocation, $date){
 		$dbAdapter = ManageDatabase::getDbAdapter();
 		Zend_Db_Table::setDefaultAdapter($dbAdapter);		
 		$bookingsDateTable = new Zend_Db_Table('bookings');
 		$where1 = $bookingsDateTable->getAdapter()->quoteInto('id_location= ?', $idLocation);
 		$where2 = $bookingsDateTable->getAdapter()->quoteInto('visit_day= ?', $date);
-		$where3 = $bookingsDateTable->getAdapter()->quoteInto('cancelled= ?', $type);
+		$where3 = $bookingsDateTable->getAdapter()->quoteInto('cancelled= ?', "false");
+		$select = $dbAdapter->select()->from('bookings')->where($where1)->where($where2)->where($where3);
+		$stmt = $dbAdapter->query($select);
+		return $stmt->fetchAll();
+	}
+	
+	/**
+	 * Get Booking Deleted List
+	 * @param String $idLocation
+	 * @param String $date
+	 * @return array booking list 
+	 */
+	public function getBookingDeletedList($idLocation, $date){
+		$dbAdapter = ManageDatabase::getDbAdapter();
+		Zend_Db_Table::setDefaultAdapter($dbAdapter);		
+		$bookingsDateTable = new Zend_Db_Table('bookings');
+		$where1 = $bookingsDateTable->getAdapter()->quoteInto('id_location= ?', $idLocation);
+		$where2 = $bookingsDateTable->getAdapter()->quoteInto('visit_day= ?', $date);
+		$where3 = $bookingsDateTable->getAdapter()->quoteInto('cancelled= ?', "true");
 		$select = $dbAdapter->select()->from('bookings')->where($where1)->where($where2)->where($where3);
 		$stmt = $dbAdapter->query($select);
 		return $stmt->fetchAll();
