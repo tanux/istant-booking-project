@@ -19,11 +19,16 @@ package view.manager.main
 	
 	import view.ManagerMainMediator;
 	import view.component.VisitDay;
+	import view.manager.BookingSectionMediator;
+	import view.manager.HomeSectionMediator;
 	
 	public class VisitDayMediator extends Mediator implements IMediator{
 		private var counter_date_inserted:int = 0;
 		private var locationSelected:Location;		
 		[Bindable] public var day: Boolean = false;
+		public static const NAME:String = "VisitDayMediator";		
+		public static const NAME_IN_HOME:String = NAME+"Home";
+		public static const NAME_IN_BOOKING:String = NAME+"Booking";
 		
 		public function VisitDayMediator(mediatorName:String, viewComponent:Object){
 			super(mediatorName, viewComponent);
@@ -42,10 +47,10 @@ package view.manager.main
 			visitDayCmp.selectedDate = selectedData;
 			var stringFromDate:String = DateField.dateToString(visitDayCmp.selectedDate as Date, "DD/MM/YYYY");
 			
-			if (getMediatorName() == ManagerMainMediator.NAME_VISIT_DAY_MEDIATOR_MAIN){
+			if (getMediatorName() == NAME_IN_HOME){
 				sendNotification(ApplicationFacade.GET_BUSY_HOURS, stringFromDate);
 			}
-			else if (getMediatorName() == ManagerMainMediator.NAME_VISIT_DAY_MEDIATOR_SHOWBOOKING){	
+			else if (getMediatorName() == NAME_IN_BOOKING){	
 				if (locationSelected != null){
 					sendNotification(ApplicationFacade.GET_BOOKING_LIST, {idLocation:locationSelected.id, date:stringFromDate});
 					sendNotification(ApplicationFacade.GET_BOOKING_DELETED_LIST, {idLocation:locationSelected.id, date:stringFromDate});
@@ -57,7 +62,7 @@ package view.manager.main
 		
 		override public function handleNotification(notification:INotification):void{ 
 			switch (notification.getName()){
-				case ApplicationFacade.LOCATION_SELECTED_MAIN:
+				case ApplicationFacade.LOCATION_SELECTED_HOMESECTION:
 					locationSelected = notification.getBody() as Location;
 					var jsDec:JSONDecoder = new JSONDecoder();					
 					var days:ArrayCollection = jsDec.decode(locationSelected.receptionDays.toString()) as ArrayCollection;
@@ -90,7 +95,7 @@ package view.manager.main
 		
 		override public function listNotificationInterests():Array{
 			return [
-				ApplicationFacade.LOCATION_SELECTED_MAIN,
+				ApplicationFacade.LOCATION_SELECTED_HOMESECTION,
 				ApplicationFacade.GET_NO_AVAILABLE_DAY_SUCCESS,
 				ApplicationFacade.GET_NO_AVAILABLE_DAY_ERROR,
 			];      

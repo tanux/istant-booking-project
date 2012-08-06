@@ -19,18 +19,18 @@ package view.manager.main
 	import org.tylerchesley.bark.events.NotificationEvent;
 	
 	import view.ManagerMainMediator;
-	import view.component.CustomerList;
+	import view.component.CustomerSection;
 	import view.component.LocationList;
 	import view.component.VisitLocations;
 	import view.component.VisitPropertiesAffiliateMain;
 	import view.manager.main.VisitLocationMediator;
 	
-	public class CustomerListMediator extends Mediator implements IMediator{
+	public class CustomerSectionMediator extends Mediator implements IMediator{
 		public static const NAME:String = "CustomerListMediator";
 		[Bindable]private var customerInList:CustomerInList;
 		[Bindalbe] public var custom:Boolean = false;
 		
-		public function CustomerListMediator(viewComponent:Object){
+		public function CustomerSectionMediator(viewComponent:Object){
 			super(NAME, viewComponent);
 			customerListCmp.btnSave.addEventListener(MouseEvent.CLICK,saveChanges);
 			customerListCmp.btnAddUser.addEventListener(MouseEvent.CLICK, addCustomer);
@@ -93,7 +93,7 @@ package view.manager.main
 					var evt:FaultEvent = notification.getBody() as FaultEvent;
 					Alert.show("CustomerList Fault: "+evt.fault.faultDetail);
 					break;
-				case ApplicationFacade.CUSTOMER_SELECTED:
+				case ApplicationFacade.CUSTOMER_SELECTED_HOMESECTION:
 					customerInList = notification.getBody() as CustomerInList;
 					customerListCmp.abilitaAdd=false;
 					customerListCmp.tiFirstname.text = customerInList.getCustomer.firstName as String;
@@ -172,7 +172,7 @@ package view.manager.main
 				ApplicationFacade.GET_CUSTOMER_LIST_SUCCESS,
 				ApplicationFacade.GET_CUSTOMER_LIST_ERROR,
 				ApplicationFacade.GET_CUSTOMER_LIST_FAULT,
-				ApplicationFacade.CUSTOMER_SELECTED,
+				ApplicationFacade.CUSTOMER_SELECTED_HOMESECTION,
 				ApplicationFacade.CUSTOMER_SAVE_CHANGES_SUCCESS,
 				ApplicationFacade.CUSTOMER_SAVE_CHANGES_ERROR,
 				ApplicationFacade.CUSTOMER_ADD_SUCCESS,
@@ -184,8 +184,8 @@ package view.manager.main
 			];
 		}
 		
-		public function get customerListCmp():CustomerList{
-			return viewComponent as CustomerList;
+		public function get customerListCmp():CustomerSection{
+			return viewComponent as CustomerSection;
 		}
 		
 		

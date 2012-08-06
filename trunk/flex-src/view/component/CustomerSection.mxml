@@ -27,11 +27,22 @@
 			
 			import mx.collections.ArrayCollection;
 			import mx.controls.Alert;
-			import mx.events.ListEvent;			
+			import mx.events.ListEvent;	
+			
+			import mx.rpc.events.FaultEvent;			
+			import mx.rpc.events.ResultEvent;		
+			
+			
+			import mx.events.ValidationResultEvent;
+			import mx.validators.ValidationResult;
+			import mx.validators.Validator;
+			
+			import spark.events.TextOperationEvent;
 						
 			private var facade:ApplicationFacade = ApplicationFacade.getInstance() as ApplicationFacade;
 			[Bindable]public var customerList:ArrayCollection;
 			[Bindable]public var customerSelected:Customer;
+			
 			private function makeDataLabel(item:Object) : String {
 				var c:Customer = new Customer();
 				c.id = item.id;
@@ -52,13 +63,10 @@
 				customerSelected.telephoneNumber = selectedRow.telephone_number;
 				var position:int = event.currentTarget.selectedIndex;
 				var customerInList:CustomerInList = new CustomerInList(customerSelected,position);				
-				facade.sendNotification(ApplicationFacade.CUSTOMER_SELECTED, customerInList);				
+				facade.sendNotification(ApplicationFacade.CUSTOMER_SELECTED_HOMESECTION, customerInList);				
 			}
 			
-			import mx.rpc.events.FaultEvent;
-			import mx.collections.ArrayCollection;
-			import mx.rpc.events.ResultEvent;
-			import mx.controls.Alert;			
+					
 			
 			private function getDataSuccess(returnedEvent:ResultEvent):void{
 				customerList = returnedEvent.result as ArrayCollection;
@@ -83,8 +91,7 @@
 			{
 				if(searchText.length == 0){
 					return true;
-				}
-				
+				}				
 				var columnName:String;
 				var columnValue:String;
 				var keywords:Array = searchText.text.split(" ");
@@ -109,12 +116,6 @@
 				}
 				return true;
 			}
-			import mx.controls.Alert;
-			import mx.events.ValidationResultEvent;
-			import mx.validators.ValidationResult;
-			import mx.validators.Validator;
-			
-			import spark.events.TextOperationEvent;
 			
 			[Bindable] public var abilitaAdd: Boolean = true;
 			

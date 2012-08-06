@@ -4,8 +4,7 @@
 		 height="225" 
 		 horizontalAlign="center" 
 		 paddingBottom="5" paddingTop="5" 
-		 verticalAlign="middle">
-	
+		 verticalAlign="middle">	
 	<component:VisitLocations id="cmpLocations" width="33.3%" height="100%"/>
 	<component:VisitDay id="cmpVisitDay" width="33.3%" height="100%"/>
 	<component:VisitHours id="cmpVisitHours" width="33.3%" height="100%"/>

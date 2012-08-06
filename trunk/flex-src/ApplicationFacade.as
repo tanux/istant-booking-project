@@ -16,6 +16,11 @@ package
 		public static const STARTUP_AFFILIATE_APP:String = "StartupAffiliateApp";
 		public static const STARTUP_MANAGER_APP:String = "StartupManagerApp";
 		
+		/*Main Notify*/
+		public static const ACTIVE_HOME_SECTION:String = "ActiveHomeSection";
+		public static const ACTIVE_SETTING_SECTION:String = "ActiveSettingSection";
+		public static const ACTIVE_BOOKING_SECTION:String = "ActiveBookingSection";
+		
 		
 		/*Authentication Notify*/
 		/*Affiliate*/
@@ -61,7 +66,7 @@ package
 		public static const GET_CUSTOMER_LIST_SUCCESS:String = "GetCustomerListSuccess";
 		public static const GET_CUSTOMER_LIST_ERROR:String = "GetCustomerListError";
 		public static const GET_CUSTOMER_LIST_FAULT:String = "GetCustomerListFault";
-		public static const CUSTOMER_SELECTED:String = "CustomerSelected";
+		public static const CUSTOMER_SELECTED_HOMESECTION:String = "CustomerSelectedHomeSection";
 		public static const CUSTOMER_SAVE_CHANGES:String = "CustomerSaveChanges";
 		public static const CUSTOMER_SAVE_CHANGES_SUCCESS:String = "CustomerSaveChangesSuccess";
 		public static const CUSTOMER_SAVE_CHANGES_ERROR:String = "CustomerSaveChangesError";
@@ -77,7 +82,7 @@ package
 		
 		/*Location Notify*/
 		public static const LOCATION_SELECTED: String = "LocationSelected";
-		public static const LOCATION_SELECTED_MAIN: String = "LocationSelectedMain";
+		public static const LOCATION_SELECTED_HOMESECTION: String = "LocationSelectedHomeSection";
 		public static const LOCATION_SELECTED_SHOWBOOKING: String = "LocationSelectedShowBooking";
 		public static const GET_LOCATION_LIST:String = "GetLocationList";
 		public static const GET_LOCATION_LIST_SUCCESS:String = "GetLocationListSuccess";
@@ -95,7 +100,8 @@ package
 		public static const LOCATION_DELETE_SUCCESS:String = "LocationDeleteSuccess";
 		public static const LOCATION_DELETE_ERROR:String = "LocationDeleteError";
 		public static const LOCATION_DELETE_FAULT:String = "LocationDeleteFault";
-		public static const GET_NO_AVAILABLE_DAY:String = "GetNoAvailableDay";
+		public static const GET_NO_AVAILABLE_DAY_HOME:String = "GetNoAvailableDayHome";
+		public static const GET_NO_AVAILABLE_DAY_BOOKING:String = "GetNoAvailableDayBooking";
 		public static const GET_NO_AVAILABLE_DAY_SUCCESS:String = "GetNoAvailableDaySuccess";
 		public static const GET_NO_AVAILABLE_DAY_ERROR:String = "GetNoAvailableDayError";
 		public static const GET_NO_AVAILABLE_DAY_FAULT:String = "GetNoAvailableDayFault";

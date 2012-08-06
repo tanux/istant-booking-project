@@ -23,6 +23,7 @@ package view.manager.bookings
 	import view.ManagerMainMediator;
 	import view.component.BookingList;
 	import view.component.PrintBookingList;
+	import view.manager.BookingSectionMediator;
 	import view.manager.main.VisitDayMediator;
 	import view.manager.main.VisitLocationMediator;
 	
@@ -64,21 +65,21 @@ package view.manager.bookings
 		override public function handleNotification(notification:INotification):void{
 			switch (notification.getName()){				
 				case ApplicationFacade.GET_BOOKING_LIST_SUCCESS:
-					var visitLocationMediator:VisitLocationMediator = facade.retrieveMediator(ManagerMainMediator.NAME_VISIT_LOCATION_MEDIATOR_SHOWBOOKING) as VisitLocationMediator;
-					var city:String = visitLocationMediator.visitDayCmp.locationSelected.city as String;	
-					var visitDayMediator:VisitDayMediator = facade.retrieveMediator(ManagerMainMediator.NAME_VISIT_DAY_MEDIATOR_SHOWBOOKING) as VisitDayMediator;					
+					var visitLocationMediator:VisitLocationMediator = facade.retrieveMediator(VisitLocationMediator.NAME_IN_BOOKING) as VisitLocationMediator;
+					var city:String = visitLocationMediator.visitLocationCmp.locationSelected.city as String;	
+					var visitDayMediator:VisitDayMediator = facade.retrieveMediator(VisitDayMediator.NAME_IN_BOOKING) as VisitDayMediator;					
 					date = DateField.dateToString(visitDayMediator.visitDayCmp.selectedDate as Date, "DD/MM/YYYY");
 					
 					var managerMainMediator:ManagerMainMediator = facade.retrieveMediator(ManagerMainMediator.NAME) as ManagerMainMediator;
 										
-					var cmpBookingList:BookingList = managerMainMediator.managerMain.cmpBookingList;
-					var cmpBookingDeletedList:BookingList = managerMainMediator.managerMain.cmpBookingDeletedList;
+					var cmpBookingList:BookingList = managerMainMediator.managerMain.cmpBookingSection.cmpBookingList;
+					var cmpBookingDeletedList:BookingList = managerMainMediator.managerMain.cmpBookingSection.cmpBookingDeletedList;
 					
 					cmpBookingList.lblBookingList.text = cmpBookingList.testo+" di "+city+" per il giorno "+date as String;
 					cmpBookingDeletedList.lblBookingList.text = cmpBookingList.testo+" di "+city+" per il giorno "+date as String;
 										
 					var _bookingList:ArrayCollection = notification.getBody() as ArrayCollection;
-					trace("Dim List"+_bookingList.length);
+					
 					if (_bookingList.length > 0){
 						cmpBookingList.customerList = new ArrayCollection();
 						cmpBookingList.bookingList = new ArrayCollection();

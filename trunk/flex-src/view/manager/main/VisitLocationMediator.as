@@ -15,27 +15,39 @@ package view.manager.main
 	
 	public class VisitLocationMediator extends Mediator implements IMediator{
 		[Bindable] public var loc: Boolean = false;
+		public static const NAME:String = "VisitLocationMediator";
+		public static const NAME_IN_HOME:String = NAME+"Home";
+		public static const NAME_IN_BOOKING:String = NAME+"Booking";
 		
 		public function VisitLocationMediator(mediatorName:String,viewComponent:Object){			
 			super(mediatorName, viewComponent);	
-			visitDayCmp.addEventListener(VisitLocations.LOCATION_SELECTED, notifyLocationSelected);
+			visitLocationCmp.addEventListener(VisitLocations.LOCATION_SELECTED_EVENT, notifyLocationSelected);
 		}
 		
 		private function notifyLocationSelected(evt:Event):void{
-			sendNotification(ApplicationFacade.LOCATION_SELECTED_MAIN, visitDayCmp.locationSelected);
-			sendNotification(ApplicationFacade.GET_NO_AVAILABLE_DAY, visitDayCmp.locationSelected);
+			sendNotification(ApplicationFacade.LOCATION_SELECTED_HOMESECTION, visitLocationCmp.locationSelected);
+			if (getMediatorName() == NAME_IN_HOME){
+				sendNotification(ApplicationFacade.GET_NO_AVAILABLE_DAY_HOME, visitLocationCmp.locationSelected);
+				
+				
+			}
+			else if (getMediatorName() == NAME_IN_BOOKING){	
+				sendNotification(ApplicationFacade.GET_NO_AVAILABLE_DAY_BOOKING, visitLocationCmp.locationSelected);
+				
+				
+			}
 		}
 		
 		override public function handleNotification(notification:INotification):void{ 
 			switch (notification.getName()){
 				case ApplicationFacade.GET_LOCATION_LIST_SUCCESS:					
 					var locations:ArrayCollection = notification.getBody() as ArrayCollection;					
-					visitDayCmp.locationList = locations;
+					visitLocationCmp.locationList = locations;
 					break;
 				case ApplicationFacade.GET_LOCATION_LIST_ERROR:
 					Alert.show("Errore nel caricamento della lista delle location");
 					break;
-				case ApplicationFacade.LOCATION_SELECTED_MAIN:
+				case ApplicationFacade.LOCATION_SELECTED_HOMESECTION:
 					loc=true;
 					break;
 			}
@@ -45,11 +57,11 @@ package view.manager.main
 				ApplicationFacade.GET_LOCATION_LIST_SUCCESS,
 				ApplicationFacade.GET_LOCATION_LIST_ERROR,
 				ApplicationFacade.GET_LOCATION_LIST_FAULT,
-				ApplicationFacade.LOCATION_SELECTED_MAIN
+				ApplicationFacade.LOCATION_SELECTED_HOMESECTION
 			];      
 		}
 		
-		public function get visitDayCmp():VisitLocations{
+		public function get visitLocationCmp():VisitLocations{
 			return viewComponent as VisitLocations;
 		}
 	}

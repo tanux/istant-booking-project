@@ -10,8 +10,8 @@ package model.managermain
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
-	import view.component.CustomerList;
-	import view.manager.main.CustomerListMediator;
+	import view.component.CustomerSection;
+	import view.manager.main.CustomerSectionMediator;
 	
 	public class CustomerProxy extends Proxy implements IProxy{
 		public static const NAME = "CustomerProxy";
@@ -43,7 +43,7 @@ package model.managermain
 								 telephone_number:_customer.telephoneNumber}, position);
 		}
 		public function get customers() : ArrayCollection{
-			var customerList:CustomerList = facade.retrieveMediator(CustomerListMediator.NAME).getViewComponent() as CustomerList;
+			var customerList:CustomerSection = facade.retrieveMediator(CustomerSectionMediator.NAME).getViewComponent() as CustomerSection;
 			return customerList.customerList as ArrayCollection;
 		}
 	}
