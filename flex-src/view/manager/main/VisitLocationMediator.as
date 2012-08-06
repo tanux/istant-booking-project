@@ -28,13 +28,9 @@ package view.manager.main
 			sendNotification(ApplicationFacade.LOCATION_SELECTED_HOMESECTION, visitLocationCmp.locationSelected);
 			if (getMediatorName() == NAME_IN_HOME){
 				sendNotification(ApplicationFacade.GET_NO_AVAILABLE_DAY_HOME, visitLocationCmp.locationSelected);
-				
-				
 			}
 			else if (getMediatorName() == NAME_IN_BOOKING){	
 				sendNotification(ApplicationFacade.GET_NO_AVAILABLE_DAY_BOOKING, visitLocationCmp.locationSelected);
-				
-				
 			}
 		}
 		
