@@ -53,25 +53,6 @@ package view.manager
 					facade.removeMediator(VisitDayMediator.NAME_IN_HOME);
 					facade.registerMediator(new VisitLocationMediator(VisitLocationMediator.NAME_IN_BOOKING,cmpBooking.cmpLocations));
 					facade.registerMediator(new VisitDayMediator(VisitDayMediator.NAME_IN_BOOKING,cmpBooking.cmpCalendar));
-					
-					/*
-					if ( !facade.hasMediator(NAME_VISIT_LOCATION_MEDIATOR_BOOKING) && !facade.hasMediator(NAME_VISIT_DAY_MEDIATOR_BOOKING) ){
-						sendNotification(ApplicationFacade.GET_LOCATION_LIST);
-						facade.registerMediator(new VisitLocationMediator(NAME_VISIT_LOCATION_MEDIATOR_BOOKING,cmpBooking.cmpLocations));
-						facade.registerMediator(new VisitDayMediator(NAME_VISIT_DAY_MEDIATOR_BOOKING,cmpBooking.cmpCalendar));
-						trace("ShowBooking: mediator creati");
-					}
-					
-					if ( !facade.hasMediator(NAME_BOOKING_LIST_MEDIATOR) && !facade.hasMediator(NAME_BOOKING_DELETED_LIST_MEDIATOR) ){
-						facade.registerMediator(new BookingListMediator(NAME_BOOKING_LIST_MEDIATOR, cmpBooking.cmpBookingList));
-						facade.registerMediator(new BookingListMediator(NAME_BOOKING_DELETED_LIST_MEDIATOR, cmpBooking.cmpBookingDeletedList));
-					}
-					
-					if ( !facade.hasCommand(ApplicationFacade.GET_BOOKING_LIST) && !facade.hasCommand(ApplicationFacade.BOOKING_DELETE) ){
-						facade.registerCommand(ApplicationFacade.GET_BOOKING_LIST, BookingGetListCommand);
-						facade.registerCommand(ApplicationFacade.BOOKING_DELETE, BookingDeleteCommand);
-					}*/	
-					
 					break;
 			}
 		}
