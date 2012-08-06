@@ -39,14 +39,10 @@ package model.managermain
 			var at:AsyncToken = service.getBusyHour(visitDay);
 			at.addResponder(responder);
 		}
-		public function getBookingList(idLocation:int, date:String):void{
+		public function getBookingList(idLocation:String, date:String):void{
 			var at:AsyncToken = service.getBookingList(idLocation, date);
 			at.addResponder(responder);
-		}
-		public function getDeletedBookingList(idLocation:int, date:String){
-			var at:AsyncToken = service.getBookingDeletedList(idLocation, date);
-			at.addResponder(responder);
-		}
+		}		
 		
 		public function onResult(evt:ResultEvent):void{
 			switch( (evt.token.message as RemotingMessage).operation){
@@ -65,14 +61,10 @@ package model.managermain
 					break;
 				case "getBookingList":
 					if (evt.result != null){
+						trace("GetBookingList");
 						sendNotification(ApplicationFacade.GET_BOOKING_LIST_SUCCESS, evt.result);
 					}
-					break;
-				case "getBookingDeletedList":
-					if (evt.result != null){
-						sendNotification(ApplicationFacade.GET_BOOKING_DELETED_LIST_SUCCESS, evt.result);
-					}
-					break;
+					break;				
 				case "deleteBooking":
 					if (evt.result != null){
 						sendNotification(ApplicationFacade.BOOKING_DELETE_SUCCESS, evt.result);

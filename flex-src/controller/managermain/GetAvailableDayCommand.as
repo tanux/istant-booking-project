@@ -17,6 +17,7 @@ package controller.managermain
 				newLocationListProxy.getNoAvailableDay();
 				facade.registerProxy(newLocationListProxy);				
 			}
+			facade.registerCommand(ApplicationFacade.GET_BUSY_HOURS, GetBusyHoursCommand);
 		}
 	}
 }

@@ -24,10 +24,8 @@ package model.managermain
 		}
 		
 		public function removeBooking(position:int):void{
-			bookings.removeItemAt(position);
-			Alert.show("Proxy: delete Ok");
-		}
-		
+			bookings.removeItemAt(position);			
+		}		
 
 		public function get bookings() : ArrayCollection{
 			var bookingList:BookingList = facade.retrieveMediator(BookingListMediator.NAME).getViewComponent() as BookingList;

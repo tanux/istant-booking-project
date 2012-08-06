@@ -49,8 +49,7 @@ package view.manager.main
 				if (locationSelected != null){
 					sendNotification(ApplicationFacade.GET_BOOKING_LIST, {idLocation:locationSelected.id, date:stringFromDate});
 					sendNotification(ApplicationFacade.GET_BOOKING_DELETED_LIST, {idLocation:locationSelected.id, date:stringFromDate});
-				}
-				else return;
+				}				
 			}
 			CursorManager.setBusyCursor();	
 			day=true;
