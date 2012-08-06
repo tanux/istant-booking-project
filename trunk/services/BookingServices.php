@@ -18,12 +18,8 @@ class BookingServices {
 			return null;		
 	}	
 	
-	/**
-	 * Deve:
-	 * 1)impostare a true il campo cancelled di una booking con uno specifico id
-	 * 2)ripristinare l'orario da busy=true a busy=false
-	 * 2)decrementare il numero di prenotazioni in quella giornata
-	 * logic delete booking	 
+	/**	 
+	 * Logic delete booking	 
 	 * @param Booking $booking
 	 * @return String $id
 	 */
@@ -53,27 +49,8 @@ class BookingServices {
 		Zend_Db_Table::setDefaultAdapter($dbAdapter);		
 		$bookingsDateTable = new Zend_Db_Table('bookings');
 		$where1 = $bookingsDateTable->getAdapter()->quoteInto('id_location= ?', $idLocation);
-		$where2 = $bookingsDateTable->getAdapter()->quoteInto('visit_day= ?', $date);
-		$where3 = $bookingsDateTable->getAdapter()->quoteInto('cancelled= ?', "false");
-		$select = $dbAdapter->select()->from('bookings')->where($where1)->where($where2)->where($where3);
-		$stmt = $dbAdapter->query($select);
-		return $stmt->fetchAll();
-	}
-	
-	/**
-	 * Get Booking Deleted List
-	 * @param String $idLocation
-	 * @param String $date
-	 * @return array booking list 
-	 */
-	public function getBookingDeletedList($idLocation, $date){
-		$dbAdapter = ManageDatabase::getDbAdapter();
-		Zend_Db_Table::setDefaultAdapter($dbAdapter);		
-		$bookingsDateTable = new Zend_Db_Table('bookings');
-		$where1 = $bookingsDateTable->getAdapter()->quoteInto('id_location= ?', $idLocation);
-		$where2 = $bookingsDateTable->getAdapter()->quoteInto('visit_day= ?', $date);
-		$where3 = $bookingsDateTable->getAdapter()->quoteInto('cancelled= ?', "true");
-		$select = $dbAdapter->select()->from('bookings')->where($where1)->where($where2)->where($where3);
+		$where2 = $bookingsDateTable->getAdapter()->quoteInto('visit_day= ?', $date);		
+		$select = $dbAdapter->select()->from('bookings')->where($where1)->where($where2);
 		$stmt = $dbAdapter->query($select);
 		return $stmt->fetchAll();
 	}

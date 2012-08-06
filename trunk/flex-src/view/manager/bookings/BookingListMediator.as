@@ -68,14 +68,22 @@ package view.manager.bookings
 					var city:String = visitLocationMediator.visitDayCmp.locationSelected.city as String;	
 					var visitDayMediator:VisitDayMediator = facade.retrieveMediator(ManagerMainMediator.NAME_VISIT_DAY_MEDIATOR_SHOWBOOKING) as VisitDayMediator;					
 					date = DateField.dateToString(visitDayMediator.visitDayCmp.selectedDate as Date, "DD/MM/YYYY");
-					bookingListCmp.lblBookingList.text = bookingListCmp.testo+" di "+city+" per il giorno "+date as String;
+					
+					var managerMainMediator:ManagerMainMediator = facade.retrieveMediator(ManagerMainMediator.NAME) as ManagerMainMediator;
+										
+					var cmpBookingList:BookingList = managerMainMediator.managerMain.cmpBookingList;
+					var cmpBookingDeletedList:BookingList = managerMainMediator.managerMain.cmpBookingDeletedList;
+					
+					cmpBookingList.lblBookingList.text = cmpBookingList.testo+" di "+city+" per il giorno "+date as String;
+					cmpBookingDeletedList.lblBookingList.text = cmpBookingList.testo+" di "+city+" per il giorno "+date as String;
+										
 					var _bookingList:ArrayCollection = notification.getBody() as ArrayCollection;
-					
-					var managerMainMediator: ManagerMainMediator = facade.retrieveMediator(ManagerMainMediator.NAME) as ManagerMainMediator;
-					
+					trace("Dim List"+_bookingList.length);
 					if (_bookingList.length > 0){
-						bookingListCmp.customerList = new ArrayCollection();
-						bookingListCmp.bookingList = new ArrayCollection();
+						cmpBookingList.customerList = new ArrayCollection();
+						cmpBookingList.bookingList = new ArrayCollection();
+						cmpBookingDeletedList.customerList = new ArrayCollection();
+						cmpBookingDeletedList.bookingList = new ArrayCollection();
 						var jsDecode:JSONDecoder = new JSONDecoder();
 						for (var i:int=0; i<_bookingList.length; i++){
 							var booking:Booking = new Booking();
@@ -86,73 +94,32 @@ package view.manager.bookings
 							hour.busy = false;
 							hour.index = jsDecode.decode(_bookingList[i].visit_hour).index;							
 							booking.visitHour = hour;
-							//bookingListCmp.bookingList.addItem(booking);
-							managerMainMediator.managerMain.cmpBookingList.bookingList.addItem(booking);
-							
-							var customer:Object = jsDecode.decode(_bookingList[i].id_customer);							
-							//bookingListCmp.customerList.addItem(customer);
-							managerMainMediator.managerMain.cmpBookingList.customerList.addItem(customer);
+							var customer:Object = jsDecode.decode(_bookingList[i].id_customer);
+							if (_bookingList[i].cancelled == "false"){
+								cmpBookingList.bookingList.addItem(booking);
+								cmpBookingList.customerList.addItem(customer);
+								trace("Aggiunto a BookingList");
+							}
+							else {								
+								cmpBookingDeletedList.bookingList.addItem(booking);
+								cmpBookingDeletedList.customerList.addItem(customer);
+								trace("Aggiunto a BookingDeletedList");
+							}	
 						}
 					}
-					else{
-						/**
-						if (bookingListCmp.customerList != null){
-							bookingListCmp.customerList.removeAll();
-							bookingListCmp.bookingList.removeAll();
-						}**/
-						if (managerMainMediator.managerMain.cmpBookingList.customerList != null){
-							managerMainMediator.managerMain.cmpBookingList.customerList.removeAll();
-							managerMainMediator.managerMain.cmpBookingList.bookingList.removeAll();
+					else{						
+						if (cmpBookingList.customerList != null){
+							cmpBookingList.customerList.removeAll();
+							cmpBookingList.bookingList.removeAll();
 						}
-						Alert.show("Non ci sono prenotazioni per la data selezionata");
-					}
-					CursorManager.removeBusyCursor();					
-					break;
-				case ApplicationFacade.GET_BOOKING_DELETED_LIST_SUCCESS:
-					var visitLocationMediator:VisitLocationMediator = facade.retrieveMediator(ManagerMainMediator.NAME_VISIT_LOCATION_MEDIATOR_SHOWBOOKING) as VisitLocationMediator;
-					var city:String = visitLocationMediator.visitDayCmp.locationSelected.city as String;	
-					var visitDayMediator:VisitDayMediator = facade.retrieveMediator(ManagerMainMediator.NAME_VISIT_DAY_MEDIATOR_SHOWBOOKING) as VisitDayMediator;					
-					date = DateField.dateToString(visitDayMediator.visitDayCmp.selectedDate as Date, "DD/MM/YYYY");
-					bookingListCmp.lblBookingList.text = bookingListCmp.testo+" di "+city+" per il giorno "+date as String;
-					var _bookingList:ArrayCollection = notification.getBody() as ArrayCollection;
-					
-					var managerMainMediator: ManagerMainMediator = facade.retrieveMediator(ManagerMainMediator.NAME) as ManagerMainMediator;
-					
-					if (_bookingList.length > 0){
-						bookingListCmp.customerList = new ArrayCollection();
-						bookingListCmp.bookingList = new ArrayCollection();
-						var jsDecode:JSONDecoder = new JSONDecoder();
-						for (var i:int=0; i<_bookingList.length; i++){
-							var booking:Booking = new Booking();
-							booking.id = _bookingList[i].id;
-							var jsDecode:JSONDecoder = new JSONDecoder();
-							var hour:SelectedHour = new SelectedHour();
-							hour.hour = jsDecode.decode(_bookingList[i].visit_hour).hour;
-							hour.busy = false;
-							hour.index = jsDecode.decode(_bookingList[i].visit_hour).index;							
-							booking.visitHour = hour;
-							//bookingListCmp.bookingList.addItem(booking);
-							
-							managerMainMediator.managerMain.cmpBookingDeletedList.bookingList.addItem(booking);
-							
-							var customer:Object = jsDecode.decode(_bookingList[i].id_customer);							
-							//bookingListCmp.customerList.addItem(customer);
-							managerMainMediator.managerMain.cmpBookingDeletedList.customerList.addItem(customer);
-						}
-					}
-					else{
-						/**if (bookingListCmp.customerList != null){
-							bookingListCmp.customerList.removeAll();
-							bookingListCmp.bookingList.removeAll();
-						}**/
-						if (managerMainMediator.managerMain.cmpBookingDeletedList.customerList != null){
-							managerMainMediator.managerMain.cmpBookingDeletedList.customerList.removeAll();
-							managerMainMediator.managerMain.cmpBookingDeletedList.bookingList.removeAll();
+						if (cmpBookingDeletedList.customerList != null){
+							cmpBookingDeletedList.customerList.removeAll();
+							cmpBookingDeletedList.bookingList.removeAll();
 						}
 						Alert.show("Non ci sono prenotazioni per la data selezionata");
 					}
 					CursorManager.removeBusyCursor();					
-					break;
+					break;				
 				case ApplicationFacade.BOOKING_SELECTED:
 					bookingInList = notification.getBody() as BookingInList;					
 					bookingListCmp.btnDeleteUser.enabled= true;
@@ -170,8 +137,7 @@ package view.manager.bookings
 		
 		override public function listNotificationInterests():Array{
 			return [
-				ApplicationFacade.GET_BOOKING_LIST_SUCCESS,
-				ApplicationFacade.GET_BOOKING_DELETED_LIST_SUCCESS,
+				ApplicationFacade.GET_BOOKING_LIST_SUCCESS,				
 				ApplicationFacade.BOOKING_SELECTED,
 				ApplicationFacade.BOOKING_DELETE,
 				ApplicationFacade.BOOKING_DELETE_SUCCESS,

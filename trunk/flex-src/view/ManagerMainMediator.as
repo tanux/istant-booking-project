@@ -7,8 +7,7 @@ package view
 	import controller.loginmanager.DoLoginCommand;
 	import controller.managermain.BookingAddCommand;
 	import controller.managermain.BookingDeleteCommand;
-	import controller.managermain.BookingGetListCommand;
-	import controller.managermain.BookingDeletedGetListCommand;
+	import controller.managermain.BookingGetListCommand;	
 	import controller.managermain.CustomerGetListCommand;
 	import controller.managermain.GetBusyHoursCommand;
 	import controller.managermain.LocationGetListCommand;
@@ -127,57 +126,53 @@ package view
 			var genericUser:GenericUser = new GenericUser(USER_TYPE);
 			genericUser.setUserAsManager = manager;
 			facade.sendNotification(ApplicationFacade.MANAGER_DO_LOGIN, genericUser);
-		}
-		
-		private function goToSetting(evt:Event):void{
-			CursorManager.setBusyCursor();
-			managerMain.currentState = "stateSettings";
-			CursorManager.removeBusyCursor();
-			facade.registerCommand(ApplicationFacade.GET_LOCATION_LIST,LocationGetListCommand);
-			facade.sendNotification(ApplicationFacade.GET_LOCATION_LIST);
-		}
+		}		
 		
 		private function goToHome(evt:Event):void{
 			CursorManager.setBusyCursor();
 			managerMain.currentState = "stateMainApplication";
 			CursorManager.removeBusyCursor();			
 			
-			if (facade.retrieveMediator(NAME_VISIT_LOCATION_MEDIATOR_SHOWBOOKING) != null && 
-				facade.retrieveMediator(NAME_VISIT_LOCATION_MEDIATOR_SHOWBOOKING) != null){
-				facade.removeMediator(NAME_VISIT_LOCATION_MEDIATOR_SHOWBOOKING);
-				facade.removeMediator(NAME_VISIT_DAY_MEDIATOR_SHOWBOOKING);
-			}
-			if (facade.retrieveMediator(VisitHoursMediator.NAME) == null &&
-				facade.retrieveMediator(NAME_VISIT_DAY_MEDIATOR_MAIN) == null){				
+			if ( !facade.hasMediator(NAME_VISIT_DAY_MEDIATOR_MAIN) &&
+				!facade.hasMediator(VisitHoursMediator.NAME) ){
 				facade.registerMediator(new VisitDayMediator(NAME_VISIT_DAY_MEDIATOR_MAIN,managerMain.cmpVisitProperties.cmpVisitDay));
 				facade.registerMediator(new VisitHoursMediator(managerMain.cmpVisitProperties.cmpVisitHours));
+				trace("HOME: Mediator creati");
 			}
-			facade.sendNotification(ApplicationFacade.GET_LOCATION_LIST);
 		}
 		
 		private function goToShowBooking(evt:Event):void{
 			CursorManager.setBusyCursor();
 			managerMain.currentState = "stateShowBooking";
-			CursorManager.removeBusyCursor();			
+			CursorManager.removeBusyCursor();
+			
 			managerMain.cmpLocations.boxSede.enabled = true;
-			managerMain.cmpCalendar.boxDay.enabled = true;
+			managerMain.cmpCalendar.boxDay.enabled = true;		
 			
-			if (facade.retrieveMediator(VisitHoursMediator.NAME) != null &&
-				facade.retrieveMediator(NAME_VISIT_DAY_MEDIATOR_MAIN) != null){				
-				facade.removeMediator(NAME_VISIT_DAY_MEDIATOR_MAIN);
-				facade.removeMediator(VisitHoursMediator.NAME);
+			
+			if ( !facade.hasMediator(NAME_VISIT_LOCATION_MEDIATOR_SHOWBOOKING) && !facade.hasMediator(NAME_VISIT_DAY_MEDIATOR_SHOWBOOKING) ){
+				sendNotification(ApplicationFacade.GET_LOCATION_LIST);
+				facade.registerMediator(new VisitLocationMediator(NAME_VISIT_LOCATION_MEDIATOR_SHOWBOOKING,managerMain.cmpLocations));
+				facade.registerMediator(new VisitDayMediator(NAME_VISIT_DAY_MEDIATOR_SHOWBOOKING,managerMain.cmpCalendar));
+				trace("ShowBooking: mediator creati");
+			}
+			
+			if ( !facade.hasMediator(NAME_BOOKING_LIST_MEDIATOR) && !facade.hasMediator(NAME_BOOKING_DELETED_LIST_MEDIATOR) ){
+				facade.registerMediator(new BookingListMediator(NAME_BOOKING_LIST_MEDIATOR, managerMain.cmpBookingList));
+				facade.registerMediator(new BookingListMediator(NAME_BOOKING_DELETED_LIST_MEDIATOR, managerMain.cmpBookingDeletedList));
+			}
+			
+			if ( !facade.hasCommand(ApplicationFacade.GET_BOOKING_LIST) && !facade.hasCommand(ApplicationFacade.BOOKING_DELETE) ){
+				facade.registerCommand(ApplicationFacade.GET_BOOKING_LIST, BookingGetListCommand);
+				facade.registerCommand(ApplicationFacade.BOOKING_DELETE, BookingDeleteCommand);
 			}			
-			
-			facade.registerMediator(new VisitLocationMediator(NAME_VISIT_LOCATION_MEDIATOR_SHOWBOOKING,managerMain.cmpLocations));			
+		}
+		
+		private function goToSetting(evt:Event):void{
+			CursorManager.setBusyCursor();
+			managerMain.currentState = "stateSettings";
+			CursorManager.removeBusyCursor();			
 			sendNotification(ApplicationFacade.GET_LOCATION_LIST);			
-						
-			facade.registerMediator(new VisitDayMediator(NAME_VISIT_DAY_MEDIATOR_SHOWBOOKING,managerMain.cmpCalendar));
-			facade.registerMediator(new BookingListMediator(NAME_BOOKING_LIST_MEDIATOR, managerMain.cmpBookingList));
-			facade.registerMediator(new BookingListMediator(NAME_BOOKING_DELETED_LIST_MEDIATOR, managerMain.cmpBookingDeletedList));
-			
-			facade.registerCommand(ApplicationFacade.GET_BOOKING_LIST, BookingGetListCommand);
-			facade.registerCommand(ApplicationFacade.GET_BOOKING_DELETED_LIST, BookingDeletedGetListCommand);
-			facade.registerCommand(ApplicationFacade.BOOKING_DELETE, BookingDeleteCommand);
 		}
 		
 		private function doLogout(evt:Event):void{
@@ -185,11 +180,12 @@ package view
 			facade.sendNotification(ApplicationFacade.MANAGER_DO_LOGOUT);
 		}
 		
-		private function changeStateManager():void{
+		private function initMain():void{
 			managerMain.cmpControlBar.btnSettings.addEventListener(MouseEvent.CLICK, goToSetting);
 			managerMain.cmpControlBar.btnLogout.addEventListener(MouseEvent.CLICK, doLogout);
 			managerMain.cmpControlBar.btnHome.addEventListener(MouseEvent.CLICK, goToHome);
 			managerMain.cmpControlBar.btnShowVisit.addEventListener(MouseEvent.CLICK, goToShowBooking);
+			managerMain.cmpCustomerList.btnBooking.addEventListener(MouseEvent.CLICK, checkDataBooking);
 			
 			facade.registerMediator(new CustomerListMediator(managerMain.cmpCustomerList));			
 			facade.registerMediator(new VisitLocationMediator(NAME_VISIT_LOCATION_MEDIATOR_MAIN,managerMain.cmpVisitProperties.cmpLocations));
@@ -198,25 +194,18 @@ package view
 			
 			facade.registerCommand(ApplicationFacade.GET_CUSTOMER_LIST,CustomerGetListCommand);
 			facade.registerCommand(ApplicationFacade.GET_LOCATION_LIST, LocationGetListCommand);
-			facade.registerCommand(ApplicationFacade.GET_BUSY_HOURS, GetBusyHoursCommand);
+			facade.registerCommand(ApplicationFacade.BOOKING_ADD, BookingAddCommand);			
 			
-			facade.registerCommand(ApplicationFacade.BOOKING_ADD, BookingAddCommand);
-			
-			
-			facade.sendNotification(ApplicationFacade.GET_CUSTOMER_LIST);
-			facade.sendNotification(ApplicationFacade.GET_LOCATION_LIST);
-			
-			managerMain.cmpCustomerList.btnBooking.addEventListener(MouseEvent.CLICK, checkDataBooking);
-		}	
-		
-		
+			sendNotification(ApplicationFacade.GET_CUSTOMER_LIST);
+			sendNotification(ApplicationFacade.GET_LOCATION_LIST);
+		}
 		override public function handleNotification(notification:INotification):void{
 			switch (notification.getName()){
 				case ApplicationFacade.MANAGER_LOGGED_IN:
 					managerMain.currentState = "stateMainApplication";
 					manager = notification.getBody() as Manager;
 					managerMain.cmpControlBar.txUserLoggedIn.text = "Dott."+manager.lastname+" "+manager.firstname;
-					changeStateManager();					
+					initMain();					
 					break;
 				case ApplicationFacade.MANAGER_EXECUTE_LOGIN:
 					facade.registerCommand(ApplicationFacade.MANAGER_DO_LOGIN, DoLoginCommand);
@@ -228,7 +217,7 @@ package view
 					managerMain.currentState = "stateMainApplication";
 					manager = notification.getBody() as Manager;
 					managerMain.cmpControlBar.txUserLoggedIn.text = "Dott."+manager.lastname+" "+manager.firstname;
-					changeStateManager();					
+					initMain();					
 					break;
 				case ApplicationFacade.MANAGER_LOGIN_ERROR:
 					CursorManager.removeBusyCursor();
