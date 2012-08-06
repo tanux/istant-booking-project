@@ -21,8 +21,7 @@ package controller.managermain
 			}
 			facade.registerCommand(ApplicationFacade.LOCATION_SAVE_CHANGES, LocationSaveChangesController);
 			facade.registerCommand(ApplicationFacade.LOCATION_ADD, LocationAddCommand);
-			facade.registerCommand(ApplicationFacade.LOCATION_DELETE, LocationDeleteCommand);
-			facade.registerCommand(ApplicationFacade.GET_NO_AVAILABLE_DAY, GetAvailableDayCommand);
+			facade.registerCommand(ApplicationFacade.LOCATION_DELETE, LocationDeleteCommand);			
 		}
 	}
 }

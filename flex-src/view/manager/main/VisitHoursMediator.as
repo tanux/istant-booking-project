@@ -15,6 +15,7 @@ package view.manager.main
 	
 	import view.ManagerMainMediator;
 	import view.component.VisitHours;
+	import view.manager.HomeSectionMediator;
 	
 	public class VisitHoursMediator extends Mediator{
 		public static const NAME:String = "VisitHourMediator";
@@ -31,7 +32,7 @@ package view.manager.main
 			visitHourCmp.hourSelected.hour = event.currentTarget.selectedValue.hour;
 			visitHourCmp.hourSelected.index = event.currentTarget.selectedValue.index;
 			visitHourCmp.hourSelected.busy = true;
-			var visitDayMediator:VisitDayMediator = facade.retrieveMediator(ManagerMainMediator.NAME_VISIT_DAY_MEDIATOR_MAIN) as VisitDayMediator;
+			var visitDayMediator:VisitDayMediator = facade.retrieveMediator(VisitDayMediator.NAME_IN_HOME) as VisitDayMediator;
 			hour=true;
 		}
 		

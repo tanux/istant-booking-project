@@ -11,12 +11,12 @@
 			
 			import mx.collections.ArrayCollection;
 			import mx.controls.Alert;
-			public static const LOCATION_SELECTED:String = "LocationSelected";			
+			public static const LOCATION_SELECTED_EVENT:String = "LocationSelected";			
 			[Bindable]public var locationList:ArrayCollection;
 			[Bindable]public var locationSelected:Location = new Location();
 			
 			public function selectLocation():void{
-				dispatchEvent(new Event( LOCATION_SELECTED ));
+				dispatchEvent(new Event( LOCATION_SELECTED_EVENT ));
 			}	
 		]]>
 	</fx:Script>
