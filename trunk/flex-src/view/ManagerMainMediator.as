@@ -9,11 +9,13 @@ package view
 	import model.vo.Manager;
 	
 	import mx.controls.Alert;
+	import mx.events.FlexEvent;
 	import mx.managers.CursorManager;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
+	import org.tylerchesley.bark.managers.NotificationManager;
 	
 	import view.manager.BookingSectionMediator;
 	import view.manager.HomeSectionMediator;
@@ -27,8 +29,8 @@ package view
 		public var manager:Manager;							
 		
 		public function ManagerMainMediator(viewComponent:Object){
-			super(NAME, viewComponent);							
-		}
+			super(NAME, viewComponent);		
+		}	
 		
 		private function initMain():void{
 			managerMain.cmpControlBar.btnHome.addEventListener(MouseEvent.CLICK, goToHome);
