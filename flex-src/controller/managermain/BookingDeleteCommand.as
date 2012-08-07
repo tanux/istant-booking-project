@@ -17,8 +17,7 @@ package controller.managermain
 			var booking:Booking=bookingInList.getBooking as Booking;			
 			if (facade.hasProxy(BookingListProxy.NAME)){
 				var bookingListProxy:BookingListProxy = facade.retrieveProxy(BookingListProxy.NAME) as BookingListProxy;
-				bookingListProxy.deleteBooking(booking);
-				
+				bookingListProxy.deleteBooking(booking);				
 				if (facade.hasProxy(BookingProxy.NAME)){
 					var bookingProxy:BookingProxy = facade.retrieveProxy(BookingProxy.NAME) as BookingProxy;
 					bookingProxy.removeBooking(bookingInList.getPosition);
@@ -33,6 +32,8 @@ package controller.managermain
 				newBookingListProxy.deleteBooking(booking);
 				facade.registerProxy(newBookingListProxy);
 			}
+			var _bookingProxy:BookingProxy = new BookingProxy(BookingProxy.NAME_DELETED_LIST, booking);
+			facade.registerProxy(_bookingProxy);			
 		}
 	}
 }

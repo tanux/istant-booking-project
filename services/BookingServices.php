@@ -12,8 +12,10 @@ class BookingServices {
 	public function addBooking($booking){
 		$bookingData = BookingServices::setBookingData($booking);
 		$dbAdapter = ManageDatabase::getDbAdapter();			
-		if ($dbAdapter->insert('bookings', $bookingData) > 0)
-			return BookingServices::updateCounterDate($booking->visitDay,ADD);
+		if ($dbAdapter->insert('bookings', $bookingData) > 0){
+			BookingServices::updateCounterDate($booking->visitDay,ADD);
+			return 1;
+		}
 		else 
 			return null;		
 	}	
@@ -21,7 +23,7 @@ class BookingServices {
 	/**	 
 	 * Logic delete booking	 
 	 * @param Booking $booking
-	 * @return String $id
+	 * @return Booking $booking
 	 */
 	public function deleteBooking($booking){
 		$dbAdapter = ManageDatabase::getDbAdapter();	
@@ -30,11 +32,13 @@ class BookingServices {
 		$bookingData['cancelled']= "true";
 		$bookingData['visit_hour'] = $booking->visitHour;
 		$where = $bookingTable->getAdapter()->quoteInto('id= ?', $booking->id);
-		$id = $bookingTable->update($bookingData, $where);
-		if ($id != null){
-			BookingServices::updateCounterDate($booking->visitDay,DELETE);
+		$num_row = $bookingTable->update($bookingData, $where); 
+		if ( $num_row > 0){		
+			BookingServices::updateCounterDate($booking->visitDay,DELETE);					
+			return $booking;
 		}
-		return $id;			
+		else 
+			return null;
 	}
 	
 	/**
@@ -89,20 +93,20 @@ class BookingServices {
 		if ($operation_type == ADD){
 			if (!($counter >= 1 && $counter<=6)){
 				$counterDateData = array('date'=>$date, 'counter'=>1);
-				return $dbAdapter->insert('counter_date', $counterDateData);	
+				$dbAdapter->insert('counter_date', $counterDateData);	
 			}		
 			elseif ($counter<6){			
 				$counterDateData = array('date'=>$date, 'counter'=>$counter+1);
-				return $counterDateTable->update($counterDateData, $where);		
+				$counterDateTable->update($counterDateData, $where);		
 			}	
 		}
-		elseif ($operation_type == DELETE){
-			if ($counter == 1 ){
-				return $counterDateTable->delete($where);
+		elseif ($operation_type == DELETE){			
+			if ($counter == 1 ){				
+				$counterDateTable->delete($where);						
 			}
 			elseif ($counter>0){
 				$counterDateData = array('date'=>$date, 'counter'=>$counter-1);
-				return $counterDateTable->update($counterDateData, $where);
+				$counterDateTable->update($counterDateData, $where);
 			}			
 		}				
 	}

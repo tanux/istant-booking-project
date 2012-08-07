@@ -521,16 +521,19 @@
         <item name="returnType">opaque</item>
       </annotation>
       <parameter name="idLocation" type="opaque"/>
-      <parameter name="date" type="string"/>
+      <parameter name="date" type="opaque"/>
     </function>
-    <function name="deleteBooking" return-type="string">
+    <function name="deleteBooking" return-type="Booking">
       <annotation name="analyze group">
         <item name="analyzed">true</item>
       </annotation>
       <annotation name="original signature">
         <item name="inputParamNames">booking</item>
         <item name="inputParams">Booking</item>
-        <item name="returnType">string</item>
+        <item name="returnType">Booking</item>
+      </annotation>
+      <annotation name="ValidProperties">
+        <item name="propertySpecifier">id,idAffiliate,idManager,idCustomer,idLocation,visitDay,visitHour,cancelled</item>
       </annotation>
       <parameter name="booking" type="Booking"/>
     </function>
@@ -549,6 +552,9 @@
     </annotation>
     <annotation name="ActionScriptGeneration">
       <item name="Package">model.vo</item>
+    </annotation>
+    <annotation name="deleteBooking">
+      <item name="propertySpecifier">id,idAffiliate,idManager,idCustomer,idLocation,visitDay,visitHour,cancelled</item>
     </annotation>
     <property name="id" type="opaque"/>
     <property name="idAffiliate" type="opaque"/>

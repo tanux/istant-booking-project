@@ -18,8 +18,7 @@ package view.manager.main
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	
 	import view.ManagerMainMediator;
-	import view.component.VisitDay;
-	import view.manager.BookingSectionMediator;
+	import view.component.VisitDay;	
 	import view.manager.HomeSectionMediator;
 	
 	public class VisitDayMediator extends Mediator implements IMediator{
@@ -32,6 +31,7 @@ package view.manager.main
 		
 		public function VisitDayMediator(mediatorName:String, viewComponent:Object){
 			super(mediatorName, viewComponent);
+			Alert.show("VisitDayMediator creato: "+mediatorName);
 			visitDayCmp.calendar.addEventListener(CalendarLayoutChangeEvent.CHANGE, detectSelectedDate);
 		}
 		

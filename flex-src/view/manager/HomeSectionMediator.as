@@ -38,22 +38,37 @@ package view.manager
 		
 		public function HomeSectionMediator(viewComponent:Object){
 			super(NAME, viewComponent);
-			cmpHome.addEventListener(FlexEvent.CREATION_COMPLETE, initSection);
+			initSection();
 			cmpHome.cmpCustomerList.btnBooking.addEventListener(MouseEvent.CLICK, checkDataBooking);
 			cmpHome.addEventListener(VisitLocations.LOCATION_SELECTED_EVENT, notifyLocationSelected);
 		}
 		
-		private function initSection(evt:Event){
-			facade.registerMediator(new CustomerSectionMediator(cmpHome.cmpCustomerList));			
-			facade.registerMediator(new VisitLocationMediator(VisitLocationMediator.NAME_IN_HOME,cmpHome.cmpVisitProperties.cmpLocations));
-			facade.registerMediator(new VisitDayMediator(VisitDayMediator.NAME_IN_HOME,cmpHome.cmpVisitProperties.cmpVisitDay));
-			facade.registerMediator(new VisitHoursMediator(cmpHome.cmpVisitProperties.cmpVisitHours));
+		private function initSection(){			
+			if (!facade.hasMediator(CustomerSectionMediator.NAME)){
+				facade.registerMediator(new CustomerSectionMediator(cmpHome.cmpCustomerList));
+			}
+			if (!facade.hasMediator(VisitLocationMediator.NAME_IN_HOME)){
+				facade.registerMediator(new VisitLocationMediator(VisitLocationMediator.NAME_IN_HOME,cmpHome.cmpVisitProperties.cmpLocations));
+			}
+			if (!facade.hasMediator(VisitDayMediator.NAME_IN_HOME)){
+				facade.registerMediator(new VisitDayMediator(VisitDayMediator.NAME_IN_HOME,cmpHome.cmpVisitProperties.cmpVisitDay));
+			}
+			if (!facade.hasMediator(VisitHoursMediator.NAME)){
+				facade.registerMediator(new VisitHoursMediator(cmpHome.cmpVisitProperties.cmpVisitHours));
+			}
 			
-			facade.registerCommand(ApplicationFacade.GET_CUSTOMER_LIST,CustomerGetListCommand);
-			facade.registerCommand(ApplicationFacade.GET_LOCATION_LIST, LocationGetListCommand);
-			facade.registerCommand(ApplicationFacade.BOOKING_ADD, BookingAddCommand);
-			
-			facade.registerCommand(ApplicationFacade.GET_NO_AVAILABLE_DAY_HOME, GetAvailableDayCommand);
+			if (!facade.hasCommand(ApplicationFacade.GET_CUSTOMER_LIST)){
+				facade.registerCommand(ApplicationFacade.GET_CUSTOMER_LIST,CustomerGetListCommand);	
+			}
+			if (!facade.hasCommand(ApplicationFacade.GET_LOCATION_LIST)){
+				facade.registerCommand(ApplicationFacade.GET_LOCATION_LIST, LocationGetListCommand);	
+			}
+			if (!facade.hasCommand(ApplicationFacade.BOOKING_ADD)){
+				facade.registerCommand(ApplicationFacade.BOOKING_ADD, BookingAddCommand);	
+			}
+			if (!facade.hasCommand(ApplicationFacade.GET_NO_AVAILABLE_DAY_HOME)){
+				facade.registerCommand(ApplicationFacade.GET_NO_AVAILABLE_DAY_HOME, GetAvailableDayCommand);	
+			}			
 			
 			sendNotification(ApplicationFacade.GET_CUSTOMER_LIST);
 			sendNotification(ApplicationFacade.GET_LOCATION_LIST);
@@ -110,10 +125,14 @@ package view.manager
 		override public function handleNotification(notification:INotification):void{
 			switch (notification.getName()){
 				case ApplicationFacade.ACTIVE_HOME_SECTION:
-					facade.removeMediator(VisitLocationMediator.NAME_IN_BOOKING);
-					facade.removeMediator(VisitDayMediator.NAME_IN_BOOKING);
-					facade.registerMediator(new VisitLocationMediator(VisitLocationMediator.NAME_IN_HOME,cmpHome.cmpVisitProperties.cmpLocations));
-					facade.registerMediator(new VisitDayMediator(VisitDayMediator.NAME_IN_HOME,cmpHome.cmpVisitProperties.cmpVisitDay));					
+					if (facade.hasMediator(VisitLocationMediator.NAME_IN_BOOKING))
+						facade.removeMediator(VisitLocationMediator.NAME_IN_BOOKING);
+					if (facade.hasMediator(VisitDayMediator.NAME_IN_BOOKING))
+						facade.removeMediator(VisitDayMediator.NAME_IN_BOOKING);
+					if (!facade.hasMediator(VisitLocationMediator.NAME_IN_HOME))
+						facade.registerMediator(new VisitLocationMediator(VisitLocationMediator.NAME_IN_HOME,cmpHome.cmpVisitProperties.cmpLocations));
+					if (!facade.hasMediator(VisitDayMediator.NAME_IN_HOME))
+						facade.registerMediator(new VisitDayMediator(VisitDayMediator.NAME_IN_HOME,cmpHome.cmpVisitProperties.cmpVisitDay));										
 					break;
 				case ApplicationFacade.CUSTOMER_SELECTED_HOMESECTION:
 					cmpHome.cmpVisitProperties.cmpLocations.boxSede.enabled = true;

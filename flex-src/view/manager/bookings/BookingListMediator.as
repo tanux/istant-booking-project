@@ -28,8 +28,7 @@ package view.manager.bookings
 	import view.manager.main.VisitLocationMediator;
 	
 	public class BookingListMediator extends Mediator{
-		[Bindable]private var bookingInList:BookingInList;
-		[Bindable]private var date:String;
+		[Bindable]private var bookingInList:BookingInList;		
 		public static const NAME:String = "BookingListMediator";
 		public static const NAME_IN_LIST:String = "BookingListMediator";
 		public static const NAME_IN_DELETED_LIST:String = "BookingDeletedListMediator";
@@ -42,9 +41,12 @@ package view.manager.bookings
 		
 		public function deleteBooking(evt:Event): void{
 			var delBooking:Booking = new Booking();
-			delBooking = bookingListCmp.bookingList.getItemAt(bookingInList.getPosition) as Booking;
-			delBooking.visitDay = date;
 			var jsEncode:JSONEncoder = new JSONEncoder();
+			delBooking = bookingListCmp.bookingList.getItemAt(bookingInList.getPosition) as Booking;			
+			delBooking.idCustomer = jsEncode.encode(bookingListCmp.customerList.getItemAt(bookingInList.getPosition));
+			var visitDayMediator:VisitDayMediator = facade.retrieveMediator(VisitDayMediator.NAME_IN_BOOKING) as VisitDayMediator;					
+			var date:String = DateField.dateToString(visitDayMediator.visitDayCmp.selectedDate as Date, "DD/MM/YYYY");
+			delBooking.visitDay = date;			
 			delBooking.visitHour = jsEncode.encode(delBooking.visitHour);
 			var bInList:BookingInList = new BookingInList(delBooking, bookingInList.getPosition);
 			facade.sendNotification(ApplicationFacade.BOOKING_DELETE, bInList);
