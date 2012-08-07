@@ -27,9 +27,7 @@
 			private function init():void{	
 				facade.sendNotification(ApplicationFacade.STARTUP_MANAGER_APP, this); 
 				NotificationManager.initialize();
-			}
-			
-			
+			}						
 		]]>
 	</fx:Script>
 	<fx:Style source="/assets/skins/bark.css"/>
@@ -59,7 +57,7 @@
 			<!-- Settings -->
 			<component:SettingsSection id="cmpSettingsSection" includeIn="stateSettings" />
 			
-			<!-- Show Booking -->
+			<!-- Bookings -->
 			<component:BookingSection id="cmpBookingSection" includeIn="stateShowBooking" />
 			
 		</mx:Box>

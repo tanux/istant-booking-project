@@ -31,7 +31,8 @@ package view.manager.bookings
 		[Bindable]private var bookingInList:BookingInList;
 		[Bindable]private var date:String;
 		public static const NAME:String = "BookingListMediator";
-				
+		public static const NAME_IN_LIST:String = "BookingListMediator";
+		public static const NAME_IN_DELETED_LIST:String = "BookingDeletedListMediator";
 		
 		public function BookingListMediator(mediatorName:String, viewComponent:Object){
 			super(mediatorName, viewComponent);
@@ -64,85 +65,17 @@ package view.manager.bookings
 		
 		override public function handleNotification(notification:INotification):void{
 			switch (notification.getName()){				
-				case ApplicationFacade.GET_BOOKING_LIST_SUCCESS:
-					var visitLocationMediator:VisitLocationMediator = facade.retrieveMediator(VisitLocationMediator.NAME_IN_BOOKING) as VisitLocationMediator;
-					var city:String = visitLocationMediator.visitLocationCmp.locationSelected.city as String;	
-					var visitDayMediator:VisitDayMediator = facade.retrieveMediator(VisitDayMediator.NAME_IN_BOOKING) as VisitDayMediator;					
-					date = DateField.dateToString(visitDayMediator.visitDayCmp.selectedDate as Date, "DD/MM/YYYY");
-					
-					var managerMainMediator:ManagerMainMediator = facade.retrieveMediator(ManagerMainMediator.NAME) as ManagerMainMediator;
-										
-					var cmpBookingList:BookingList = managerMainMediator.managerMain.cmpBookingSection.cmpBookingList;
-					var cmpBookingDeletedList:BookingList = managerMainMediator.managerMain.cmpBookingSection.cmpBookingDeletedList;
-					
-					cmpBookingList.lblBookingList.text = cmpBookingList.testo+" di "+city+" per il giorno "+date as String;
-					cmpBookingDeletedList.lblBookingList.text = cmpBookingList.testo+" di "+city+" per il giorno "+date as String;
-										
-					var _bookingList:ArrayCollection = notification.getBody() as ArrayCollection;
-					
-					if (_bookingList.length > 0){
-						cmpBookingList.customerList = new ArrayCollection();
-						cmpBookingList.bookingList = new ArrayCollection();
-						cmpBookingDeletedList.customerList = new ArrayCollection();
-						cmpBookingDeletedList.bookingList = new ArrayCollection();
-						var jsDecode:JSONDecoder = new JSONDecoder();
-						for (var i:int=0; i<_bookingList.length; i++){
-							var booking:Booking = new Booking();
-							booking.id = _bookingList[i].id;
-							var jsDecode:JSONDecoder = new JSONDecoder();
-							var hour:SelectedHour = new SelectedHour();
-							hour.hour = jsDecode.decode(_bookingList[i].visit_hour).hour;
-							hour.busy = false;
-							hour.index = jsDecode.decode(_bookingList[i].visit_hour).index;							
-							booking.visitHour = hour;
-							var customer:Object = jsDecode.decode(_bookingList[i].id_customer);
-							if (_bookingList[i].cancelled == "false"){
-								cmpBookingList.bookingList.addItem(booking);
-								cmpBookingList.customerList.addItem(customer);
-								trace("Aggiunto a BookingList");
-							}
-							else {								
-								cmpBookingDeletedList.bookingList.addItem(booking);
-								cmpBookingDeletedList.customerList.addItem(customer);
-								trace("Aggiunto a BookingDeletedList");
-							}	
-						}
-					}
-					else{						
-						if (cmpBookingList.customerList != null){
-							cmpBookingList.customerList.removeAll();
-							cmpBookingList.bookingList.removeAll();
-						}
-						if (cmpBookingDeletedList.customerList != null){
-							cmpBookingDeletedList.customerList.removeAll();
-							cmpBookingDeletedList.bookingList.removeAll();
-						}
-						Alert.show("Non ci sono prenotazioni per la data selezionata");
-					}
-					CursorManager.removeBusyCursor();					
-					break;				
+				
 				case ApplicationFacade.BOOKING_SELECTED:
 					bookingInList = notification.getBody() as BookingInList;					
 					bookingListCmp.btnDeleteUser.enabled= true;
 					break;
-				case ApplicationFacade.BOOKING_DELETE_SUCCESS:
-					bookingListCmp.btnDeleteUser.enabled = false;
-					bookingListCmp.dgRisultati.selectedIndex = -1;
-					Alert.show("Delete OK");
-					break;
-				case ApplicationFacade.BOOKING_DELETE_ERROR:
-					Alert.show("Errore delete");
-					break;
-			}
+			}			
 		}
 		
 		override public function listNotificationInterests():Array{
-			return [
-				ApplicationFacade.GET_BOOKING_LIST_SUCCESS,				
-				ApplicationFacade.BOOKING_SELECTED,
-				ApplicationFacade.BOOKING_DELETE,
-				ApplicationFacade.BOOKING_DELETE_SUCCESS,
-				ApplicationFacade.BOOKING_DELETE_ERROR
+			return [								
+				ApplicationFacade.BOOKING_SELECTED
 			];
 		}
 		
