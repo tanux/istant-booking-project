@@ -60,14 +60,17 @@ package model.managermain
 					}
 					break;
 				case "getBookingList":
-					if (evt.result != null){
-						trace("GetBookingList");
-						sendNotification(ApplicationFacade.GET_BOOKING_LIST_SUCCESS, evt.result);
+					if (evt.result != null){						
+						sendNotification(ApplicationFacade.GET_BOOKING_LIST_SUCCESS, evt.result);						
 					}
 					break;				
 				case "deleteBooking":
 					if (evt.result != null){
 						sendNotification(ApplicationFacade.BOOKING_DELETE_SUCCESS, evt.result);
+						if (facade.hasProxy(BookingProxy.NAME_DELETED_LIST)){
+							var bookingProxy:BookingProxy = facade.retrieveProxy(BookingProxy.NAME_DELETED_LIST) as BookingProxy;
+							bookingProxy.addBooking();
+						}
 					}
 					else{
 						sendNotification(ApplicationFacade.BOOKING_DELETE_ERROR);

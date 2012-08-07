@@ -2,6 +2,7 @@ package view.manager
 {
 	import flash.events.Event;
 	
+	import mx.controls.Alert;
 	import mx.events.FlexEvent;
 	
 	import org.puremvc.as3.interfaces.IMediator;
@@ -18,23 +19,21 @@ package view.manager
 			cmpSetting.addEventListener(FlexEvent.CREATION_COMPLETE, initSection);
 		}
 		
-		private function initSection(evt:Event){
-			facade.registerMediator(new LocationListMediator(cmpSetting.cmpManagementLocation.cmpLocationList));
+		private function initSection(evt:Event){			
+			if (!facade.hasMediator(LocationListMediator.NAME)){
+				facade.registerMediator(new LocationListMediator(cmpSetting.cmpManagementLocation.cmpLocationList));	
+			}			
 			sendNotification(ApplicationFacade.GET_LOCATION_LIST);
 		}
 		
 		
 		override public function handleNotification(notification:INotification):void{
 			switch (notification.getName()){
-				case ApplicationFacade.ACTIVE_SETTING_SECTION:
-						
-					break;
 			}
 		}
 		
 		override public function listNotificationInterests():Array{
-			return [
-				ApplicationFacade.ACTIVE_SETTING_SECTION,
+			return [				
 			];
 		}
 		
