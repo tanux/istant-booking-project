@@ -66,8 +66,7 @@ package view.manager.bookings
 		}
 		
 		override public function handleNotification(notification:INotification):void{
-			switch (notification.getName()){				
-				
+			switch (notification.getName()){	
 				case ApplicationFacade.BOOKING_SELECTED:
 					bookingInList = notification.getBody() as BookingInList;					
 					bookingListCmp.btnDeleteUser.enabled= true;

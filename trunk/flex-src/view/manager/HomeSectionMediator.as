@@ -43,36 +43,48 @@ package view.manager
 			cmpHome.addEventListener(VisitLocations.LOCATION_SELECTED_EVENT, notifyLocationSelected);
 		}
 		
-		private function initSection(evt:Event){
-			Alert.show("Componente Creato");
+		private function initSection(evt:Event){			
+			
+			/*CustomerSection*/
 			if (!facade.hasMediator(CustomerSectionMediator.NAME)){
 				facade.registerMediator(new CustomerSectionMediator(cmpHome.cmpCustomerList));
 			}
-			if (!facade.hasMediator(VisitLocationMediator.NAME_IN_HOME)){
-				facade.registerMediator(new VisitLocationMediator(VisitLocationMediator.NAME_IN_HOME,cmpHome.cmpVisitProperties.cmpLocations));
-			}
-			if (!facade.hasMediator(VisitDayMediator.NAME_IN_HOME)){
-				facade.registerMediator(new VisitDayMediator(VisitDayMediator.NAME_IN_HOME,cmpHome.cmpVisitProperties.cmpVisitDay));
-			}
-			if (!facade.hasMediator(VisitHoursMediator.NAME)){
-				facade.registerMediator(new VisitHoursMediator(cmpHome.cmpVisitProperties.cmpVisitHours));
-			}
-			
 			if (!facade.hasCommand(ApplicationFacade.GET_CUSTOMER_LIST)){
 				facade.registerCommand(ApplicationFacade.GET_CUSTOMER_LIST,CustomerGetListCommand);	
+			}
+			facade.sendNotification(ApplicationFacade.GET_CUSTOMER_LIST);
+			
+			/*Visit Location (Sedi)*/
+			if (!facade.hasMediator(VisitLocationMediator.NAME_IN_HOME)){
+				facade.registerMediator(new VisitLocationMediator(VisitLocationMediator.NAME_IN_HOME,cmpHome.cmpVisitProperties.cmpLocations));
 			}
 			if (!facade.hasCommand(ApplicationFacade.GET_LOCATION_LIST)){
 				facade.registerCommand(ApplicationFacade.GET_LOCATION_LIST, LocationGetListCommand);	
 			}
+			facade.sendNotification(ApplicationFacade.GET_LOCATION_LIST);
+			
+			
+			/*Visit Day (Giorno)*/
+			if (!facade.hasMediator(VisitDayMediator.NAME_IN_HOME)){
+				facade.registerMediator(new VisitDayMediator(VisitDayMediator.NAME_IN_HOME,cmpHome.cmpVisitProperties.cmpVisitDay));
+			}
+			
+			/*Visit Hours (Orari Liberi)*/
+			if (!facade.hasMediator(VisitHoursMediator.NAME)){
+				facade.registerMediator(new VisitHoursMediator(cmpHome.cmpVisitProperties.cmpVisitHours));
+			}
+			
+			/*
 			if (!facade.hasCommand(ApplicationFacade.BOOKING_ADD)){
 				facade.registerCommand(ApplicationFacade.BOOKING_ADD, BookingAddCommand);	
 			}
 			if (!facade.hasCommand(ApplicationFacade.GET_NO_AVAILABLE_DAY_HOME)){
 				facade.registerCommand(ApplicationFacade.GET_NO_AVAILABLE_DAY_HOME, GetAvailableDayCommand);	
-			}			
+			}	
+			*/
 			
-			facade.sendNotification(ApplicationFacade.GET_CUSTOMER_LIST);
-			facade.sendNotification(ApplicationFacade.GET_LOCATION_LIST);
+			
+			
 		}
 		
 		private function notifyLocationSelected(evt:Event):void{			
@@ -128,6 +140,7 @@ package view.manager
 		override public function handleNotification(notification:INotification):void{
 			switch (notification.getName()){
 				case ApplicationFacade.ACTIVE_HOME_SECTION:
+					/*
 					if (facade.hasMediator(VisitLocationMediator.NAME_IN_BOOKING))
 						facade.removeMediator(VisitLocationMediator.NAME_IN_BOOKING);
 					if (facade.hasMediator(VisitDayMediator.NAME_IN_BOOKING))
@@ -137,7 +150,8 @@ package view.manager
 					if (!facade.hasMediator(VisitLocationMediator.NAME_IN_HOME))
 						facade.registerMediator(new VisitLocationMediator(VisitLocationMediator.NAME_IN_HOME,cmpHome.cmpVisitProperties.cmpLocations));
 					if (!facade.hasMediator(VisitDayMediator.NAME_IN_HOME))
-						facade.registerMediator(new VisitDayMediator(VisitDayMediator.NAME_IN_HOME,cmpHome.cmpVisitProperties.cmpVisitDay));					
+						facade.registerMediator(new VisitDayMediator(VisitDayMediator.NAME_IN_HOME,cmpHome.cmpVisitProperties.cmpVisitDay));
+					*/
 					break;
 				case ApplicationFacade.CUSTOMER_SELECTED_HOMESECTION:
 					cmpHome.cmpVisitProperties.cmpLocations.boxSede.enabled = true;

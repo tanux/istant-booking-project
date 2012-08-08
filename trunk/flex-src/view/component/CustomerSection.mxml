@@ -61,7 +61,7 @@
 				customerSelected.lastName = selectedRow.lastname;
 				customerSelected.email = selectedRow.email;
 				customerSelected.telephoneNumber = selectedRow.telephone_number;
-				var position:int = event.currentTarget.selectedIndex;
+				var position:int = event.currentTarget.selectedIndex;				
 				var customerInList:CustomerInList = new CustomerInList(customerSelected,position);				
 				facade.sendNotification(ApplicationFacade.CUSTOMER_SELECTED_HOMESECTION, customerInList);				
 			}

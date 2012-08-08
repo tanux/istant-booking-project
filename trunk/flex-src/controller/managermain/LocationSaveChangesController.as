@@ -18,15 +18,9 @@ package controller.managermain
 			if (facade.hasProxy(LocationListProxy.NAME)){
 				var locationListProxy:LocationListProxy = facade.retrieveProxy(LocationListProxy.NAME) as LocationListProxy;
 				locationListProxy.saveChangesLocation(location);
-				if(facade.hasProxy(LocationProxy.NAME)){
-					var locationProxy:LocationProxy = facade.retrieveProxy(LocationProxy.NAME) as LocationProxy;
-					locationProxy.updateLocation(locationInList.getPosition);			
-				}
-				else{
-					var newLocationProxy:LocationProxy = new LocationProxy(LocationProxy.NAME, location);
-					newLocationProxy.updateLocation(locationInList.getPosition);
-					facade.registerProxy(newLocationProxy);			
-				}
+				var newLocationProxy:LocationProxy = new LocationProxy(LocationProxy.NAME, location);
+				newLocationProxy.updateLocation(locationInList.getPosition);
+				facade.registerProxy(newLocationProxy);
 			}
 			else{
 				var newLocationListProxy:LocationListProxy = new LocationListProxy(LocationListProxy.NAME);

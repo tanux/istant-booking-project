@@ -21,8 +21,7 @@ package view.manager.main
 		
 		public function VisitLocationMediator(mediatorName:String,viewComponent:Object){			
 			super(mediatorName, viewComponent);	
-			visitLocationCmp.addEventListener(VisitLocations.LOCATION_SELECTED_EVENT, notifyLocationSelected);
-			Alert.show("VisitLocationMediator: "+getMediatorName());
+			visitLocationCmp.addEventListener(VisitLocations.LOCATION_SELECTED_EVENT, notifyLocationSelected);			
 		}
 		
 		private function notifyLocationSelected(evt:Event):void{
