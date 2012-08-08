@@ -37,10 +37,9 @@ package view
 			managerMain.cmpControlBar.btnSettings.addEventListener(MouseEvent.CLICK, goToSetting);
 			managerMain.cmpControlBar.btnShowVisit.addEventListener(MouseEvent.CLICK, goToShowBooking);			
 			managerMain.cmpControlBar.btnLogout.addEventListener(MouseEvent.CLICK, doLogout);
-			
 			if (!facade.hasMediator(HomeSectionMediator.NAME)){
 				facade.registerMediator(new HomeSectionMediator(managerMain.cmpHomeSection));
-			}				
+			}
 		}
 		
 		private function doLogin(evt:Event):void{	
@@ -64,10 +63,10 @@ package view
 			CursorManager.setBusyCursor();
 			managerMain.currentState = "stateMainApplication";
 			CursorManager.removeBusyCursor();
+			/*
 			if (!facade.hasMediator(HomeSectionMediator.NAME)){
-				facade.registerMediator(new HomeSectionMediator(managerMain.cmpHomeSection));
-				Alert.show("goToHome:Mediator Creato");
-			}
+				facade.registerMediator(new HomeSectionMediator(managerMain.cmpHomeSection));				
+			}*/
 			facade.sendNotification(ApplicationFacade.ACTIVE_HOME_SECTION);
 		}
 		
@@ -75,9 +74,11 @@ package view
 			CursorManager.setBusyCursor();
 			managerMain.currentState = "stateSettings";
 			CursorManager.removeBusyCursor();
+			/*
 			if (!facade.hasMediator(SettingsSectionMediator.NAME)){
 				facade.registerMediator(new SettingsSectionMediator(managerMain.cmpSettingsSection));	
-			}			
+			}
+			*/
 			facade.sendNotification(ApplicationFacade.ACTIVE_SETTING_SECTION);			
 		}
 		
@@ -85,9 +86,11 @@ package view
 			CursorManager.setBusyCursor();
 			managerMain.currentState = "stateShowBooking";
 			CursorManager.removeBusyCursor();
+			/*
 			if (!facade.hasMediator(BookingSectionMediator.NAME)){
 				facade.registerMediator(new BookingSectionMediator(managerMain.cmpBookingSection));	
 			}
+			*/
 			facade.sendNotification(ApplicationFacade.ACTIVE_BOOKING_SECTION);
 		}
 		
@@ -126,8 +129,7 @@ package view
 					managerMain.cmpLoginFormManager.tiPassword.textInput.showCancelButton=false;
 					managerMain.cmpLoginFormManager.tiUsername.textInput.text="Username";
 					managerMain.cmpLoginFormManager.tiUsername.textInput.showCancelButton=false;
-					break;			
-				
+					break;	
 			}
 		}
 		

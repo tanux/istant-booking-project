@@ -30,8 +30,7 @@ package view.manager.main
 		public static const NAME_IN_BOOKING:String = NAME+"Booking";
 		
 		public function VisitDayMediator(mediatorName:String, viewComponent:Object){
-			super(mediatorName, viewComponent);
-			Alert.show("VisitDayMediator creato: "+mediatorName);
+			super(mediatorName, viewComponent);			
 			visitDayCmp.calendar.addEventListener(CalendarLayoutChangeEvent.CHANGE, detectSelectedDate);
 		}
 		

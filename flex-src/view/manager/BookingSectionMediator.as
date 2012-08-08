@@ -38,6 +38,7 @@ package view.manager
 		}
 		
 		private function initSection(evt:Event){
+			/*
 			if (!facade.hasMediator(VisitLocationMediator.NAME_IN_BOOKING)){
 				facade.registerMediator(new VisitLocationMediator(VisitLocationMediator.NAME_IN_BOOKING,cmpBooking.cmpLocations));
 			}
@@ -59,6 +60,7 @@ package view.manager
 			if (!facade.hasCommand(ApplicationFacade.GET_NO_AVAILABLE_DAY_BOOKING)){
 				facade.registerCommand(ApplicationFacade.GET_NO_AVAILABLE_DAY_BOOKING, GetAvailableDayCommand);	
 			}
+			*/
 			facade.sendNotification(ApplicationFacade.GET_LOCATION_LIST);
 		}
 		
@@ -71,6 +73,7 @@ package view.manager
 				case ApplicationFacade.ACTIVE_BOOKING_SECTION:					
 					cmpBooking.cmpLocations.boxSede.enabled = true;
 					cmpBooking.cmpCalendar.boxDay.enabled = true;
+					/*
 					if (facade.hasMediator(VisitLocationMediator.NAME_IN_HOME))
 						facade.removeMediator(VisitLocationMediator.NAME_IN_HOME);
 					if (facade.hasMediator(VisitDayMediator.NAME_IN_HOME))
@@ -80,7 +83,8 @@ package view.manager
 					if (!facade.hasMediator(VisitLocationMediator.NAME_IN_BOOKING))
 						facade.registerMediator(new VisitLocationMediator(VisitLocationMediator.NAME_IN_BOOKING,cmpBooking.cmpLocations));
 					if (!facade.hasMediator(VisitDayMediator.NAME_IN_BOOKING))
-						facade.registerMediator(new VisitDayMediator(VisitDayMediator.NAME_IN_BOOKING,cmpBooking.cmpCalendar));					
+						facade.registerMediator(new VisitDayMediator(VisitDayMediator.NAME_IN_BOOKING,cmpBooking.cmpCalendar));
+					*/
 					break;
 				case ApplicationFacade.GET_BOOKING_LIST_SUCCESS:
 					var visitLocationMediator:VisitLocationMediator = facade.retrieveMediator(VisitLocationMediator.NAME_IN_BOOKING) as VisitLocationMediator;

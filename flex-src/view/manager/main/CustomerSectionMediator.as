@@ -1,5 +1,9 @@
 package view.manager.main
 {
+	import controller.managermain.CustomerAddCommand;
+	import controller.managermain.CustomerDeleteCommand;
+	import controller.managermain.CustomerSaveChangesCommand;
+	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
@@ -93,8 +97,8 @@ package view.manager.main
 					var evt:FaultEvent = notification.getBody() as FaultEvent;
 					Alert.show("CustomerList Fault: "+evt.fault.faultDetail);
 					break;
-				case ApplicationFacade.CUSTOMER_SELECTED_HOMESECTION:
-					customerInList = notification.getBody() as CustomerInList;
+				case ApplicationFacade.CUSTOMER_SELECTED_HOMESECTION:					
+					customerInList = notification.getBody() as CustomerInList;					
 					customerListCmp.abilitaAdd=false;
 					customerListCmp.tiFirstname.text = customerInList.getCustomer.firstName as String;
 					customerListCmp.tiLastname.text = customerInList.getCustomer.lastName as String;
