@@ -28,7 +28,7 @@
 	</fx:Script>
 	
 	
-	<mx:VBox id="vbHours" width="100%" verticalAlign="middle" height="30%" enabled="false"
+	<mx:VBox id="boxHours" width="100%" verticalAlign="middle" height="30%" enabled="false"
 			 paddingTop="5" paddingRight="20" paddingLeft="20">				
 		<mx:Repeater id="rptContentHours" dataProvider="{hours}"> 
 							

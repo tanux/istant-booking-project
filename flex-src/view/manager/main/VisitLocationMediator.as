@@ -24,14 +24,18 @@ package view.manager.main
 			visitLocationCmp.addEventListener(VisitLocations.LOCATION_SELECTED_EVENT, notifyLocationSelected);			
 		}
 		
-		private function notifyLocationSelected(evt:Event):void{
-			sendNotification(ApplicationFacade.LOCATION_SELECTED_HOMESECTION, visitLocationCmp.locationSelected);
-			if (getMediatorName() == NAME_IN_HOME){
-				sendNotification(ApplicationFacade.GET_NO_AVAILABLE_DAY_HOME, visitLocationCmp.locationSelected);
+		private function notifyLocationSelected(evt:Event):void{			
+			facade.sendNotification(ApplicationFacade.LOCATION_SELECTED_ACCORDION, visitLocationCmp.locationSelected);
+			if (getMediatorName() == NAME_IN_HOME){				
+				facade.sendNotification(ApplicationFacade.GET_NO_AVAILABLE_DAY_HOME, visitLocationCmp.locationSelected);
+				facade.sendNotification(ApplicationFacade.LOCATION_SELECTED_ACCORDION_HOME);
 			}
-			else if (getMediatorName() == NAME_IN_BOOKING){	
-				sendNotification(ApplicationFacade.GET_NO_AVAILABLE_DAY_BOOKING, visitLocationCmp.locationSelected);
+			
+			else if (getMediatorName() == NAME_IN_BOOKING){
+				facade.sendNotification(ApplicationFacade.GET_NO_AVAILABLE_DAY_BOOKING, visitLocationCmp.locationSelected);
+				facade.sendNotification(ApplicationFacade.LOCATION_SELECTED_ACCORDION_BOOKING);				
 			}
+			
 		}
 		
 		override public function handleNotification(notification:INotification):void{ 
@@ -43,7 +47,7 @@ package view.manager.main
 				case ApplicationFacade.GET_LOCATION_LIST_ERROR:
 					Alert.show("Errore nel caricamento della lista delle location");
 					break;
-				case ApplicationFacade.LOCATION_SELECTED_HOMESECTION:
+				case ApplicationFacade.LOCATION_SELECTED_ACCORDION:
 					loc=true;
 					break;
 			}
@@ -53,7 +57,7 @@ package view.manager.main
 				ApplicationFacade.GET_LOCATION_LIST_SUCCESS,
 				ApplicationFacade.GET_LOCATION_LIST_ERROR,
 				ApplicationFacade.GET_LOCATION_LIST_FAULT,
-				ApplicationFacade.LOCATION_SELECTED_HOMESECTION
+				ApplicationFacade.LOCATION_SELECTED_ACCORDION
 			];      
 		}
 		

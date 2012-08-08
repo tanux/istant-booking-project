@@ -38,12 +38,12 @@ package view.manager
 		
 		public function HomeSectionMediator(viewComponent:Object){
 			super(NAME, viewComponent);
-			cmpHome.addEventListener(FlexEvent.CREATION_COMPLETE,initSection);
+			initSection();
 			cmpHome.cmpCustomerList.btnBooking.addEventListener(MouseEvent.CLICK, checkDataBooking);
-			cmpHome.addEventListener(VisitLocations.LOCATION_SELECTED_EVENT, notifyLocationSelected);
+			//cmpHome.addEventListener(VisitLocations.LOCATION_SELECTED_EVENT, notifyLocationSelected);
 		}
 		
-		private function initSection(evt:Event){			
+		private function initSection(){			
 			
 			/*CustomerSection*/
 			if (!facade.hasMediator(CustomerSectionMediator.NAME)){
@@ -74,22 +74,19 @@ package view.manager
 				facade.registerMediator(new VisitHoursMediator(cmpHome.cmpVisitProperties.cmpVisitHours));
 			}
 			
-			/*
 			if (!facade.hasCommand(ApplicationFacade.BOOKING_ADD)){
 				facade.registerCommand(ApplicationFacade.BOOKING_ADD, BookingAddCommand);	
 			}
 			if (!facade.hasCommand(ApplicationFacade.GET_NO_AVAILABLE_DAY_HOME)){
 				facade.registerCommand(ApplicationFacade.GET_NO_AVAILABLE_DAY_HOME, GetAvailableDayCommand);	
-			}	
-			*/
-			
-			
-			
+			}
 		}
 		
+		/* DOPPIONE
 		private function notifyLocationSelected(evt:Event):void{			
 			facade.sendNotification(ApplicationFacade.GET_NO_AVAILABLE_DAY_HOME, cmpHome.cmpVisitProperties.cmpLocations.locationSelected);
 		}
+		*/
 		
 		private function showConfirmBooking():void{
 			confirmBookingTitleWindow = PopUpManager.createPopUp(cmpHome, ConfirmBookingWindow, true) as TitleWindow;			
@@ -138,34 +135,20 @@ package view.manager
 		}
 		
 		override public function handleNotification(notification:INotification):void{
-			switch (notification.getName()){
-				case ApplicationFacade.ACTIVE_HOME_SECTION:
-					/*
-					if (facade.hasMediator(VisitLocationMediator.NAME_IN_BOOKING))
-						facade.removeMediator(VisitLocationMediator.NAME_IN_BOOKING);
-					if (facade.hasMediator(VisitDayMediator.NAME_IN_BOOKING))
-						facade.removeMediator(VisitDayMediator.NAME_IN_BOOKING);					
-					if (facade.hasMediator(BookingSectionMediator.NAME))
-						facade.removeMediator(BookingSectionMediator.NAME);
-					if (!facade.hasMediator(VisitLocationMediator.NAME_IN_HOME))
-						facade.registerMediator(new VisitLocationMediator(VisitLocationMediator.NAME_IN_HOME,cmpHome.cmpVisitProperties.cmpLocations));
-					if (!facade.hasMediator(VisitDayMediator.NAME_IN_HOME))
-						facade.registerMediator(new VisitDayMediator(VisitDayMediator.NAME_IN_HOME,cmpHome.cmpVisitProperties.cmpVisitDay));
-					*/
-					break;
+			switch (notification.getName()){				
 				case ApplicationFacade.CUSTOMER_SELECTED_HOMESECTION:
 					cmpHome.cmpVisitProperties.cmpLocations.boxSede.enabled = true;
 					break;
-				case ApplicationFacade.LOCATION_SELECTED_HOMESECTION:
+				case ApplicationFacade.LOCATION_SELECTED_ACCORDION_HOME:
 					cmpHome.cmpVisitProperties.cmpVisitDay.boxDay.enabled = true;
 					break;
 				case ApplicationFacade.DATE_SELECTED:
-					cmpHome.cmpVisitProperties.cmpVisitHours.vbHours.enabled = true;
+					cmpHome.cmpVisitProperties.cmpVisitHours.boxHours.enabled = true;
 					break;
 				case ApplicationFacade.BOOKING_ADD_SUCCESS:
 					cmpHome.cmpVisitProperties.cmpLocations.boxSede.enabled = false;
 					cmpHome.cmpVisitProperties.cmpVisitDay.boxDay.enabled = false;
-					cmpHome.cmpVisitProperties.cmpVisitHours.vbHours.enabled = false;					
+					cmpHome.cmpVisitProperties.cmpVisitHours.boxHours.enabled = false;					
 					var visitLocationMediator: VisitLocationMediator = facade.retrieveMediator(VisitLocationMediator.NAME_IN_HOME) as VisitLocationMediator;
 					visitLocationMediator.loc = false;					
 					var visitDayMediator: VisitDayMediator = facade.retrieveMediator(VisitDayMediator.NAME_IN_HOME) as VisitDayMediator;
@@ -180,12 +163,11 @@ package view.manager
 		}
 		
 		override public function listNotificationInterests():Array{
-			return [
-				ApplicationFacade.ACTIVE_HOME_SECTION,
+			return [				
 				ApplicationFacade.CUSTOMER_SELECTED_HOMESECTION,
-				ApplicationFacade.LOCATION_SELECTED_HOMESECTION,				
+				ApplicationFacade.LOCATION_SELECTED_ACCORDION_HOME,				
 				ApplicationFacade.DATE_SELECTED,
-				ApplicationFacade.BOOKING_ADD_SUCCESS
+				ApplicationFacade.BOOKING_ADD_SUCCESS				
 			];
 		}
 		

@@ -81,9 +81,10 @@ package
 		public static const CUSTOMER_DELETE_FAULT:String = "CustomerDeleteFault";
 		
 		/*Location Notify*/
-		public static const LOCATION_SELECTED: String = "LocationSelected";
-		public static const LOCATION_SELECTED_HOMESECTION: String = "LocationSelectedHomeSection";
-		public static const LOCATION_SELECTED_SHOWBOOKING: String = "LocationSelectedShowBooking";
+		public static const LOCATION_SELECTED_SETTINGSECTION: String = "LocationSelected";
+		public static const LOCATION_SELECTED_ACCORDION: String = "LocationSelectedAccordion";
+		public static const LOCATION_SELECTED_ACCORDION_HOME: String = "LocationSelectedAccordionHome";	
+		public static const LOCATION_SELECTED_ACCORDION_BOOKING: String = "LocationSelectedAccordionBooking";
 		public static const GET_LOCATION_LIST:String = "GetLocationList";
 		public static const GET_LOCATION_LIST_SUCCESS:String = "GetLocationListSuccess";
 		public static const GET_LOCATION_LIST_ERROR:String = "GetLocationListError";

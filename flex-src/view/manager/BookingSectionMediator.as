@@ -34,57 +34,45 @@ package view.manager
 		
 		public function BookingSectionMediator(viewComponent:Object){
 			super(NAME, viewComponent);			
-			cmpBooking.addEventListener(FlexEvent.CREATION_COMPLETE, initSection);
+			initSection();
 		}
 		
-		private function initSection(evt:Event){
-			/*
+		private function initSection(){
+			
 			if (!facade.hasMediator(VisitLocationMediator.NAME_IN_BOOKING)){
 				facade.registerMediator(new VisitLocationMediator(VisitLocationMediator.NAME_IN_BOOKING,cmpBooking.cmpLocations));
 			}
+			facade.sendNotification(ApplicationFacade.GET_LOCATION_LIST);
+			
 			if (!facade.hasMediator(VisitDayMediator.NAME_IN_BOOKING)){
 				facade.registerMediator(new VisitDayMediator(VisitDayMediator.NAME_IN_BOOKING,cmpBooking.cmpCalendar));	
 			}
+			
 			if (!facade.hasMediator(BookingListMediator.NAME_IN_LIST)){
 				facade.registerMediator(new BookingListMediator(BookingListMediator.NAME_IN_LIST, cmpBooking.cmpBookingList));
-			}
-			if (!facade.hasMediator(BookingListMediator.NAME_IN_DELETED_LIST)){
-				facade.registerMediator(new BookingListMediator(BookingListMediator.NAME_IN_DELETED_LIST, cmpBooking.cmpBookingDeletedList));	
-			}
-			if (!facade.hasCommand(ApplicationFacade.GET_BOOKING_LIST)){
-				facade.registerCommand(ApplicationFacade.GET_BOOKING_LIST, BookingGetListCommand);	
 			}
 			if (!facade.hasCommand(ApplicationFacade.BOOKING_DELETE)){
 				facade.registerCommand(ApplicationFacade.BOOKING_DELETE, BookingDeleteCommand);	
 			}
+			
+			if (!facade.hasMediator(BookingListMediator.NAME_IN_DELETED_LIST)){
+				facade.registerMediator(new BookingListMediator(BookingListMediator.NAME_IN_DELETED_LIST, cmpBooking.cmpBookingDeletedList));	
+			}
+			
+			if (!facade.hasCommand(ApplicationFacade.GET_BOOKING_LIST)){
+				facade.registerCommand(ApplicationFacade.GET_BOOKING_LIST, BookingGetListCommand);	
+			}
 			if (!facade.hasCommand(ApplicationFacade.GET_NO_AVAILABLE_DAY_BOOKING)){
 				facade.registerCommand(ApplicationFacade.GET_NO_AVAILABLE_DAY_BOOKING, GetAvailableDayCommand);	
 			}
-			*/
-			facade.sendNotification(ApplicationFacade.GET_LOCATION_LIST);
-		}
-		
-		private function notifyLocationSelected(evt:Event):void{			
-			facade.sendNotification(ApplicationFacade.GET_NO_AVAILABLE_DAY_BOOKING, cmpBooking.cmpLocations.locationSelected);
-		}
+			
+		}		
+
 		
 		override public function handleNotification(notification:INotification):void{
-			switch (notification.getName()){
-				case ApplicationFacade.ACTIVE_BOOKING_SECTION:					
-					cmpBooking.cmpLocations.boxSede.enabled = true;
+			switch (notification.getName()){	
+				case ApplicationFacade.LOCATION_SELECTED_ACCORDION_BOOKING:
 					cmpBooking.cmpCalendar.boxDay.enabled = true;
-					/*
-					if (facade.hasMediator(VisitLocationMediator.NAME_IN_HOME))
-						facade.removeMediator(VisitLocationMediator.NAME_IN_HOME);
-					if (facade.hasMediator(VisitDayMediator.NAME_IN_HOME))
-						facade.removeMediator(VisitDayMediator.NAME_IN_HOME);
-					if (facade.hasMediator(HomeSectionMediator.NAME))					
-						facade.removeMediator(HomeSectionMediator.NAME);
-					if (!facade.hasMediator(VisitLocationMediator.NAME_IN_BOOKING))
-						facade.registerMediator(new VisitLocationMediator(VisitLocationMediator.NAME_IN_BOOKING,cmpBooking.cmpLocations));
-					if (!facade.hasMediator(VisitDayMediator.NAME_IN_BOOKING))
-						facade.registerMediator(new VisitDayMediator(VisitDayMediator.NAME_IN_BOOKING,cmpBooking.cmpCalendar));
-					*/
 					break;
 				case ApplicationFacade.GET_BOOKING_LIST_SUCCESS:
 					var visitLocationMediator:VisitLocationMediator = facade.retrieveMediator(VisitLocationMediator.NAME_IN_BOOKING) as VisitLocationMediator;
@@ -153,11 +141,11 @@ package view.manager
 		}
 
 		override public function listNotificationInterests():Array{
-			return [				
-				ApplicationFacade.ACTIVE_BOOKING_SECTION,
+			return [
 				ApplicationFacade.GET_BOOKING_LIST_SUCCESS,
 				ApplicationFacade.BOOKING_DELETE_SUCCESS,
-				ApplicationFacade.BOOKING_DELETE_ERROR
+				ApplicationFacade.BOOKING_DELETE_ERROR,
+				ApplicationFacade.LOCATION_SELECTED_ACCORDION_BOOKING
 			];
 		}	
 		
