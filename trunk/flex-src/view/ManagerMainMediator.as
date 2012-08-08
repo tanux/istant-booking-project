@@ -40,12 +40,7 @@ package view
 			
 			if (!facade.hasMediator(HomeSectionMediator.NAME)){
 				facade.registerMediator(new HomeSectionMediator(managerMain.cmpHomeSection));
-				Alert.show("HomeSectionMEdiator CREATO");
-			}
-			else{
-				Alert.show("HomeSectionMEdiator esiste gia");
-			}
-							
+			}				
 		}
 		
 		private function doLogin(evt:Event):void{	
@@ -68,8 +63,12 @@ package view
 		private function goToHome(evt:Event):void{			
 			CursorManager.setBusyCursor();
 			managerMain.currentState = "stateMainApplication";
-			CursorManager.removeBusyCursor();			
-			sendNotification(ApplicationFacade.ACTIVE_HOME_SECTION);
+			CursorManager.removeBusyCursor();
+			if (!facade.hasMediator(HomeSectionMediator.NAME)){
+				facade.registerMediator(new HomeSectionMediator(managerMain.cmpHomeSection));
+				Alert.show("goToHome:Mediator Creato");
+			}
+			facade.sendNotification(ApplicationFacade.ACTIVE_HOME_SECTION);
 		}
 		
 		private function goToSetting(evt:Event):void{
@@ -79,7 +78,7 @@ package view
 			if (!facade.hasMediator(SettingsSectionMediator.NAME)){
 				facade.registerMediator(new SettingsSectionMediator(managerMain.cmpSettingsSection));	
 			}			
-			sendNotification(ApplicationFacade.ACTIVE_SETTING_SECTION);			
+			facade.sendNotification(ApplicationFacade.ACTIVE_SETTING_SECTION);			
 		}
 		
 		private function goToShowBooking(evt:Event):void{
@@ -89,7 +88,7 @@ package view
 			if (!facade.hasMediator(BookingSectionMediator.NAME)){
 				facade.registerMediator(new BookingSectionMediator(managerMain.cmpBookingSection));	
 			}
-			sendNotification(ApplicationFacade.ACTIVE_BOOKING_SECTION);
+			facade.sendNotification(ApplicationFacade.ACTIVE_BOOKING_SECTION);
 		}
 		
 		override public function handleNotification(notification:INotification):void{

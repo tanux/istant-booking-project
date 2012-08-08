@@ -37,8 +37,7 @@ package view.manager
 			cmpBooking.addEventListener(FlexEvent.CREATION_COMPLETE, initSection);
 		}
 		
-		private function initSection(evt:Event){			
-			sendNotification(ApplicationFacade.GET_LOCATION_LIST);
+		private function initSection(evt:Event){
 			if (!facade.hasMediator(VisitLocationMediator.NAME_IN_BOOKING)){
 				facade.registerMediator(new VisitLocationMediator(VisitLocationMediator.NAME_IN_BOOKING,cmpBooking.cmpLocations));
 			}
@@ -60,10 +59,11 @@ package view.manager
 			if (!facade.hasCommand(ApplicationFacade.GET_NO_AVAILABLE_DAY_BOOKING)){
 				facade.registerCommand(ApplicationFacade.GET_NO_AVAILABLE_DAY_BOOKING, GetAvailableDayCommand);	
 			}
+			facade.sendNotification(ApplicationFacade.GET_LOCATION_LIST);
 		}
 		
 		private function notifyLocationSelected(evt:Event):void{			
-			sendNotification(ApplicationFacade.GET_NO_AVAILABLE_DAY_BOOKING, cmpBooking.cmpLocations.locationSelected);
+			facade.sendNotification(ApplicationFacade.GET_NO_AVAILABLE_DAY_BOOKING, cmpBooking.cmpLocations.locationSelected);
 		}
 		
 		override public function handleNotification(notification:INotification):void{
@@ -74,7 +74,9 @@ package view.manager
 					if (facade.hasMediator(VisitLocationMediator.NAME_IN_HOME))
 						facade.removeMediator(VisitLocationMediator.NAME_IN_HOME);
 					if (facade.hasMediator(VisitDayMediator.NAME_IN_HOME))
-						facade.removeMediator(VisitDayMediator.NAME_IN_HOME);				
+						facade.removeMediator(VisitDayMediator.NAME_IN_HOME);
+					if (facade.hasMediator(HomeSectionMediator.NAME))					
+						facade.removeMediator(HomeSectionMediator.NAME);
 					if (!facade.hasMediator(VisitLocationMediator.NAME_IN_BOOKING))
 						facade.registerMediator(new VisitLocationMediator(VisitLocationMediator.NAME_IN_BOOKING,cmpBooking.cmpLocations));
 					if (!facade.hasMediator(VisitDayMediator.NAME_IN_BOOKING))
