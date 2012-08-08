@@ -78,8 +78,7 @@ package view.manager
 					if (!facade.hasMediator(VisitLocationMediator.NAME_IN_BOOKING))
 						facade.registerMediator(new VisitLocationMediator(VisitLocationMediator.NAME_IN_BOOKING,cmpBooking.cmpLocations));
 					if (!facade.hasMediator(VisitDayMediator.NAME_IN_BOOKING))
-						facade.registerMediator(new VisitDayMediator(VisitDayMediator.NAME_IN_BOOKING,cmpBooking.cmpCalendar));
-					
+						facade.registerMediator(new VisitDayMediator(VisitDayMediator.NAME_IN_BOOKING,cmpBooking.cmpCalendar));					
 					break;
 				case ApplicationFacade.GET_BOOKING_LIST_SUCCESS:
 					var visitLocationMediator:VisitLocationMediator = facade.retrieveMediator(VisitLocationMediator.NAME_IN_BOOKING) as VisitLocationMediator;

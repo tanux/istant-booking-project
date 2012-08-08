@@ -13,7 +13,9 @@ package controller
 		public static const USER_TYPE:String = "managers";
 		override public function execute(notification:INotification):void{			
 			var managerMain:ManagerMain = notification.getBody() as ManagerMain;
-			facade.registerMediator(new ManagerMainMediator(managerMain));			
+			if (!facade.hasMediator(ManagerMainMediator.NAME)){
+				facade.registerMediator(new ManagerMainMediator(managerMain));	
+			}						
 			facade.registerCommand(ApplicationFacade.MANAGER_TRY_ACCESS,TryAccessCommand);			
 			facade.sendNotification(ApplicationFacade.MANAGER_TRY_ACCESS,USER_TYPE);
 			facade.registerCommand(ApplicationFacade.MANAGER_DO_LOGOUT, DoLogoutCommand);

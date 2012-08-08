@@ -38,7 +38,14 @@ package view
 			managerMain.cmpControlBar.btnShowVisit.addEventListener(MouseEvent.CLICK, goToShowBooking);			
 			managerMain.cmpControlBar.btnLogout.addEventListener(MouseEvent.CLICK, doLogout);
 			
-			facade.registerMediator(new HomeSectionMediator(managerMain.cmpHomeSection));			
+			if (!facade.hasMediator(HomeSectionMediator.NAME)){
+				facade.registerMediator(new HomeSectionMediator(managerMain.cmpHomeSection));
+				Alert.show("HomeSectionMEdiator CREATO");
+			}
+			else{
+				Alert.show("HomeSectionMEdiator esiste gia");
+			}
+							
 		}
 		
 		private function doLogin(evt:Event):void{	
@@ -69,7 +76,9 @@ package view
 			CursorManager.setBusyCursor();
 			managerMain.currentState = "stateSettings";
 			CursorManager.removeBusyCursor();
-			facade.registerMediator(new SettingsSectionMediator(managerMain.cmpSettingsSection));
+			if (!facade.hasMediator(SettingsSectionMediator.NAME)){
+				facade.registerMediator(new SettingsSectionMediator(managerMain.cmpSettingsSection));	
+			}			
 			sendNotification(ApplicationFacade.ACTIVE_SETTING_SECTION);			
 		}
 		
@@ -77,7 +86,9 @@ package view
 			CursorManager.setBusyCursor();
 			managerMain.currentState = "stateShowBooking";
 			CursorManager.removeBusyCursor();
-			facade.registerMediator(new BookingSectionMediator(managerMain.cmpBookingSection));
+			if (!facade.hasMediator(BookingSectionMediator.NAME)){
+				facade.registerMediator(new BookingSectionMediator(managerMain.cmpBookingSection));	
+			}
 			sendNotification(ApplicationFacade.ACTIVE_BOOKING_SECTION);
 		}
 		
@@ -116,7 +127,8 @@ package view
 					managerMain.cmpLoginFormManager.tiPassword.textInput.showCancelButton=false;
 					managerMain.cmpLoginFormManager.tiUsername.textInput.text="Username";
 					managerMain.cmpLoginFormManager.tiUsername.textInput.showCancelButton=false;
-					break;				
+					break;			
+				
 			}
 		}
 		
