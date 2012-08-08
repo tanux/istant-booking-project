@@ -100,7 +100,7 @@ package view.manager.settings
 		
 		override public function handleNotification(notification:INotification):void{
 			switch (notification.getName()){
-				case ApplicationFacade.LOCATION_SELECTED:
+				case ApplicationFacade.LOCATION_SELECTED_SETTINGSECTION:
 					locationInList = notification.getBody() as LocationInList;
 					locationListCmp.abilitaAdd=false;
 					locationListCmp.tiLocationName.text = locationInList.getLocation.city as String;
@@ -193,7 +193,7 @@ package view.manager.settings
 		
 		override public function listNotificationInterests():Array{
 			return [
-				ApplicationFacade.LOCATION_SELECTED,
+				ApplicationFacade.LOCATION_SELECTED_SETTINGSECTION,
 				ApplicationFacade.LOCATION_ADD_SUCCESS,
 				ApplicationFacade.LOCATION_ADD_ERROR,
 				ApplicationFacade.GET_LOCATION_LIST_SUCCESS,

@@ -20,6 +20,11 @@ package view
 	import view.manager.BookingSectionMediator;
 	import view.manager.HomeSectionMediator;
 	import view.manager.SettingsSectionMediator;
+	import view.manager.bookings.BookingListMediator;
+	import view.manager.main.CustomerSectionMediator;
+	import view.manager.main.VisitDayMediator;
+	import view.manager.main.VisitHoursMediator;
+	import view.manager.main.VisitLocationMediator;
 	
 	
 	public class ManagerMainMediator extends Mediator implements IMediator{
@@ -63,37 +68,34 @@ package view
 			CursorManager.setBusyCursor();
 			managerMain.currentState = "stateMainApplication";
 			CursorManager.removeBusyCursor();
-			/*
 			if (!facade.hasMediator(HomeSectionMediator.NAME)){
-				facade.registerMediator(new HomeSectionMediator(managerMain.cmpHomeSection));				
-			}*/
-			facade.sendNotification(ApplicationFacade.ACTIVE_HOME_SECTION);
+				facade.registerMediator(new HomeSectionMediator(managerMain.cmpHomeSection));	
+			}
+			managerMain.cmpHomeSection.cmpVisitProperties.cmpLocations.boxSede.enabled = false;
+			managerMain.cmpHomeSection.cmpVisitProperties.cmpVisitDay.boxDay.enabled = false;
+			managerMain.cmpHomeSection.cmpVisitProperties.cmpVisitHours.boxHours.enabled = false;			
 		}
 		
 		private function goToSetting(evt:Event):void{
 			CursorManager.setBusyCursor();
 			managerMain.currentState = "stateSettings";
-			CursorManager.removeBusyCursor();
-			/*
+			CursorManager.removeBusyCursor();			
 			if (!facade.hasMediator(SettingsSectionMediator.NAME)){
 				facade.registerMediator(new SettingsSectionMediator(managerMain.cmpSettingsSection));	
-			}
-			*/
-			facade.sendNotification(ApplicationFacade.ACTIVE_SETTING_SECTION);			
+			}			
 		}
 		
 		private function goToShowBooking(evt:Event):void{
 			CursorManager.setBusyCursor();
 			managerMain.currentState = "stateShowBooking";
-			CursorManager.removeBusyCursor();
-			/*
+			CursorManager.removeBusyCursor();	
+			managerMain.cmpBookingSection.cmpLocations.boxSede.enabled = true;
+			managerMain.cmpBookingSection.cmpCalendar.boxDay.enabled = false;			
 			if (!facade.hasMediator(BookingSectionMediator.NAME)){
 				facade.registerMediator(new BookingSectionMediator(managerMain.cmpBookingSection));	
-			}
-			*/
-			facade.sendNotification(ApplicationFacade.ACTIVE_BOOKING_SECTION);
-		}
-		
+			}			
+		}		
+	
 		override public function handleNotification(notification:INotification):void{
 			switch (notification.getName()){
 				case ApplicationFacade.MANAGER_LOGGED_IN:
@@ -129,7 +131,7 @@ package view
 					managerMain.cmpLoginFormManager.tiPassword.textInput.showCancelButton=false;
 					managerMain.cmpLoginFormManager.tiUsername.textInput.text="Username";
 					managerMain.cmpLoginFormManager.tiUsername.textInput.showCancelButton=false;
-					break;	
+					break;					
 			}
 		}
 		
@@ -140,7 +142,7 @@ package view
 				ApplicationFacade.MANAGER_LOGIN_SUCCESS,
 				ApplicationFacade.MANAGER_LOGIN_ERROR,
 				ApplicationFacade.MANAGER_LOGIN_FAULT,
-				ApplicationFacade.MANAGER_LOGOUT_SUCCESS				
+				ApplicationFacade.MANAGER_LOGOUT_SUCCESS,			
 			];
 		}		
 		

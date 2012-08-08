@@ -61,7 +61,7 @@ package view.manager.main
 		
 		override public function handleNotification(notification:INotification):void{ 
 			switch (notification.getName()){
-				case ApplicationFacade.LOCATION_SELECTED_HOMESECTION:
+				case ApplicationFacade.LOCATION_SELECTED_ACCORDION:
 					locationSelected = notification.getBody() as Location;
 					var jsDec:JSONDecoder = new JSONDecoder();					
 					var days:ArrayCollection = jsDec.decode(locationSelected.receptionDays.toString()) as ArrayCollection;
@@ -94,7 +94,7 @@ package view.manager.main
 		
 		override public function listNotificationInterests():Array{
 			return [
-				ApplicationFacade.LOCATION_SELECTED_HOMESECTION,
+				ApplicationFacade.LOCATION_SELECTED_ACCORDION,
 				ApplicationFacade.GET_NO_AVAILABLE_DAY_SUCCESS,
 				ApplicationFacade.GET_NO_AVAILABLE_DAY_ERROR,
 			];      
