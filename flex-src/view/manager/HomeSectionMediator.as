@@ -88,7 +88,9 @@ package view.manager
 			booking.idLocation = cmpHome.cmpVisitProperties.cmpLocations.locationSelected as Location;
 			booking.visitDay = cmpHome.cmpVisitProperties.cmpVisitDay.selectedDate;			
 			booking.visitHour = cmpHome.cmpVisitProperties.cmpVisitHours.hourSelected;
-			facade.registerMediator( new ConfirmBookingWindowMediator (confirmBookingTitleWindow) );
+			if (!facade.hasMediator(ConfirmBookingWindowMediator.NAME)){
+				facade.registerMediator( new ConfirmBookingWindowMediator (confirmBookingTitleWindow) );	
+			}			
 			if (facade.hasMediator(ConfirmBookingWindowMediator.NAME)){
 				var window:ConfirmBookingWindow =  facade.retrieveMediator( ConfirmBookingWindowMediator.NAME ).getViewComponent() as ConfirmBookingWindow;
 				window.booking = booking;
@@ -132,7 +134,7 @@ package view.manager
 					if (!facade.hasMediator(VisitLocationMediator.NAME_IN_HOME))
 						facade.registerMediator(new VisitLocationMediator(VisitLocationMediator.NAME_IN_HOME,cmpHome.cmpVisitProperties.cmpLocations));
 					if (!facade.hasMediator(VisitDayMediator.NAME_IN_HOME))
-						facade.registerMediator(new VisitDayMediator(VisitDayMediator.NAME_IN_HOME,cmpHome.cmpVisitProperties.cmpVisitDay));										
+						facade.registerMediator(new VisitDayMediator(VisitDayMediator.NAME_IN_HOME,cmpHome.cmpVisitProperties.cmpVisitDay));					
 					break;
 				case ApplicationFacade.CUSTOMER_SELECTED_HOMESECTION:
 					cmpHome.cmpVisitProperties.cmpLocations.boxSede.enabled = true;
