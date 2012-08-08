@@ -38,12 +38,13 @@ package view.manager
 		
 		public function HomeSectionMediator(viewComponent:Object){
 			super(NAME, viewComponent);
-			initSection();
+			cmpHome.addEventListener(FlexEvent.CREATION_COMPLETE,initSection);
 			cmpHome.cmpCustomerList.btnBooking.addEventListener(MouseEvent.CLICK, checkDataBooking);
 			cmpHome.addEventListener(VisitLocations.LOCATION_SELECTED_EVENT, notifyLocationSelected);
 		}
 		
-		private function initSection(){			
+		private function initSection(evt:Event){
+			Alert.show("Componente Creato");
 			if (!facade.hasMediator(CustomerSectionMediator.NAME)){
 				facade.registerMediator(new CustomerSectionMediator(cmpHome.cmpCustomerList));
 			}
@@ -70,12 +71,12 @@ package view.manager
 				facade.registerCommand(ApplicationFacade.GET_NO_AVAILABLE_DAY_HOME, GetAvailableDayCommand);	
 			}			
 			
-			sendNotification(ApplicationFacade.GET_CUSTOMER_LIST);
-			sendNotification(ApplicationFacade.GET_LOCATION_LIST);
+			facade.sendNotification(ApplicationFacade.GET_CUSTOMER_LIST);
+			facade.sendNotification(ApplicationFacade.GET_LOCATION_LIST);
 		}
 		
 		private function notifyLocationSelected(evt:Event):void{			
-			sendNotification(ApplicationFacade.GET_NO_AVAILABLE_DAY_HOME, cmpHome.cmpVisitProperties.cmpLocations.locationSelected);
+			facade.sendNotification(ApplicationFacade.GET_NO_AVAILABLE_DAY_HOME, cmpHome.cmpVisitProperties.cmpLocations.locationSelected);
 		}
 		
 		private function showConfirmBooking():void{
@@ -130,7 +131,9 @@ package view.manager
 					if (facade.hasMediator(VisitLocationMediator.NAME_IN_BOOKING))
 						facade.removeMediator(VisitLocationMediator.NAME_IN_BOOKING);
 					if (facade.hasMediator(VisitDayMediator.NAME_IN_BOOKING))
-						facade.removeMediator(VisitDayMediator.NAME_IN_BOOKING);
+						facade.removeMediator(VisitDayMediator.NAME_IN_BOOKING);					
+					if (facade.hasMediator(BookingSectionMediator.NAME))
+						facade.removeMediator(BookingSectionMediator.NAME);
 					if (!facade.hasMediator(VisitLocationMediator.NAME_IN_HOME))
 						facade.registerMediator(new VisitLocationMediator(VisitLocationMediator.NAME_IN_HOME,cmpHome.cmpVisitProperties.cmpLocations));
 					if (!facade.hasMediator(VisitDayMediator.NAME_IN_HOME))

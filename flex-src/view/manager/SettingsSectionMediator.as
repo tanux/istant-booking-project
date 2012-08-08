@@ -23,7 +23,7 @@ package view.manager
 			if (!facade.hasMediator(LocationListMediator.NAME)){
 				facade.registerMediator(new LocationListMediator(cmpSetting.cmpManagementLocation.cmpLocationList));	
 			}			
-			sendNotification(ApplicationFacade.GET_LOCATION_LIST);
+			facade.sendNotification(ApplicationFacade.GET_LOCATION_LIST);
 		}
 		
 		
