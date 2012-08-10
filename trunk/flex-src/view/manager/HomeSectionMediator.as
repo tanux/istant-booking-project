@@ -40,7 +40,6 @@ package view.manager
 			super(NAME, viewComponent);
 			initSection();
 			cmpHome.cmpCustomerList.btnBooking.addEventListener(MouseEvent.CLICK, checkDataBooking);
-			//cmpHome.addEventListener(VisitLocations.LOCATION_SELECTED_EVENT, notifyLocationSelected);
 		}
 		
 		private function initSection(){			
@@ -81,12 +80,6 @@ package view.manager
 				facade.registerCommand(ApplicationFacade.GET_NO_AVAILABLE_DAY_HOME, GetAvailableDayCommand);	
 			}
 		}
-		
-		/* DOPPIONE
-		private function notifyLocationSelected(evt:Event):void{			
-			facade.sendNotification(ApplicationFacade.GET_NO_AVAILABLE_DAY_HOME, cmpHome.cmpVisitProperties.cmpLocations.locationSelected);
-		}
-		*/
 		
 		private function showConfirmBooking():void{
 			confirmBookingTitleWindow = PopUpManager.createPopUp(cmpHome, ConfirmBookingWindow, true) as TitleWindow;			
@@ -159,6 +152,9 @@ package view.manager
 					customerListMediator.customerListCmp.dgCustomerList.selectedIndex = -1;
 					customerListMediator.resetTextInput();					
 					break;
+				case ApplicationFacade.HOUR_SELECTED:
+					showConfirmBooking();
+					break;
 			}
 		}
 		
@@ -167,7 +163,8 @@ package view.manager
 				ApplicationFacade.CUSTOMER_SELECTED_HOMESECTION,
 				ApplicationFacade.LOCATION_SELECTED_ACCORDION_HOME,				
 				ApplicationFacade.DATE_SELECTED,
-				ApplicationFacade.BOOKING_ADD_SUCCESS				
+				ApplicationFacade.BOOKING_ADD_SUCCESS,		
+				ApplicationFacade.HOUR_SELECTED
 			];
 		}
 		
