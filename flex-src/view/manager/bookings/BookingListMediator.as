@@ -43,7 +43,7 @@ package view.manager.bookings
 			var delBooking:Booking = new Booking();
 			var jsEncode:JSONEncoder = new JSONEncoder();
 			delBooking = bookingListCmp.bookingList.getItemAt(bookingInList.getPosition) as Booking;			
-			delBooking.idCustomer = jsEncode.encode(bookingListCmp.customerList.getItemAt(bookingInList.getPosition));
+			delBooking.idCustomer = jsEncode.encode(bookingListCmp.bookingList.getItemAt(bookingInList.getPosition));
 			var visitDayMediator:VisitDayMediator = facade.retrieveMediator(VisitDayMediator.NAME_IN_BOOKING) as VisitDayMediator;					
 			var date:String = DateField.dateToString(visitDayMediator.visitDayCmp.selectedDate as Date, "DD/MM/YYYY");
 			delBooking.visitDay = date;			

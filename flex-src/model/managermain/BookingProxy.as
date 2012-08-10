@@ -44,7 +44,7 @@ package model.managermain
 			else if (getProxyName() == NAME_DELETED_LIST){
 				bookingList = facade.retrieveMediator(BookingListMediator.NAME_IN_DELETED_LIST).getViewComponent() as BookingList;
 			}
-			return bookingList.customerList as ArrayCollection;
+			return bookingList.bookingList as ArrayCollection;
 		}
 	}
 }

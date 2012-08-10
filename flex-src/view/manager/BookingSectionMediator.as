@@ -90,10 +90,8 @@ package view.manager
 					
 					var _bookingList:ArrayCollection = notification.getBody() as ArrayCollection;
 					CursorManager.removeAllCursors();
-					if (_bookingList.length > 0){
-						cmpBookingList.customerList = new ArrayCollection();
-						cmpBookingList.bookingList = new ArrayCollection();
-						cmpBookingDeletedList.customerList = new ArrayCollection();
+					if (_bookingList.length > 0){						
+						cmpBookingList.bookingList = new ArrayCollection();						
 						cmpBookingDeletedList.bookingList = new ArrayCollection();						
 						for (var i:int=0; i<_bookingList.length; i++){
 							var booking:Booking = new Booking();
@@ -105,25 +103,20 @@ package view.manager
 							hour.index = jsDecode.decode(_bookingList[i].visit_hour).index;							
 							booking.visitHour = hour;
 							var customer:Object = jsDecode.decode(_bookingList[i].id_customer);
+							booking.idCustomer = customer;
 							if (_bookingList[i].cancelled == "false"){
-								cmpBookingList.bookingList.addItem(booking);
-								cmpBookingList.customerList.addItem(customer);								
+								cmpBookingList.bookingList.addItem(booking);															
 							}
 							else {								
-								cmpBookingDeletedList.bookingList.addItem(booking);
-								cmpBookingDeletedList.customerList.addItem(customer);								
+								cmpBookingDeletedList.bookingList.addItem(booking);															
 							}	
 						}						
 						if (cmpBookingList.bookingList.length == 0)
 							Alert.show("Non ci sono prenotazioni per la data selezionata");							
 					}
-					else{						
-						if (cmpBookingList.customerList != null){
-							cmpBookingList.customerList.removeAll();
+					else{
+						if (cmpBookingDeletedList.bookingList != null){
 							cmpBookingList.bookingList.removeAll();
-						}
-						if (cmpBookingDeletedList.customerList != null){
-							cmpBookingDeletedList.customerList.removeAll();
 							cmpBookingDeletedList.bookingList.removeAll();
 						}						
 						Alert.show("Questa data non è stata mai impegnata");							

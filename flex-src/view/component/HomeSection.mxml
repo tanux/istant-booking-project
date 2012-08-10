@@ -17,7 +17,7 @@
 	
 	<mx:Box width="80%" horizontalAlign="right">
 		<mx:Button id="btnBooking" icon="@Embed(source='assets/images/prenota.png')" downIcon="@Embed(source='assets/images/prenota_little.png')"
-				   width="45" height="40" enabled="true"/>	
+				   width="45" height="40" enabled="true" visible="false"/>	
 	</mx:Box>
 	
 </mx:Box>

@@ -31,8 +31,7 @@ package view.manager.main
 				facade.sendNotification(ApplicationFacade.LOCATION_SELECTED_ACCORDION_HOME);
 			}
 			
-			else if (getMediatorName() == NAME_IN_BOOKING){
-				facade.sendNotification(ApplicationFacade.GET_NO_AVAILABLE_DAY_BOOKING, visitLocationCmp.locationSelected);
+			else if (getMediatorName() == NAME_IN_BOOKING){				
 				facade.sendNotification(ApplicationFacade.LOCATION_SELECTED_ACCORDION_BOOKING);				
 			}
 			

@@ -26,13 +26,13 @@ package view.manager.main
 			visitHourCmp.rbgHours.addEventListener(ItemClickEvent.ITEM_CLICK, handleHour);
 		}
 		
-		private function handleHour(event:ItemClickEvent):void {
-			sendNotification(ApplicationFacade.HOUR_SELECTED);
+		private function handleHour(event:ItemClickEvent):void {			
 			visitHourCmp.hourSelected = new SelectedHour();
 			visitHourCmp.hourSelected.hour = event.currentTarget.selectedValue.hour;
 			visitHourCmp.hourSelected.index = event.currentTarget.selectedValue.index;
 			visitHourCmp.hourSelected.busy = true;
 			var visitDayMediator:VisitDayMediator = facade.retrieveMediator(VisitDayMediator.NAME_IN_HOME) as VisitDayMediator;
+			facade.sendNotification(ApplicationFacade.HOUR_SELECTED);
 			hour=true;
 		}
 		
