@@ -43,6 +43,7 @@
 			[Bindable]public var customerList:ArrayCollection;
 			[Bindable]public var customerSelected:Customer;
 			
+			/*
 			private function makeDataLabel(item:Object) : String {
 				var c:Customer = new Customer();
 				c.id = item.id;
@@ -51,7 +52,7 @@
 				c.email = item.email;
 				c.telephoneNumber = item.telephone_number;
 				return c.firstName + " " + c.lastName + " " + c.email;
-			}
+			}*/
 			
 			protected function dgCustomerList_itemClickHandler(event:ListEvent):void{				
 				var selectedRow:Object = event.currentTarget.selectedItem;
@@ -82,8 +83,10 @@
 			}
 			
 			private function filterPhrase():void{
-				customerList.filterFunction = filterFirst;
-				customerList.refresh();
+				if (customerList != null){
+					customerList.filterFunction = filterFirst;
+					customerList.refresh();	
+				}				
 			} 
 			
 			//if true it show results, if false it shows nothing
