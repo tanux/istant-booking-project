@@ -117,9 +117,9 @@ class BookingServices {
 	 * @return Booking $bookingData
 	 */
 	private function setBookingData($booking){
-		$bookingData=array(
+		$bookingData=array(		
 			'id_affiliate'=>$booking->idAffiliate,
-			'id_customer'=>$booking->idCustomer,
+			'id_customer'=>json_encode($booking->idCustomer),
 			'id_location'=>$booking->idLocation,
 			'id_manager'=>$booking->idManager,
 			'visit_day'=>$booking->visitDay,

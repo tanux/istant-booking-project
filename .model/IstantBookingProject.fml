@@ -559,7 +559,7 @@
     <property name="id" type="opaque"/>
     <property name="idAffiliate" type="opaque"/>
     <property name="idManager" type="opaque"/>
-    <property name="idCustomer" type="opaque"/>
+    <property name="idCustomer" type="Customer"/>
     <property name="idLocation" type="opaque"/>
     <property name="visitDay" type="opaque"/>
     <property name="visitHour" type="opaque"/>

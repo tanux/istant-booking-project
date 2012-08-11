@@ -9,6 +9,7 @@ package view.manager
 	import flash.events.Event;
 	
 	import model.vo.Booking;
+	import model.vo.Customer;
 	import model.vo.SelectedHour;
 	
 	import mx.collections.ArrayCollection;
@@ -102,7 +103,13 @@ package view.manager
 							hour.busy = false;
 							hour.index = jsDecode.decode(_bookingList[i].visit_hour).index;							
 							booking.visitHour = hour;
-							var customer:Object = jsDecode.decode(_bookingList[i].id_customer);
+							var customer:Customer = new Customer();
+							customer.id = jsDecode.decode(_bookingList[i].id_customer).id;
+							customer.firstName = jsDecode.decode(_bookingList[i].id_customer).firstName;
+							customer.lastName = jsDecode.decode(_bookingList[i].id_customer).lastName;
+							customer.telephoneNumber = jsDecode.decode(_bookingList[i].id_customer).telephoneNumber;
+							customer.email = jsDecode.decode(_bookingList[i].id_customer).email;
+							
 							booking.idCustomer = customer;
 							if (_bookingList[i].cancelled == "false"){
 								cmpBookingList.bookingList.addItem(booking);															

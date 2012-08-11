@@ -8,6 +8,7 @@ package view.manager.bookings
 	
 	import model.vo.Booking;
 	import model.vo.BookingInList;
+	import model.vo.Customer;
 	import model.vo.SelectedHour;
 	
 	import mx.collections.ArrayCollection;
@@ -43,7 +44,7 @@ package view.manager.bookings
 			var delBooking:Booking = new Booking();
 			var jsEncode:JSONEncoder = new JSONEncoder();
 			delBooking = bookingListCmp.bookingList.getItemAt(bookingInList.getPosition) as Booking;			
-			delBooking.idCustomer = jsEncode.encode(bookingListCmp.bookingList.getItemAt(bookingInList.getPosition));
+			delBooking.idCustomer = bookingListCmp.bookingList.getItemAt(bookingInList.getPosition) as Customer;
 			var visitDayMediator:VisitDayMediator = facade.retrieveMediator(VisitDayMediator.NAME_IN_BOOKING) as VisitDayMediator;					
 			var date:String = DateField.dateToString(visitDayMediator.visitDayCmp.selectedDate as Date, "DD/MM/YYYY");
 			delBooking.visitDay = date;			

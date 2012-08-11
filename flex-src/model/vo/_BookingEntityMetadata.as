@@ -9,6 +9,7 @@ import com.adobe.fiber.styles.Style;
 import com.adobe.fiber.valueobjects.AbstractEntityMetadata;
 import com.adobe.fiber.valueobjects.AvailablePropertyIterator;
 import com.adobe.fiber.valueobjects.IPropertyIterator;
+import model.vo.Customer;
 import com.adobe.fiber.core.model_internal;
 import com.adobe.fiber.valueobjects.IModelType;
 import mx.events.PropertyChangeEvent;
@@ -65,7 +66,7 @@ internal class _BookingEntityMetadata extends com.adobe.fiber.valueobjects.Abstr
         model_internal::propertyTypeMap["id"] = "Object";
         model_internal::propertyTypeMap["idAffiliate"] = "Object";
         model_internal::propertyTypeMap["idManager"] = "Object";
-        model_internal::propertyTypeMap["idCustomer"] = "Object";
+        model_internal::propertyTypeMap["idCustomer"] = "model.vo.Customer";
         model_internal::propertyTypeMap["idLocation"] = "Object";
         model_internal::propertyTypeMap["visitDay"] = "Object";
         model_internal::propertyTypeMap["visitHour"] = "Object";

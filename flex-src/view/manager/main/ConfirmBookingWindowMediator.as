@@ -41,7 +41,7 @@ package view.manager.main
 			var booking:Booking = new Booking();
 			booking.idManager = confirmBookingWindow.booking.idManager;
 			booking.idAffiliate = 0;
-			booking.idCustomer = jsEnc.encode(confirmBookingWindow.booking.idCustomer);
+			booking.idCustomer = confirmBookingWindow.booking.idCustomer;
 			booking.idLocation = confirmBookingWindow.booking.idLocation.id;
 			var stringFromDate:String = DateField.dateToString(confirmBookingWindow.booking.visitDay as Date, "DD/MM/YYYY");			
 			booking.visitDay = stringFromDate;

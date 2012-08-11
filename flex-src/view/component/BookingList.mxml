@@ -19,12 +19,6 @@
 			[Bindable]public var bookingSelected:Booking;
 
 			
-			private function makeDataLabel(item:Object) : String {
-				var b:Booking = new Booking();
-				b.id = item.id;
-				return ""+b.id;
-			}
-			
 			protected function dgBookingList_itemClickHandler(event:ListEvent):void{				
 				var selectedRow:Object = event.currentTarget.selectedItem;
 				bookingSelected = new Booking();
@@ -32,12 +26,22 @@
 				var position:int = event.currentTarget.selectedIndex;
 				var bookingInList:BookingInList = new BookingInList(bookingSelected,position);				
 				facade.sendNotification(ApplicationFacade.BOOKING_SELECTED, bookingInList);				
-			}		
+			}
+			
+			private function makeDataLabel(item:Object) : String {
+				var b:Booking = new Booking();
+				b.id = item.id;
+				b.idCustomer = item.idCustomer;
+				return b.id + " " + b.idCustomer.firstName;
+			}
+					
 			
 			//RICERCA	
 			private function filterPhrase():void{
-				bookingList.filterFunction = filterFirst;
-				bookingList.refresh();
+				if (bookingList != null){
+					bookingList.filterFunction = filterFirst;
+					bookingList.refresh();	
+				}				
 			} 
 			
 			//if true it show results, if false it shows nothing
@@ -45,7 +49,7 @@
 			{
 				if(searchText.length == 0){
 					return true;
-				}				
+				}
 				var columnName:String;
 				var columnValue:String;
 				var keywords:Array = searchText.text.split(" ");
@@ -54,8 +58,9 @@
 				for(var word:int = 0; word < keywords.length; word++) {
 					wordFound = false;
 					// Loop Over Columns
-					for( var column:int = 0; column < dgRisultati.columnCount; column++){
-						columnName = dgRisultati.columns[column].dataField;
+					for( var column:int = 0; column < dgRisultati.columnCount; column++){						
+						columnName = dgRisultati.columns[column].dataField;				
+						Alert.show(""+row[columnName]);
 						if (row[columnName] != null) {
 							columnValue = row[columnName];
 							columnValue = columnValue.toLowerCase();

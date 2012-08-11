@@ -8,6 +8,7 @@ package model.vo
 import com.adobe.fiber.services.IFiberManagingService;
 import com.adobe.fiber.valueobjects.IValueObject;
 import flash.events.EventDispatcher;
+import model.vo.Customer;
 import mx.collections.ArrayCollection;
 import mx.events.PropertyChangeEvent;
 
@@ -39,6 +40,7 @@ public class _Super_Booking extends flash.events.EventDispatcher implements com.
 
     model_internal static function initRemoteClassAliasAllRelated() : void
     {
+        model.vo.Customer.initRemoteClassAliasSingleChild();
     }
 
     model_internal var _dminternal_model : _BookingEntityMetadata;
@@ -61,7 +63,7 @@ public class _Super_Booking extends flash.events.EventDispatcher implements com.
     private var _internal_id : Object;
     private var _internal_idAffiliate : Object;
     private var _internal_idManager : Object;
-    private var _internal_idCustomer : Object;
+    private var _internal_idCustomer : model.vo.Customer;
     private var _internal_idLocation : Object;
     private var _internal_visitDay : Object;
     private var _internal_visitHour : Object;
@@ -108,7 +110,7 @@ public class _Super_Booking extends flash.events.EventDispatcher implements com.
     }
 
     [Bindable(event="propertyChange")]
-    public function get idCustomer() : Object
+    public function get idCustomer() : model.vo.Customer
     {
         return _internal_idCustomer;
     }
@@ -175,9 +177,9 @@ public class _Super_Booking extends flash.events.EventDispatcher implements com.
         }
     }
 
-    public function set idCustomer(value:Object) : void
+    public function set idCustomer(value:model.vo.Customer) : void
     {
-        var oldValue:Object = _internal_idCustomer;
+        var oldValue:model.vo.Customer = _internal_idCustomer;
         if (oldValue !== value)
         {
             _internal_idCustomer = value;
