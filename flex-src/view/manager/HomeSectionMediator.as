@@ -150,7 +150,10 @@ package view.manager
 					visitHoursMediator.hour = false;										
 					var customerListMediator: CustomerSectionMediator = facade.retrieveMediator(CustomerSectionMediator.NAME) as CustomerSectionMediator;
 					customerListMediator.customerListCmp.dgCustomerList.selectedIndex = -1;
-					customerListMediator.resetTextInput();					
+					customerListMediator.resetTextInput();
+					cmpHome.cmpVisitProperties.cmpLocations.boxSede.enabled=false;
+					cmpHome.cmpVisitProperties.cmpVisitDay.boxDay.enabled=false;
+					cmpHome.cmpVisitProperties.cmpVisitHours.boxHours.enabled=false;
 					break;
 				case ApplicationFacade.HOUR_SELECTED:
 					showConfirmBooking();
