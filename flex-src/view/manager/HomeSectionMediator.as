@@ -38,8 +38,7 @@ package view.manager
 		
 		public function HomeSectionMediator(viewComponent:Object){
 			super(NAME, viewComponent);
-			initSection();
-			cmpHome.cmpCustomerList.btnBooking.addEventListener(MouseEvent.CLICK, checkDataBooking);
+			initSection();			
 		}
 		
 		private function initSection(){			
@@ -99,7 +98,7 @@ package view.manager
 				window.booking = booking;
 			}			
 		}
-		
+		/*
 		private function checkDataBooking (event:Event):void{
 			var customerListMediator:CustomerSectionMediator = facade.retrieveMediator(CustomerSectionMediator.NAME) as CustomerSectionMediator;
 			if (customerListMediator.custom){
@@ -126,6 +125,7 @@ package view.manager
 				Alert.show("ATTENZIONE! Devi selezionare un utente per poter prenotare");
 			}			
 		}
+		*/
 		
 		override public function handleNotification(notification:INotification):void{
 			switch (notification.getName()){				

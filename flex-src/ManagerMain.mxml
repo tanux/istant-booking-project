@@ -34,7 +34,7 @@
 	<mx:states>
 		<s:State name="blankState" />
 		<s:State name="stateLogin" />
-		<s:State name="stateMainApplication" />
+		<s:State name="stateMainApplication" />					
 		<s:State name="stateSettings" />
 		<s:State name="stateShowBooking" />
 	</mx:states>
@@ -49,7 +49,7 @@
 		
 		<mx:Box styleName="vbExt" width="100%" height="100%" includeIn="stateMainApplication,stateSettings, stateShowBooking"> 
 			
-			<component:ControlTopBar id="cmpControlBar" />
+			<component:ControlTopBar id="cmpControlBar" toolTip="Barra degli Strumenti"/>
 			
 			<!-- Home -->			
 			<component:HomeSection id="cmpHomeSection" includeIn="stateMainApplication" />

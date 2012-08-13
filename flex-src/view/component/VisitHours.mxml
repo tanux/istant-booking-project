@@ -3,8 +3,9 @@
 		  xmlns:mx="library://ns.adobe.com/flex/mx"
 		  xmlns:s="library://ns.adobe.com/flex/spark"  
 		  paddingLeft="10" paddingRight="10" paddingTop="20"
-		  title="Orari Liberi" horizontalAlign="center" verticalAlign="middle"
-		  styleName="panelSkinsICandy" >
+		  title="SELEZIONARE UN ORARIO" horizontalAlign="center" verticalAlign="middle"
+		  styleName="panelSkinsICandy"
+		  titleIcon="@Embed('assets/images/orange_clock.png')">
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 		<s:RadioButtonGroup id="rbgHours" />

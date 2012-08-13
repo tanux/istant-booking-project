@@ -1,8 +1,8 @@
-
 <mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml"  
 		  paddingLeft="10" paddingRight="10" paddingTop="20"
-		  title="Giorno" horizontalAlign="center" verticalAlign="middle"
-		  styleName="panelSkinsICandy" >
+		  title="SELEZIONARE UNA DATA" horizontalAlign="center" verticalAlign="middle"
+		  styleName="panelSkinsICandy"
+		  titleIcon="@Embed('assets/images/orange_calendar.png')">
 	<mx:Script>
 		<![CDATA[	
 			import mx.controls.Alert;
