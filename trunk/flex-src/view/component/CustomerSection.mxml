@@ -12,12 +12,23 @@
 		
 		<mx:StringValidator id="firtnameValidator"
 							source="{tiFirstname}" property="text"
-							minLength="3" maxLength="25"  />
+							minLength="3" maxLength="25"  requiredFieldError="Il campo è richiesto. Lunghezza minima 3, massima 25."
+							tooShortError="Stringa troppo corta. Valore minimo 3 caratteri." tooLongError="Stringa troppo lunga. Valore massimo 25 caratteri."
+							required="true"/>
 		<mx:StringValidator id="lastnameValidator"
 							source="{tiLastname}" property="text"
-							minLength="3" maxLength="25" />
-		<mx:EmailValidator  id="emailValidator" source="{tiEmail}" property="text" />
-		<mx:PhoneNumberValidator id="phoneValidator" source="{tiTelephoneNumber}"  property="text" />
+							minLength="3" maxLength="25" requiredFieldError="Il campo è richiesto. Lunghezza minima 3, massima 25."
+							tooShortError="Stringa troppo corta. Valore minimo 3 caratteri." tooLongError="Stringa troppo lunga. Valore massimo 25 caratteri."
+							required="true" />
+		<mx:EmailValidator  id="emailValidator" source="{tiEmail}" property="text" 
+							required="true" requiredFieldError="Il campo è richiesto. Formato e-mail: username@email.it"
+							tooManyAtSignsError="Formato non valido. Formato e-mail esatto: username@email.it"
+							missingUsernameError="Username non inserito. Formato e-mail esatto: username@email.it"
+							missingAtSignError="Simbolo @ mancante. Formato e-mail esatto: username@email.it"/>
+		<mx:PhoneNumberValidator id="phoneValidator" source="{tiTelephoneNumber}"  property="text" required="true"
+								 requiredFieldError="Il campo è richiesto. Accetta numeri di telefonia fissa e mobile."
+								 invalidCharError="Formato non valido. Possono essere inseriti solamente numeri."
+								 wrongLengthError="Numero di cifre non valido. Devono essere inserite 10 cifre."/>
 	</fx:Declarations>	
 	<fx:Script>
 		<![CDATA[			
