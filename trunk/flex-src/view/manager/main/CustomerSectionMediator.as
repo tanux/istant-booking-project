@@ -50,6 +50,11 @@ package view.manager.main
 			customerListCmp.btnSave.enabled = false;
 			customerListCmp.abilitaAdd=true;
 			customerListCmp.dgCustomerList.selectedIndex = -1;
+			
+			var managerMainMediator:ManagerMainMediator = facade.retrieveMediator(ManagerMainMediator.NAME) as ManagerMainMediator;			
+			managerMainMediator.managerMain.cmpHomeSection.cmpVisitProperties.cmpLocations.boxSede.enabled = false;
+			managerMainMediator.managerMain.cmpHomeSection.cmpVisitProperties.cmpVisitDay.boxDay.enabled = false;
+			managerMainMediator.managerMain.cmpHomeSection.cmpVisitProperties.cmpVisitHours.boxHours.enabled = false;
 		}
 		
 		public function addCustomer(evt:Event): void{
