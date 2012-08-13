@@ -11,16 +11,16 @@
 		
 		<mx:HBox id="boxButtonSettings" width="33%" horizontalAlign="center" >
 			<mx:Button id="btnHome" icon="@Embed(source='assets/images/home.png')" downIcon="@Embed(source='assets/images/home_little.png')"
-					   width="45" height="40"/>
+					   width="45" height="40" toolTip="Menu Principale"/>
 			<mx:Button id="btnSettings" icon="@Embed(source='assets/images/gear.png')" downIcon="@Embed(source='assets/images/gear_little.png')"
-					   width="45" height="40"/>
+					   width="45" height="40" toolTip="Gestione Applicazione"/>
 			<mx:Button id="btnShowVisit" icon="@Embed(source='assets/images/folder.png')" downIcon="@Embed(source='assets/images/folder_little.png')"
-					   width="45" height="40"/>
+					   width="45" height="40" toolTip="Prenotazioni"/>
 		</mx:HBox>
 		
 		<mx:Box id="boxLogout" width="33%" horizontalAlign="right">
 			<mx:Button id="btnLogout" icon="@Embed(source='assets/images/log_out.png')" downIcon="@Embed(source='assets/images/log_out_little.png')"
-					   width="45" height="40"/>	
+					   width="45" height="40" toolTip="Esci"/>	
 		</mx:Box>
 	
 	</mx:HBox>

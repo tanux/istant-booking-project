@@ -1,8 +1,9 @@
 <mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" 
 		  xmlns:component="view.component.*"
-		  title="Login" horizontalAlign="center" verticalAlign="middle"
+		  title="Login    " horizontalAlign="center" verticalAlign="middle"
 		  width="20%" height="30%"
-		  styleName="panelSkinsICandy">
+		  styleName="panelSkinsICandy"
+		  titleIcon="@Embed('assets/images/orange_login.png')">
 	
 	<mx:Form id="frmLogin" width="100%" >
 		<mx:FormItem paddingRight="15" id="fiUsername" width="100%" horizontalAlign="center">

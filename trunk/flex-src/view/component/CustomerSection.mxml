@@ -248,17 +248,15 @@
 							  displayAsPassword="false"
 							  />
 		<mx:Button id="btnCancel" icon="@Embed(source='assets/images/cross_cancel.png')" downIcon="@Embed(source='assets/images/cross_cancel_little.png')"
-				   width="20" height="20" enabled="true"/>
+				   width="20" height="20" enabled="true" toolTip="Cancella campi"/>
 	</mx:HBox>
-	<mx:HBox width="100%" horizontalAlign="right">
-		<mx:Button id="btnBooking" icon="@Embed(source='assets/images/prenota.png')" downIcon="@Embed(source='assets/images/prenota_little.png')"
-				   width="45" height="40" enabled="true" visible="false"/>
+	<mx:HBox width="100%" horizontalAlign="right">		
 		<mx:Button id="btnAddUser" icon="@Embed(source='assets/images/add_user.png')" downIcon="@Embed(source='assets/images/add_user_little.png')"
-				   width="45" height="40" enabled="false"/>
+				   width="45" height="40" enabled="false" toolTip="Aggiungi Cliente"/>
 		<mx:Button id="btnDelUser" icon="@Embed(source='assets/images/delete_user.png')" downIcon="@Embed(source='assets/images/delete_user_little.png')"
-				   width="45" height="40" enabled="false"/>
+				   width="45" height="40" enabled="false" toolTip="Cancella Cliente"/>
 		<mx:Button id="btnSave" icon="@Embed(source='assets/images/save.png')" downIcon="@Embed(source='assets/images/save_little.png')"
-				   width="45" height="40" enabled="false"/>		
+				   width="45" height="40" enabled="false" toolTip="Salva Modifiche"/>		
 		
 	</mx:HBox>
 
