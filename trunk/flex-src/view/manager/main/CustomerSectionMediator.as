@@ -96,11 +96,13 @@ package view.manager.main
 					customerListCmp.customerList = customerListResult;					
 					break;
 				case ApplicationFacade.GET_CUSTOMER_LIST_ERROR:
-					Alert.show("Lista Clienti: Errore nel prelevamento dati");
+					notify('default', 'Errore', 'Lista Clienti: Errore nel prelevamento dati', customerListCmp.errorIcon, 5000);
+					//Alert.show("Lista Clienti: Errore nel prelevamento dati");
 					break;
 				case ApplicationFacade.GET_CUSTOMER_LIST_FAULT:
 					var evt:FaultEvent = notification.getBody() as FaultEvent;
-					Alert.show("CustomerList Fault: "+evt.fault.faultDetail);
+					notify('default', 'Errore', 'CustomerList Fault: '+evt.fault.faultDetail, customerListCmp.errorIcon, 5000);
+					//Alert.show("CustomerList Fault: "+evt.fault.faultDetail);
 					break;
 				case ApplicationFacade.CUSTOMER_SELECTED_HOMESECTION:					
 					customerInList = notification.getBody() as CustomerInList;					
@@ -125,7 +127,8 @@ package view.manager.main
 					customerListCmp.dgCustomerList.selectedIndex = -1;
 					break;
 				case ApplicationFacade.CUSTOMER_SAVE_CHANGES_ERROR:
-					Alert.show("Errore nel salvataggio");
+					notify('default', 'Errore', 'Errore nel salvataggio', customerListCmp.errorIcon, 5000);
+					//Alert.show("Errore nel salvataggio");
 					break;
 				case ApplicationFacade.CUSTOMER_ADD_SUCCESS:
 					notify('default', 'Successo', 'Inserimento ok', customerListCmp.successIcon, 5000);
@@ -133,7 +136,8 @@ package view.manager.main
 					customerListCmp.btnAddUser.enabled = false;
 					break;
 				case ApplicationFacade.CUSTOMER_ADD_ERROR:
-					Alert.show("Errore inserimento");
+					notify('default', 'Errore', 'Errore inserimento', customerListCmp.errorIcon, 5000);
+					//Alert.show("Errore inserimento");
 					break;
 				case ApplicationFacade.CUSTOMER_DELETE_SUCCESS:
 					notify('default', 'Successo', 'Eliminazione ok', customerListCmp.successIcon, 5000);
@@ -143,7 +147,8 @@ package view.manager.main
 					customerListCmp.dgCustomerList.selectedIndex = -1;
 					break;
 				case ApplicationFacade.CUSTOMER_DELETE_ERROR:
-					Alert.show("Errore delete");
+					notify('default', 'Errore', 'Errore delete', customerListCmp.errorIcon, 5000);
+					//Alert.show("Errore delete");
 					break;
 			}
 
