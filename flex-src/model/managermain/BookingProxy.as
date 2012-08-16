@@ -5,6 +5,7 @@ package model.managermain
 	import model.services.BookingServices;
 	import model.vo.Booking;
 	import model.vo.BookingInList;
+	import model.vo.SelectedHour;
 	
 	import mx.collections.ArrayCollection;
 	import mx.controls.Alert;
@@ -13,6 +14,7 @@ package model.managermain
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
 	import view.component.BookingList;
+	import view.component.VisitHours;
 	import view.manager.bookings.BookingListMediator;
 	
 	public class BookingProxy extends Proxy implements IProxy{
@@ -26,10 +28,10 @@ package model.managermain
 			_booking = booking;
 		}
 		
-		public function addBooking():void{			
-			var jsDecode:JSONDecoder = new JSONDecoder();
-			var customer:Object = jsDecode.decode(_booking.idCustomer as String) as Object;
-			bookings.addItem(customer);			
+		public function addBooking():void{
+			var jsDecode:JSONDecoder = new JSONDecoder();			
+			_booking.visitHour = jsDecode.decode(_booking.visitHour as String, SelectedHour) as SelectedHour;			
+			bookings.addItem(_booking);			
 		}
 		
 		public function removeBooking(position:int):void{
