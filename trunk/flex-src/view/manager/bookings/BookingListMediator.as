@@ -43,8 +43,7 @@ package view.manager.bookings
 		public function deleteBooking(evt:Event): void{
 			var delBooking:Booking = new Booking();
 			var jsEncode:JSONEncoder = new JSONEncoder();
-			delBooking = bookingListCmp.bookingList.getItemAt(bookingInList.getPosition) as Booking;			
-			delBooking.idCustomer = bookingListCmp.bookingList.getItemAt(bookingInList.getPosition) as Customer;
+			delBooking = bookingListCmp.bookingList.getItemAt(bookingInList.getPosition) as Booking;
 			var visitDayMediator:VisitDayMediator = facade.retrieveMediator(VisitDayMediator.NAME_IN_BOOKING) as VisitDayMediator;					
 			var date:String = DateField.dateToString(visitDayMediator.visitDayCmp.selectedDate as Date, "DD/MM/YYYY");
 			delBooking.visitDay = date;			
