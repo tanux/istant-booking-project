@@ -51,6 +51,7 @@ package view.manager.settings
 			locationListCmp.cmpHouseButton.btnSave.enabled = false;
 			locationListCmp.abilitaAdd=true;
 			locationListCmp.dgLocationList.selectedIndex = -1;
+			locationListCmp.daySelected = false;
 		}
 		
 		private function makeArraysDays(): Array {							

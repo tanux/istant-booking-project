@@ -5,7 +5,8 @@
 		  paddingLeft="10" paddingRight="10" paddingTop="20"
 		  title="SELEZIONARE UNA SEDE" horizontalAlign="center" verticalAlign="middle"
 		  styleName="panelSkinsICandy"
-		  titleIcon="@Embed('assets/images/orange_home.png')">
+		  titleIcon="@Embed('assets/images/orange_home.png')"
+		  textAlign="left" fontWeight="bold">
 	<fx:Script>
 		<![CDATA[
 			import model.vo.Location;			
@@ -27,7 +28,7 @@
 			 paddingLeft="5" paddingRight="5" maxHeight="210" enabled="false">
 		<mx:Accordion id="acrdLocationList" width="100%" resizeToContent="true" click="acrdLocationList_clickHandler(event)">
 			<mx:Repeater id="rptLocation" dataProvider="{locationList}" >
-				<mx:VBox id="acrdHeaderLocationName" label="{rptLocation.currentItem.city}" paddingTop="5" >
+				<mx:VBox id="acrdHeaderLocationName" label="{rptLocation.currentItem.city}" paddingTop="5" fontWeight="normal" >
 						<mx:Box >
 							<mx:Text text="Indirizzo: {String(rptLocation.currentItem.address)}" />							
 						</mx:Box>

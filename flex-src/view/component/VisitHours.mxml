@@ -5,7 +5,8 @@
 		  paddingLeft="10" paddingRight="10" paddingTop="20"
 		  title="SELEZIONARE UN ORARIO" horizontalAlign="center" verticalAlign="middle"
 		  styleName="panelSkinsICandy"
-		  titleIcon="@Embed('assets/images/orange_clock.png')">
+		  titleIcon="@Embed('assets/images/orange_clock.png')"
+		  textAlign="left" fontWeight="bold">
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 		<s:RadioButtonGroup id="rbgHours" />
@@ -30,7 +31,7 @@
 	
 	
 	<mx:VBox id="boxHours" width="95%" verticalAlign="middle" height="30%" enabled="false"
-			 paddingTop="5" paddingRight="20" paddingLeft="20">				
+			 paddingTop="5" paddingRight="20" paddingLeft="20" fontWeight="normal" >				
 		<mx:Repeater id="rptContentHours" dataProvider="{hours}"> 
 							
 				<s:RadioButton id="rbHour" group="{rbgHours}"									 

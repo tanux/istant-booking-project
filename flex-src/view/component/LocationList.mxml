@@ -85,7 +85,7 @@
 			
 			private function mayEnableButton():void
 			{
-				if (Validator.validateAll([cityValidator, addressValidator, phoneValidator]).length == 0)
+				if (Validator.validateAll([cityValidator, addressValidator, phoneValidator]).length == 0 && daySelected==true)
 					if (abilitaAdd!=false){
 						cmpHouseButton.btnAdd.enabled = true;
 						cmpHouseButton.btnSave.enabled = false;
@@ -119,6 +119,12 @@
 			protected function clearButton_cb_changeHandler(event:Event):void
 			{			
 				logger.info('textInput.showCancelButton = ');
+			}
+			
+			[Bindable] public var daySelected: Boolean = false;
+			protected function acrdLocationList_clickHandler(event:MouseEvent):void	{				
+				daySelected = true;
+				//dispatchEvent(new Event( LOCATION_SELECTED_EVENT ));
 			}
 		]]>
 	</fx:Script>	
@@ -219,7 +225,7 @@
 						<mx:CheckBox id="chkBxDay"									 
 									 data="{rptContentDays.currentItem.numberAssociated}" 
 									 selected="{rptContentDays.currentItem.selected}"
-									 />
+									 click="acrdLocationList_clickHandler(event); mayEnableButton()"/>
 					</mx:VBox>
 					<mx:VRule height="100%"/>
 				</mx:Repeater>
