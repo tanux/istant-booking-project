@@ -28,7 +28,8 @@
 		<mx:PhoneNumberValidator id="phoneValidator" source="{tiTelephoneNumber}"  property="text" required="true"
 								 requiredFieldError="Il campo è richiesto. Accetta numeri di telefonia fissa e mobile."
 								 invalidCharError="Formato non valido. Possono essere inseriti solamente numeri."
-								 wrongLengthError="Numero di cifre non valido. Devono essere inserite 10 cifre."/>
+								 wrongLengthError="Numero di cifre non valido. Devono essere inserite almeno 9 cifre."
+								 minDigits="9" />
 	</fx:Declarations>	
 	<fx:Script>
 		<![CDATA[			

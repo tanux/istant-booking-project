@@ -164,7 +164,7 @@ package view.manager.settings
 			locationListCmp.tiLocationName.showCancelButton = false;
 			
 			locationListCmp.tiStreet.text = "Address" as String;
-			locationListCmp.tiStreet.text = "address" as String;
+			locationListCmp.tiStreet.text = "Address" as String;
 			locationListCmp.tiStreet.showCancelButton = false;
 			
 			locationListCmp.tiTelephone.text =  "Telephone" as String;

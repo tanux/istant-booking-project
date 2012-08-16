@@ -14,7 +14,7 @@
 							source="{tiLocationName}" property="text"
 							minLength="3" maxLength="25"  requiredFieldError="Il campo è richiesto. Lunghezza minima 3, massima 25."
 							tooShortError="Stringa troppo corta. Valore minimo 3 caratteri." tooLongError="Stringa troppo lunga. Valore massimo 25 caratteri."
-							required="true"/>
+							required="true" />
 		<mx:StringValidator id="addressValidator"
 							source="{tiStreet}" property="text"
 							minLength="3" maxLength="25" requiredFieldError="Il campo è richiesto. Lunghezza minima 3, massima 25."
@@ -23,7 +23,8 @@
 		<mx:PhoneNumberValidator id="phoneValidator" source="{tiTelephone}"  property="text" required="true"
 								 requiredFieldError="Il campo è richiesto. Accetta numeri di telefonia fissa e mobile."
 								 invalidCharError="Formato non valido. Possono essere inseriti solamente numeri."
-								 wrongLengthError="Numero di cifre non valido. Devono essere inserite 10 cifre."/>
+								 wrongLengthError="Numero di cifre non valido. Devono essere inserite almeno 9 cifre."
+								 minDigits="9"/>
 	</fx:Declarations>	
 	<fx:Script>
 		<![CDATA[			
