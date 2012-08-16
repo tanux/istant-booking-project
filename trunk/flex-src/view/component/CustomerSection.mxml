@@ -194,10 +194,12 @@
 			<mx:DataGridColumn id="clmTel" dataField="telephone_number" headerText="Telefono" />
 		</mx:columns>
 	</mx:DataGrid>
-	<mx:HBox verticalAlign="middle">
-		<ui:AdvancedTextInput id="tiFirstname"
+	<mx:HBox verticalAlign="middle" width="100%" >
+		<mx:VBox verticalAlign="middle" width="80%">
+			<mx:Label text="Nome" fontWeight="bold" />
+			<ui:AdvancedTextInput id="tiFirstname"
 							  width="100%"
-							  promptText="Nome"
+							  promptText="Mario"
 							  color="#000000"
 							  iconWidth="15"
 							  iconHeight="15"
@@ -211,9 +213,13 @@
 							  change="mayEnableButton();clearButton_cb_changeHandler(event); "
 							  displayAsPassword="false"
 							  />
-		<ui:AdvancedTextInput id="tiLastname"
+		</mx:VBox>
+		
+		<mx:VBox verticalAlign="middle" width="80%">
+			<mx:Label text="Cognome" fontWeight="bold"/>
+			<ui:AdvancedTextInput id="tiLastname"
 							  width="100%"
-							  promptText="Cognome"
+							  promptText="Rossi"
 							  color="#000000"
 							  iconWidth="15"
 							  iconHeight="15"
@@ -226,26 +232,14 @@
 							  cancelOverSkin="{_textInput_clearIcon}"
 							  change="mayEnableButton();clearButton_cb_changeHandler(event); "
 							  displayAsPassword="false"
-							  />		
-		<ui:AdvancedTextInput id="tiEmail"
+							  />	
+		</mx:VBox>	
+		
+		<mx:VBox verticalAlign="middle" width="80%">
+			<mx:Label text="E-mail" fontWeight="bold"/>
+			<ui:AdvancedTextInput id="tiEmail"
+							  promptText="m.rossi@email.it"
 							  width="100%"
-							  promptText="E-mail"
-							  color="#000000"
-							  iconWidth="15"
-							  iconHeight="15"
-							  iconPadding="3"
-							  keepPromptOnFocus="false"
-							  showCancelButton="true"
-							  cancelWidth="12" cancelHeight="12"
-							  cancelDownSkin="{_textInput_clearIcon}"
-							  cancelUpSkin="{_textInput_clearIcon}"
-							  cancelOverSkin="{_textInput_clearIcon}"
-							  change="mayEnableButton();clearButton_cb_changeHandler(event); "
-							  displayAsPassword="false"
-							  />		
-		<ui:AdvancedTextInput id="tiTelephoneNumber"
-							  width="100%"
-							  promptText="Telefono"
 							  color="#000000"
 							  iconWidth="15"
 							  iconHeight="15"
@@ -259,16 +253,37 @@
 							  change="mayEnableButton();clearButton_cb_changeHandler(event); "
 							  displayAsPassword="false"
 							  />
-	</mx:HBox>
-	<mx:HBox width="100%" horizontalAlign="right">		
-		<mx:Button id="btnAddUser" icon="@Embed(source='assets/images/add_user.png')" downIcon="@Embed(source='assets/images/add_user_little.png')"
-				   width="45" height="40" enabled="false" toolTip="Aggiungi Cliente"/>
-		<mx:Button id="btnDelUser" icon="@Embed(source='assets/images/delete_user.png')" downIcon="@Embed(source='assets/images/delete_user_little.png')"
-				   width="45" height="40" enabled="false" toolTip="Cancella Cliente"/>
-		<mx:Button id="btnSave" icon="@Embed(source='assets/images/save.png')" downIcon="@Embed(source='assets/images/save_little.png')"
-				   width="45" height="40" enabled="false" toolTip="Salva Modifiche"/>
-		<mx:Button id="btnCancel" icon="@Embed(source='assets/images/cross_cancel.png')" downIcon="@Embed(source='assets/images/cross_cancel_little.png')"
-				   width="45" height="40" enabled="true" toolTip="Reset dell'interfaccia"/>
+		</mx:VBox>
+		
+		<mx:VBox verticalAlign="middle" width="80%">
+			<mx:Label text="Numero di Telefono" fontWeight="bold"/>
+			<ui:AdvancedTextInput id="tiTelephoneNumber"
+							  width="100%"
+							  promptText="012345678"
+							  color="#000000"
+							  iconWidth="15"
+							  iconHeight="15"
+							  iconPadding="3"
+							  keepPromptOnFocus="false"
+							  showCancelButton="true"
+							  cancelWidth="12" cancelHeight="12"
+							  cancelDownSkin="{_textInput_clearIcon}"
+							  cancelUpSkin="{_textInput_clearIcon}"
+							  cancelOverSkin="{_textInput_clearIcon}"
+							  change="mayEnableButton();clearButton_cb_changeHandler(event); "
+							  displayAsPassword="false"
+							  />
+		</mx:VBox>
+		<mx:HBox horizontalAlign="right" width="100%" verticalAlign="middle">
+			<mx:Button id="btnAddUser" icon="@Embed(source='assets/images/add_user.png')" downIcon="@Embed(source='assets/images/add_user_little.png')"
+					   width="45" height="40" enabled="false" toolTip="Aggiungi Cliente"/>
+			<mx:Button id="btnDelUser" icon="@Embed(source='assets/images/delete_user.png')" downIcon="@Embed(source='assets/images/delete_user_little.png')"
+					   width="45" height="40" enabled="false" toolTip="Cancella Cliente"/>
+			<mx:Button id="btnSave" icon="@Embed(source='assets/images/save.png')" downIcon="@Embed(source='assets/images/save_little.png')"
+					   width="45" height="40" enabled="false" toolTip="Salva Modifiche"/>
+			<mx:Button id="btnCancel" icon="@Embed(source='assets/images/cross_cancel.png')" downIcon="@Embed(source='assets/images/cross_cancel_little.png')"
+					   width="45" height="40" enabled="true" toolTip="Reset dell'interfaccia"/>	
+		</mx:HBox>
 		
 	</mx:HBox>
 
