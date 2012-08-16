@@ -124,7 +124,6 @@
 			[Bindable] public var daySelected: Boolean = false;
 			protected function acrdLocationList_clickHandler(event:MouseEvent):void	{				
 				daySelected = true;
-				//dispatchEvent(new Event( LOCATION_SELECTED_EVENT ));
 			}
 		]]>
 	</fx:Script>	
