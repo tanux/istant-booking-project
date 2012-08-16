@@ -154,17 +154,18 @@ package view.manager.main
 
 		}
 		
-		public function resetTextInput():void{
-			customerListCmp.tiFirstname.text = "Mario" as String;
+		public function resetTextInput():void{			
+			customerListCmp.tiFirstname.text = CustomerSection.NAME_PROMT;	
+			
 			customerListCmp.tiFirstname.showCancelButton = false;
 			
-			customerListCmp.tiLastname.text = "Rossi" as String;
+			customerListCmp.tiLastname.text = CustomerSection.SURNAME_PROMT;
 			customerListCmp.tiLastname.showCancelButton = false;
 			
-			customerListCmp.tiEmail.text = "m.rossi@email.it" as String;
+			customerListCmp.tiEmail.text = CustomerSection.EMAIL_PROMT;
 			customerListCmp.tiEmail.showCancelButton = false;
 			
-			customerListCmp.tiTelephoneNumber.text = "012345678" as String;
+			customerListCmp.tiTelephoneNumber.text = CustomerSection.TELEFONO_PROMT;
 			customerListCmp.tiTelephoneNumber.showCancelButton = false;
 		}
 		

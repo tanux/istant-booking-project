@@ -7,75 +7,113 @@
 	
 	<fx:Script>
 		<![CDATA[	
-			import mx.controls.Alert;
-			import mx.events.CalendarLayoutChangeEvent;
-			import mx.events.FlexEvent;
-			private var facade:ApplicationFacade = ApplicationFacade.getInstance() as ApplicationFacade;
 			
+			import model.vo.Customer;
+			import model.vo.CustomerInList;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.events.ListEvent;	
+			
+			import mx.rpc.events.FaultEvent;			
+			import mx.rpc.events.ResultEvent;		
+			
+			
+			import mx.events.ValidationResultEvent;
+			import mx.validators.ValidationResult;
+			import mx.validators.Validator;
+			
+			import spark.events.TextOperationEvent;
+			
+			private var facade:ApplicationFacade = ApplicationFacade.getInstance() as ApplicationFacade;
+			[Bindable]public var customerList:ArrayCollection;
+			[Bindable]public var customerSelected:Customer;
 			
 			/*
-			 * Passi da compiere:
-			Seleziono una citta dagli accordion;
-			Lancio una notifica "citta selezionata"
-			Si recuperano i dati dal database. In caso di SUCCESS:
-				Con i dati si costruisce l'array delle date
-				Si passa l'array al component
-				Si dispatcha l'evento calendar.dispatchEvent(new FlexEvent(FlexEvent.CREATION_COMPLETE));
-				che innesca l'esecuzione del metodo calendar_creationCompleteHandler
-			speriamo bene
-			*/
+			private function makeDataLabel(item:Object) : String {
+			var c:Customer = new Customer();
+			c.id = item.id;
+			c.firstName = item.firstname;
+			c.lastName = item.lastname;
+			c.email = item.email;
+			c.telephoneNumber = item.telephone_number;
+			return c.firstName + " " + c.lastName + " " + c.email;
+			}*/
 			
-			public var i:int=1;
-			
-			
-			
-			
-			
-			protected function makeArray(evt:MouseEvent):void{
-				calendar.dispatchEvent(new FlexEvent(FlexEvent.CREATION_COMPLETE));
-			}				
-			
-			
-			protected function calendar_creationCompleteHandler(event:FlexEvent):void
-			{
-				var arrayDate1:Array = new Array(new Date(2012,07,i),new Date(2012,07,i+1));
-				
-				calendar.disabledRanges = arrayDate1;		
-				
-				i++;
-				
-				/*
-				 var arrayDate2:Array = new Array({rangeStart:new Date(2012,07,i),rangeEnd:new Date(2012,07,i)},{rangeStart:new Date(2012,07,i+3),rangeEnd:new Date(2012,07,i+3)});
-				
-				calendar.selectedRanges = arrayDate2;
-				*/
-				
-				var today:Date = new Date();
-				var millisecondsPerDay:Number = 1000 * 60 * 60 * 24;				
-				var yesterday:Date = new Date();
-				yesterday.setTime(today.getTime() - millisecondsPerDay);				
-				var data:Date = new Date(yesterday.getFullYear(),yesterday.getMonth(), yesterday.getDate());
-				calendar.disabledRanges.push({rangeEnd: data});
-				
+			protected function dgCustomerList_itemClickHandler(event:ListEvent):void{				
+				var selectedRow:Object = event.currentTarget.selectedItem;
+				customerSelected = new Customer();
+				customerSelected.id = selectedRow.id;
+				customerSelected.firstName = selectedRow.firstname;
+				customerSelected.lastName = selectedRow.lastname;
+				customerSelected.email = selectedRow.email;
+				customerSelected.telephoneNumber = selectedRow.telephone_number;
+				var position:int = event.currentTarget.selectedIndex;				
+				var customerInList:CustomerInList = new CustomerInList(customerSelected,position);				
+				facade.sendNotification(ApplicationFacade.CUSTOMER_SELECTED_HOMESECTION, customerInList);				
 			}
+			
+			
+			
+			private function getDataSuccess(returnedEvent:ResultEvent):void{
+				customerList = returnedEvent.result as ArrayCollection;
+				this.enabled = true;
+			}
+			
+			private function init():void{				
+				this.enabled = false;
+			}
+			
+			private function fault(f:FaultEvent):void{
+				Alert.show(f.fault.message as String);
+			}
+			
+		
+			
+			
+			
+			[Bindable] public var abilitaAdd: Boolean = true;
+			
+			
+			
+			import mx.logging.ILogger;
+			import mx.logging.Log;
+			
+			import spark.events.TextOperationEvent;
+			
+			[Embed(source="assets/images/cross.png")]
+			private static var _textInput_clearIcon:Class;
+			
+			[Bindable] public var text:String = "Prova";
+			
+			protected var logger:ILogger = Log.getLogger("flex3ui.AdvancedTextInput");
+			
+			public function dispose():void
+			{
+			}
+			
+			protected function clearButton_cb_changeHandler(event:Event):void
+			{			
+				logger.info('textInput.showCancelButton = ');
+			}	
+			
+			
+			
+			
 			
 		]]>
 	</fx:Script>
-	<mx:Panel   
-			  paddingLeft="10" paddingRight="10" paddingTop="20"
-			  title="Giorno" horizontalAlign="center" verticalAlign="middle"
-			  >
-	<mx:DateChooser id="calendar" width="100%" height="100%" 
-					dayNames= " [Dom, Lun, Mar, Mer, Gio, Ven, Sab] "
-					monthNames="[ Gennaio, Febbraio, Marzo, Aprile, Maggio, Giugno, Luglio, Agosto, Settembre, Ottobre, Novembre, Dicembre]"
-					firstDayOfWeek="1"
-					minYear="2012" maxYear="2013"
-					showToday="true"					
-					creationComplete="calendar_creationCompleteHandler(event)"
-									
-					/>
-		</mx:Panel>
-	<mx:Button id="btn1" label="Angri" click="makeArray(event)"/>
+	<s:VGroup width="80%" height="38" >
+		<mx:Label text="Cognome" fontWeight="bold"/>
+		<ui:AdvancedTextInput id="tiLastname"  width="100%"
+							  cancelDownSkin="{_textInput_clearIcon}" cancelHeight="12"
+							  cancelOverSkin="{_textInput_clearIcon}"
+							  cancelUpSkin="{_textInput_clearIcon}" cancelWidth="12"
+							  change="clearButton_cb_changeHandler(event); " color="#000000"
+							  displayAsPassword="false" iconHeight="15" iconPadding="3"
+							  iconWidth="15" keepPromptOnFocus="false" promptText="Rossi"
+							  showCancelButton="true"/>	
+	</s:VGroup>
 	
 	
 </mx:Application>
