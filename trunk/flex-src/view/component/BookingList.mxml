@@ -59,8 +59,7 @@
 					wordFound = false;
 					// Loop Over Columns
 					for( var column:int = 0; column < dgRisultati.columnCount; column++){						
-						columnName = dgRisultati.columns[column].dataField;				
-						Alert.show(""+row[columnName]);
+						columnName = dgRisultati.columns[column].dataField;
 						if (row[columnName] != null) {
 							columnValue = row[columnName];
 							columnValue = columnValue.toLowerCase();
