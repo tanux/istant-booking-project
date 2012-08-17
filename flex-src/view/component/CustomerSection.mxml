@@ -138,18 +138,20 @@
 			
 			private function mayEnableButton():void
 			{
-				if (Validator.validateAll([firtnameValidator, lastnameValidator, emailValidator, phoneValidator]).length == 0)
-					if (abilitaAdd!=false){
-						btnAddUser.enabled = true;
-						btnSave.enabled = false;
-					}
+				if (tiFirstname.text!=NAME_PROMT && tiLastname.text!=SURNAME_PROMT && tiEmail.text!=EMAIL_PROMT && tiTelephoneNumber.text!=TELEFONO_PROMT){
+					if (Validator.validateAll([firtnameValidator, lastnameValidator, emailValidator, phoneValidator]).length == 0)
+						if (abilitaAdd!=false){
+							btnAddUser.enabled = true;
+							btnSave.enabled = false;
+						}
+						else{
+							btnAddUser.enabled = false;
+							btnSave.enabled = true;
+						}
 					else{
 						btnAddUser.enabled = false;
-						btnSave.enabled = true;
+						btnSave.enabled = false;
 					}
-				else{
-					btnAddUser.enabled = false;
-					btnSave.enabled = false;
 				}
 			}
 			

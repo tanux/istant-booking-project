@@ -38,6 +38,10 @@
 			import mx.rpc.events.FaultEvent;
 			import mx.rpc.events.ResultEvent;
 			
+			public static const CITY_PROMT:String = "Paperopoli";
+			public static const ADDRESS_PROMT:String = "Via dei Paperi";
+			public static const TELEPHONE_PROMT:String = "081123456";
+			
 			private var facade:ApplicationFacade = ApplicationFacade.getInstance() as ApplicationFacade;
 			[Bindable]public var locationList:ArrayCollection;			
 			[Bindable]public var days:Array = [{label:"Lunedi",numberAssociated:"1",selected:false},
@@ -85,20 +89,30 @@
 			[Bindable] public var abilitaAdd: Boolean = true;
 			
 			private function mayEnableButton():void
-			{
-				if (Validator.validateAll([cityValidator, addressValidator, phoneValidator]).length == 0 && daySelected==true)
-					if (abilitaAdd!=false){
-						cmpHouseButton.btnAdd.enabled = true;
-						cmpHouseButton.btnSave.enabled = false;
+			{	
+				if (tiLocationName.text!=CITY_PROMT && tiStreet.text!=ADDRESS_PROMT && tiTelephone.text!=TELEPHONE_PROMT){
+					for (var i:int=0; i<days.length; i++){
+						if (chkBxDay[i].selected == true){
+							daySelected = true;
+							i=days.length+1;
+						}else
+							daySelected = false;
 					}
-					else{
-						cmpHouseButton.btnAdd.enabled = false;
-						cmpHouseButton.btnSave.enabled = true;
-					}
-					else{
-						cmpHouseButton.btnAdd.enabled = false;
-						cmpHouseButton.btnSave.enabled = false;
-					}
+					
+					if (Validator.validateAll([cityValidator, addressValidator, phoneValidator]).length == 0 && daySelected!=false)
+						if (abilitaAdd!=false){
+							cmpHouseButton.btnAdd.enabled = true;
+							cmpHouseButton.btnSave.enabled = false;
+						}
+						else{
+							cmpHouseButton.btnAdd.enabled = false;
+							cmpHouseButton.btnSave.enabled = true;
+						}
+						else{
+							cmpHouseButton.btnAdd.enabled = false;
+							cmpHouseButton.btnSave.enabled = false;
+						}
+				}
 			}
 			
 			import mx.logging.ILogger;
@@ -123,16 +137,6 @@
 			}
 			
 			[Bindable] public var daySelected: Boolean = false;
-			protected function daysSelected(event:MouseEvent):void	{				
-				for (var i:int=0; i<days.length; i++){
-					if (chkBxDay[i].selected == true){
-						daySelected = true;
-						i=days.length+1;
-					}else
-						daySelected = false;
-				}
-				
-			}
 		]]>
 	</fx:Script>	
 	
@@ -166,7 +170,7 @@
 						<mx:Label id="lblLocationName" text="Nome" color="black" fontSize="15" width="30%" textAlign="right"/>
 						<ui:AdvancedTextInput id="tiLocationName"
 											  width="50%"
-											  promptText="City"
+											  promptText="{CITY_PROMT}"
 											  color="#000000"
 											  iconWidth="15"
 											  iconHeight="15"
@@ -185,7 +189,7 @@
 						<mx:Label id="lblStreet" text="Indirizzo" color="black" fontSize="15" width="30%" textAlign="right"/>
 						<ui:AdvancedTextInput id="tiStreet"
 											  width="50%"
-											  promptText="Address"
+											  promptText="{ADDRESS_PROMT}"
 											  color="#000000"
 											  iconWidth="15"
 											  iconHeight="15"
@@ -204,7 +208,7 @@
 						<mx:Label id="txtTelephone" text="Telefono" color="black" fontSize="15" width="30%" textAlign="right"/>
 						<ui:AdvancedTextInput id="tiTelephone"
 											  width="50%"
-											  promptText="Telephone"
+											  promptText="{TELEPHONE_PROMT}"
 											  color="#000000"
 											  iconWidth="15"
 											  iconHeight="15"
@@ -232,7 +236,7 @@
 						<mx:CheckBox id="chkBxDay"									 
 									 data="{rptContentDays.currentItem.numberAssociated}" 
 									 selected="{rptContentDays.currentItem.selected}"
-									 click="daysSelected(event); mayEnableButton()"/>
+									 click="mayEnableButton()"/>
 					</mx:VBox>
 					<mx:VRule height="100%"/>
 				</mx:Repeater>
