@@ -103,6 +103,7 @@ package view.manager.settings
 				case ApplicationFacade.LOCATION_SELECTED_SETTINGSECTION:
 					locationInList = notification.getBody() as LocationInList;
 					locationListCmp.abilitaAdd=false;
+					locationListCmp.daySelected=true;
 					locationListCmp.tiLocationName.text = locationInList.getLocation.city as String;
 					locationListCmp.tiStreet.text = locationInList.getLocation.address as String;
 					locationListCmp.tiTelephone.text = locationInList.getLocation.telephoneNumber as String;					
@@ -110,7 +111,7 @@ package view.manager.settings
 					for (var i:int=0; i<locationListCmp.days.length; i++){
 						locationListCmp.chkBxDay[i].selected = jsDec.decode(locationInList.getLocation.receptionDays.toString())[i].selected;	
 					}
-					locationListCmp.cmpHouseButton.btnSave.enabled = true;
+					//locationListCmp.cmpHouseButton.btnSave.enabled = true;
 					locationListCmp.cmpHouseButton.btnAdd.enabled = false;
 					locationListCmp.cmpHouseButton.btnDelete.enabled = true;
 					break;
@@ -147,7 +148,7 @@ package view.manager.settings
 					resetTextInput();
 					locationListCmp.abilitaAdd=true;
 					locationListCmp.cmpHouseButton.btnSave.enabled = false;
-					locationListCmp.cmpHouseButton.btnAdd.enabled = true;
+					locationListCmp.cmpHouseButton.btnAdd.enabled = false;
 					locationListCmp.cmpHouseButton.btnDelete.enabled = false;
 					break;
 				case ApplicationFacade.LOCATION_DELETE_ERROR:
@@ -158,23 +159,22 @@ package view.manager.settings
 		}
 		
 		private function resetTextInput():void{
-			locationListCmp.tiLocationName.text = "City" as String;
-			locationListCmp.tiLocationName.text = "City" as String;
+			locationListCmp.tiLocationName.text = LocationList.CITY_PROMT;
 			locationListCmp.tiLocationName.showCancelButton = false;
 			
-			locationListCmp.tiStreet.text = "Address" as String;
-			locationListCmp.tiStreet.text = "Address" as String;
+			locationListCmp.tiStreet.text = LocationList.ADDRESS_PROMT;
 			locationListCmp.tiStreet.showCancelButton = false;
 			
-			locationListCmp.tiTelephone.text =  "Telephone" as String;
-			locationListCmp.tiTelephone.text = "Telephone" as String;
+			locationListCmp.tiTelephone.text =  LocationList.TELEPHONE_PROMT;
 			locationListCmp.tiTelephone.showCancelButton = false;
 			
-			locationListCmp.cmpHouseButton.btnAdd.enabled = false;
 			for (var i:int=0; i<locationListCmp.days.length; i++){
 				locationListCmp.chkBxDay[i].selected = false;
 			}
+			
+			locationListCmp.dgLocationList.selectedIndex = -1;
 			locationListCmp.daySelected = false;
+			locationListCmp.cmpHouseButton.btnAdd.enabled = false;
 			locationListCmp.cmpHouseButton.btnSave.enabled = false;
 		}
 		
