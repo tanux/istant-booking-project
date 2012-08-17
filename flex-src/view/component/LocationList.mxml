@@ -123,8 +123,15 @@
 			}
 			
 			[Bindable] public var daySelected: Boolean = false;
-			protected function acrdLocationList_clickHandler(event:MouseEvent):void	{				
-				daySelected = true;
+			protected function daysSelected(event:MouseEvent):void	{				
+				for (var i:int=0; i<days.length; i++){
+					if (chkBxDay[i].selected == true){
+						daySelected = true;
+						i=days.length+1;
+					}else
+						daySelected = false;
+				}
+				
 			}
 		]]>
 	</fx:Script>	
@@ -225,7 +232,7 @@
 						<mx:CheckBox id="chkBxDay"									 
 									 data="{rptContentDays.currentItem.numberAssociated}" 
 									 selected="{rptContentDays.currentItem.selected}"
-									 click="acrdLocationList_clickHandler(event); mayEnableButton()"/>
+									 click="daysSelected(event); mayEnableButton()"/>
 					</mx:VBox>
 					<mx:VRule height="100%"/>
 				</mx:Repeater>
