@@ -215,6 +215,7 @@
 							  cancelUpSkin="{_textInput_clearIcon}"
 							  cancelOverSkin="{_textInput_clearIcon}"
 							  change="mayEnableButton();clearButton_cb_changeHandler(event); "
+							  click="mayEnableButton();clearButton_cb_changeHandler(event); "
 							  displayAsPassword="false"
 							  />
 		</mx:VBox>
@@ -235,6 +236,7 @@
 							  cancelUpSkin="{_textInput_clearIcon}"
 							  cancelOverSkin="{_textInput_clearIcon}"
 							  change="mayEnableButton();clearButton_cb_changeHandler(event); "
+							  click="mayEnableButton();clearButton_cb_changeHandler(event); "
 							  displayAsPassword="false"
 							  />	
 		</mx:VBox>	
@@ -255,6 +257,7 @@
 							  cancelUpSkin="{_textInput_clearIcon}"
 							  cancelOverSkin="{_textInput_clearIcon}"
 							  change="mayEnableButton();clearButton_cb_changeHandler(event); "
+							  click="mayEnableButton();clearButton_cb_changeHandler(event); "
 							  displayAsPassword="false"
 							  />
 		</mx:VBox>
@@ -275,6 +278,7 @@
 							  cancelUpSkin="{_textInput_clearIcon}"
 							  cancelOverSkin="{_textInput_clearIcon}"
 							  change="mayEnableButton();clearButton_cb_changeHandler(event); "
+							  click="mayEnableButton();clearButton_cb_changeHandler(event); "
 							  displayAsPassword="false"
 							  />
 		</mx:VBox>
