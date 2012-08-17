@@ -144,11 +144,18 @@ package view.manager.main
 					resetTextInput();
 					customerListCmp.btnDelUser.enabled = false;
 					customerListCmp.abilitaAdd=true;
+					customerListCmp.btnSave.enabled = false;
 					customerListCmp.dgCustomerList.selectedIndex = -1;
 					break;
 				case ApplicationFacade.CUSTOMER_DELETE_ERROR:
 					notify('default', 'Errore', 'Errore delete', customerListCmp.errorIcon, 5000);
 					//Alert.show("Errore delete");
+					break;
+				case ApplicationFacade.BOOKING_ADD_SUCCESS:
+					customerListCmp.btnDelUser.enabled = false;
+					customerListCmp.abilitaAdd=true;
+					customerListCmp.btnSave.enabled = false;
+					customerListCmp.dgCustomerList.selectedIndex = -1;
 					break;
 			}
 
@@ -195,7 +202,8 @@ package view.manager.main
 				ApplicationFacade.CUSTOMER_ADD_FAULT,
 				ApplicationFacade.CUSTOMER_DELETE_SUCCESS,
 				ApplicationFacade.CUSTOMER_DELETE_ERROR,
-				ApplicationFacade.CUSTOMER_DELETE_FAULT				
+				ApplicationFacade.CUSTOMER_DELETE_FAULT,
+				ApplicationFacade.BOOKING_ADD_SUCCESS
 			];
 		}
 		
