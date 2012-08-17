@@ -58,7 +58,13 @@ package view.manager.bookings
 				var formPrintBookingList:PrintBookingList = new PrintBookingList();
 				bookingListCmp.addChild(formPrintBookingList);
 				formPrintBookingList.detailPrinting.text = bookingListCmp.lblBookingList.text;
-				formPrintBookingList.printDataGrid.dataProvider = bookingListCmp.dgRisultati.dataProvider;
+							
+				//USO DIRETTO DEL DATA PROVIDER
+				//formPrintBookingList.printDataGrid.dataProvider = bookingListCmp.dgRisultati.dataProvider; 
+				
+				//USO OGGETTO BINDABLE
+				formPrintBookingList.printBookingList = bookingListCmp.bookingList;
+				
 				printJob.addObject(formPrintBookingList, FlexPrintJobScaleType.SHOW_ALL);
 				printJob.send();	
 				bookingListCmp.removeChild(formPrintBookingList);
