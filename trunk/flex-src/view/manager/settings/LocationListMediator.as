@@ -51,7 +51,6 @@ package view.manager.settings
 			locationListCmp.cmpHouseButton.btnSave.enabled = false;
 			locationListCmp.abilitaAdd=true;
 			locationListCmp.dgLocationList.selectedIndex = -1;
-			locationListCmp.daySelected = false;
 		}
 		
 		private function makeArraysDays(): Array {							
@@ -175,7 +174,7 @@ package view.manager.settings
 			for (var i:int=0; i<locationListCmp.days.length; i++){
 				locationListCmp.chkBxDay[i].selected = false;
 			}
-			
+			locationListCmp.daySelected = false;
 			locationListCmp.cmpHouseButton.btnSave.enabled = false;
 		}
 		
