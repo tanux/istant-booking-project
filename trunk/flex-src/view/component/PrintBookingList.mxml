@@ -37,11 +37,11 @@
 	<mx:Label id="detailPrinting" text="Elenco delle Prenotazioni" width="100%" styleName="detailPrinting" paddingBottom="10"/>
 	<mx:PrintDataGrid id="printDataGrid" width="100%" dataProvider="{printBookingList}">
 		<mx:columns>
-			<mx:DataGridColumn id="clmNome" dataField="firstName" headerText="Nome" />
-			<mx:DataGridColumn id="clmCognome" dataField="lastName" headerText="Cognome" />
-			<mx:DataGridColumn id="clmEMail" dataField="email" headerText="E-Mail" />
-			<mx:DataGridColumn id="clmTel" dataField="telephoneNumber" headerText="Telefono" />
-			<mx:DataGridColumn id="clmHour" dataField="visitHour" headerText="Orario" />
+			<mx:DataGridColumn id="clmNome" dataField="idCustomer.firstName" headerText="Nome" />
+			<mx:DataGridColumn id="clmCognome" dataField="idCustomer.lastName" headerText="Cognome" />
+			<mx:DataGridColumn id="clmEMail" dataField="idCustomer.email" headerText="E-Mail" />
+			<mx:DataGridColumn id="clmTel" dataField="idCustomer.telephoneNumber" headerText="Telefono" />
+			<mx:DataGridColumn id="clmHour" dataField="visitHour.hour" headerText="Orario" />
 		</mx:columns>
 	</mx:PrintDataGrid>
 </mx:VBox>
