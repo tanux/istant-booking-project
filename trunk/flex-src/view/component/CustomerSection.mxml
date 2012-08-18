@@ -183,9 +183,9 @@
 		<mx:CheckBox label="Attiva Suggerimenti"/>
 	</mx:HBox>
 	<mx:HBox width="100%" textAlign="left" horizontalAlign="right" verticalAlign="middle">
-		<mx:HBox horizontalAlign="left" width="100%" verticalGap="1" horizontalGap="1" verticalAlign="middle">
+		<mx:HBox horizontalAlign="left" width="100%" verticalGap="1" horizontalGap="1">
 			<mx:Label text="Seleziona il cliente" fontWeight="bold" height="15" />	
-			<mx:Image id="btn" source="@Embed('/assets/images/info_little.png')" />
+			<component:PopUpAnchor />
 		</mx:HBox>
 		
 		<mx:Canvas>

@@ -49,11 +49,10 @@
 			<s:State name="normal" />
 			<s:State name="infoOpen" />
 		</mx:states>
-		<s:Image id="btn" source="@Embed('/assets/images/info.png')" click="btn_clickHandler(event); currentState = 'infoOpen'"/>
+		<s:Image id="btn" source="@Embed('/assets/images/info_little.png')" click="btn_clickHandler(event); currentState = 'infoOpen'"/>
 		
 		<s:PopUpAnchor id="popAnc"
 					   
-					   width="{btn.width}" height="{btn.height}"
 					   displayPopUp.normal="false"
 					   displayPopUp.infoOpen="true">
 			
