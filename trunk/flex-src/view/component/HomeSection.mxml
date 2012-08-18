@@ -9,12 +9,11 @@
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
-		
 	
-	<component:CustomerSection id="cmpCustomerList" width="80%" paddingBottom="30"/>		
+	
+	<component:CustomerSection id="cmpCustomerList" width="80%" paddingBottom="30"/>				
 	
 	<component:VisitPropertiesAffiliateMain id="cmpVisitProperties" />			
-	
 	
 	
 	<mx:Box width="80%" horizontalAlign="right">

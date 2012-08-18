@@ -3,7 +3,7 @@
 			   xmlns:mx="library://ns.adobe.com/flex/mx"
 			   xmlns:s="library://ns.adobe.com/flex/spark"
 			   xmlns:ui="http://www.kapit.fr/flex3/ui"
-			   minWidth="955" minHeight="450"  >
+			   minWidth="955" minHeight="450" xmlns:component="view.component.*"  >
 	
 	<fx:Script>
 		<![CDATA[	
@@ -103,17 +103,7 @@
 			
 		]]>
 	</fx:Script>
-	<s:VGroup width="80%" height="38" >
-		<mx:Label text="Cognome" fontWeight="bold"/>
-		<ui:AdvancedTextInput id="tiLastname"  width="100%"
-							  cancelDownSkin="{_textInput_clearIcon}" cancelHeight="12"
-							  cancelOverSkin="{_textInput_clearIcon}"
-							  cancelUpSkin="{_textInput_clearIcon}" cancelWidth="12"
-							  change="clearButton_cb_changeHandler(event); " color="#000000"
-							  displayAsPassword="false" iconHeight="15" iconPadding="3"
-							  iconWidth="15" keepPromptOnFocus="false" promptText="Rossi"
-							  showCancelButton="true"/>	
-	</s:VGroup>
+<component:PopUpAnchor />
 	
 	
 </mx:Application>
