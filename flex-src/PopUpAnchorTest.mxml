@@ -27,7 +27,12 @@
 			</mx:FormItem>
 		</mx:Form>
 	</s:controlBarContent>
-	
+	<fx:Declarations>
+		<s:LinearGradient rotation="90" id="fill1">
+			<s:GradientEntry color="0xFFFFFF" />
+			<s:GradientEntry color="0x336699" />
+		</s:LinearGradient>
+	</fx:Declarations>
 	<fx:Script>
 		<![CDATA[
 			import mx.events.CloseEvent;
@@ -53,31 +58,31 @@
 					popAnc.displayPopUp = true;
 				}
 			}
+			
+			import mx.controls.Alert;
+			protected function handleClose(event:MouseEvent):void
+			{
+				Alert.show("TEST");
+				this.currentState="normal";
+			}
 		]]>
 	</fx:Script>
 	
 	<s:Group horizontalCenter="0" verticalCenter="0">
-		<s:Button id="btn"
-				  label="Open PopUp"
-				  
-				  click="btn_clickHandler(event);" />
+		<s:Image id="btn" source="@Embed('/assets/images/info.png')" click="btn_clickHandler(event);" />
+		
 		<s:PopUpAnchor id="popAnc"
 					   popUpPosition="{ddl.selectedItem}"
 					   width="{btn.width}" height="{btn.height}">
-			<s:TitleWindow id="ttlWndw"
-						   title="{ddl.selectedItem}"
-
-						   close="ttlWndw_closeHandler(event);"
-						   windowMoving="ttlWndw_windowMovingHandler(event);">
-				<mx:Form>
-					<mx:FormItem label="Username:">
-						<s:TextInput />
-					</mx:FormItem>
-					<mx:FormItem label="Password:">
-						<s:TextInput displayAsPassword="true" />
-					</mx:FormItem>
-				</mx:Form>
-			</s:TitleWindow>
+			
+				<s:BorderContainer cornerRadius="5" backgroundFill="{fill1}" height="160" width="180" 
+								   dropShadowVisible="true">
+					<s:Label horizontalCenter="0" top="20" width="170" height="155" color="0x323232" 
+							 text="Dai cazzo!!!"/>
+					
+					<s:Button top="2" right="2" width="16" height="16" click="handleClose(event)"/>
+				</s:BorderContainer>
+			
 		</s:PopUpAnchor>
 	</s:Group>
 	
