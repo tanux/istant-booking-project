@@ -68,19 +68,26 @@
 		]]>
 	</fx:Script>
 	
+	<s:states>
+		<s:State name="normal" />
+		<s:State name="infoOpen" />
+	</s:states>
+	
 	<s:Group horizontalCenter="0" verticalCenter="0">
-		<s:Image id="btn" source="@Embed('/assets/images/info.png')" click="btn_clickHandler(event);" />
+		<s:Image id="btn" source="@Embed('/assets/images/info.png')" click="btn_clickHandler(event); currentState = 'infoOpen'"/>
 		
 		<s:PopUpAnchor id="popAnc"
 					   popUpPosition="{ddl.selectedItem}"
-					   width="{btn.width}" height="{btn.height}">
+					   width="{btn.width}" height="{btn.height}"
+					   displayPopUp.normal="false"
+					   displayPopUp.infoOpen="true">
 			
 				<s:BorderContainer cornerRadius="5" backgroundFill="{fill1}" height="160" width="180" 
 								   dropShadowVisible="true">
 					<s:Label horizontalCenter="0" top="20" width="170" height="155" color="0x323232" 
 							 text="Dai cazzo!!!"/>
 					
-					<s:Button top="2" right="2" width="16" height="16" click="handleClose(event)"/>
+					<s:Image source="@Embed('/assets/images/cross.png')" top="2" right="2" width="16" height="16" click="handleClose(event)" />
 				</s:BorderContainer>
 			
 		</s:PopUpAnchor>
