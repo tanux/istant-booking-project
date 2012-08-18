@@ -22,4 +22,7 @@
 				   width="45" height="40" enabled="true" visible="false"/>	
 	</mx:Box>
 	
+	<mx:Box width="100%" horizontalAlign="right">
+		<mx:Label fontStyle="italic" text="Istant Booking Project - version 1.0"/>	
+	</mx:Box>
 </mx:Box>

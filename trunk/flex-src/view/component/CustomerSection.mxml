@@ -179,8 +179,15 @@
 		]]>
 	</fx:Script>
 	
-	
+	<mx:HBox width="100%" horizontalAlign="right" horizontalGap="1">
+		<mx:CheckBox />
+		<mx:Label text="Attiva Suggerimenti" />
+	</mx:HBox>
 	<mx:HBox width="100%" textAlign="left" horizontalAlign="right" verticalAlign="middle">
+		<mx:Box horizontalAlign="left" width="100%" verticalGap="1">
+			<mx:Label text="Seleziona il cliente" fontWeight="bold" height="15" />	
+		</mx:Box>
+		
 		<mx:Canvas>
 			<mx:TextInput id="searchText" paddingLeft="20" change="filterPhrase()"/>			
 			<mx:Box width="100%" height="90%" paddingTop="2" paddingLeft="2">
@@ -189,7 +196,8 @@
 		</mx:Canvas>
 	</mx:HBox>
 	
-	<mx:DataGrid id="dgCustomerList" width="100%" height="80%" dataProvider="{customerList}" doubleClickEnabled="true" itemClick="dgCustomerList_itemClickHandler(event)">
+	
+	<mx:DataGrid id="dgCustomerList" width="100%" height="80%" dataProvider="{customerList}" doubleClickEnabled="true" itemClick="dgCustomerList_itemClickHandler(event)" >
 		<mx:columns>
 			<mx:DataGridColumn id="clmId" dataField="id" headerText="Id" visible="false"/>
 			<mx:DataGridColumn id="clmNome" dataField="firstname" headerText="Nome" />
@@ -292,7 +300,5 @@
 			<mx:Button id="btnCancel" icon="@Embed(source='assets/images/cross_cancel.png')" downIcon="@Embed(source='assets/images/cross_cancel_little.png')"
 					   width="45" height="40" enabled="true" toolTip="Annulla"/>	
 		</mx:HBox>
-		
 	</mx:HBox>
-
 </mx:VBox>
