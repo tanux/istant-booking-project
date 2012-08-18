@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-	
 	<mx:Box xmlns:fx="http://ns.adobe.com/mxml/2009"
 			  xmlns:s="library://ns.adobe.com/flex/spark"
 			  xmlns:mx="library://ns.adobe.com/flex/mx"	
@@ -51,12 +49,11 @@
 		</mx:states>
 		<s:Image id="btn" source="@Embed('/assets/images/info_little.png')" click="btn_clickHandler(event); currentState = 'infoOpen'"/>
 		
-		<s:PopUpAnchor id="popAnc"
-					   
+		<s:PopUpAnchor id="popAnc" popUpPosition="above"
 					   displayPopUp.normal="false"
 					   displayPopUp.infoOpen="true">
 			
-			<s:BorderContainer cornerRadius="5" backgroundFill="{fill1}" height="160" width="180" 
+			<s:BorderContainer cornerRadius="5" backgroundFill="{fill1}" height="50" width="180" 
 							   dropShadowVisible="true">
 				<s:Label horizontalCenter="0" top="20" width="170" height="155" color="0x323232" 
 						 text="Dai cazzo!!!"/>
