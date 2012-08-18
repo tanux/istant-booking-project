@@ -4,9 +4,9 @@
 			  xmlns:mx="library://ns.adobe.com/flex/mx"	
 			  >
 		<fx:Declarations>
-			<s:LinearGradient rotation="90" id="fill1">
+			<s:LinearGradient rotation="90" id="fill1" >
+				<s:GradientEntry color="#ABCDEF" />
 				<s:GradientEntry color="0xFFFFFF" />
-				<s:GradientEntry color="0x336699" />
 			</s:LinearGradient>
 		</fx:Declarations>
 		<fx:Script>
@@ -53,12 +53,13 @@
 					   displayPopUp.normal="false"
 					   displayPopUp.infoOpen="true">
 			
-			<s:BorderContainer cornerRadius="5" backgroundFill="{fill1}" height="50" width="180" 
-							   dropShadowVisible="true">
+			<s:BorderContainer width="180" height="50" backgroundFill="{fill1}" borderColor="white"
+							   cornerRadius="5" dropShadowVisible="true"
+							   borderStyle.normal="solid">
 				<s:Label horizontalCenter="0" top="20" width="170" height="155" color="0x323232" 
 						 text="Dai cazzo!!!"/>
 				
-				<s:Image source="@Embed('/assets/images/cross.png')" top="2" right="2" width="16" height="16" click="handleClose(event)" />
+				<s:Image source="@Embed('/assets/images/x_little.png')" top="2" right="2" width="16" height="16" click="handleClose(event)" />
 			</s:BorderContainer>
 		</s:PopUpAnchor>
 	</mx:Box>
