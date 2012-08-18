@@ -25,6 +25,7 @@
     <application path="ManagerMain.mxml"/>
     <application path="TestTextInputClearOnClick.mxml"/>
     <application path="Validazione.mxml"/>
+    <application path="PopUpAnchorTest.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>
