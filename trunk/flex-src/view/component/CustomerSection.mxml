@@ -178,22 +178,22 @@
 			
 		]]>
 	</fx:Script>
-	<mx:HBox width="100%" horizontalAlign="center" verticalAlign="middle" >
-		<mx:VBox horizontalAlign="left" width="100%">
-			<mx:Image id="btn" source="@Embed('/assets/images/info.png')" />
-			<mx:Label text="Seleziona il cliente" fontWeight="bold" height="15" />
-		</mx:VBox>
-		<mx:VBox horizontalAlign="right" width="100%" horizontalGap="1" verticalGap="1">
-			<mx:CheckBox label="Attiva Suggerimenti"/>
-			<mx:HBox width="100%" textAlign="left" horizontalAlign="right" verticalAlign="middle">
-				<mx:Canvas>
-					<mx:TextInput id="searchText" paddingLeft="20" change="filterPhrase()"/>			
-					<mx:Box width="100%" height="90%" paddingTop="2" paddingLeft="2">
-						<mx:Image source="assets/images/find.png" height="20" />	
-					</mx:Box>			
-				</mx:Canvas>
-			</mx:HBox>
-		</mx:VBox>
+	
+	<mx:HBox width="100%" horizontalAlign="right" horizontalGap="1">
+		<mx:CheckBox label="Attiva Suggerimenti"/>
+	</mx:HBox>
+	<mx:HBox width="100%" textAlign="left" horizontalAlign="right" verticalAlign="middle">
+		<mx:HBox horizontalAlign="left" width="100%" verticalGap="1" horizontalGap="1">
+			<mx:Image id="btn" source="@Embed('/assets/images/info_little.png')"/>
+			<mx:Label text="Seleziona il cliente" fontWeight="bold" height="15" />	
+		</mx:HBox>
+		
+		<mx:Canvas>
+			<mx:TextInput id="searchText" paddingLeft="20" change="filterPhrase()"/>			
+			<mx:Box width="100%" height="90%" paddingTop="2" paddingLeft="2">
+				<mx:Image source="assets/images/find.png" height="20" />	
+			</mx:Box>			
+		</mx:Canvas>
 	</mx:HBox>
 	
 	
