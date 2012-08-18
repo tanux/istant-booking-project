@@ -6,7 +6,7 @@
 		  title="SELEZIONARE UNA SEDE" horizontalAlign="center" verticalAlign="middle"
 		  styleName="panelSkinsICandy"
 		  titleIcon="@Embed('assets/images/orange_home.png')"
-		  textAlign="left" fontWeight="bold">
+		  textAlign="left" fontWeight="bold" xmlns:component="view.component.*">
 	<fx:Script>
 		<![CDATA[
 			import model.vo.Location;			

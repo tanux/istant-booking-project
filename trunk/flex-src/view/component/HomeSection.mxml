@@ -12,6 +12,19 @@
 	
 	
 	<component:CustomerSection id="cmpCustomerList" width="80%" paddingBottom="30"/>				
+	<mx:HBox width="80%">
+		<mx:Box width="33.3%" horizontalAlign="left">
+			<component:PopUpAnchor />	
+		</mx:Box>
+		
+		<mx:Box width="33.3%" horizontalAlign="left">
+			<component:PopUpAnchor />	
+		</mx:Box>
+		
+		<mx:Box width="33.3%" horizontalAlign="left">
+			<component:PopUpAnchor />	
+		</mx:Box>
+	</mx:HBox>
 	
 	<component:VisitPropertiesAffiliateMain id="cmpVisitProperties" />			
 	
