@@ -176,6 +176,8 @@
 				logger.info('textInput.showCancelButton = ');
 			}	
 			
+			import mx.managers.ToolTipManager;
+
 		]]>
 	</fx:Script>
 	
@@ -185,7 +187,7 @@
 	<mx:HBox width="100%" textAlign="left" horizontalAlign="right" verticalAlign="middle">
 		<mx:HBox horizontalAlign="left" width="100%" verticalGap="1" horizontalGap="1">
 			<mx:Label text="Seleziona il cliente" fontWeight="bold" height="15" />	
-			<component:PopUpAnchor />
+			<mx:Image id="btn" source="@Embed('/assets/images/info_little.png')" />
 		</mx:HBox>
 		
 		<mx:Canvas>

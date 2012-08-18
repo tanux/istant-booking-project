@@ -1,11 +1,25 @@
-<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" 
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" 
 		 xmlns:component="view.component.*"
 		 width="80%" 
-		 height="225" 
+		 height="100%" 
 		 horizontalAlign="center" 
-		 paddingBottom="5" paddingTop="5" 
-		 verticalAlign="middle">	
-	<component:VisitLocations id="cmpLocations" width="33.3%" height="100%"/>
-	<component:VisitDay id="cmpVisitDay" width="33.3%" height="100%"/>
-	<component:VisitHours id="cmpVisitHours" width="33.3%" height="100%"/>
-</mx:HBox>
+		 verticalAlign="bottom">	
+	
+	<mx:HBox width="100%" horizontalAlign="center">
+		<mx:Box width="33.3%" horizontalAlign="left">
+			<mx:Image id="imgLoc" source="@Embed('/assets/images/info_little.png')" />
+		</mx:Box>
+		<mx:Box width="33.3%" horizontalAlign="left">
+			<mx:Image id="imgDay" source="@Embed('/assets/images/info_little.png')" />
+		</mx:Box>
+		<mx:Box width="33.3%" horizontalAlign="left">
+			<mx:Image id="imgHour" source="@Embed('/assets/images/info_little.png')" />
+		</mx:Box>
+	</mx:HBox>
+	<mx:HBox width="100%">
+		<component:VisitLocations id="cmpLocations" width="33.3%" height="100%"/>
+		<component:VisitDay id="cmpVisitDay" width="33.3%" height="100%"/>
+		<component:VisitHours id="cmpVisitHours" width="33.3%" height="100%"/>
+	</mx:HBox>
+
+</mx:VBox>
