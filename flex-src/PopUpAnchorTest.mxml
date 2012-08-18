@@ -89,7 +89,6 @@
 					
 					<s:Image source="@Embed('/assets/images/cross.png')" top="2" right="2" width="16" height="16" click="handleClose(event)" />
 				</s:BorderContainer>
-			
 		</s:PopUpAnchor>
 	</s:Group>
 	
