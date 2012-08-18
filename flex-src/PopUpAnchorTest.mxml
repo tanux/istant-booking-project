@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- http://blog.flexexamples.com/2010/01/20/setting-the-pop-up-position-on-a-spark-popupanchor-control-in-flex-4/ -->
+<s:Application name="Spark_PopUpAnchor_popUpPosition_test"
+			   xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx">
+	<s:controlBarContent>
+		<mx:Form>
+			<mx:FormItem label="popUpPosition:">
+				<s:ButtonBar id="ddl"
+							 requireSelection="true"
+							 click="ddl_changeHandler(event);"
+							 >
+					<s:dataProvider>
+						<s:ArrayList>
+							<s:source>
+								<fx:String>{PopUpPosition.ABOVE}</fx:String>
+								<fx:String>{PopUpPosition.BELOW}</fx:String>
+								<fx:String>{PopUpPosition.CENTER}</fx:String>
+								<fx:String>{PopUpPosition.LEFT}</fx:String>
+								<fx:String>{PopUpPosition.RIGHT}</fx:String>
+								<fx:String>{PopUpPosition.TOP_LEFT}</fx:String>
+							</s:source>
+						</s:ArrayList>
+					</s:dataProvider>
+				</s:ButtonBar>
+			</mx:FormItem>
+		</mx:Form>
+	</s:controlBarContent>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.events.CloseEvent;
+			import spark.components.PopUpPosition;
+			import spark.events.IndexChangeEvent;
+			import spark.events.TitleWindowBoundsEvent;
+			
+			protected function btn_clickHandler(evt:MouseEvent):void {
+				popAnc.displayPopUp = true;
+			}
+			
+			protected function ttlWndw_closeHandler(evt:CloseEvent):void {
+				popAnc.displayPopUp = false;
+			}
+			
+			protected function ttlWndw_windowMovingHandler(evt:TitleWindowBoundsEvent):void {
+				evt.stopImmediatePropagation();
+				evt.preventDefault();
+			}
+			
+			protected function ddl_changeHandler(evt:Event):void {
+				if (!popAnc.displayPopUp) {
+					popAnc.displayPopUp = true;
+				}
+			}
+		]]>
+	</fx:Script>
+	
+	<s:Group horizontalCenter="0" verticalCenter="0">
+		<s:Button id="btn"
+				  label="Open PopUp"
+				  
+				  click="btn_clickHandler(event);" />
+		<s:PopUpAnchor id="popAnc"
+					   popUpPosition="{ddl.selectedItem}"
+					   width="{btn.width}" height="{btn.height}">
+			<s:TitleWindow id="ttlWndw"
+						   title="{ddl.selectedItem}"
+
+						   close="ttlWndw_closeHandler(event);"
+						   windowMoving="ttlWndw_windowMovingHandler(event);">
+				<mx:Form>
+					<mx:FormItem label="Username:">
+						<s:TextInput />
+					</mx:FormItem>
+					<mx:FormItem label="Password:">
+						<s:TextInput displayAsPassword="true" />
+					</mx:FormItem>
+				</mx:Form>
+			</s:TitleWindow>
+		</s:PopUpAnchor>
+	</s:Group>
+	
+</s:Application>
