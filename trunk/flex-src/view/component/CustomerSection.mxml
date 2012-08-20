@@ -48,6 +48,8 @@
 			
 			import spark.events.TextOperationEvent;
 			
+			import view.manager.HomeSectionMediator;
+			
 			public static const NAME_PROMT:String = "Mario";
 			public static const SURNAME_PROMT:String = "Rossi";
 			public static const EMAIL_PROMT:String = "m.rossi@mail.it";
@@ -182,12 +184,24 @@
 			public var myTip:ToolTip;
 			
 			private function createBigTip():void {
-				var s:String = "These buttons let you save, exit, or continue with the current operation."
-				
+				var s:String = "Per poter effettuare la prenotazione bisogna innanzitutto selezionare il cliente " +
+					"all'interno della tabella sottostante. Se non presente può essere inserito attraverso gli appositi box sottostanti alla tabella."
+					
+				var home:HomeSection = new HomeSection;
 				myTip = ToolTipManager.createToolTip(s,275,55) as ToolTip;
-				//myTip.setStyle("backgroundColor",0xFFCC00);
-				myTip.width = 250;
+				myTip.visible=false;
+				myTip.width = 800;
 				myTip.height = 40;
+				Alert.show(home.abilitaHelp.toString());
+				if(home.abilitaHelp==true){
+					Alert.show("E CHE CAZZO");
+					myTip.visible=true;
+					//myTip.setStyle("backgroundColor",0xFFCC00);
+					
+				}else{
+					myTip.visible=false;
+					//Alert.show("Yuppyyy");
+				}
 			}
 			
 			private function destroyBigTip():void {

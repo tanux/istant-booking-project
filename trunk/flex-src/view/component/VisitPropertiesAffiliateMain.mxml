@@ -1,19 +1,43 @@
-<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" 
+<mx:VBox xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"	
 		 xmlns:component="view.component.*"
 		 width="80%" 
 		 height="100%" 
 		 horizontalAlign="center" 
 		 verticalAlign="bottom">	
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.ToolTip;
+			import mx.managers.ToolTipManager;
+			
+			public var sede:String="Selezioni la Sede desiderata cliccando sul nome. Dopodichè vedrà attivarsi il box relativo al giorno.";
+			public var giorno:String="Selezioni il Giorno desiderato cliccandici sopra. Dopodichè vedrà attivarsi il box relativo all'orario.";
+			public var ora:String="Selezioni l'Orario desiderato cliccando nel cerchio a lato. Dopodichè potrà confermare la visita";
+			
+			public var myTip:ToolTip;
+			private function createBigTip(s:String, x:int, y:int):void {
+
+				myTip = ToolTipManager.createToolTip(s,x,y) as ToolTip;
+				//myTip.setStyle("backgroundColor",0xFFCC00);
+				myTip.width = 300;
+				myTip.height = 40;
+			}
 	
+			private function destroyBigTip():void {
+				ToolTipManager.destroyToolTip(myTip);
+			}
+		]]>
+	</fx:Script>	
 	<mx:HBox width="100%" horizontalAlign="center">
 		<mx:Box width="33.3%" horizontalAlign="left">
-			<mx:Image id="imgLoc" source="@Embed('/assets/images/info_little.png')" />
+			<mx:Image id="imgLoc" source="@Embed('/assets/images/info_little.png')" rollOver="createBigTip(sede,160,345)" />
 		</mx:Box>
 		<mx:Box width="33.3%" horizontalAlign="left">
-			<mx:Image id="imgDay" source="@Embed('/assets/images/info_little.png')" />
+			<mx:Image id="imgDay" source="@Embed('/assets/images/info_little.png')" rollOver="createBigTip(giorno,530,345)"/>
 		</mx:Box>
 		<mx:Box width="33.3%" horizontalAlign="left">
-			<mx:Image id="imgHour" source="@Embed('/assets/images/info_little.png')" />
+			<mx:Image id="imgHour" source="@Embed('/assets/images/info_little.png')" rollOver="createBigTip(ora,900,345)"/>
 		</mx:Box>
 	</mx:HBox>
 	<mx:HBox width="100%">
