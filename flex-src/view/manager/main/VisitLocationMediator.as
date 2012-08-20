@@ -37,6 +37,8 @@ package view.manager.main
 			
 		}
 		
+		
+		
 		override public function handleNotification(notification:INotification):void{ 
 			switch (notification.getName()){
 				case ApplicationFacade.GET_LOCATION_LIST_SUCCESS:					

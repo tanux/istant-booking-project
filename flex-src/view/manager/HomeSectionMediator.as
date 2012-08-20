@@ -35,10 +35,23 @@ package view.manager
 	public class HomeSectionMediator extends Mediator implements IMediator{
 		public static const NAME:String = "HomeMediator";		
 		private var confirmBookingTitleWindow:TitleWindow;
+		[Bindable]public var abilitaHelp: Boolean = true;
 		
 		public function HomeSectionMediator(viewComponent:Object){
 			super(NAME, viewComponent);
-			initSection();			
+			initSection();
+			cmpHome.chbHelp.addEventListener(Event.CHANGE, activeHelp); 
+		}
+		
+		private function activeHelp(evt:Event):void{			
+			if (cmpHome.chbHelp.selected){
+				Alert.show("Suggerimenti Attivati");				
+				abilitaHelp = true;
+			}
+			else {
+				Alert.show("Suggerimenti Disattivati");
+				abilitaHelp = false;
+			}
 		}
 		
 		private function initSection(){			

@@ -12,8 +12,10 @@ package view.manager.main
 	
 	import mx.collections.ArrayCollection;
 	import mx.controls.Alert;
+	import mx.controls.ToolTip;
 	import mx.events.CloseEvent;
 	import mx.events.ListEvent;
+	import mx.managers.ToolTipManager;
 	import mx.rpc.events.FaultEvent;
 	import mx.validators.Validator;
 	
@@ -28,21 +30,40 @@ package view.manager.main
 	import view.component.LocationList;
 	import view.component.VisitLocations;
 	import view.component.VisitPropertiesAffiliateMain;
+	import view.manager.HomeSectionMediator;
 	import view.manager.main.VisitLocationMediator;
 	
 	public class CustomerSectionMediator extends Mediator implements IMediator{
 		public static const NAME:String = "CustomerListMediator";
 		[Bindable]private var customerInList:CustomerInList;
 		[Bindalbe] public var custom:Boolean = false;
-		
+		private var myTip:ToolTip;
 		public function CustomerSectionMediator(viewComponent:Object){
 			super(NAME, viewComponent);
 			customerListCmp.btnSave.addEventListener(MouseEvent.CLICK,saveChanges);
 			customerListCmp.btnAddUser.addEventListener(MouseEvent.CLICK, addCustomer);
 			customerListCmp.btnDelUser.addEventListener(MouseEvent.CLICK, confirmDeleteCustomer);
 			customerListCmp.btnCancel.addEventListener(MouseEvent.CLICK, resetAll);
+			customerListCmp.imgInfo.addEventListener(MouseEvent.ROLL_OVER, createToolTip);
+			customerListCmp.imgInfo.addEventListener(MouseEvent.ROLL_OUT, destroyToolTip);
 		}
 		private function init(evt:Event) : void {}
+		
+		private function createToolTip(evt:MouseEvent):void {
+			var homeSectionMediator:HomeSectionMediator = facade.retrieveMediator(HomeSectionMediator.NAME) as HomeSectionMediator;
+			if(homeSectionMediator.abilitaHelp==true){
+				var s:String = "Per effettuare una prenotazione, selezionare il cliente.Se il cliente non è presente nella lista, inserirlo e selezionarlo per avviare la prenotazione";				
+				myTip = ToolTipManager.createToolTip(s,275,55) as ToolTip;				
+				myTip.width = 400;
+				myTip.height = 40;
+				myTip.visible=true;
+				myTip.setStyle("backgroundColor",0xFFCC00);				
+			}
+		}
+		
+		private function destroyToolTip(evt:MouseEvent):void {			
+			ToolTipManager.destroyToolTip(myTip);
+		}
 		
 		public function resetAll(evt:Event):void{
 			resetTextInput();	

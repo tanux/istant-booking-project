@@ -176,45 +176,14 @@
 			protected function clearButton_cb_changeHandler(event:Event):void
 			{			
 				logger.info('textInput.showCancelButton = ');
-			}	
-			
-			import mx.managers.ToolTipManager;
-			import mx.controls.ToolTip;
-			
-			public var myTip:ToolTip;
-			
-			private function createBigTip():void {
-				var s:String = "Per poter effettuare la prenotazione bisogna innanzitutto selezionare il cliente " +
-					"all'interno della tabella sottostante. Se non presente può essere inserito attraverso gli appositi box sottostanti alla tabella."
-					
-				var home:HomeSection = new HomeSection;
-				myTip = ToolTipManager.createToolTip(s,275,55) as ToolTip;
-				myTip.visible=false;
-				myTip.width = 800;
-				myTip.height = 40;
-				Alert.show(home.abilitaHelp.toString());
-				if(home.abilitaHelp==true){
-					Alert.show("E CHE CAZZO");
-					myTip.visible=true;
-					//myTip.setStyle("backgroundColor",0xFFCC00);
-					
-				}else{
-					myTip.visible=false;
-					//Alert.show("Yuppyyy");
-				}
-			}
-			
-			private function destroyBigTip():void {
-				ToolTipManager.destroyToolTip(myTip);
-			}
+			}		
 		]]>
 	</fx:Script>
 	
 	<mx:HBox width="100%" textAlign="left" horizontalAlign="right" verticalAlign="middle">
 		<mx:HBox horizontalAlign="left" width="100%" verticalGap="1" horizontalGap="1" verticalAlign="middle">
 			<mx:Label text="Seleziona il cliente" fontWeight="bold" height="15" />	
-			<mx:Image id="btn" source="@Embed('/assets/images/info_little.png')" verticalAlign="middle"
-					  rollOver="createBigTip()" />
+			<mx:Image id="imgInfo" source="@Embed('/assets/images/info_little.png')" verticalAlign="middle" buttonMode="true"/>
 		</mx:HBox>
 		
 		<mx:Canvas>
