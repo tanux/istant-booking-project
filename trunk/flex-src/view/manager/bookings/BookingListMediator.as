@@ -14,6 +14,7 @@ package view.manager.bookings
 	import mx.collections.ArrayCollection;
 	import mx.controls.Alert;
 	import mx.controls.DateField;
+	import mx.events.CloseEvent;
 	import mx.managers.CursorManager;
 	import mx.printing.FlexPrintJob;
 	import mx.printing.FlexPrintJobScaleType;
@@ -37,19 +38,25 @@ package view.manager.bookings
 		public function BookingListMediator(mediatorName:String, viewComponent:Object){
 			super(mediatorName, viewComponent);
 			bookingListCmp.btnPrintBookingList.addEventListener(MouseEvent.CLICK, printBookingList);
-			bookingListCmp.btnDeleteUser.addEventListener(MouseEvent.CLICK, deleteBooking);
+			bookingListCmp.btnDeleteUser.addEventListener(MouseEvent.CLICK, confirmDeleteBooking);
 		}
 		
-		public function deleteBooking(evt:Event): void{
-			var delBooking:Booking = new Booking();
-			var jsEncode:JSONEncoder = new JSONEncoder();
-			delBooking = bookingListCmp.bookingList.getItemAt(bookingInList.getPosition) as Booking;
-			var visitDayMediator:VisitDayMediator = facade.retrieveMediator(VisitDayMediator.NAME_IN_BOOKING) as VisitDayMediator;					
-			var date:String = DateField.dateToString(visitDayMediator.visitDayCmp.selectedDate as Date, "DD/MM/YYYY");
-			delBooking.visitDay = date;			
-			delBooking.visitHour = jsEncode.encode(delBooking.visitHour);
-			var bInList:BookingInList = new BookingInList(delBooking, bookingInList.getPosition);
-			facade.sendNotification(ApplicationFacade.BOOKING_DELETE, bInList);
+		private function confirmDeleteBooking(evt:MouseEvent){
+			Alert.show("Sei sicuro di voler cancellare la prenotazione?","Conferma Eliminazione",Alert.YES|Alert.NO,null,deleteBooking,null,Alert.NO);
+		}
+		
+		public function deleteBooking(evt:CloseEvent): void{
+			if (evt.detail == Alert.YES){
+				var delBooking:Booking = new Booking();
+				var jsEncode:JSONEncoder = new JSONEncoder();
+				delBooking = bookingListCmp.bookingList.getItemAt(bookingInList.getPosition) as Booking;
+				var visitDayMediator:VisitDayMediator = facade.retrieveMediator(VisitDayMediator.NAME_IN_BOOKING) as VisitDayMediator;					
+				var date:String = DateField.dateToString(visitDayMediator.visitDayCmp.selectedDate as Date, "DD/MM/YYYY");
+				delBooking.visitDay = date;			
+				delBooking.visitHour = jsEncode.encode(delBooking.visitHour);
+				var bInList:BookingInList = new BookingInList(delBooking, bookingInList.getPosition);
+				facade.sendNotification(ApplicationFacade.BOOKING_DELETE, bInList);				
+			}			
 		}
 		
 		private function printBookingList(evt:MouseEvent):void {
