@@ -33,13 +33,13 @@
 	</fx:Declarations>	
 	<fx:Script>
 		<![CDATA[			
-			
 			import model.vo.Customer;
 			import model.vo.CustomerInList;
 			
 			import mx.collections.ArrayCollection;
 			import mx.controls.Alert;
 			import mx.events.ListEvent;
+			import mx.events.ToolTipEvent;
 			import mx.events.ValidationResultEvent;
 			import mx.rpc.events.FaultEvent;
 			import mx.rpc.events.ResultEvent;
@@ -177,14 +177,30 @@
 			}	
 			
 			import mx.managers.ToolTipManager;
-
+			import mx.controls.ToolTip;
+			
+			public var myTip:ToolTip;
+			
+			private function createBigTip():void {
+				var s:String = "These buttons let you save, exit, or continue with the current operation."
+				
+				myTip = ToolTipManager.createToolTip(s,275,55) as ToolTip;
+				//myTip.setStyle("backgroundColor",0xFFCC00);
+				myTip.width = 250;
+				myTip.height = 40;
+			}
+			
+			private function destroyBigTip():void {
+				ToolTipManager.destroyToolTip(myTip);
+			}
 		]]>
 	</fx:Script>
 	
 	<mx:HBox width="100%" textAlign="left" horizontalAlign="right" verticalAlign="middle">
 		<mx:HBox horizontalAlign="left" width="100%" verticalGap="1" horizontalGap="1" verticalAlign="middle">
 			<mx:Label text="Seleziona il cliente" fontWeight="bold" height="15" />	
-			<mx:Image id="btn" source="@Embed('/assets/images/info_little.png')" verticalAlign="middle"/>
+			<mx:Image id="btn" source="@Embed('/assets/images/info_little.png')" verticalAlign="middle"
+					  rollOver="createBigTip()" />
 		</mx:HBox>
 		
 		<mx:Canvas>
