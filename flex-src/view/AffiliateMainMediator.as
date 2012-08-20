@@ -71,7 +71,7 @@ package view
 				case ApplicationFacade.AFFILIATE_LOGGED_IN:					
 					affiliateMain.currentState = "stateMainApplication";
 					var affiliateLoggedIn:Affiliate = notification.getBody() as Affiliate;
-					affiliateMain.cmpControlBar.txUserLoggedIn.text = affiliateLoggedIn.name as String;
+//					affiliateMain.cmpControlBar.txUserLoggedIn.text = affiliateLoggedIn.name as String;
 					affiliateMain.cmpControlBar.btnSettings.addEventListener(MouseEvent.CLICK, goToSetting);
 					affiliateMain.cmpControlBar.btnLogout.addEventListener(MouseEvent.CLICK, doLogout);					
 					break;					
@@ -85,7 +85,7 @@ package view
 					affiliateMain.currentState = "stateMainApplication";
 					CursorManager.removeBusyCursor();
 					var affiliate:Affiliate = notification.getBody() as Affiliate;
-					affiliateMain.cmpControlBar.txUserLoggedIn.text = affiliate.name as String;
+					//affiliateMain.cmpControlBar.txUserLoggedIn.text = affiliate.name as String;
 					affiliateMain.cmpControlBar.btnSettings.addEventListener(MouseEvent.CLICK, goToSetting);
 					affiliateMain.cmpControlBar.btnLogout.addEventListener(MouseEvent.CLICK, doLogout);
 					break;

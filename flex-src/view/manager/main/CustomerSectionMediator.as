@@ -12,6 +12,7 @@ package view.manager.main
 	
 	import mx.collections.ArrayCollection;
 	import mx.controls.Alert;
+	import mx.events.CloseEvent;
 	import mx.events.ListEvent;
 	import mx.rpc.events.FaultEvent;
 	import mx.validators.Validator;
@@ -38,7 +39,7 @@ package view.manager.main
 			super(NAME, viewComponent);
 			customerListCmp.btnSave.addEventListener(MouseEvent.CLICK,saveChanges);
 			customerListCmp.btnAddUser.addEventListener(MouseEvent.CLICK, addCustomer);
-			customerListCmp.btnDelUser.addEventListener(MouseEvent.CLICK, deleteCustomer);
+			customerListCmp.btnDelUser.addEventListener(MouseEvent.CLICK, confirmDeleteCustomer);
 			customerListCmp.btnCancel.addEventListener(MouseEvent.CLICK, resetAll);
 		}
 		private function init(evt:Event) : void {}
@@ -66,16 +67,21 @@ package view.manager.main
 			facade.sendNotification(ApplicationFacade.CUSTOMER_ADD, newCustomer );
 		}
 		
-		
-		public function deleteCustomer(evt:Event): void{
-			var delCustomer:Customer = new Customer();
-			delCustomer.id = customerInList.getCustomer.id;
-			delCustomer.firstName = customerListCmp.tiFirstname.text;
-			delCustomer.lastName = customerListCmp.tiLastname.text;
-			delCustomer.email = customerListCmp.tiEmail.text;
-			delCustomer.telephoneNumber = customerListCmp.tiTelephoneNumber.text;
-			var cInList:CustomerInList = new CustomerInList(delCustomer, customerInList.getPosition);
-			facade.sendNotification(ApplicationFacade.CUSTOMER_DELETE, cInList);
+		private function confirmDeleteCustomer(evt:MouseEvent){
+			Alert.show("Sei sicuro di voler eliminare il cliente?","Conferma Eliminazione",Alert.YES|Alert.NO,null,deleteCustomer,null,Alert.NO);
+		}
+		public function deleteCustomer(evt:CloseEvent): void{
+			 if (evt.detail == Alert.YES){
+				 var delCustomer:Customer = new Customer();
+				 delCustomer.id = customerInList.getCustomer.id;
+				 delCustomer.firstName = customerListCmp.tiFirstname.text;
+				 delCustomer.lastName = customerListCmp.tiLastname.text;
+				 delCustomer.email = customerListCmp.tiEmail.text;
+				 delCustomer.telephoneNumber = customerListCmp.tiTelephoneNumber.text;
+				 var cInList:CustomerInList = new CustomerInList(delCustomer, customerInList.getPosition);
+				 facade.sendNotification(ApplicationFacade.CUSTOMER_DELETE, cInList);
+				 resetAll(evt);
+			 }			
 		}
 		
 		private function saveChanges(evt:Event): void {			
