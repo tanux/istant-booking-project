@@ -8,6 +8,8 @@
 		 verticalAlign="bottom">	
 	<fx:Script>
 		<![CDATA[
+			/*
+			import mx.controls.Alert;
 			import mx.controls.ToolTip;
 			import mx.managers.ToolTipManager;
 			
@@ -16,8 +18,8 @@
 			public var ora:String="Selezioni l'Orario desiderato cliccando nel cerchio a lato. Dopodichè potrà confermare la visita";
 			
 			public var myTip:ToolTip;
-			private function createBigTip(s:String, x:int, y:int):void {
-
+			private function createBigTip(evt:Event, s:String, x:int, y:int):void {
+				Alert.show(""+evt.currentTarget.x);
 				myTip = ToolTipManager.createToolTip(s,x,y) as ToolTip;
 				//myTip.setStyle("backgroundColor",0xFFCC00);
 				myTip.width = 300;
@@ -27,17 +29,18 @@
 			private function destroyBigTip():void {
 				ToolTipManager.destroyToolTip(myTip);
 			}
+			*/
 		]]>
 	</fx:Script>	
 	<mx:HBox width="100%" horizontalAlign="center">
 		<mx:Box width="33.3%" horizontalAlign="left">
-			<mx:Image id="imgLoc" source="@Embed('/assets/images/info_little.png')" rollOver="createBigTip(sede,160,345)" />
+			<mx:Image id="imgLoc" source="@Embed('/assets/images/info_little.png')" />
 		</mx:Box>
 		<mx:Box width="33.3%" horizontalAlign="left">
-			<mx:Image id="imgDay" source="@Embed('/assets/images/info_little.png')" rollOver="createBigTip(giorno,530,345)"/>
+			<mx:Image id="imgDay" source="@Embed('/assets/images/info_little.png')" />
 		</mx:Box>
 		<mx:Box width="33.3%" horizontalAlign="left">
-			<mx:Image id="imgHour" source="@Embed('/assets/images/info_little.png')" rollOver="createBigTip(ora,900,345)"/>
+			<mx:Image id="imgHour" source="@Embed('/assets/images/info_little.png')" />
 		</mx:Box>
 	</mx:HBox>
 	<mx:HBox width="100%">
