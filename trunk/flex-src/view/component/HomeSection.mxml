@@ -17,7 +17,7 @@
 
 	
 	<mx:VBox width="100%" horizontalAlign="right">
-		<mx:CheckBox id="chbHelp" label="Attiva Suggerimenti"/>
+		<mx:CheckBox id="chbHelp" label="Attiva Suggerimenti" fontWeight="bold"/>
 		<mx:Label fontStyle="italic" text="Istant Booking Project - version 1.0"/>	
 	</mx:VBox>
 </mx:Box>
