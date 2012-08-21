@@ -37,7 +37,7 @@ package view.manager.main
 		public static const NAME:String = "CustomerListMediator";
 		[Bindable]private var customerInList:CustomerInList;
 		[Bindalbe] public var custom:Boolean = false;
-		private var myTip:ToolTip;
+		private var tip:ToolTip;
 		public function CustomerSectionMediator(viewComponent:Object){
 			super(NAME, viewComponent);
 			customerListCmp.btnSave.addEventListener(MouseEvent.CLICK,saveChanges);
@@ -50,21 +50,21 @@ package view.manager.main
 		
 		private function createToolTip(evt:MouseEvent):void {
 			var homeSectionMediator:HomeSectionMediator = facade.retrieveMediator(HomeSectionMediator.NAME) as HomeSectionMediator;
-			if(homeSectionMediator.abilitaHelp==true){
+			if(homeSectionMediator.abilitaHelp==true){				
 				var s:String = "Per effettuare una prenotazione, selezionare il cliente.Se il cliente non è presente nella lista, inserirlo e selezionarlo per avviare la prenotazione";				
-				myTip = ToolTipManager.createToolTip(s,275,55) as ToolTip;				
-				myTip.width = 400;
-				myTip.height = 40;
-				myTip.visible=true;
-				myTip.setStyle("backgroundColor",0xFFCC00);				
+				tip = ToolTipManager.createToolTip(s,275,55) as ToolTip;				
+				tip.width = 400;
+				tip.height = 40;
+				tip.visible=true;
+				tip.setStyle("backgroundColor",0xFFCC00);					
 			}
 		}
 		
 		private function destroyToolTip():void {		
 			var homeSectionMediator:HomeSectionMediator = facade.retrieveMediator(HomeSectionMediator.NAME) as HomeSectionMediator;
-			if(homeSectionMediator.abilitaHelp==true){
-				ToolTipManager.destroyToolTip(myTip);
-			}
+			if(homeSectionMediator.abilitaHelp){				
+					ToolTipManager.destroyToolTip(tip);									
+			}	
 		}
 		
 		public function resetAll(evt:Event):void{
@@ -90,7 +90,7 @@ package view.manager.main
 			facade.sendNotification(ApplicationFacade.CUSTOMER_ADD, newCustomer );
 		}
 		
-		private function confirmDeleteCustomer(evt:MouseEvent){
+		private function confirmDeleteCustomer(evt:MouseEvent):void{
 			Alert.show("Sei sicuro di voler eliminare il cliente?","Conferma Eliminazione",Alert.YES|Alert.NO,null,deleteCustomer,null,Alert.NO);
 		}
 		public function deleteCustomer(evt:CloseEvent): void{
@@ -146,9 +146,10 @@ package view.manager.main
 					customerListCmp.tiEmail.showCancelButton = true;
 					customerListCmp.tiTelephoneNumber.showCancelButton = true;					
 					custom = true;
-					
-					destroyToolTip();
-					customerListCmp.imgInfo.visible = false;
+					if (tip != null){
+						destroyToolTip();
+						customerListCmp.imgInfo.visible = false;	
+					}					
 					break;
 				case ApplicationFacade.CUSTOMER_SAVE_CHANGES_SUCCESS:
 					notify('default', 'Successo', 'L\'operazione è andata a buon fine', customerListCmp.successIcon, 5000);
