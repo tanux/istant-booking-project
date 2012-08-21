@@ -7,6 +7,7 @@ package view.manager
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.system.TouchscreenType;
 	
 	import model.vo.Booking;
 	import model.vo.Customer;
@@ -53,16 +54,21 @@ package view.manager
 			if (abilitaHelp){
 				//var x:int = event.currentTarget.x + event.currentTarget.width + 10; 
 				//var y:int = event.currentTarget.y;
-				myTip = new ToolTip();
 				myTip = ToolTipManager.createToolTip(s,x,y) as ToolTip;
 				myTip.setStyle("backgroundColor",0xFFCC00);
 				myTip.width = 200;
-				myTip.height = 40;	
+				myTip.height = 40;
 			}
 		}
 		
 		private function destroyBigTip():void {
-			ToolTipManager.destroyToolTip(myTip);
+			
+			if (abilitaHelp){
+				if (myTip != null)
+					ToolTipManager.destroyToolTip(myTip);				
+			}		
+			
+				
 		}
 		
 		private function activeHelp(evt:Event):void{			
@@ -166,14 +172,14 @@ package view.manager
 			switch (notification.getName()){				
 				case ApplicationFacade.CUSTOMER_SELECTED_HOMESECTION:
 					cmpHome.cmpVisitProperties.cmpLocations.boxSede.enabled = true;
-					if (abilitaHelp){
+					if (abilitaHelp){						
 						cmpHome.cmpVisitProperties.imgLoc.visible = true;					
 						cmpHome.cmpVisitProperties.imgLoc.addEventListener(MouseEvent.ROLL_OVER, function(){ createBigTip(MouseEvent as MouseEvent,TOOTTIP_LOCATION, 150,330 )});
 					}					
 					break;
 				case ApplicationFacade.LOCATION_SELECTED_ACCORDION_HOME:
 					cmpHome.cmpVisitProperties.cmpVisitDay.boxDay.enabled = true;
-					if (abilitaHelp){
+					if (abilitaHelp){						
 						destroyBigTip();
 						cmpHome.cmpVisitProperties.imgLoc.visible = false;
 						cmpHome.cmpVisitProperties.imgDay.visible = true;
