@@ -44,8 +44,7 @@ package view.manager.main
 			customerListCmp.btnAddUser.addEventListener(MouseEvent.CLICK, addCustomer);
 			customerListCmp.btnDelUser.addEventListener(MouseEvent.CLICK, confirmDeleteCustomer);
 			customerListCmp.btnCancel.addEventListener(MouseEvent.CLICK, resetAll);
-			customerListCmp.imgInfo.addEventListener(MouseEvent.ROLL_OVER, createToolTip);
-			customerListCmp.imgInfo.addEventListener(MouseEvent.ROLL_OUT, destroyToolTip);
+			customerListCmp.imgInfo.addEventListener(MouseEvent.ROLL_OVER, createToolTip);			
 		}
 		private function init(evt:Event) : void {}
 		
@@ -61,8 +60,11 @@ package view.manager.main
 			}
 		}
 		
-		private function destroyToolTip(evt:MouseEvent):void {			
-			ToolTipManager.destroyToolTip(myTip);
+		private function destroyToolTip():void {		
+			var homeSectionMediator:HomeSectionMediator = facade.retrieveMediator(HomeSectionMediator.NAME) as HomeSectionMediator;
+			if(homeSectionMediator.abilitaHelp==true){
+				ToolTipManager.destroyToolTip(myTip);
+			}
 		}
 		
 		public function resetAll(evt:Event):void{
@@ -142,8 +144,11 @@ package view.manager.main
 					customerListCmp.tiFirstname.showCancelButton = true;
 					customerListCmp.tiLastname.showCancelButton = true;
 					customerListCmp.tiEmail.showCancelButton = true;
-					customerListCmp.tiTelephoneNumber.showCancelButton = true;
-					custom = true;					
+					customerListCmp.tiTelephoneNumber.showCancelButton = true;					
+					custom = true;
+					
+					destroyToolTip();
+					customerListCmp.imgInfo.visible = false;
 					break;
 				case ApplicationFacade.CUSTOMER_SAVE_CHANGES_SUCCESS:
 					notify('default', 'Successo', 'L\'operazione è andata a buon fine', customerListCmp.successIcon, 5000);

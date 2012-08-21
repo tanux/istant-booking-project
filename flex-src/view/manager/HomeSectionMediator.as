@@ -15,8 +15,10 @@ package view.manager
 	
 	import mx.containers.TitleWindow;
 	import mx.controls.Alert;
+	import mx.controls.ToolTip;
 	import mx.events.FlexEvent;
 	import mx.managers.PopUpManager;
+	import mx.managers.ToolTipManager;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -36,11 +38,31 @@ package view.manager
 		public static const NAME:String = "HomeMediator";		
 		private var confirmBookingTitleWindow:TitleWindow;
 		[Bindable]public var abilitaHelp: Boolean = true;
-		
+		private static const TOOTTIP_LOCATION:String="Selezionare la sede desiderata cliccando su un nome in lista.";
+		private var TOOTTIP_DAY:String="Selezionare la data desiderata cliccando un giorno del calendario.";
+		private var TOOTTIP_HOUR:String="Selezionare l'orario desiderato ancora disponibile ";
+		private var myTip:ToolTip;
 		public function HomeSectionMediator(viewComponent:Object){
 			super(NAME, viewComponent);
 			initSection();
 			cmpHome.chbHelp.addEventListener(Event.CHANGE, activeHelp); 
+		}
+		
+		
+		private function createBigTip(event:MouseEvent, s:String, x:int, y:int):void {
+			if (abilitaHelp){
+				//var x:int = event.currentTarget.x + event.currentTarget.width + 10; 
+				//var y:int = event.currentTarget.y;
+				myTip = new ToolTip();
+				myTip = ToolTipManager.createToolTip(s,x,y) as ToolTip;
+				myTip.setStyle("backgroundColor",0xFFCC00);
+				myTip.width = 200;
+				myTip.height = 40;	
+			}
+		}
+		
+		private function destroyBigTip():void {
+			ToolTipManager.destroyToolTip(myTip);
 		}
 		
 		private function activeHelp(evt:Event):void{			
@@ -93,7 +115,7 @@ package view.manager
 			}
 		}
 		
-		private function showConfirmBooking():void{
+		private function showConfirmBooking():void{			
 			confirmBookingTitleWindow = PopUpManager.createPopUp(cmpHome, ConfirmBookingWindow, true) as TitleWindow;			
 			PopUpManager.centerPopUp(confirmBookingTitleWindow);
 			var booking:Booking = new Booking();
@@ -144,12 +166,35 @@ package view.manager
 			switch (notification.getName()){				
 				case ApplicationFacade.CUSTOMER_SELECTED_HOMESECTION:
 					cmpHome.cmpVisitProperties.cmpLocations.boxSede.enabled = true;
+					if (abilitaHelp){
+						cmpHome.cmpVisitProperties.imgLoc.visible = true;					
+						cmpHome.cmpVisitProperties.imgLoc.addEventListener(MouseEvent.ROLL_OVER, function(){ createBigTip(MouseEvent as MouseEvent,TOOTTIP_LOCATION, 150,330 )});
+					}					
 					break;
 				case ApplicationFacade.LOCATION_SELECTED_ACCORDION_HOME:
 					cmpHome.cmpVisitProperties.cmpVisitDay.boxDay.enabled = true;
+					if (abilitaHelp){
+						destroyBigTip();
+						cmpHome.cmpVisitProperties.imgLoc.visible = false;
+						cmpHome.cmpVisitProperties.imgDay.visible = true;
+						cmpHome.cmpVisitProperties.imgDay.addEventListener(MouseEvent.ROLL_OVER, function(){ createBigTip(MouseEvent as MouseEvent,TOOTTIP_DAY, 430,330 )});
+					}					
 					break;
 				case ApplicationFacade.DATE_SELECTED:
 					cmpHome.cmpVisitProperties.cmpVisitHours.boxHours.enabled = true;
+					if (abilitaHelp){
+						destroyBigTip();
+						cmpHome.cmpVisitProperties.imgDay.visible = false;
+						cmpHome.cmpVisitProperties.imgHour.visible = true;
+						cmpHome.cmpVisitProperties.imgHour.addEventListener(MouseEvent.ROLL_OVER, function(){ createBigTip(MouseEvent as MouseEvent,TOOTTIP_HOUR, 700,330 )});
+					}					
+					break;
+				case ApplicationFacade.HOUR_SELECTED:					
+					if (abilitaHelp){
+						destroyBigTip();
+						cmpHome.cmpVisitProperties.imgHour.visible = false;						
+					}
+					showConfirmBooking();
 					break;
 				case ApplicationFacade.BOOKING_ADD_SUCCESS:
 					cmpHome.cmpVisitProperties.cmpLocations.boxSede.enabled = false;
@@ -168,9 +213,6 @@ package view.manager
 					cmpHome.cmpVisitProperties.cmpVisitDay.boxDay.enabled=false;
 					cmpHome.cmpVisitProperties.cmpVisitHours.boxHours.enabled=false;
 					break;
-				case ApplicationFacade.HOUR_SELECTED:
-					showConfirmBooking();
-					break;
 			}
 		}
 		
@@ -180,7 +222,7 @@ package view.manager
 				ApplicationFacade.LOCATION_SELECTED_ACCORDION_HOME,				
 				ApplicationFacade.DATE_SELECTED,
 				ApplicationFacade.BOOKING_ADD_SUCCESS,		
-				ApplicationFacade.HOUR_SELECTED
+				ApplicationFacade.HOUR_SELECTED,				
 			];
 		}
 		
