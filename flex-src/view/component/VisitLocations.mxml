@@ -23,7 +23,7 @@
 				dispatchEvent(new Event( LOCATION_SELECTED_EVENT ));
 			}
 		]]>
-	</fx:Script>
+	</fx:Script>	
 	<mx:VBox width="95%" id="boxSede" borderStyle="solid" paddingTop="5" paddingBottom="5" 
 			 paddingLeft="5" paddingRight="5" maxHeight="210" enabled="false">
 		<mx:Accordion id="acrdLocationList" width="100%" resizeToContent="true" click="acrdLocationList_clickHandler(event)">

@@ -36,36 +36,18 @@ package view.manager.main
 	public class CustomerSectionMediator extends Mediator implements IMediator{
 		public static const NAME:String = "CustomerListMediator";
 		[Bindable]private var customerInList:CustomerInList;
-		[Bindalbe] public var custom:Boolean = false;
-		private var tip:ToolTip;
+		[Bindalbe] public var custom:Boolean = false;		
 		public function CustomerSectionMediator(viewComponent:Object){
 			super(NAME, viewComponent);
 			customerListCmp.btnSave.addEventListener(MouseEvent.CLICK,saveChanges);
 			customerListCmp.btnAddUser.addEventListener(MouseEvent.CLICK, addCustomer);
 			customerListCmp.btnDelUser.addEventListener(MouseEvent.CLICK, confirmDeleteCustomer);
-			customerListCmp.btnCancel.addEventListener(MouseEvent.CLICK, resetAll);
-			customerListCmp.imgInfo.addEventListener(MouseEvent.ROLL_OVER, createToolTip);			
+			customerListCmp.btnCancel.addEventListener(MouseEvent.CLICK, resetAll);					
 		}
-		private function init(evt:Event) : void {}
+		private function init(evt:Event) : void {}		
+
 		
-		private function createToolTip(evt:MouseEvent):void {
-			var homeSectionMediator:HomeSectionMediator = facade.retrieveMediator(HomeSectionMediator.NAME) as HomeSectionMediator;
-			if(homeSectionMediator.abilitaHelp==true){				
-				var s:String = "Per effettuare una prenotazione, selezionare il cliente.Se il cliente non è presente nella lista, inserirlo e selezionarlo per avviare la prenotazione";				
-				tip = ToolTipManager.createToolTip(s,275,55) as ToolTip;				
-				tip.width = 400;
-				tip.height = 40;
-				tip.visible=true;
-				tip.setStyle("backgroundColor",0xFFCC00);					
-			}
-		}
 		
-		private function destroyToolTip():void {		
-			var homeSectionMediator:HomeSectionMediator = facade.retrieveMediator(HomeSectionMediator.NAME) as HomeSectionMediator;
-			if(homeSectionMediator.abilitaHelp){				
-					ToolTipManager.destroyToolTip(tip);									
-			}	
-		}
 		
 		public function resetAll(evt:Event):void{
 			resetTextInput();	
@@ -73,8 +55,7 @@ package view.manager.main
 			customerListCmp.btnDelUser.enabled = false;
 			customerListCmp.btnSave.enabled = false;
 			customerListCmp.abilitaAdd=true;
-			customerListCmp.dgCustomerList.selectedIndex = -1;
-			
+			customerListCmp.dgCustomerList.selectedIndex = -1;			
 			var managerMainMediator:ManagerMainMediator = facade.retrieveMediator(ManagerMainMediator.NAME) as ManagerMainMediator;			
 			managerMainMediator.managerMain.cmpHomeSection.cmpVisitProperties.cmpLocations.boxSede.enabled = false;
 			managerMainMediator.managerMain.cmpHomeSection.cmpVisitProperties.cmpVisitDay.boxDay.enabled = false;
@@ -145,11 +126,7 @@ package view.manager.main
 					customerListCmp.tiLastname.showCancelButton = true;
 					customerListCmp.tiEmail.showCancelButton = true;
 					customerListCmp.tiTelephoneNumber.showCancelButton = true;					
-					custom = true;
-					if (tip != null){
-						destroyToolTip();
-						customerListCmp.imgInfo.visible = false;	
-					}					
+					custom = true;								
 					break;
 				case ApplicationFacade.CUSTOMER_SAVE_CHANGES_SUCCESS:
 					notify('default', 'Successo', 'L\'operazione è andata a buon fine', customerListCmp.successIcon, 5000);

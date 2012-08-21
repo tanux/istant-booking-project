@@ -36,15 +36,19 @@
 			}
 					
 			
-			//RICERCA	
+			//RICERCA
+			
 			private function filterPhrase():void{
+				Alert.show("Funzione non ancora disponibile");
+				/*
 				if (bookingList != null){
 					bookingList.filterFunction = filterFirst;
 					bookingList.refresh();	
-				}				
+				}*/				
 			} 
 			
 			//if true it show results, if false it shows nothing
+			
 			private function filterFirst(row:Object):Boolean
 			{
 				if(searchText.length == 0){
@@ -73,6 +77,7 @@
 				}
 				return true;
 			}
+			
 		]]>
 	</fx:Script>	
 	
@@ -99,6 +104,7 @@
 	</mx:VBox>
 	
 	<mx:HBox width="100%" horizontalAlign="center" verticalAlign="top">
+		
 		<mx:Canvas width="33.4%">
 			<mx:Box horizontalAlign="left" width="100%">
 				<mx:TextInput id="searchText" change="filterPhrase()" width="100%" paddingTop="1" textAlign="right"/>	
@@ -107,6 +113,7 @@
 				<mx:Image source="assets/images/find.png" height="20" />	
 			</mx:Box>			
 		</mx:Canvas>
+		
 		<mx:HBox verticalAlign="middle" horizontalAlign="right" width="66.6%">
 			<mx:Button id="btnDeleteUser" icon="@Embed(source='assets/images/delete_user.png')" downIcon="@Embed(source='assets/images/delete_user_little.png')"
 					   width="45" height="40" visible="{visibleBtnDel}" enabled="false"/>			
