@@ -20,10 +20,11 @@ package view.manager.main
 		public static const NAME:String = "VisitLocationMediator";
 		public static const NAME_IN_HOME:String = NAME+"Home";
 		public static const NAME_IN_BOOKING:String = NAME+"Booking";
+		private static const TOOLTIP_LOCATION:String="Selezionare la sede desiderata cliccando su un nome in lista.";
 		
 		public function VisitLocationMediator(mediatorName:String,viewComponent:Object){			
 			super(mediatorName, viewComponent);	
-			visitLocationCmp.addEventListener(VisitLocations.LOCATION_SELECTED_EVENT, notifyLocationSelected);			
+			visitLocationCmp.addEventListener(VisitLocations.LOCATION_SELECTED_EVENT, notifyLocationSelected);
 		}
 		
 		private function notifyLocationSelected(evt:Event):void{			
@@ -39,31 +40,6 @@ package view.manager.main
 			
 		}
 		
-		private var myTip:ToolTip;
-		import mx.controls.ToolTip;
-		import mx.managers.ToolTipManager;
-		import flash.events.MouseEvent;
-		
-		private function createBigTip(event:MouseEvent, s:String, x:int, y:int):void {
-			var home:HomeSectionMediator = facade.retrieveMediator(HomeSectionMediator.NAME) as HomeSectionMediator;
-			if (home.abilitaHelp){
-				//var x:int = event.currentTarget.x + event.currentTarget.width + 10; 
-				//var y:int = event.currentTarget.y;
-				myTip = ToolTipManager.createToolTip(s,x,y) as ToolTip;
-				myTip.setStyle("backgroundColor",0xFFCC00);
-				myTip.width = 200;
-				myTip.height = 40;
-			}
-		}
-		
-		private function destroyBigTip():void {
-			var home:HomeSectionMediator = facade.retrieveMediator(HomeSectionMediator.NAME) as HomeSectionMediator;
-			if (home.abilitaHelp){
-				if (myTip != null)
-					ToolTipManager.destroyToolTip(myTip);				
-			}		
-		}
-		
 		override public function handleNotification(notification:INotification):void{ 
 			switch (notification.getName()){
 				case ApplicationFacade.GET_LOCATION_LIST_SUCCESS:					
@@ -75,12 +51,7 @@ package view.manager.main
 					break;
 				case ApplicationFacade.LOCATION_SELECTED_ACCORDION:
 					loc=true;
-					break;
-				case ApplicationFacade.CUSTOMER_SELECTED_HOMESECTION:
-					//var homeSection: HomeSection = new HomeSection() as HomeSection;
-					//homeSection.cmpVisitProperties.imgLoc.visible=true;
-					createBigTip(MouseEvent as MouseEvent,"Mino", 150,330 );
-					break;
+					break;			
 			}
 		}               
 		override public function listNotificationInterests():Array{
@@ -88,8 +59,7 @@ package view.manager.main
 				ApplicationFacade.GET_LOCATION_LIST_SUCCESS,
 				ApplicationFacade.GET_LOCATION_LIST_ERROR,
 				ApplicationFacade.GET_LOCATION_LIST_FAULT,
-				ApplicationFacade.LOCATION_SELECTED_ACCORDION,
-				ApplicationFacade.CUSTOMER_SELECTED_HOMESECTION
+				ApplicationFacade.LOCATION_SELECTED_ACCORDION				
 			];      
 		}
 		

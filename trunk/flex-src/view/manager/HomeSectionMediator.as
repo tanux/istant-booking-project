@@ -15,11 +15,9 @@ package view.manager
 	import model.vo.Manager;
 	
 	import mx.containers.TitleWindow;
-	import mx.controls.Alert;
-	import mx.controls.ToolTip;
+	import mx.controls.Alert;	
 	import mx.events.FlexEvent;
-	import mx.managers.PopUpManager;
-	import mx.managers.ToolTipManager;
+	import mx.managers.PopUpManager;	
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -39,38 +37,12 @@ package view.manager
 		public static const NAME:String = "HomeMediator";		
 		private var confirmBookingTitleWindow:TitleWindow;
 		[Bindable]public var abilitaHelp: Boolean = true;
-		private static const TOOTTIP_LOCATION:String="Selezionare la sede desiderata cliccando su un nome in lista.";
-		private var TOOTTIP_DAY:String="Selezionare la data desiderata cliccando un giorno del calendario.";
-		private var TOOTTIP_HOUR:String="Selezionare l'orario desiderato ancora disponibile ";
-		private var myTip:ToolTip;
 		public function HomeSectionMediator(viewComponent:Object){
 			super(NAME, viewComponent);
 			initSection();
-			cmpHome.chbHelp.addEventListener(Event.CHANGE, activeHelp); 
+			//cmpHome.chbHelp.addEventListener(Event.CHANGE, activeHelp); 
 		}
-		
-		
-		private function createBigTip(event:MouseEvent, s:String, x:int, y:int):void {
-			if (abilitaHelp){
-				//var x:int = event.currentTarget.x + event.currentTarget.width + 10; 
-				//var y:int = event.currentTarget.y;
-				myTip = ToolTipManager.createToolTip(s,x,y) as ToolTip;
-				myTip.setStyle("backgroundColor",0xFFCC00);
-				myTip.width = 200;
-				myTip.height = 40;
-			}
-		}
-		
-		private function destroyBigTip():void {
-			
-			if (abilitaHelp){
-				if (myTip != null)
-					ToolTipManager.destroyToolTip(myTip);				
-			}		
-			
-				
-		}
-		
+		/*
 		private function activeHelp(evt:Event):void{			
 			if (cmpHome.chbHelp.selected){
 				Alert.show("Suggerimenti Attivati");				
@@ -81,10 +53,9 @@ package view.manager
 				abilitaHelp = false;
 			}
 		}
+		*/
 		
-		private function initSection(){			
-			
-			/*CustomerSection*/
+		private function initSection():void{
 			if (!facade.hasMediator(CustomerSectionMediator.NAME)){
 				facade.registerMediator(new CustomerSectionMediator(cmpHome.cmpCustomerList));
 			}
@@ -92,27 +63,19 @@ package view.manager
 				facade.registerCommand(ApplicationFacade.GET_CUSTOMER_LIST,CustomerGetListCommand);	
 			}
 			facade.sendNotification(ApplicationFacade.GET_CUSTOMER_LIST);
-			
-			/*Visit Location (Sedi)*/
 			if (!facade.hasMediator(VisitLocationMediator.NAME_IN_HOME)){
 				facade.registerMediator(new VisitLocationMediator(VisitLocationMediator.NAME_IN_HOME,cmpHome.cmpVisitProperties.cmpLocations));
 			}
 			if (!facade.hasCommand(ApplicationFacade.GET_LOCATION_LIST)){
 				facade.registerCommand(ApplicationFacade.GET_LOCATION_LIST, LocationGetListCommand);	
 			}
-			facade.sendNotification(ApplicationFacade.GET_LOCATION_LIST);
-			
-			
-			/*Visit Day (Giorno)*/
+			facade.sendNotification(ApplicationFacade.GET_LOCATION_LIST);			
 			if (!facade.hasMediator(VisitDayMediator.NAME_IN_HOME)){
 				facade.registerMediator(new VisitDayMediator(VisitDayMediator.NAME_IN_HOME,cmpHome.cmpVisitProperties.cmpVisitDay));
 			}
-			
-			/*Visit Hours (Orari Liberi)*/
 			if (!facade.hasMediator(VisitHoursMediator.NAME)){
 				facade.registerMediator(new VisitHoursMediator(cmpHome.cmpVisitProperties.cmpVisitHours));
 			}
-			
 			if (!facade.hasCommand(ApplicationFacade.BOOKING_ADD)){
 				facade.registerCommand(ApplicationFacade.BOOKING_ADD, BookingAddCommand);	
 			}
@@ -171,21 +134,10 @@ package view.manager
 		override public function handleNotification(notification:INotification):void{
 			switch (notification.getName()){				
 				case ApplicationFacade.CUSTOMER_SELECTED_HOMESECTION:
-					cmpHome.cmpVisitProperties.cmpLocations.boxSede.enabled = true;
-					/**if (abilitaHelp){						
-						destroyBigTip();
-						cmpHome.cmpVisitProperties.imgLoc.visible = true;
-						cmpHome.cmpVisitProperties.imgLoc.addEventListener(MouseEvent.ROLL_OVER, function(){ createBigTip(MouseEvent as MouseEvent,TOOTTIP_LOCATION, 150,330 )});
-					}**/					
+					cmpHome.cmpVisitProperties.cmpLocations.boxSede.enabled = true;					
 					break;
 				case ApplicationFacade.LOCATION_SELECTED_ACCORDION_HOME:
-					cmpHome.cmpVisitProperties.cmpVisitDay.boxDay.enabled = true;
-					/**if (abilitaHelp){						
-						destroyBigTip();
-						cmpHome.cmpVisitProperties.imgLoc.visible = false;
-						cmpHome.cmpVisitProperties.imgDay.visible = true;
-						cmpHome.cmpVisitProperties.imgDay.addEventListener(MouseEvent.ROLL_OVER, function(){ createBigTip(MouseEvent as MouseEvent,TOOTTIP_DAY, 430,330 )});
-					}**/				
+					cmpHome.cmpVisitProperties.cmpVisitDay.boxDay.enabled = true;						
 					break;
 				case ApplicationFacade.DATE_SELECTED:
 					cmpHome.cmpVisitProperties.cmpVisitHours.boxHours.enabled = true;
@@ -196,11 +148,7 @@ package view.manager
 						cmpHome.cmpVisitProperties.imgHour.addEventListener(MouseEvent.ROLL_OVER, function(){ createBigTip(MouseEvent as MouseEvent,TOOTTIP_HOUR, 700,330 )});
 					}**/					
 					break;
-				case ApplicationFacade.HOUR_SELECTED:					
-					/**if (abilitaHelp){
-						destroyBigTip();
-						cmpHome.cmpVisitProperties.imgHour.visible = false;						
-					}**/
+				case ApplicationFacade.HOUR_SELECTED:
 					showConfirmBooking();
 					break;
 				case ApplicationFacade.BOOKING_ADD_SUCCESS:

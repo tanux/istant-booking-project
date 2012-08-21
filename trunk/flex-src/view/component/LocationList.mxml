@@ -38,9 +38,9 @@
 			import mx.rpc.events.FaultEvent;
 			import mx.rpc.events.ResultEvent;
 			
-			public static const CITY_PROMT:String = "Paperopoli";
-			public static const ADDRESS_PROMT:String = "Via dei Paperi";
-			public static const TELEPHONE_PROMT:String = "081123456";
+			public static const CITY_PROMT:String = "Roma";
+			public static const ADDRESS_PROMT:String = "Via di Esempio";
+			public static const TELEPHONE_PROMT:String = "061123456";
 			
 			private var facade:ApplicationFacade = ApplicationFacade.getInstance() as ApplicationFacade;
 			[Bindable]public var locationList:ArrayCollection;			
@@ -70,8 +70,7 @@
 				this.enabled = true;
 			}
 			
-			private function init():void{
-				//con.getBooks();//
+			private function init():void{				
 				this.enabled = false;
 			}
 			
