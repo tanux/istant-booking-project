@@ -10,8 +10,10 @@ package view.manager.main
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	
 	import view.ManagerMainMediator;
+	import view.component.HomeSection;
 	import view.component.LocationList;
 	import view.component.VisitLocations;
+	import view.manager.HomeSectionMediator;
 	
 	public class VisitLocationMediator extends Mediator implements IMediator{
 		[Bindable] public var loc: Boolean = false;
@@ -37,7 +39,30 @@ package view.manager.main
 			
 		}
 		
+		private var myTip:ToolTip;
+		import mx.controls.ToolTip;
+		import mx.managers.ToolTipManager;
+		import flash.events.MouseEvent;
 		
+		private function createBigTip(event:MouseEvent, s:String, x:int, y:int):void {
+			var home:HomeSectionMediator = facade.retrieveMediator(HomeSectionMediator.NAME) as HomeSectionMediator;
+			if (home.abilitaHelp){
+				//var x:int = event.currentTarget.x + event.currentTarget.width + 10; 
+				//var y:int = event.currentTarget.y;
+				myTip = ToolTipManager.createToolTip(s,x,y) as ToolTip;
+				myTip.setStyle("backgroundColor",0xFFCC00);
+				myTip.width = 200;
+				myTip.height = 40;
+			}
+		}
+		
+		private function destroyBigTip():void {
+			var home:HomeSectionMediator = facade.retrieveMediator(HomeSectionMediator.NAME) as HomeSectionMediator;
+			if (home.abilitaHelp){
+				if (myTip != null)
+					ToolTipManager.destroyToolTip(myTip);				
+			}		
+		}
 		
 		override public function handleNotification(notification:INotification):void{ 
 			switch (notification.getName()){
@@ -51,6 +76,11 @@ package view.manager.main
 				case ApplicationFacade.LOCATION_SELECTED_ACCORDION:
 					loc=true;
 					break;
+				case ApplicationFacade.CUSTOMER_SELECTED_HOMESECTION:
+					//var homeSection: HomeSection = new HomeSection() as HomeSection;
+					//homeSection.cmpVisitProperties.imgLoc.visible=true;
+					createBigTip(MouseEvent as MouseEvent,"Mino", 150,330 );
+					break;
 			}
 		}               
 		override public function listNotificationInterests():Array{
@@ -58,7 +88,8 @@ package view.manager.main
 				ApplicationFacade.GET_LOCATION_LIST_SUCCESS,
 				ApplicationFacade.GET_LOCATION_LIST_ERROR,
 				ApplicationFacade.GET_LOCATION_LIST_FAULT,
-				ApplicationFacade.LOCATION_SELECTED_ACCORDION
+				ApplicationFacade.LOCATION_SELECTED_ACCORDION,
+				ApplicationFacade.CUSTOMER_SELECTED_HOMESECTION
 			];      
 		}
 		

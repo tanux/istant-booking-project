@@ -172,34 +172,35 @@ package view.manager
 			switch (notification.getName()){				
 				case ApplicationFacade.CUSTOMER_SELECTED_HOMESECTION:
 					cmpHome.cmpVisitProperties.cmpLocations.boxSede.enabled = true;
-					if (abilitaHelp){						
-						cmpHome.cmpVisitProperties.imgLoc.visible = true;					
+					/**if (abilitaHelp){						
+						destroyBigTip();
+						cmpHome.cmpVisitProperties.imgLoc.visible = true;
 						cmpHome.cmpVisitProperties.imgLoc.addEventListener(MouseEvent.ROLL_OVER, function(){ createBigTip(MouseEvent as MouseEvent,TOOTTIP_LOCATION, 150,330 )});
-					}					
+					}**/					
 					break;
 				case ApplicationFacade.LOCATION_SELECTED_ACCORDION_HOME:
 					cmpHome.cmpVisitProperties.cmpVisitDay.boxDay.enabled = true;
-					if (abilitaHelp){						
+					/**if (abilitaHelp){						
 						destroyBigTip();
 						cmpHome.cmpVisitProperties.imgLoc.visible = false;
 						cmpHome.cmpVisitProperties.imgDay.visible = true;
 						cmpHome.cmpVisitProperties.imgDay.addEventListener(MouseEvent.ROLL_OVER, function(){ createBigTip(MouseEvent as MouseEvent,TOOTTIP_DAY, 430,330 )});
-					}					
+					}**/				
 					break;
 				case ApplicationFacade.DATE_SELECTED:
 					cmpHome.cmpVisitProperties.cmpVisitHours.boxHours.enabled = true;
-					if (abilitaHelp){
+					/**if (abilitaHelp){
 						destroyBigTip();
 						cmpHome.cmpVisitProperties.imgDay.visible = false;
 						cmpHome.cmpVisitProperties.imgHour.visible = true;
 						cmpHome.cmpVisitProperties.imgHour.addEventListener(MouseEvent.ROLL_OVER, function(){ createBigTip(MouseEvent as MouseEvent,TOOTTIP_HOUR, 700,330 )});
-					}					
+					}**/					
 					break;
 				case ApplicationFacade.HOUR_SELECTED:					
-					if (abilitaHelp){
+					/**if (abilitaHelp){
 						destroyBigTip();
 						cmpHome.cmpVisitProperties.imgHour.visible = false;						
-					}
+					}**/
 					showConfirmBooking();
 					break;
 				case ApplicationFacade.BOOKING_ADD_SUCCESS:
