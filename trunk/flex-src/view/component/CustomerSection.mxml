@@ -50,10 +50,10 @@
 			
 			import view.manager.HomeSectionMediator;
 			
-			public static const NAME_PROMT:String = "Mario";
-			public static const SURNAME_PROMT:String = "Rossi";
-			public static const EMAIL_PROMT:String = "m.rossi@mail.it";
-			public static const TELEFONO_PROMT:String = "081123456";
+			public static const NAME_PROMT:String = "MioNome";
+			public static const SURNAME_PROMT:String = "MioCognome";
+			public static const EMAIL_PROMT:String = "mia.mail@email.it";
+			public static const TELEFONO_PROMT:String = "000000000";
 			
 			private var facade:ApplicationFacade = ApplicationFacade.getInstance() as ApplicationFacade;
 			[Bindable]public var customerList:ArrayCollection;
