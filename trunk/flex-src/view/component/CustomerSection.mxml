@@ -83,8 +83,6 @@
 				facade.sendNotification(ApplicationFacade.CUSTOMER_SELECTED_HOMESECTION, customerInList);				
 			}
 			
-					
-			
 			private function getDataSuccess(returnedEvent:ResultEvent):void{
 				customerList = returnedEvent.result as ArrayCollection;
 				this.enabled = true;
