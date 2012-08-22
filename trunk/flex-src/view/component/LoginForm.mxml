@@ -1,12 +1,12 @@
 <mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" 
 		  xmlns:component="view.component.*"
 		  title="LOGIN" horizontalAlign="center" verticalAlign="middle"
-		  width="20%" height="30%"
+		  width="20%" height="35%"
 		  styleName="panelSkinsICandy"
 		  titleIcon="@Embed('assets/images/orange_login.png')"
 		  textAlign="left" fontWeight="bold">
 	
-	<mx:Form id="frmLogin" width="100%" textAlign="center">
+	<mx:Form id="frmLogin" width="100%" textAlign="center" paddingTop="30">
 		<mx:FormItem paddingRight="15" id="fiUsername" width="100%" horizontalAlign="center">
 			<mx:Text id="txtUsername" color="#000000" fontStyle="italic" text="Username" />
 			<component:TIClearOnClick id="tiUsername" text="Username" color="#000000" fontWeight="normal"/>				
@@ -18,7 +18,7 @@
 		</mx:FormItem>		
 		
 	</mx:Form>
-	<mx:Box horizontalAlign="center">
+	<mx:Box horizontalAlign="center" paddingBottom="5">
 		<mx:Button id="btnLogin" label="Login"/>
 	</mx:Box>
 	
