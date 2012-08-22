@@ -9,12 +9,12 @@
 	</fx:Declarations>
 	<mx:HBox width="80%" height="100%" horizontalAlign="center" verticalAlign="middle" paddingTop="5">
 		<mx:VBox width="30%" height="100%">
-			<component:VisitLocations id="cmpLocations" width="100%" height="50%" />						
-			<component:VisitDay id="cmpCalendar" width="100%" height="50%"/>
+			<component:VisitLocations id="cmpLocations" width="100%" height="40%" />						
+			<component:VisitDay id="cmpCalendar" width="100%" height="40%"/>
 		</mx:VBox>
 		<mx:VBox width="70%" height="100%" horizontalAlign="center" verticalAlign="middle">
-			<component:BookingList id="cmpBookingList" width="100%" height="50%" visibleBtnDel="true" testo="Elenco delle Prenotazioni"/>
-			<component:BookingList id="cmpBookingDeletedList" width="100%" height="50%" testo="Elenco delle Prenotazioni Disdette"/>
+			<component:BookingList id="cmpBookingList" width="100%" height="80%" visibleBtnDel="true" testo="Elenco delle Prenotazioni"/>
+			<component:BookingList id="cmpBookingDeletedList" width="100%" height="0%" testo="Elenco delle Prenotazioni Disdette" visible="false"/>
 		</mx:VBox>	
 	</mx:HBox>								
 </mx:VBox>	
