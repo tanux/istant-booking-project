@@ -40,14 +40,22 @@ package view.manager.main
 			switch (notification.getName()){
 				case ApplicationFacade.GET_BUSY_HOURS_SUCCESS:
 					var arrayVisitHour:ArrayCollection = notification.getBody() as ArrayCollection;
-					var hours:Array = [
-						{hour:'15.00',index:0,busy:false},
+					var hours:Array = [{hour:'15.00',index:0,busy:false},
+						{hour:'15.20',index:1,busy:false},
+						{hour:'15.40',index:1,busy:false},
 						{hour:'16.00',index:1,busy:false},
+						{hour:'16.20',index:1,busy:false},
+						{hour:'16.40',index:1,busy:false},
 						{hour:'17.00',index:2,busy:false},
+						{hour:'17.20',index:1,busy:false},
+						{hour:'17.40',index:1,busy:false},
 						{hour:'18.00',index:3,busy:false},
+						{hour:'18.20',index:1,busy:false},
+						{hour:'18.40',index:1,busy:false},
 						{hour:'19.00',index:4,busy:false},
-						{hour:'20.00',index:5,busy:false}
-					];
+						{hour:'19.20',index:1,busy:false},
+						{hour:'19.40',index:1,busy:false},
+						{hour:'20.00',index:5,busy:false}]; 
 					if (arrayVisitHour.length > 0){
 						var jsDecode:JSONDecoder = new JSONDecoder();						
 						for (var i:int=0; i<arrayVisitHour.length; i++){
