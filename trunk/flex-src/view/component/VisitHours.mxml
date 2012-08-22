@@ -31,9 +31,8 @@
 	
 	
 	<mx:VBox id="boxHours" width="95%" verticalAlign="middle" height="30%" enabled="false"
-			 paddingTop="5" paddingRight="20" paddingLeft="20" fontWeight="normal" >				
-		<mx:Repeater id="rptContentHours" dataProvider="{hours}"> 
-							
+			 paddingTop="5" paddingRight="20" paddingLeft="20" fontWeight="normal">		
+		<mx:Repeater id="rptContentHours" dataProvider="{hours}" > 
 				<s:RadioButton id="rbHour" group="{rbgHours}"									 
 							 value="{rptContentHours.currentItem}"
 							 label="{rptContentHours.currentItem.hour}" 
