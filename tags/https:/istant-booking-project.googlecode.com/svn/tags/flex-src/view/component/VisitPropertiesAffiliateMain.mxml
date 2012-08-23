@@ -1,0 +1,28 @@
+<mx:VBox xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"	
+		 xmlns:component="view.component.*"
+		 width="80%" 
+		 height="100%" 
+		 horizontalAlign="center" 
+		 verticalAlign="bottom">		
+	<!--
+	<mx:HBox width="100%" horizontalAlign="center">
+		<mx:Box width="33.3%" horizontalAlign="left">
+			<mx:Image id="imgLoc" source="@Embed('/assets/images/info_little.png')" visible="false"/>			
+		</mx:Box>
+		<mx:Box width="33.3%" horizontalAlign="left">
+			<mx:Image id="imgDay" source="@Embed('/assets/images/info_little.png')" visible="false"/>
+		</mx:Box>
+		<mx:Box width="33.3%" horizontalAlign="left">
+			<mx:Image id="imgHour" source="@Embed('/assets/images/info_little.png')" visible="false"/>
+		</mx:Box>
+	</mx:HBox>
+	-->
+	<mx:HBox width="100%">
+		<component:VisitLocations id="cmpLocations" width="33.3%" height="100%"/>
+		<component:VisitDay id="cmpVisitDay" width="33.3%" height="100%"/>
+		<component:VisitHours id="cmpVisitHours" width="33.3%" height="100%"/>
+	</mx:HBox>
+
+</mx:VBox>

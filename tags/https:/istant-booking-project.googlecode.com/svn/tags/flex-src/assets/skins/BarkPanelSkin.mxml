@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:SparkSkin 
+	xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:s="library://ns.adobe.com/flex/spark" 
+	xmlns:mx="library://ns.adobe.com/flex/halo">
+    
+    <s:states>
+    	<s:State name="normal" />
+    </s:states>
+    
+    <!-- drop shadow -->
+    <s:Rect left="0" top="0" right="0" bottom="0">
+        <s:filters>
+            <s:DropShadowFilter blurX="20" blurY="20" alpha="0.32" distance="11" angle="45" knockout="true" />
+        </s:filters>
+        <s:fill>
+            <s:SolidColor color="0" />
+        </s:fill>
+    </s:Rect>
+    
+	<!-- layer 1: border -->
+	<s:Rect left="0" right="0" top="0" bottom="0">
+		<s:stroke>
+			<s:SolidColorStroke color="0" alpha="0.50" weight="1" />
+		</s:stroke>
+	</s:Rect>
+
+    <!-- layer 2: background fill -->
+    <!--- Defines the appearance of the PanelSkin class's background. -->
+    <s:Rect id="background" left="1" top="1" right="1" bottom="1">
+        <s:fill>
+	    <!--- Defines the  PanelSkin class's background fill. The default color is 0xFFFFFF. -->
+            <s:SolidColor color="0xFFFFFF" id="bgFill" />
+        </s:fill>
+    </s:Rect>
+	
+	<s:Label id="titleField" visible="false" />
+	
+	<s:Scroller left="1" right="1" top="1" bottom="1">
+		<s:Group id="contentGroup" width="100%" height="100%">
+		</s:Group>
+	</s:Scroller>
+	
+</s:SparkSkin>

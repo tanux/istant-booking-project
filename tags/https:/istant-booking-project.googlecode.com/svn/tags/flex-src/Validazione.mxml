@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"  
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ui="http://www.kapit.fr/flex3/ui"
+			   viewSourceURL="srcview/index.html">
+	
+	<fx:Declarations>
+		
+		<mx:StringValidator id="useridValidator"
+							source="{userid}" property="text"
+							minLength="8" maxLength="15" />
+		
+		<mx:NumberValidator id="ageValidator"
+							source="{age}" property="text"
+							precision="0" allowNegative="false"
+							minValue="18" maxValue="100" />  
+		
+		<mx:EmailValidator  id="emailValidator" source="{email}" property="text" />
+		<mx:PhoneNumberValidator id="phoneValidator" source="{phone}"  property="text" />
+		
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.events.ValidationResultEvent;
+			import mx.validators.ValidationResult;
+			import mx.validators.Validator;
+			
+			import spark.events.TextOperationEvent;
+			
+			protected function submit_clickHandler(event:MouseEvent):void
+			{
+				Alert.show("Form valido. Invio Dati");
+			}
+			
+			private function mayEnableButton():void
+			{
+				btn.enabled = (Validator.validateAll([useridValidator, ageValidator, emailValidator, phoneValidator]).length == 0);
+				
+			}
+			
+			//////////////
+			import mx.logging.ILogger;
+			import mx.logging.Log;
+			
+			import spark.events.TextOperationEvent;
+			
+			[Embed(source="assets/images/cross.png")]
+			private static var _textInput_clearIcon:Class;
+			
+			[Bindable] public var text:String = "Prova";
+			
+			protected var logger:ILogger = Log.getLogger("flex3ui.AdvancedTextInput");
+			
+			public function dispose():void
+			{
+			}
+			
+			protected function clearButton_cb_changeHandler(event:Event):void
+			{			
+				logger.info('textInput.showCancelButton = ');
+			}	
+			
+			public function activateAdd(): void{
+				userid.editable = true;
+				userid.enabled = true;
+				age.editable = true;
+				age.enabled = true;
+				email.editable = true;
+				email.enabled = true;
+				phone.editable = true;
+				phone.enabled = true;
+			}
+		]]>
+	</fx:Script>
+	
+	<mx:Form x="0" y="0" >
+		<mx:FormItem label="Nome utente">
+			<ui:AdvancedTextInput id="userid"
+								  enabled="false"
+								  editable="false"
+								  width="100%"
+								  promptText="{text}"
+								  color="#000000"
+								  iconWidth="15"
+								  iconHeight="15"
+								  iconPadding="3"
+								  keepPromptOnFocus="false"
+								  showCancelButton="true"
+								  cancelWidth="12" cancelHeight="12"
+								  cancelDownSkin="{_textInput_clearIcon}"
+								  cancelUpSkin="{_textInput_clearIcon}"
+								  cancelOverSkin="{_textInput_clearIcon}"
+								  change="mayEnableButton();clearButton_cb_changeHandler(event); "
+								  displayAsPassword="false"
+								  />	
+			
+		</mx:FormItem>
+		<mx:FormItem label="Età">
+			<ui:AdvancedTextInput id="age"
+								  enabled="false"
+								  editable="false"
+								  width="100%"
+								  promptText="{text}"
+								  color="#000000"
+								  iconWidth="15"
+								  iconHeight="15"
+								  iconPadding="3"
+								  keepPromptOnFocus="false"
+								  showCancelButton="true"
+								  cancelWidth="12" cancelHeight="12"
+								  cancelDownSkin="{_textInput_clearIcon}"
+								  cancelUpSkin="{_textInput_clearIcon}"
+								  cancelOverSkin="{_textInput_clearIcon}"
+								  change="mayEnableButton();clearButton_cb_changeHandler(event); "
+								  displayAsPassword="false"
+								  />
+		</mx:FormItem>
+		<mx:FormItem label="e-mail">
+			<ui:AdvancedTextInput id="email"
+								  enabled="false"
+								  editable="false"
+								  width="100%"
+								  promptText="{text}"
+								  color="#000000"
+								  iconWidth="15"
+								  iconHeight="15"
+								  iconPadding="3"
+								  keepPromptOnFocus="false"
+								  showCancelButton="true"
+								  cancelWidth="12" cancelHeight="12"
+								  cancelDownSkin="{_textInput_clearIcon}"
+								  cancelUpSkin="{_textInput_clearIcon}"
+								  cancelOverSkin="{_textInput_clearIcon}"
+								  change="mayEnableButton();clearButton_cb_changeHandler(event); "
+								  displayAsPassword="false"
+								  />
+		</mx:FormItem>
+		<mx:FormItem label="Telefono">
+			<ui:AdvancedTextInput id="phone"
+								  enabled="false"
+								  editable="false"
+								  width="100%"
+								  promptText="{text}"
+								  color="#000000"
+								  iconWidth="15"
+								  iconHeight="15"
+								  iconPadding="3"
+								  keepPromptOnFocus="false"
+								  showCancelButton="true"
+								  cancelWidth="12" cancelHeight="12"
+								  cancelDownSkin="{_textInput_clearIcon}"
+								  cancelUpSkin="{_textInput_clearIcon}"
+								  cancelOverSkin="{_textInput_clearIcon}"
+								  change="mayEnableButton();clearButton_cb_changeHandler(event); "
+								  displayAsPassword="false"
+								  />
+		</mx:FormItem>
+		<mx:FormItem  label="Invia">
+			<s:Button id="btn" enabled="false" click="submit_clickHandler(event)"/>
+		</mx:FormItem>
+		<mx:FormItem  label="Attiva">
+			<s:Button id="att" enabled="true" click="activateAdd()"/>
+		</mx:FormItem>
+	</mx:Form>
+	
+</s:Application>

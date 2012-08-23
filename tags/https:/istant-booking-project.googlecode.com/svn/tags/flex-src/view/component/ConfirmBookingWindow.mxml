@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx"
+				title="Conferma della prenotazione"
+				layout="vertical" 
+				width="400" 
+				height="250"				
+				showCloseButton="true"
+				styleName="panelSkinsICandy"
+				creationComplete="showedConfirmWindow()">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		<mx:DateFormatter id="dateFormatter" formatString="DD/MM/YYYY" />
+	</fx:Declarations>
+
+	<fx:Script>
+		<![CDATA[                       
+			import model.vo.Booking;
+			
+			import mx.controls.Alert;
+			var facade:ApplicationFacade = ApplicationFacade.getInstance() as ApplicationFacade;
+			[Bindable]private var dateValue:String;
+			public static const SHOWED_CONFIRM_BOOKING_WINDOW:String = "ShowedConfirmBookingWindow";
+			[Bindable] public var booking:Booking;
+			private function showedConfirmWindow():void{
+				dispatchEvent(new Event (SHOWED_CONFIRM_BOOKING_WINDOW) );
+			}			
+		
+		]]>
+	</fx:Script>
+
+	
+	
+	<mx:VBox width="100%" height="10%" horizontalAlign="center" verticalAlign="middle"
+			 paddingTop="30" paddingLeft="15" paddingRight="15">
+		<mx:Text text="Riepilogo dati della prenotazione"
+				 width="100%" height="30" fontSize="16" />
+	</mx:VBox>
+	
+	<mx:HBox width="100%" height="100%" horizontalAlign="center" paddingLeft="10" paddingRight="10">
+		<mx:VBox width="50%" horizontalAlign="right">
+			<mx:Label text="Cliente: " fontSize="12" width="50%"/>
+			<mx:Label text="Sede: " fontSize="12" width="50%"/>
+			<mx:Label text="Data: " fontSize="12" width="50%"/>
+			<mx:Label text="Orario: " fontSize="12" width="50%"/>
+		</mx:VBox>
+		
+		<mx:VBox width="50%" >
+			<mx:Text id="txtCustomerInfo" text="{booking.idCustomer.lastName} {booking.idCustomer.firstName}"
+					 fontSize="12" fontWeight="bold" />
+			<mx:Text id="txtLocationInfo" text="{booking.idLocation.city}"
+					 fontSize="12" fontWeight="bold"/>	
+			<mx:Text id="txtDateInfo" text="{dateFormatter.format(booking.visitDay)}"
+					 fontSize="12" fontWeight="bold"/>
+			<mx:Text id="txtHourInfo" text="{booking.visitHour.hour}"
+					 fontSize="12" fontWeight="bold"/>
+		</mx:VBox>
+	</mx:HBox>
+
+	<mx:HBox width="100%" height="10%" horizontalAlign="center"
+				 paddingBottom="20" paddingLeft="15" paddingRight="15">
+		<mx:Button id="btnConfirmBooking" icon="@Embed(source='assets/images/check.png')" downIcon="@Embed(source='assets/images/check_little.png')"
+				   width="120" height="40" enabled="true" label="Conferma" />	
+	</mx:HBox>  
+</mx:TitleWindow>

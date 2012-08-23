@@ -1,0 +1,13 @@
+Application Control Bar			appCntrlB
+HBox					hb
+VBox					vb
+Box					box
+Form					frm
+FormItem				fi
+Panel					pnl
+Component				cmp
+Text					txt 
+TextInput				ti
+Button					btn
+Canvas					cnv
+DataGrid				dg

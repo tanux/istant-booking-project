@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel xmlns:fx="http://ns.adobe.com/mxml/2009"
+		  xmlns:mx="library://ns.adobe.com/flex/mx"
+		  xmlns:s="library://ns.adobe.com/flex/spark"  
+		  paddingLeft="10" paddingRight="10" paddingTop="20"
+		  title="SELEZIONARE UNA SEDE" horizontalAlign="center" verticalAlign="middle"
+		  styleName="panelSkinsICandy"
+		  titleIcon="@Embed('assets/images/orange_home.png')"
+		  textAlign="left" fontWeight="bold" xmlns:component="view.component.*">
+	<fx:Script>
+		<![CDATA[
+			import model.vo.Location;			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.events.FlexEvent;
+			public static const LOCATION_SELECTED_EVENT:String = "LocationSelected";			
+			[Bindable]public var locationList:ArrayCollection;
+			[Bindable]public var locationSelected:Location = new Location();			
+			protected function acrdLocationList_clickHandler(event:MouseEvent):void	{				
+				locationSelected.id = locationList.getItemAt(acrdLocationList.selectedIndex).id;
+				locationSelected.city = locationList.getItemAt(acrdLocationList.selectedIndex).city;
+				locationSelected.receptionDays = locationList.getItemAt(acrdLocationList.selectedIndex).reception_days;
+				dispatchEvent(new Event( LOCATION_SELECTED_EVENT ));
+			}
+		]]>
+	</fx:Script>	
+	<mx:VBox width="95%" id="boxSede" borderStyle="solid" paddingTop="5" paddingBottom="5" 
+			 paddingLeft="5" paddingRight="5" maxHeight="210" enabled="false">
+		<mx:Accordion id="acrdLocationList" width="100%" resizeToContent="true" click="acrdLocationList_clickHandler(event)">
+			<mx:Repeater id="rptLocation" dataProvider="{locationList}" >
+				<mx:VBox id="acrdHeaderLocationName" label="{rptLocation.currentItem.city}" paddingTop="5" fontWeight="normal" >
+						<mx:Box >
+							<mx:Text text="Indirizzo: {String(rptLocation.currentItem.address)}" />							
+						</mx:Box>
+						<mx:Box >
+							<mx:Text text="Telefono: {String(rptLocation.currentItem.telephone_number)}" />
+						</mx:Box>
+				</mx:VBox>				
+			</mx:Repeater>
+		</mx:Accordion>
+	</mx:VBox>	
+</mx:Panel>		

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:ui="http://www.kapit.fr/flex3/ui"
+			   minWidth="955" minHeight="450" xmlns:component="view.component.*"  >
+	
+	<fx:Script>
+		<![CDATA[	
+			
+			import model.vo.Customer;
+			import model.vo.CustomerInList;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.events.ListEvent;	
+			
+			import mx.rpc.events.FaultEvent;			
+			import mx.rpc.events.ResultEvent;		
+			
+			
+			import mx.events.ValidationResultEvent;
+			import mx.validators.ValidationResult;
+			import mx.validators.Validator;
+			
+			import spark.events.TextOperationEvent;
+			
+			private var facade:ApplicationFacade = ApplicationFacade.getInstance() as ApplicationFacade;
+			[Bindable]public var customerList:ArrayCollection;
+			[Bindable]public var customerSelected:Customer;
+			
+			/*
+			private function makeDataLabel(item:Object) : String {
+			var c:Customer = new Customer();
+			c.id = item.id;
+			c.firstName = item.firstname;
+			c.lastName = item.lastname;
+			c.email = item.email;
+			c.telephoneNumber = item.telephone_number;
+			return c.firstName + " " + c.lastName + " " + c.email;
+			}*/
+			
+			protected function dgCustomerList_itemClickHandler(event:ListEvent):void{				
+				var selectedRow:Object = event.currentTarget.selectedItem;
+				customerSelected = new Customer();
+				customerSelected.id = selectedRow.id;
+				customerSelected.firstName = selectedRow.firstname;
+				customerSelected.lastName = selectedRow.lastname;
+				customerSelected.email = selectedRow.email;
+				customerSelected.telephoneNumber = selectedRow.telephone_number;
+				var position:int = event.currentTarget.selectedIndex;				
+				var customerInList:CustomerInList = new CustomerInList(customerSelected,position);				
+				facade.sendNotification(ApplicationFacade.CUSTOMER_SELECTED_HOMESECTION, customerInList);				
+			}
+			
+			
+			
+			private function getDataSuccess(returnedEvent:ResultEvent):void{
+				customerList = returnedEvent.result as ArrayCollection;
+				this.enabled = true;
+			}
+			
+			private function init():void{				
+				this.enabled = false;
+			}
+			
+			private function fault(f:FaultEvent):void{
+				Alert.show(f.fault.message as String);
+			}
+			
+		
+			
+			
+			
+			[Bindable] public var abilitaAdd: Boolean = true;
+			
+			
+			
+			import mx.logging.ILogger;
+			import mx.logging.Log;
+			
+			import spark.events.TextOperationEvent;
+			
+			[Embed(source="assets/images/cross.png")]
+			private static var _textInput_clearIcon:Class;
+			
+			[Bindable] public var text:String = "Prova";
+			
+			protected var logger:ILogger = Log.getLogger("flex3ui.AdvancedTextInput");
+			
+			public function dispose():void
+			{
+			}
+			
+			protected function clearButton_cb_changeHandler(event:Event):void
+			{			
+				logger.info('textInput.showCancelButton = ');
+			}	
+			
+			
+			
+			
+			
+		]]>
+	</fx:Script>
+<component:PopUpAnchor />
+	
+	
+</mx:Application>

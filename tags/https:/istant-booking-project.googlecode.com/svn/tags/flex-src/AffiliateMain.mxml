@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:mx="library://ns.adobe.com/flex/mx"
+				xmlns:s="library://ns.adobe.com/flex/spark"
+				xmlns:component="view.component.*"
+				width="100%" height="100%" layout="absolute"				
+				creationComplete="facade.sendNotification(ApplicationFacade.STARTUP_AFFILIATE_APP, this);">	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->		
+	</fx:Declarations>	
+	<fx:Style source="/assets/skins/flex_skins.css"/>
+	<fx:Script>
+		<![CDATA[
+			import model.vo.Affiliate;			
+			import mx.rpc.remoting.RemoteObject;
+			[Bindable] public var affiliates:Affiliate;
+			private var facade:ApplicationFacade = ApplicationFacade.getInstance() as ApplicationFacade;			
+		]]>
+	</fx:Script>
+	<mx:states>
+		<s:State name="blankState" />
+		<s:State name="stateLogin" />	
+		<s:State name="stateRegister" />
+		<s:State name="stateMainApplication" />
+		<s:State name="stateSettings" />
+	</mx:states>
+	
+	<mx:Image id="imgEye" styleName="imgEye" source="@Embed('/assets/images/occhio.png')" width="50%" height="50%"/>
+	<mx:VBox id="vbExt" styleName="vbExt" width="100%" height="100%">
+		
+		<mx:Box styleName="vbExt" width="100%" height="100%" includeIn="stateLogin">
+			<component:LoginForm id="cmpLoginFormAffiliate" />
+			<mx:HBox>
+				<mx:VBox horizontalAlign="center">
+					<mx:Text text="Non sei ancora registrato?" />
+					<mx:LinkButton id="lbRegisterAffiliate" label="Registrati" textDecoration="underline" styleName="clearLinkButtonStyle" />
+				</mx:VBox>
+				<mx:VRule height="40%"/>
+				<mx:VBox horizontalAlign="center">
+					<mx:Text text="Password dimenticata?" />
+					<mx:LinkButton id="lbRecoveryPassword" label="Recupera Password" textDecoration="underline" styleName="clearLinkButtonStyle" />
+				</mx:VBox>
+			</mx:HBox>	
+		</mx:Box>
+		
+		<component:RegisterForm id="cmpRegisterFormAffiliate" includeIn="stateRegister"/>		
+		
+		<mx:Box styleName="vbExt" width="100%" height="100%" includeIn="stateMainApplication,stateSettings"> 
+			
+			<component:ControlTopBar id="cmpControlBar" />
+			
+			<mx:Box width="100%" height="100%" horizontalAlign="center" includeIn="stateMainApplication">
+				<component:VisitPropertiesAffiliateMain id="cmpVisitProperties" />		
+				<mx:Box width="80%"	height="100%">	
+					<component:CustomerSection id="CustomerList"/>	
+				</mx:Box>			
+			</mx:Box>
+			<mx:Box width="100%" height="100%" horizontalAlign="center" paddingTop="50" includeIn="stateSettings">
+				<component:PropertyAffiliates id="cmpPropertyAffiliates" />	
+			</mx:Box>
+			
+		</mx:Box>
+		
+	</mx:VBox>	
+</mx:Application>

@@ -1,0 +1,45 @@
+<mx:Box xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="50%"
+		  paddingTop="30" paddingLeft="10" paddingRight="20" paddingBottom="10">
+	
+	<mx:Script>
+		<![CDATA[
+		import mx.collections.ArrayCollection;
+		[Bindable]
+		private var expenses:Array = [
+			{Month:"Gennaio",NumberOfVisit:20},
+			{Month:"Febbraio",NumberOfVisit:10},
+			{Month:"Marzo",NumberOfVisit:15},
+			{Month:"Aprile",NumberOfVisit:50},
+			{Month:"Maggio",NumberOfVisit:10},
+			{Month:"Giugno",NumberOfVisit:20},
+			{Month:"Luglio",NumberOfVisit:20},
+			{Month:"Agosto",NumberOfVisit:10},
+			{Month:"Settembre",NumberOfVisit:15},
+			{Month:"Ottobre",NumberOfVisit:50},
+			{Month:"Novembre",NumberOfVisit:10},
+			{Month:"Dicembre",NumberOfVisit:20}
+		];
+		
+	]]></mx:Script>
+	
+	
+	<mx:ColumnChart id="myChart" width="100%" height="100%" color="#000000" fontWeight="bold"
+					showDataTips="true" dataProvider="{expenses}" >
+		<mx:horizontalAxis>
+			<mx:CategoryAxis 
+				dataProvider="{expenses}" 
+				categoryField="Month"
+				/>
+		</mx:horizontalAxis>
+		<mx:series>
+			<mx:ColumnSeries 
+				xField="Month" 
+				yField="NumberOfVisit"
+				displayName="Numero di Visite"
+				/>
+		</mx:series>
+	</mx:ColumnChart>
+
+	
+</mx:Box>
+
