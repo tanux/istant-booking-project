@@ -15,6 +15,7 @@ package view.manager.main
 	import mx.controls.ToolTip;
 	import mx.events.CloseEvent;
 	import mx.events.ListEvent;
+	import mx.managers.CursorManager;
 	import mx.managers.ToolTipManager;
 	import mx.rpc.events.FaultEvent;
 	import mx.validators.Validator;
@@ -62,7 +63,8 @@ package view.manager.main
 			managerMainMediator.managerMain.cmpHomeSection.cmpVisitProperties.cmpVisitHours.boxHours.enabled = false;
 		}
 		
-		public function addCustomer(evt:Event): void{
+		public function addCustomer(evt:Event): void{			
+			CursorManager.setBusyCursor();
 			var newCustomer:Customer = new Customer();
 			newCustomer.firstName = customerListCmp.tiFirstname.text;
 			newCustomer.lastName = customerListCmp.tiLastname.text;
@@ -76,6 +78,7 @@ package view.manager.main
 		}
 		public function deleteCustomer(evt:CloseEvent): void{
 			 if (evt.detail == Alert.YES){
+				 CursorManager.setBusyCursor();
 				 var delCustomer:Customer = new Customer();
 				 delCustomer.id = customerInList.getCustomer.id;
 				 delCustomer.firstName = customerListCmp.tiFirstname.text;
@@ -88,7 +91,8 @@ package view.manager.main
 			 }			
 		}
 		
-		private function saveChanges(evt:Event): void {			
+		private function saveChanges(evt:Event): void {
+			CursorManager.setBusyCursor();
 			var customerChanged:Customer = new Customer();			
 			customerChanged.id = customerInList.getCustomer.id;
 			customerChanged.firstName = customerListCmp.tiFirstname.text;
@@ -129,7 +133,8 @@ package view.manager.main
 					custom = true;								
 					break;
 				case ApplicationFacade.CUSTOMER_SAVE_CHANGES_SUCCESS:
-					notify('default', 'Successo', 'L\'operazione è andata a buon fine', customerListCmp.successIcon, 5000);
+					CursorManager.removeBusyCursor();
+					notify('default', 'Esito operazione:', 'Modifiche salvate con successo', customerListCmp.successIcon, 5000);
 					resetTextInput();					
 					customerListCmp.abilitaAdd=true;
 					customerListCmp.btnSave.enabled = false;
@@ -141,7 +146,8 @@ package view.manager.main
 					//Alert.show("Errore nel salvataggio");
 					break;
 				case ApplicationFacade.CUSTOMER_ADD_SUCCESS:
-					notify('default', 'Successo', 'Inserimento ok', customerListCmp.successIcon, 5000);
+					CursorManager.removeBusyCursor();
+					notify('default', 'Esito operazione:', 'Inserimento eseguito con successo', customerListCmp.successIcon, 5000);
 					resetTextInput();
 					customerListCmp.btnAddUser.enabled = false;
 					break;
@@ -150,7 +156,8 @@ package view.manager.main
 					//Alert.show("Errore inserimento");
 					break;
 				case ApplicationFacade.CUSTOMER_DELETE_SUCCESS:
-					notify('default', 'Successo', 'Eliminazione ok', customerListCmp.successIcon, 5000);
+					CursorManager.removeBusyCursor();
+					notify('default', 'Esito operazione:', 'Eliminazione eseguita con successo', customerListCmp.successIcon, 5000);
 					resetTextInput();
 					customerListCmp.btnDelUser.enabled = false;
 					customerListCmp.abilitaAdd=true;
