@@ -31,7 +31,8 @@ package view
 		public static const NAME:String = "ManagerMainMediator";
 		public static const USER_TYPE:String = "managers";
 		
-		public var manager:Manager;							
+		public var manager:Manager;
+		public var manager2:Manager;
 		
 		public function ManagerMainMediator(viewComponent:Object){
 			super(NAME, viewComponent);		
