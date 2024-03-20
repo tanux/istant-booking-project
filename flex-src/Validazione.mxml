@@ -6,7 +6,9 @@
 			   viewSourceURL="srcview/index.html">
 	
 	<fx:Declarations>
-		
+		<mx:StringValidator id="peopleidValidator"
+							source="{userid}" property="text"
+							minLength="8" maxLength="15" />
 		<mx:StringValidator id="useridValidator"
 							source="{userid}" property="text"
 							minLength="8" maxLength="15" />
