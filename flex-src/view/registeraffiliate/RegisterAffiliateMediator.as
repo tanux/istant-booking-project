@@ -13,6 +13,7 @@ package view.registeraffiliate
 	
 	public class RegisterAffiliateMediator extends Mediator implements IMediator{
 		public static const NAME:String = "RegisterAffiliateMediator";
+		public static const NAME_2:String = "RegisterAffiliateMediator2";
 		
 		public function RegisterAffiliateMediator(viewComponent:Object){
 			super(NAME, viewComponent);	
